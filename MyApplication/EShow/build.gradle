@@ -18,11 +18,11 @@ repositories {
 }
 
 android {
-    compileSdkVersion 17
+    compileSdkVersion 21
     buildToolsVersion '23.0.1'
     defaultConfig {
-        minSdkVersion 15
-        targetSdkVersion 17
+        minSdkVersion 14
+        targetSdkVersion 23
     }
     sourceSets {
         main {
@@ -46,6 +46,6 @@ android {
 dependencies {
     // compile 'com.android.support:appcompat-v7:19.0.+'
     compile files('libs/ksoap2-android-assembly-3.3.0-jar-with-dependencies.jar')
-    compile 'com.android.support:support-v4:23.1.0'
+    compile 'com.android.support:support-v4:23.1.1'
     compile 'com.android.support:support-v13:23.1.0'
 }
