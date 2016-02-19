@@ -6,4 +6,8 @@
 
     <color name="app_bg">#F6F7F7</color>
     <color name="text_red">#D90012</color>
+    <color name="gray">#bab7b7</color>
+    <color name="title">#F6F7F7</color>
+    <color name="normal_text">#4d5353</color>
+    
 </resources>
