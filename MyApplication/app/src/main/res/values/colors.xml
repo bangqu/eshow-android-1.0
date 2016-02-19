@@ -9,5 +9,10 @@
     <color name="gray">#bab7b7</color>
     <color name="title">#F6F7F7</color>
     <color name="normal_text">#4d5353</color>
-    
+    <color name="black">#000000</color>
+    <color name="menu_item_text_disable">#ffffffff</color>
+    <color name="white">#ffffffff</color>
+    <item name="gray_drawable" type="drawable">#FF323A45</item>
+    <color name="font_black_2">#ff222222</color>
+    <drawable name="bg_maopao_comment">#ffeeeeee</drawable>
 </resources>

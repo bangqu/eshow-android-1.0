@@ -1,5 +1,10 @@
 package com.bangqu.eshow.demo.common;
 
+import android.view.ViewGroup;
+import android.widget.ImageView;
+
+import com.bangqu.eshow.demo.MyApp;
+
 import java.text.SimpleDateFormat;
 
 /**
@@ -15,4 +20,41 @@ public class Global {
     private static final SimpleDateFormat sFormatMessageToday = new SimpleDateFormat("今天");
     private static final SimpleDateFormat sFormatMessageThisYear = new SimpleDateFormat("MM/dd");
     private static final SimpleDateFormat sFormatMessageOtherYear = new SimpleDateFormat("yy/MM/dd");
+
+    public static int dpToPx(int dpValue) {
+        return (int) (dpValue * MyApp.sScale + 0.5f);
+    }
+
+    public static int dpToPx(double dpValue) {
+        return (int) (dpValue * MyApp.sScale + 0.5f);
+    }
+
+    public static int pxToDp(float pxValue) {
+        return (int) (pxValue / MyApp.sScale + 0.5f);
+    }
+
+    public static String makeSmallUrl(ImageView view, String url) {
+        ViewGroup.LayoutParams lp = view.getLayoutParams();
+        int max = Math.max(lp.height, lp.width);
+        if (max > 0) {
+            return makeSmallUrlSquare(url, max);
+        }
+
+        return url;
+    }
+
+    public static String makeSmallUrlSquare(String url, int widthPix) {
+        if (canCrop(url)) {
+            String parma = "";
+            if (!url.contains("?imageMogr2/")) {
+                parma = "?imageMogr2/";
+            }
+            return String.format("%s%s/!%dx%d", url, parma, widthPix, widthPix);
+        } else {
+            return url;
+        }
+    }
+    public static boolean canCrop(String url) {
+        return url.startsWith("http") && (!url.contains("/thumbnail/"));
+    }
 }
