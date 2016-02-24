@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">EShowAndroid</string>
     <string name="index">首页</string>
-    
+    <string name="empty"></string>
     <string-array name="functions">
         <item></item>
     </string-array>

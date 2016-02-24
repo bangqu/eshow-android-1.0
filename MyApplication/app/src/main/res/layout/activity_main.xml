@@ -1,38 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".activity.MainActivity">
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tvTitile"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/title_height"
-        android:background="@color/colorPrimaryDark"
-        android:gravity="center"
-        android:text="首页"
-        android:textColor="@color/title"
-        android:textSize="@dimen/title_textSize" />
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimaryDark">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="130dp"
-        android:background="@color/gray">
-
-        <ImageView
-            android:id="@+id/ivLogo"
-            android:layout_width="match_parent"
+        <RelativeLayout
+            android:id="@+id/rlMenu"
+            android:layout_width="50dp"
             android:layout_height="match_parent"
-            android:scaleType="centerInside"
-            android:src="@drawable/logo" />
+            android:background="@drawable/drawer_selector">
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerInParent="true"
+                android:scaleType="centerInside"
+                android:src="@drawable/icon_menu" />
 
-    </LinearLayout>
+        </RelativeLayout>
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="首页"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/title_textSize" />
 
-    <ListView
-        android:id="@+id/lvFunction"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 
+        <LinearLayout
+            android:id="@+id/llMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_alignParentRight="true">
+
+            <ImageView
+                android:id="@+id/ivSearch"
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_menu_search"
+                android:background="@drawable/drawer_selector"/>
+
+            <ImageView
+                android:id="@+id/ivAdd"
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_menu_add"
+                android:background="@drawable/drawer_selector"/>
+        </LinearLayout>
+    </RelativeLayout>
 </LinearLayout>

@@ -1,6 +1,5 @@
 package com.bangqu.eshow.demo.activity;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -25,7 +24,7 @@ import org.androidannotations.annotations.ViewById;
  * Created by daikting on 16/2/19.
  */
 @EActivity(R.layout.activity_entrance)
-public class EntranceActivity extends Activity implements Handler.Callback {
+public class EntranceActivity extends CommonActivity implements Handler.Callback {
     private Context mContext = EntranceActivity.this;
     private static final int HANDLER_MESSAGE_ANIMATION = 0;
     private static final int HANDLER_MESSAGE_NEXT_ACTIVITY = 1;
@@ -74,7 +73,7 @@ public class EntranceActivity extends Activity implements Handler.Callback {
         if (msg.what == HANDLER_MESSAGE_ANIMATION) {
             foreMask.startAnimation(entrance);
         } else if (msg.what == HANDLER_MESSAGE_NEXT_ACTIVITY) {
-            Intent intent = new Intent(mContext,MainActivity.class);
+            Intent intent = new Intent(mContext,MainActivity_.class);
             startActivity(intent);
             overridePendingTransition(R.anim.scroll_in, R.anim.scroll_out);
             finish();

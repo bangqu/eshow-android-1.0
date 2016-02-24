@@ -95,4 +95,64 @@
         <item name="android:dividerHeight">0dp</item>
 
     </style>
+    <!--主窗口的theme-->
+    <style name="ActionbarSpannerTheme1" parent="Theme.AppCompat.Light.NoActionBar">
+        <!--<item name="android:actionDropDownStyle">@style/MyGreenSpinner</item>-->
+        <!--<item name="android:dropDownListViewStyle">@style/SpinnerDropDownListView</item>-->
+        <!--<item name="android:popupMenuStyle">@style/PopupMenu.ListPopupWindow</item>-->
+        <!--<item name="android:windowBackground">@color/stand_bg</item>-->
+        <!--<item name="android:alertDialogTheme">@style/ThemeHoloLightDialogAlert</item>-->
+        <!--<item name="android:textAppearanceLargePopupMenu">@style/MyPopupMenu.Large</item>-->
+        <!--<item name="android:textAppearanceSmallPopupMenu">@style/MyPopupMenu.Small</item>-->
+        <!--<item name="android:actionModeBackground">@drawable/gray_drawable</item>-->
+        <!--<item name="android:actionModeCloseDrawable">@drawable/task_add_cab_back</item>-->
+        <!--<item name="android:windowActionModeOverlay">true</item>-->
+
+        <!--<item name="android:itemTextAppearance">@style/myCustomMenuTextApearance</item>-->
+        <!--<item name="android:actionMenuTextColor">@color/white</item>-->
+
+        <item name="colorPrimary">@drawable/gray_drawable</item>
+        <item name="android:textColorPrimary">@drawable/white</item>
+        <item name="colorPrimaryDark">@color/black</item>
+
+        <item name="android:divider">@drawable/system_divide</item>
+
+
+        <item name="color">@color/white</item>
+        <item name="android:windowBackground">@color/stand_bg</item>
+        <item name="popupMenuStyle">@style/MyApp.PopupMenu</item>
+
+        <item name="android:alertDialogTheme">@style/ThemeHoloLightDialogAlert</item>
+        <item name="android:textAppearanceLargePopupMenu">@style/MyPopupMenu.Large</item>
+        <item name="android:textAppearanceSmallPopupMenu">@style/MyPopupMenu.Small</item>
+        <item name="android:actionModeBackground">@drawable/gray_drawable</item>
+        <item name="android:actionModeCloseDrawable">@drawable/task_add_cab_back</item>
+        <item name="android:windowActionModeOverlay">true</item>
+
+        <!--<item name="android:background">@drawable/gray_drawable</item>-->
+
+        <item name="android:itemTextAppearance">@style/myCustomMenuTextApearance</item>
+        <item name="android:actionMenuTextColor">@color/white</item>
+
+
+        <!--抽屉导航的旋转箭头-->
+        <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
+
+        <!--<item name="android:icon">@android:color/transparent</item>-->
+        <!--<item name="icon">@android:color/transparent</item>-->
+
+        <!--<item name="colorPrimaryDark">@color/black</item>-->
+        <!--<item name="android:textColorPrimary">@drawable/</item>-->
+        <!--<item name="colorPrimaryDark">@color/material_blue_700</item>-->
+        <!--<item name="colorAccent">@color/material_green_A200</item>-->
+
+        <!--<item name="numberPickerStyle">@style/WidgetHoloNumberPicker</item>-->
+    </style>
+    <style name="MyApp.PopupMenu" parent="@style/Widget.AppCompat.Light.PopupMenu">
+        <item name="android:popupBackground">@drawable/white</item>
+    </style>
+    <style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
+        <item name="spinBars">true</item>
+        <item name="color">@android:color/white</item>
+    </style>
 </resources>

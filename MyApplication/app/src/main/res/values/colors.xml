@@ -15,4 +15,15 @@
     <item name="gray_drawable" type="drawable">#FF323A45</item>
     <color name="font_black_2">#ff222222</color>
     <drawable name="bg_maopao_comment">#ffeeeeee</drawable>
+    <item name="drawer_bg_color_normal" type="color">#00ffffff</item>
+    <item name="drawer_bg_color_press" type="color">#ffeeeeee</item>
+    <color name="divide">#ffeeeeee</color>
+    <item name="drawer_bg_color_white" type="color">#ff2d353f</item>
+    <item name="drawer_bg_color_divide" type="color">#ff243040</item>
+    <item name="drawer_bg_color_bottom" type="color">#ff1e2733</item>
+    <drawable name="white">#ffffffff</drawable>
+    <drawable name="system_divide">#ffdddddd</drawable>
+    <color name="stand_bg">#fff6f6f6</color>
+
+    <color name="selcetor_bg">#c8c7cace</color>
 </resources>
