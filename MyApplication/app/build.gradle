@@ -34,6 +34,9 @@ dependencies {
     apt "org.androidannotations:androidannotations:$AAVersion"
     compile "org.androidannotations:androidannotations-api:$AAVersion"
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.3'
+    compile 'com.prolificinteractive:parallaxpager:2.2.1'// 高版本fix使用support库crash
+    compile 'uk.co.chrisjenx:calligraphy:2.1.0'
+
 }
 
 apt {

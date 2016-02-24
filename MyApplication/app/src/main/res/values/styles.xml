@@ -155,4 +155,9 @@
         <item name="spinBars">true</item>
         <item name="color">@android:color/white</item>
     </style>
+
+    <declare-styleable name="IndicatorView">
+        <attr name="pointCount" format="integer" />
+        <attr name="pointView" format="reference" />
+    </declare-styleable>
 </resources>

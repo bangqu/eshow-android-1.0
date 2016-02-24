@@ -9,6 +9,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bangqu.eshow.demo.R;
+import com.bangqu.eshow.demo.common.SharedPrefUtil;
 import com.bangqu.eshow.demo.fragment.NaviFragment;
 import com.bangqu.eshow.util.ESLogUtil;
 import com.bangqu.eshow.util.ESToastUtil;
@@ -39,7 +40,7 @@ public class MainActivity extends CommonActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        SharedPrefUtil.setSecondIn(mContext);
     }
 
     @AfterViews

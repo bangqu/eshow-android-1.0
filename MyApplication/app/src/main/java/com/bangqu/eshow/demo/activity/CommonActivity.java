@@ -1,16 +1,16 @@
 package com.bangqu.eshow.demo.activity;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import com.bangqu.eshow.global.ESActivityManager;
 
 /**
  * Created by daikting on 16/1/12.
  */
-public class CommonActivity  extends Activity {
+public class CommonActivity  extends AppCompatActivity {
     private Context mContext = CommonActivity.this;
 
     public static Typeface kaitiTTF ;

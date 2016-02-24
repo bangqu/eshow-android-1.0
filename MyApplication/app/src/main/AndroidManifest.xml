@@ -15,6 +15,12 @@
             android:screenOrientation="portrait"
             android:theme="@style/ActionbarSpannerTheme1" />
         <activity
+            android:name=".activity.GuideActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/ActionbarSpannerTheme1" />
+        <activity
             android:name=".activity.EntranceActivity_"
             android:icon="@drawable/icon"
             android:screenOrientation="portrait"

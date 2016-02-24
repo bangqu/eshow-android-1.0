@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bangqu.eshow.demo.R;
+import com.bangqu.eshow.demo.common.SharedPrefUtil;
 import com.bangqu.eshow.demo.common.WeakRefHandler;
 import com.bangqu.eshow.util.ESLogUtil;
 
@@ -73,10 +74,18 @@ public class EntranceActivity extends CommonActivity implements Handler.Callback
         if (msg.what == HANDLER_MESSAGE_ANIMATION) {
             foreMask.startAnimation(entrance);
         } else if (msg.what == HANDLER_MESSAGE_NEXT_ACTIVITY) {
-            Intent intent = new Intent(mContext,MainActivity_.class);
-            startActivity(intent);
-            overridePendingTransition(R.anim.scroll_in, R.anim.scroll_out);
-            finish();
+            if (SharedPrefUtil.isFirstIn(mContext)) {
+                Intent intent = new Intent(mContext, GuideActivity.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.scroll_in, R.anim.scroll_out);
+                finish();
+            } else {
+                Intent intent = new Intent(mContext, MainActivity_.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.scroll_in, R.anim.scroll_out);
+                finish();
+            }
+
         }
         return true;
     }
