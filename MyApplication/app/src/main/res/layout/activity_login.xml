@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_bg"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/divide_height"
+        android:layout_marginTop="@dimen/normal_margin"
+        android:background="@color/system_divide"/>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:orientation="vertical">
+        <EditText
+            android:id="@+id/etTel"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:paddingLeft="@dimen/normal_margin"
+            android:layout_gravity="center_vertical"
+            android:text=""
+            android:hint="请输入手机号码"
+            android:textSize="@dimen/normal_textSize"
+            android:background="@null"
+            android:textColor="@color/normal_text"/>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/divide_height"
+            android:layout_marginLeft="@dimen/normal_margin"
+            android:background="@color/app_bg"/>
+
+        <EditText
+            android:id="@+id/etPassword"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/edittext_height"
+            android:paddingLeft="@dimen/normal_margin"
+            android:layout_gravity="center_vertical"
+            android:text=""
+            android:hint="请输入密码"
+            android:textSize="@dimen/normal_textSize"
+            android:background="@null"
+            android:inputType="textPassword"
+            android:textColor="@color/normal_text"/>
+    </LinearLayout>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/divide_height"
+        android:background="@color/system_divide"/>
+
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/edittext_height"
+        android:layout_marginLeft="@dimen/normal_margin"
+        android:layout_marginRight="@dimen/normal_margin"
+        android:layout_marginTop="@dimen/large_margin"
+        android:text="登录"
+        android:textSize="@dimen/normal_textSize"
+        android:textColor="@android:color/white"
+        android:background="@drawable/btn_long"
+        android:layout_gravity="center_horizontal"/>
+
+    <TextView
+        android:id="@+id/tvForgetPW"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="忘记密码？"
+        android:layout_marginTop="@dimen/small_margin"
+        android:textSize="@dimen/small_textSize"
+        android:layout_marginLeft="@dimen/normal_margin"
+        android:background="@drawable/drawer_selector"
+        android:textColor="@drawable/chaining_text_selector"/>
+
+</LinearLayout>

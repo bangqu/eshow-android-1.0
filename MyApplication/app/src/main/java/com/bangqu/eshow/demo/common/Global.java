@@ -57,4 +57,5 @@ public class Global {
     public static boolean canCrop(String url) {
         return url.startsWith("http") && (!url.contains("/thumbnail/"));
     }
+
 }

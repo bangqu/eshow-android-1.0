@@ -6,8 +6,12 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.bangqu.eshow.demo.R;
+import com.bangqu.eshow.demo.activity.InputTelActivity;
+import com.bangqu.eshow.demo.activity.InputTelActivity_;
+import com.bangqu.eshow.demo.activity.LoginActivity_;
 import com.prolificinteractive.parallaxpager.ParallaxContainer;
 
 /**
@@ -36,17 +40,19 @@ public class ParallaxFragment extends Fragment implements ViewPager.OnPageChange
 
         parallaxContainer.setOnPageChangeListener(this);
 
-        view.findViewById(R.id.register_button).setOnClickListener(new View.OnClickListener() {
+        final Button registButton = (Button) view.findViewById(R.id.register_button);
+        registButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                InputTelActivity_.intent(ParallaxFragment.this).extra(InputTelActivity.INTENT_ISREGISTER, true).start();
             }
         });
 
-        final View loginButton = view.findViewById(R.id.login_button);
+        final Button loginButton = (Button) view.findViewById(R.id.login_button);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                LoginActivity_.intent(ParallaxFragment.this).start();
 
             }
         });

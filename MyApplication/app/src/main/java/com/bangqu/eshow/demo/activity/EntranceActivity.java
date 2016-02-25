@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bangqu.eshow.demo.R;
+import com.bangqu.eshow.demo.common.CommonActivity;
 import com.bangqu.eshow.demo.common.SharedPrefUtil;
 import com.bangqu.eshow.demo.common.WeakRefHandler;
 import com.bangqu.eshow.util.ESLogUtil;

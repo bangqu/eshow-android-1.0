@@ -8,7 +8,10 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.balysv.materialmenu.MaterialMenuDrawable;
+import com.balysv.materialmenu.MaterialMenuView;
 import com.bangqu.eshow.demo.R;
+import com.bangqu.eshow.demo.common.CommonActivity;
 import com.bangqu.eshow.demo.common.SharedPrefUtil;
 import com.bangqu.eshow.demo.fragment.NaviFragment;
 import com.bangqu.eshow.util.ESLogUtil;
@@ -23,6 +26,8 @@ import org.androidannotations.annotations.ViewById;
 
 @EActivity(R.layout.activity_main)
 public class MainActivity extends CommonActivity {
+    @ViewById(R.id.material_menu_button)
+    MaterialMenuView materialMenuView;
     @ViewById(R.id.rlMenu)
     RelativeLayout mRlMenu;
     @ViewById(R.id.tvTitle)
@@ -57,7 +62,6 @@ public class MainActivity extends CommonActivity {
             menu.showContent();
         } else {
             menu.showMenu();
-
         }
 
     }
@@ -81,6 +85,20 @@ public class MainActivity extends CommonActivity {
         menu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
         //menu视图的Fragment添加
         menu.setMenu(R.layout.fragment_menu);
+        menu.setOnOpenListener(new SlidingMenu.OnOpenListener() {
+            @Override
+            public void onOpen() {
+                materialMenuView.animateState(MaterialMenuDrawable.IconState.ARROW);
+
+            }
+        });
+
+        menu.setOnCloseListener(new SlidingMenu.OnCloseListener() {
+            @Override
+            public void onClose() {
+                materialMenuView.animateState(MaterialMenuDrawable.IconState.BURGER);
+            }
+        });
         NaviFragment naviFragment = new NaviFragment();
         naviFragment.setNaviCallbacks(new NaviFragment.NaviCallbacks() {
             @Override

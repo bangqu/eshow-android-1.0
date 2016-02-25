@@ -160,4 +160,8 @@
         <attr name="pointCount" format="integer" />
         <attr name="pointView" format="reference" />
     </declare-styleable>
+
+    <style name="AgreeCheckboxTheme" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/checkbox_agree</item>
+    </style>
 </resources>

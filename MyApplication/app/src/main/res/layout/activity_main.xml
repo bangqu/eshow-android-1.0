@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -14,13 +15,16 @@
             android:layout_width="50dp"
             android:layout_height="match_parent"
             android:background="@drawable/drawer_selector">
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+            <com.balysv.materialmenu.MaterialMenuView
+                android:id="@+id/material_menu_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:scaleType="centerInside"
-                android:src="@drawable/icon_menu" />
-
+                app:mm_strokeWidth="2"
+                app:mm_visible="true"
+                app:mm_color="@color/white"
+                app:mm_transformDuration="1000"
+                app:mm_scale="1"/>
         </RelativeLayout>
         <TextView
             android:id="@+id/tvTitle"

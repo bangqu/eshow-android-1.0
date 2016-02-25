@@ -14,12 +14,14 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/ActionbarSpannerTheme1" />
+        <!--引导页面-->
         <activity
             android:name=".activity.GuideActivity"
             android:label="@string/app_name"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@style/ActionbarSpannerTheme1" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <!--启动页面-->
         <activity
             android:name=".activity.EntranceActivity_"
             android:icon="@drawable/icon"
@@ -46,6 +48,24 @@
                 <category android:name="android.intent.category.BROWSABLE" />
             </intent-filter>
         </activity>
+        <!--注册页面-->
+        <activity
+            android:name=".activity.InputTelActivity_"
+            android:label="@string/title_activity_regist"
+            android:screenOrientation="portrait"/>
+
+        <!--登录页面-->
+        <activity
+            android:name=".activity.LoginActivity_"
+            android:label="@string/title_activity_login"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+
+        <!--找回密码-->
+        <activity
+            android:name=".activity.FindPasswordActivity_"
+            android:label="@string/title_activity_findPassword"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

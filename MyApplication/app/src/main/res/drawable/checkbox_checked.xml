@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <!-- 边缘线的宽度和颜色 -->
+    <stroke
+        android:width="1dp"
+        android:color="@color/system_divide" />
+    <!-- 中间的背景色 -->
+    <solid android:color="#96C85D" />
+    <padding
+        android:left="0dp"
+        android:top="0dp"
+        android:right="0dp"
+        android:bottom="0dp"
+        />
+    <size
+        android:height="20dp"
+        android:width="20dp"/>
+    <!-- 设置四个角的角度 -->
+    <corners
+        android:radius="3dp" />
+
+</shape>

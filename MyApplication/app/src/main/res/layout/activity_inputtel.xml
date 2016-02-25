@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_bg"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/divide_height"
+        android:layout_marginTop="@dimen/normal_margin"
+        android:background="@drawable/system_divide"/>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:orientation="vertical">
+        <EditText
+            android:id="@+id/etTel"
+            android:layout_width="fill_parent"
+            android:layout_height="90px"
+            android:paddingLeft="30px"
+            android:layout_gravity="center_vertical"
+            android:text=""
+            android:hint="请输入手机号码"
+            android:textSize="@dimen/normal_textSize"
+            android:background="@null"
+            android:textColor="@color/normal_text"/>
+
+    </LinearLayout>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/divide_height"
+        android:background="@drawable/system_divide"/>
+
+
+    <Button
+        android:id="@+id/btnSubmit"
+        android:layout_width="fill_parent"
+        android:layout_height="90px"
+        android:layout_marginLeft="30px"
+        android:layout_marginRight="30px"
+        android:layout_marginTop="70px"
+        android:text="提交"
+        android:textSize="@dimen/normal_textSize"
+        android:textColor="@android:color/white"
+        android:background="@drawable/btn_long"
+        android:layout_gravity="center_horizontal"/>
+
+
+    <LinearLayout
+        android:id="@+id/llAgreement"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="30px"
+        android:layout_marginTop="30px">
+
+
+        <CheckBox
+            android:id="@+id/cbAgree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="同意"
+            android:textSize="@dimen/small_textSize"
+            android:layout_gravity="center_vertical"
+            android:textColor="@color/normal_text"
+            android:checked="true"
+            style="@style/AgreeCheckboxTheme"/>
+
+        <TextView
+            android:id="@+id/tvAgreement"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="EShow使用协议"
+            android:layout_gravity="center_vertical"
+            android:textSize="@dimen/small_textSize"
+            android:background="@drawable/drawer_selector"
+            android:textColor="@drawable/chaining_text_selector"/>
+    </LinearLayout>
+</LinearLayout>

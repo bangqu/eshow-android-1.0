@@ -1,4 +1,4 @@
-package com.bangqu.eshow.demo.activity;
+package com.bangqu.eshow.demo.common;
 
 import android.content.Context;
 import android.graphics.Typeface;
