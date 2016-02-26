@@ -36,8 +36,9 @@ dependencies {
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.3'
     compile 'com.prolificinteractive:parallaxpager:2.2.1'// 高版本fix使用support库crash
     compile 'uk.co.chrisjenx:calligraphy:2.1.0'
-// stock actionBar
+    // stock actionBar
     compile 'com.balysv.materialmenu:material-menu:1.5.4'
+//    compile 'com.actionbarsherlock:actionbarsherlock:4.4.0@aar'
 }
 
 apt {

@@ -5,6 +5,7 @@
     android:background="@color/app_bg"
     android:orientation="vertical">
 
+    <include layout="@layout/common_actionbar_withback"/>
     <View
         android:layout_width="fill_parent"
         android:layout_height="@dimen/divide_height"
@@ -16,17 +17,8 @@
         android:layout_height="wrap_content"
         android:background="@android:color/white"
         android:orientation="vertical">
-        <EditText
-            android:id="@+id/etTel"
-            android:layout_width="fill_parent"
-            android:layout_height="40dp"
-            android:paddingLeft="@dimen/normal_margin"
-            android:layout_gravity="center_vertical"
-            android:text=""
-            android:hint="请输入手机号码"
-            android:textSize="@dimen/normal_textSize"
-            android:background="@null"
-            android:textColor="@color/normal_text"/>
+
+        <include layout="@layout/login_baselayout_tel_edit"/>
 
         <View
             android:layout_width="fill_parent"
@@ -34,18 +26,7 @@
             android:layout_marginLeft="@dimen/normal_margin"
             android:background="@color/app_bg"/>
 
-        <EditText
-            android:id="@+id/etPassword"
-            android:layout_width="fill_parent"
-            android:layout_height="@dimen/edittext_height"
-            android:paddingLeft="@dimen/normal_margin"
-            android:layout_gravity="center_vertical"
-            android:text=""
-            android:hint="请输入密码"
-            android:textSize="@dimen/normal_textSize"
-            android:background="@null"
-            android:inputType="textPassword"
-            android:textColor="@color/normal_text"/>
+        <include layout="@layout/login_baselayout_password_edit"/>
     </LinearLayout>
     <View
         android:layout_width="fill_parent"

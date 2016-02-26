@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorPrimary">
+
+    <RelativeLayout
+        android:id="@+id/rlBack"
+        android:layout_width="40dp"
+        android:layout_height="match_parent"
+        android:background="@drawable/drawer_selector">
+
+        <com.balysv.materialmenu.MaterialMenuView
+            android:id="@+id/material_back_button"
+            app:mm_color="@color/textColorPrimary"
+            app:mm_scale="1"
+            app:mm_strokeWidth="2"
+            app:mm_transformDuration="1000"
+            app:mm_visible="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/rlBack"
+        android:text="首页"
+        android:textColor="@color/textColorPrimary"
+        android:textSize="@dimen/title_textSize" />
+</RelativeLayout>

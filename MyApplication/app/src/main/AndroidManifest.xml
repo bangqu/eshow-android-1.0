@@ -12,40 +12,21 @@
             android:name=".activity.MainActivity_"
             android:label="@string/app_name"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait"
-            android:theme="@style/ActionbarSpannerTheme1" />
+            android:screenOrientation="portrait"/>
         <!--引导页面-->
         <activity
             android:name=".activity.GuideActivity"
             android:label="@string/app_name"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:screenOrientation="portrait" />
         <!--启动页面-->
         <activity
             android:name=".activity.EntranceActivity_"
             android:icon="@drawable/icon"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppThemeNoActionbar">
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-            <intent-filter>
-                <data
-                    android:host="coding.net"
-                    android:pathPattern="/.*"
-                    android:scheme="https" />
-                <data
-                    android:host="m.coding.net"
-                    android:pathPattern="/.*"
-                    android:scheme="https" />
-
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
             </intent-filter>
         </activity>
         <!--注册页面-->
@@ -59,7 +40,7 @@
             android:name=".activity.LoginActivity_"
             android:label="@string/title_activity_login"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize|stateHidden" />
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
 
         <!--找回密码-->
         <activity
