@@ -15,30 +15,43 @@ android {
         versionName "1.0"
         multiDexEnabled true
     }
-    buildTypes {
+    //配置keystore签名
+    signingConfigs {
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            storeFile file("bangqu.keystore")
+            storePassword "bangqu123"
+            keyAlias "bangqu.keystore"
+            keyPassword "bangqu123"
         }
     }
     productFlavors {
     }
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+        }
+        debug {
+            signingConfig signingConfigs.release
+        }
+    }
+
 }
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile project(':EShow')
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.android.support:design:23.1.1'
     compile 'com.android.support:multidex:1.0.1'
     apt "org.androidannotations:androidannotations:$AAVersion"
     compile "org.androidannotations:androidannotations-api:$AAVersion"
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.3'
-    compile 'com.prolificinteractive:parallaxpager:2.2.1'// 高版本fix使用support库crash
+    compile 'com.prolificinteractive:parallaxpager:2.2.1'
+    // 高版本fix使用support库crash
     compile 'uk.co.chrisjenx:calligraphy:2.1.0'
     // stock actionBar
     compile 'com.balysv.materialmenu:material-menu:1.5.4'
-//    compile 'com.actionbarsherlock:actionbarsherlock:4.4.0@aar'
+    compile project(':EShow')
+    compile project(':social_sdk_library_project')
 }
 
 apt {

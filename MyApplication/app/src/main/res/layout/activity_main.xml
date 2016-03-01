@@ -8,7 +8,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimaryDark">
+        android:background="@color/colorPrimary">
 
         <RelativeLayout
             android:id="@+id/rlMenu"
@@ -22,7 +22,7 @@
                 android:layout_centerInParent="true"
                 app:mm_strokeWidth="2"
                 app:mm_visible="true"
-                app:mm_color="@color/white"
+                app:mm_color="@color/textColorPrimary"
                 app:mm_transformDuration="1000"
                 app:mm_scale="1"/>
         </RelativeLayout>
@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="首页"
-            android:textColor="@android:color/white"
+            android:textColor="@color/textColorPrimary"
             android:textSize="@dimen/title_textSize" />
 
 

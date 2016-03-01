@@ -4,6 +4,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bangqu.eshow.demo.MyApp;
+import com.bangqu.eshow.demo.R;
 
 import java.text.SimpleDateFormat;
 
@@ -57,5 +58,11 @@ public class Global {
     public static boolean canCrop(String url) {
         return url.startsWith("http") && (!url.contains("/thumbnail/"));
     }
+
+    /**
+     * 网络请求过程中加载等待时的进度滚轮资源id
+     */
+    public static final int LOADING_PROGRESSBAR_ID = R.drawable.icon_progressbar;
+
 
 }

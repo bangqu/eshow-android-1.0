@@ -28,4 +28,5 @@
     <style name="AgreeCheckboxTheme" parent="@android:style/Widget.CompoundButton.CheckBox">
         <item name="android:button">@drawable/checkbox_agree</item>
     </style>
+
 </resources>

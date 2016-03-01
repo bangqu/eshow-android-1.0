@@ -7,7 +7,7 @@
     android:layout_marginRight="@dimen/normal_margin"
     android:background="@null"
     android:hint="请输入手机号码"
-    android:inputType="textPhonetic"
+    android:inputType="phone"
     android:maxLines="1"
     android:singleLine="true"
     android:textCursorDrawable="@null"
