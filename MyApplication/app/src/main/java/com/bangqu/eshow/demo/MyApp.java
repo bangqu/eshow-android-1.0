@@ -2,6 +2,7 @@ package com.bangqu.eshow.demo;
 
 import android.support.multidex.MultiDexApplication;
 
+import com.bangqu.eshow.global.ESAppConfig;
 import com.umeng.socialize.PlatformConfig;
 
 /**
@@ -13,8 +14,8 @@ public class MyApp extends MultiDexApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-//        ESAppConfig.UI_WIDTH = 750;
-//        ESAppConfig.UI_HEIGHT = 1334;
+        ESAppConfig.UI_WIDTH = 750;
+        ESAppConfig.UI_HEIGHT = 1334;
 
         sScale = getResources().getDisplayMetrics().density;
         //微信 appid appsecret

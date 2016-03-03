@@ -18,6 +18,7 @@ import com.bangqu.eshow.demo.common.Global;
 import com.bangqu.eshow.fragment.ESProgressDialogFragment;
 import com.bangqu.eshow.util.ESDialogUtil;
 import com.bangqu.eshow.util.ESToastUtil;
+import com.bangqu.eshow.util.ESViewUtil;
 import com.umeng.socialize.Config;
 import com.umeng.socialize.UMAuthListener;
 import com.umeng.socialize.UMShareAPI;
@@ -67,6 +68,7 @@ public class LoginActivity extends CommonActivity {
 
     @AfterViews
     void init() {
+        ESViewUtil.scaleContentView((RelativeLayout) findViewById(R.id.rlParent));
         mTvTitle.setText(getTitle());
         mMaterialBackButton.setState(MaterialMenuDrawable.IconState.ARROW);
         mMaterialBackButton.setVisibility(View.GONE);

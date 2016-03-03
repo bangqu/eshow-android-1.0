@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rlParent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/app_bg">
@@ -49,7 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:layout_marginRight="@dimen/small_margin"
-            android:layout_marginTop="@dimen/small_margin"
+            android:layout_marginTop="30px"
             android:background="@drawable/drawer_selector"
             android:text="忘记密码？"
             android:textColor="@drawable/chaining_text_selector"
@@ -59,7 +60,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="92dp"
+        android:layout_height="184px"
         android:layout_alignParentBottom="true"
         android:orientation="vertical">
 
@@ -73,7 +74,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:text="或用其他方式登录"
-                android:textColor="@color/normal_text"
+                android:textColor="@color/text_gray"
                 android:textSize="@dimen/small_textSize" />
 
             <View
@@ -105,46 +106,46 @@
                 android:layout_centerInParent="true">
                 <LinearLayout
                     android:id="@+id/llWechatLogin"
-                    android:layout_width="80dp"
-                    android:layout_height="30dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="60px"
                     android:orientation="horizontal"
                     android:background="@drawable/drawer_selector">
                     <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="60px"
+                        android:layout_height="60px"
                         android:background="@drawable/wechat_icon_normal"
                         android:layout_gravity="center_horizontal"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/normal_text"
+                        android:textColor="@color/text_gray"
                         android:textSize="@dimen/small_textSize"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="7dp"
-                        android:text="微信"/>
+                        android:layout_marginLeft="15px"
+                        android:text="微信登录"/>
                 </LinearLayout>
                 <LinearLayout
                     android:id="@+id/llQQLogin"
                     android:layout_width="wrap_content"
-                    android:layout_height="30dp"
+                    android:layout_height="60px"
                     android:orientation="horizontal"
-                    android:layout_marginLeft="60dp"
+                    android:layout_marginLeft="155px"
                     android:background="@drawable/drawer_selector">
                     <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="60px"
+                        android:layout_height="60px"
                         android:background="@drawable/qq_icon_normal"
                         android:layout_gravity="center_horizontal"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/normal_text"
+                        android:textColor="@color/text_gray"
                         android:textSize="@dimen/small_textSize"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="7dp"
-                        android:text="QQ"/>
+                        android:layout_marginLeft="15px"
+                        android:text="QQ登录"/>
                 </LinearLayout>
 
             </LinearLayout>
