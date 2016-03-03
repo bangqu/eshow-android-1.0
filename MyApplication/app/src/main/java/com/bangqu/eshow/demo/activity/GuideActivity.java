@@ -2,18 +2,18 @@ package com.bangqu.eshow.demo.activity;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 
 import com.bangqu.eshow.demo.R;
-import com.bangqu.eshow.demo.guide.ParallaxFragment;
+import com.bangqu.eshow.demo.common.CommonActivity;
 import com.bangqu.eshow.demo.guide.OpenCalligraphyFactory;
+import com.bangqu.eshow.demo.guide.ParallaxFragment;
 import com.prolificinteractive.parallaxpager.ParallaxContextWrapper;
 
 /**
  * 引导页面
  * Created by daikting on 16/2/24.
  */
-public class GuideActivity  extends AppCompatActivity {
+public class GuideActivity  extends CommonActivity {
 
     @Override
     protected void attachBaseContext(Context newBase) {

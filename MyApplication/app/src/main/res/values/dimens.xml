@@ -5,7 +5,8 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
-    <dimen name="title_textSize">18dp</dimen>
+    <dimen name="title_textSize">19dp</dimen>
+    <dimen name="subtitile_texstSize">16dp</dimen>
     <dimen name="title_height">40dp</dimen>
     <dimen name="list_textSize">16dp</dimen>
     <dimen name="normal_textSize">16dp</dimen>
@@ -23,7 +24,11 @@
     <!--间距-->
     <dimen name="large_margin">30dp</dimen>
     <dimen name="normal_margin">20dp</dimen>
+    <dimen name="normal_margin_top">23dp</dimen>
     <dimen name="small_margin">10dp</dimen>
     <!--文本框高度-->
-    <dimen name="edittext_height">40dp</dimen>
+    <dimen name="edittext_height">42dp</dimen>
+    <!--长按钮高度-->
+    <dimen name="btn_long_height">34dp</dimen>
+    <dimen name="btn_textSize">15dp</dimen>
 </resources>

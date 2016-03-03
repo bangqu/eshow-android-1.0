@@ -5,24 +5,17 @@
     android:layout_height="match_parent"
     android:background="@color/app_bg">
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
-        <include layout="@layout/common_actionbar_withback" />
-
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="@dimen/divide_height"
-            android:layout_marginTop="@dimen/normal_margin"
-            android:background="@color/system_divide" />
+        <include layout="@layout/common_actionbar_withback"/>
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/white"
+            android:layout_marginTop="@dimen/normal_margin_top"
             android:orientation="vertical">
 
             <include layout="@layout/login_baselayout_tel_edit" />
@@ -36,24 +29,19 @@
             <include layout="@layout/login_baselayout_password_edit" />
         </LinearLayout>
 
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="@dimen/divide_height"
-            android:background="@color/system_divide" />
-
 
         <Button
             android:id="@+id/btnLogin"
             android:layout_width="fill_parent"
-            android:layout_height="@dimen/edittext_height"
+            android:layout_height="@dimen/btn_long_height"
             android:layout_gravity="center_horizontal"
             android:layout_marginLeft="@dimen/small_margin"
             android:layout_marginRight="@dimen/small_margin"
-            android:layout_marginTop="@dimen/large_margin"
+            android:layout_marginTop="@dimen/normal_margin_top"
             android:background="@drawable/btn_long"
             android:text="登录"
             android:textColor="@android:color/white"
-            android:textSize="@dimen/normal_textSize" />
+            android:textSize="@dimen/btn_textSize" />
 
         <TextView
             android:id="@+id/tvForgetPW"
@@ -71,7 +59,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="130dp"
+        android:layout_height="92dp"
         android:layout_alignParentBottom="true"
         android:orientation="vertical">
 
@@ -84,26 +72,26 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:text="第三方登录"
+                android:text="或用其他方式登录"
                 android:textColor="@color/normal_text"
-                android:textSize="@dimen/normal_textSize" />
+                android:textSize="@dimen/small_textSize" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/divide_height"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="@dimen/small_margin"
+                android:layout_marginRight="17dp"
                 android:layout_toLeftOf="@id/tvThirdLogin"
-                android:background="@color/divide" />
+                android:background="@color/divide_login" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/divide_height"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/small_margin"
+                android:layout_marginLeft="17dp"
                 android:layout_toRightOf="@id/tvThirdLogin"
-                android:background="@color/divide" />
+                android:background="@color/divide_login" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -118,12 +106,12 @@
                 <LinearLayout
                     android:id="@+id/llWechatLogin"
                     android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
+                    android:layout_height="30dp"
+                    android:orientation="horizontal"
                     android:background="@drawable/drawer_selector">
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:background="@drawable/wechat_icon_normal"
                         android:layout_gravity="center_horizontal"/>
 
@@ -131,20 +119,21 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/normal_text"
-                        android:textSize="@dimen/normal_textSize"
-                        android:layout_gravity="center_horizontal"
+                        android:textSize="@dimen/small_textSize"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="7dp"
                         android:text="微信"/>
                 </LinearLayout>
                 <LinearLayout
                     android:id="@+id/llQQLogin"
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:orientation="horizontal"
                     android:layout_marginLeft="60dp"
                     android:background="@drawable/drawer_selector">
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:background="@drawable/qq_icon_normal"
                         android:layout_gravity="center_horizontal"/>
 
@@ -152,8 +141,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/normal_text"
-                        android:textSize="@dimen/normal_textSize"
-                        android:layout_gravity="center_horizontal"
+                        android:textSize="@dimen/small_textSize"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="7dp"
                         android:text="QQ"/>
                 </LinearLayout>
 

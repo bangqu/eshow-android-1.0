@@ -27,9 +27,20 @@
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_toRightOf="@id/rlBack"
+        android:layout_centerInParent="true"
         android:text="首页"
         android:textColor="@color/textColorPrimary"
         android:textSize="@dimen/title_textSize" />
+
+
+    <TextView
+        android:id="@+id/tvSubTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/small_margin"
+        android:text="注册"
+        android:textColor="@color/textColorPrimary"
+        android:textSize="@dimen/subtitile_texstSize" />
 </RelativeLayout>

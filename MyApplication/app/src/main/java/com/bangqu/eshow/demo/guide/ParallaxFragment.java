@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.bangqu.eshow.demo.R;
-import com.bangqu.eshow.demo.activity.InputTelActivity;
 import com.bangqu.eshow.demo.activity.InputTelActivity_;
 import com.bangqu.eshow.demo.activity.LoginActivity_;
 import com.prolificinteractive.parallaxpager.ParallaxContainer;
@@ -44,7 +43,7 @@ public class ParallaxFragment extends Fragment implements ViewPager.OnPageChange
         registButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                InputTelActivity_.intent(ParallaxFragment.this).extra(InputTelActivity.INTENT_ISREGISTER, true).start();
+                InputTelActivity_.intent(ParallaxFragment.this).extra(InputTelActivity_.INTENT_ISREGISTER, true).start();
             }
         });
 

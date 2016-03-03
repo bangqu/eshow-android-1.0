@@ -50,6 +50,12 @@
             android:label="@string/title_activity_findPassword"
             android:screenOrientation="portrait"/>
 
+        <!--设置-->
+        <activity
+            android:name=".activity.SettingActivity_"
+            android:label="@string/title_activity_setting"
+            android:screenOrientation="portrait"/>
+
         <!--使用友盟5.0SDK-->
         <activity
             android:name="com.umeng.socialize.editorpage.ShareActivity"

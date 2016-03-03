@@ -13,6 +13,9 @@ public class MyApp extends MultiDexApplication {
     @Override
     public void onCreate() {
         super.onCreate();
+//        ESAppConfig.UI_WIDTH = 750;
+//        ESAppConfig.UI_HEIGHT = 1334;
+
         sScale = getResources().getDisplayMetrics().density;
         //微信 appid appsecret
         PlatformConfig.setWeixin("wx747d053fa471eb15", "95072c38637c0dc19256cc968165ff6a");

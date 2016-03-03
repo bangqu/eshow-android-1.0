@@ -4,7 +4,7 @@
     <color name="colorPrimaryDark">#7EFFFFFF</color>
     <color name="colorAccent">#F76755</color>
     <color name="textColorPrimary">#F76755</color>
-    <color name="app_bg">#F5F5EC</color>
+    <color name="app_bg">#f7f7f0</color>
 
     <color name="text_red">#D90012</color>
     <color name="gray">#bab7b7</color>
@@ -18,8 +18,9 @@
     <color name="font_black_2">#ff222222</color>
     <drawable name="bg_maopao_comment">#ffeeeeee</drawable>
     <item name="drawer_bg_color_normal" type="color">#00ffffff</item>
-    <item name="drawer_bg_color_press" type="color">#ffeeeeee</item>
+    <item name="drawer_bg_color_press" type="color">#66F76755</item>
     <color name="divide">#ffeeeeee</color>
+    <color name="divide_login">#dfdfdf</color>
     <item name="drawer_bg_color_divide" type="color">#ff243040</item>
     <item name="drawer_bg_color_bottom" type="color">#ff1e2733</item>
     <color name="font_black_6">#ff666666</color>

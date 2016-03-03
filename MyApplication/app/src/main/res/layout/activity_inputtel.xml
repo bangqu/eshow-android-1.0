@@ -9,7 +9,7 @@
     <View
         android:layout_width="fill_parent"
         android:layout_height="@dimen/divide_height"
-        android:layout_marginTop="@dimen/normal_margin"
+        android:layout_marginTop="@dimen/normal_margin_top"
         android:background="@drawable/system_divide"/>
 
     <LinearLayout

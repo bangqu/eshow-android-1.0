@@ -155,8 +155,7 @@
                     android:id="@+id/radio0"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    android:background="@drawable/drawer_selector_bg"
-
+                    android:background="@color/drawer_bg_color_press"
                     android:button="@null"
                     android:drawableLeft="@drawable/drawer_selector_0"
                     android:drawablePadding="15dp"
@@ -171,12 +170,10 @@
 
             <RadioButton
                 android:id="@+id/radio1"
-
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:background="@drawable/drawer_selector_bg"
                 android:button="@null"
-
                 android:drawableLeft="@drawable/drawer_selector_1"
                 android:drawablePadding="15dp"
                 android:paddingLeft="17dp"
@@ -195,14 +192,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:background="@drawable/drawer_selector_bg"
-
                 android:button="@null"
-
                 android:drawableLeft="@drawable/drawer_selector_2"
                 android:drawablePadding="15dp"
                 android:paddingLeft="17dp"
                 android:paddingRight="0dp"
-
                 android:text="密码"
                 android:textColor="@drawable/drawer_selector_font"
                 android:textSize="17sp" />
@@ -220,7 +214,6 @@
                 android:layout_height="60dp"
                 android:background="@drawable/drawer_selector_bg"
                 android:button="@null"
-
                 android:drawableLeft="@drawable/drawer_selector_3"
                 android:drawablePadding="15dp"
                 android:gravity="center_vertical|left"

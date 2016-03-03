@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -68,6 +69,7 @@ public class LoginActivity extends CommonActivity {
     void init() {
         mTvTitle.setText(getTitle());
         mMaterialBackButton.setState(MaterialMenuDrawable.IconState.ARROW);
+        mMaterialBackButton.setVisibility(View.GONE);
     }
     @Click(R.id.btnLogin)
     void onLogin(){
@@ -77,11 +79,6 @@ public class LoginActivity extends CommonActivity {
     void onForgetPW(){
 //        InputTelActivity_.intent(mContext).extra(InputTelActivity.INTENT_ISREGISTER,false).start();
         progressDialog = ESDialogUtil.showProgressDialog(mContext, Global.LOADING_PROGRESSBAR_ID,"正在请求登录中...");
-    }
-
-    @Click(R.id.rlBack)
-    void onBack(){
-        finish();
     }
 
     /**
