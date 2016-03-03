@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.bangqu.eshow.demo.view.LoginAutoCompleteEdit xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/etTel"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/edittext_height"
+    android:layout_marginLeft="@dimen/normal_margin"
+    android:layout_marginRight="@dimen/normal_margin"
+    android:background="@null"
+    android:hint="请输入验证码"
+    android:inputType="number"
+    android:maxLines="1"
+    android:maxLength="6"
+    android:singleLine="true"
+    android:textCursorDrawable="@null"
+    android:textSize="@dimen/small_textSize"/>

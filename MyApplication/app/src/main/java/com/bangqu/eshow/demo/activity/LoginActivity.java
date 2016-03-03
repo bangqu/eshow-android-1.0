@@ -14,9 +14,7 @@ import com.balysv.materialmenu.MaterialMenuDrawable;
 import com.balysv.materialmenu.MaterialMenuView;
 import com.bangqu.eshow.demo.R;
 import com.bangqu.eshow.demo.common.CommonActivity;
-import com.bangqu.eshow.demo.common.Global;
 import com.bangqu.eshow.fragment.ESProgressDialogFragment;
-import com.bangqu.eshow.util.ESDialogUtil;
 import com.bangqu.eshow.util.ESToastUtil;
 import com.bangqu.eshow.util.ESViewUtil;
 import com.umeng.socialize.Config;
@@ -44,7 +42,8 @@ public class LoginActivity extends CommonActivity {
     MaterialMenuView mMaterialBackButton;
     @ViewById(R.id.tvTitle)
     TextView mTvTitle;
-
+    @ViewById(R.id.tvSubTitle)
+    TextView mTvSubTitle;
 //    @ViewById(R.id.etTel)
 //    LoginAutoCompleteEdit mEtTel;
 //    @ViewById(R.id.etPassword)
@@ -70,6 +69,7 @@ public class LoginActivity extends CommonActivity {
     void init() {
         ESViewUtil.scaleContentView((RelativeLayout) findViewById(R.id.rlParent));
         mTvTitle.setText(getTitle());
+        mTvSubTitle.setVisibility(View.VISIBLE);
         mMaterialBackButton.setState(MaterialMenuDrawable.IconState.ARROW);
         mMaterialBackButton.setVisibility(View.GONE);
     }
@@ -79,10 +79,17 @@ public class LoginActivity extends CommonActivity {
     }
     @Click(R.id.tvForgetPW)
     void onForgetPW(){
-//        InputTelActivity_.intent(mContext).extra(InputTelActivity.INTENT_ISREGISTER,false).start();
-        progressDialog = ESDialogUtil.showProgressDialog(mContext, Global.LOADING_PROGRESSBAR_ID,"正在请求登录中...");
+        InputTelActivity_.intent(mContext).extra(InputTelActivity.INTENT_ISREGISTER,false).start();
+//        progressDialog = ESDialogUtil.showProgressDialog(mContext, Global.LOADING_PROGRESSBAR_ID,"正在请求登录中...");
     }
 
+    /**
+     * 点击注册
+     */
+    @Click(R.id.tvSubTitle)
+    void onRegister(){
+        InputTelActivity_.intent(mContext).extra(InputTelActivity_.INTENT_ISREGISTER, true).start();
+    }
     /**
      * 微信授权登录
      */

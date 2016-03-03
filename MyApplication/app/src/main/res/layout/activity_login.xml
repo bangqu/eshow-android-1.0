@@ -51,7 +51,6 @@
             android:layout_gravity="right"
             android:layout_marginRight="@dimen/small_margin"
             android:layout_marginTop="30px"
-            android:background="@drawable/drawer_selector"
             android:text="忘记密码？"
             android:textColor="@drawable/chaining_text_selector"
             android:textSize="@dimen/small_textSize" />
@@ -73,7 +72,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:text="或用其他方式登录"
+                android:text="或用其他方式快速登录"
                 android:textColor="@color/text_gray"
                 android:textSize="@dimen/small_textSize" />
 
@@ -119,7 +118,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/text_gray"
+                        android:textColor="@drawable/gray_text_selector"
                         android:textSize="@dimen/small_textSize"
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="15px"
@@ -141,7 +140,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/text_gray"
+                        android:textColor="@drawable/gray_text_selector"
                         android:textSize="@dimen/small_textSize"
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="15px"

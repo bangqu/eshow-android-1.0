@@ -9,7 +9,7 @@
     <TextView
         android:id="@+id/tvTitile"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/title_height"
+        android:layout_height="@dimen/titleBarSize"
         android:background="@color/colorPrimaryDark"
         android:gravity="center"
         android:text="首页"

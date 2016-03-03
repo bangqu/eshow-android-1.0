@@ -5,7 +5,6 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
-    <dimen name="title_height">40dp</dimen>
 
     <dimen name="list_itemHeight">40dp</dimen>
     <item name="parallax_speed_medium" format="float" type="dimen">1.3</item>
@@ -15,31 +14,32 @@
     <dimen name="guide_item2_h">80dp</dimen>
     <dimen name="guide_item0_h">100dp</dimen>
     <dimen name="guide_photo_divide_height">30dp</dimen>
-    <!--分隔线高度-->
-    <dimen name="divide_height">1px</dimen>
+
     <!--间距-->
     <dimen name="large_margin">30dp</dimen>
 
 
 
 
-
-
-
+    <!--标题栏高度-->
+    <dimen name="titleBarSize">96px</dimen>
     <!--字体大小-->
     <dimen name="title_textSize">38px</dimen>
     <dimen name="subtitile_texstSize">32px</dimen>
     <dimen name="list_textSize">32px</dimen>
     <dimen name="normal_textSize">32px</dimen>
     <dimen name="small_textSize">28px</dimen>
+    <dimen name="small_textSize_24">24px</dimen>
     <dimen name="btn_textSize">30px</dimen>
 
     <!--间距-->
-    <dimen name="small_margin">10px</dimen>
+    <dimen name="small_margin">20px</dimen>
     <dimen name="normal_margin_top">46px</dimen>
     <!--文本框高度-->
     <dimen name="edittext_height">84px</dimen>
     <dimen name="normal_margin">46px</dimen>
     <!--长按钮高度-->
     <dimen name="btn_long_height">77px</dimen>
+    <!--分隔线高度-->
+    <dimen name="divide_height">1px</dimen>
 </resources>

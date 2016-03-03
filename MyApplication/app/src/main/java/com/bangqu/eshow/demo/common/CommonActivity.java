@@ -1,7 +1,6 @@
 package com.bangqu.eshow.demo.common;
 
 import android.content.Context;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
@@ -13,14 +12,9 @@ import com.bangqu.eshow.global.ESActivityManager;
 public class CommonActivity  extends AppCompatActivity {
     private Context mContext = CommonActivity.this;
 
-    public static Typeface kaitiTTF ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ESActivityManager.getInstance().addActivity(this);
-
-        if(kaitiTTF == null){
-            kaitiTTF = Typeface.createFromAsset(getAssets(), "fonts/kai.ttf");
-        }
     }
 }

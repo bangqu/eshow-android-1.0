@@ -2,6 +2,7 @@ package com.bangqu.eshow.demo;
 
 import android.support.multidex.MultiDexApplication;
 
+import com.bangqu.eshow.util.ESFontsOverride;
 import com.bangqu.eshow.global.ESAppConfig;
 import com.umeng.socialize.PlatformConfig;
 
@@ -14,6 +15,9 @@ public class MyApp extends MultiDexApplication {
     @Override
     public void onCreate() {
         super.onCreate();
+        //通过反射机制替换系统Monospace字体
+        ESFontsOverride.setDefaultFont(this, "MONOSPACE", "yahei.ttf");
+
         ESAppConfig.UI_WIDTH = 750;
         ESAppConfig.UI_HEIGHT = 1334;
 

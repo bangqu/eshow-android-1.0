@@ -13,6 +13,7 @@ import com.balysv.materialmenu.MaterialMenuDrawable;
 import com.balysv.materialmenu.MaterialMenuView;
 import com.bangqu.eshow.demo.R;
 import com.bangqu.eshow.demo.common.CommonActivity;
+import com.bangqu.eshow.util.ESViewUtil;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
@@ -56,6 +57,7 @@ public class InputTelActivity extends CommonActivity {
 
     @AfterViews
     void init() {
+        ESViewUtil.scaleContentView((LinearLayout) findViewById(R.id.llParent));
         isRegisterUI = getIntent().getBooleanExtra(INTENT_ISREGISTER,true);
         if(isRegisterUI){
             this.setTitle("注册");
