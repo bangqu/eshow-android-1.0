@@ -14,10 +14,12 @@ import com.balysv.materialmenu.MaterialMenuView;
 import com.bangqu.eshow.demo.R;
 import com.bangqu.eshow.demo.common.CommonActivity;
 import com.bangqu.eshow.demo.common.SharedPrefUtil;
+import com.bangqu.eshow.demo.fragment.MainFragment;
 import com.bangqu.eshow.demo.fragment.NaviFragment;
 import com.bangqu.eshow.global.ESActivityManager;
 import com.bangqu.eshow.util.ESLogUtil;
 import com.bangqu.eshow.util.ESToastUtil;
+import com.bangqu.eshow.util.ESViewUtil;
 import com.bangqu.eshow.view.slidingmenu.SlidingMenu;
 
 import org.androidannotations.annotations.AfterViews;
@@ -44,30 +46,36 @@ public class MainActivity extends CommonActivity {
 
     private Context mContext = MainActivity.this;
     private SlidingMenu menu;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         SharedPrefUtil.setSecondIn(mContext);
 
         List<Activity> agoActivity = ESActivityManager.getInstance().getActivityList();
-        for(int i = 0; i < agoActivity.size(); i++){
+        for (int i = 0; i < agoActivity.size(); i++) {
             String activityName = agoActivity.get(i).getLocalClassName();
-            if(!activityName.equals("activity.MainActivity_")){
-                ESLogUtil.d(mContext,"结束："+activityName);
+            if (!activityName.equals("activity.MainActivity_")) {
+                ESLogUtil.d(mContext, "结束：" + activityName);
                 agoActivity.get(i).finish();
             }
         }
     }
 
     @AfterViews
-    void init(){
+    void init() {
+        ESViewUtil.scaleContentView((LinearLayout) findViewById(R.id.llParent));
         initSliding();
-
+        MainFragment mainFragment = new MainFragment();
+        getFragmentManager()
+                .beginTransaction()
+                .replace(R.id.container, mainFragment)
+                .commit();
     }
 
 
     @Click(R.id.rlMenu)
-    protected void onMenuClick(){
+    protected void onMenuClick() {
         ESLogUtil.d(mContext, "llmenu onclick");
         if (menu.isMenuShowing()) {
             menu.showContent();
@@ -114,27 +122,18 @@ public class MainActivity extends CommonActivity {
         naviFragment.setNaviCallbacks(new NaviFragment.NaviCallbacks() {
             @Override
             public void onNaviItemSelected(int position) {
-                switch (position){
+                switch (position) {
                     case 0:
-                        ESToastUtil.showToast(mContext,"case 0");
+                        SettingActivity_.intent(mContext).start();
+                        overridePendingTransition(R.anim.dropdown_in, R.anim.dropdown_out);
                         break;
                     case 1:
-                        SettingActivity_.intent(mContext).start();
-                        overridePendingTransition(R.anim.scroll_in, R.anim.scroll_out);
+                        InputPasswordActivity_.intent(mContext).start();
+                        overridePendingTransition(R.anim.dropdown_in, R.anim.dropdown_out);
                         break;
                     case 2:
-                        FindPasswordActivity_.intent(mContext).start();
-                        overridePendingTransition(R.anim.scroll_in, R.anim.scroll_out);
-                        break;
-                    case 3:
                         finish();
                         break;
-                }
-                if (menu.isMenuShowing()) {
-                    menu.showContent();
-                } else {
-                    menu.showMenu();
-
                 }
             }
         });
@@ -148,10 +147,12 @@ public class MainActivity extends CommonActivity {
     public void onBackPressed() {
         exitApp();
     }
+
     private long exitTime = 0;
+
     private void exitApp() {
         if ((System.currentTimeMillis() - exitTime) > 2000) {
-            ESToastUtil.showToast(mContext,"再按一次退出EShowAndroid");
+            ESToastUtil.showToast(mContext, "再按一次退出EShowAndroid");
             exitTime = System.currentTimeMillis();
         } else {
             finish();

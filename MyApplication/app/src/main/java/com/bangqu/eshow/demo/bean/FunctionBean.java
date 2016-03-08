@@ -6,6 +6,7 @@ package com.bangqu.eshow.demo.bean;
  */
 public class FunctionBean {
     String name;
+    int iconId;
 
     public String getName() {
         return name;
@@ -13,5 +14,13 @@ public class FunctionBean {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getIconId() {
+        return iconId;
+    }
+
+    public void setIconId(int iconId) {
+        this.iconId = iconId;
     }
 }

@@ -45,5 +45,5 @@
         android:textColor="@drawable/chaining_text_selector"
         android:textSize="@dimen/subtitile_texstSize"
         android:gravity="center_vertical"
-        android:visibility="visible"/>
+        android:visibility="gone"/>
 </RelativeLayout>

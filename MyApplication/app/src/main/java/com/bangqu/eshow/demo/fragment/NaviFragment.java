@@ -6,10 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 
 import com.bangqu.eshow.demo.R;
 import com.bangqu.eshow.fragment.ESFragment;
+import com.bangqu.eshow.util.ESViewUtil;
 
 /**
  * 导航分页
@@ -17,7 +19,7 @@ import com.bangqu.eshow.fragment.ESFragment;
  */
 public class NaviFragment extends ESFragment implements View.OnClickListener {
     private Context mContext;
-    final int radioIds[] = {R.id.radio0, R.id.radio1, R.id.radio2};
+    final int radioIds[] = {R.id.radio0, R.id.radio1};
     RadioButton radios[] = new RadioButton[radioIds.length];
     Button buttonExit;
     private NaviCallbacks naviCallbacks;
@@ -27,7 +29,7 @@ public class NaviFragment extends ESFragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         mContext = this.getActivity();
         View view = inflater.inflate(R.layout.fragment_navi, null);
-
+        ESViewUtil.scaleContentView((LinearLayout)view.findViewById(R.id.llParent));
         for (int i = 0; i < radioIds.length; ++i) {
             radios[i] = (RadioButton) view.findViewById(radioIds[i]);
             radios[i].setOnClickListener(this);
@@ -43,7 +45,7 @@ public class NaviFragment extends ESFragment implements View.OnClickListener {
     public void onClick(View v) {
         if (v.getId() == R.id.buttonExit) {
             if (naviCallbacks != null) {
-                naviCallbacks.onNaviItemSelected(3);
+                naviCallbacks.onNaviItemSelected(2);
             }
             return;
         }

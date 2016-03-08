@@ -7,6 +7,14 @@
     <string name="title_activity_setting">设置</string>
     <string name="empty"></string>
     <string-array name="functions">
-        <item></item>
+        <item>信息表单</item>
+        <item>图片列表</item>
+        <item>文件下载</item>
+        <item>城市选择</item>
+        <item>音乐播放</item>
+        <item>地图</item>
+        <item>支付</item>
+        <item>分享</item>
+        <item>聊天</item>
     </string-array>
 </resources>

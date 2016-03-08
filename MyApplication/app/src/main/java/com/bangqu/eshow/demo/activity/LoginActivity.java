@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.balysv.materialmenu.MaterialMenuDrawable;
 import com.balysv.materialmenu.MaterialMenuView;
 import com.bangqu.eshow.demo.R;
+import com.bangqu.eshow.demo.bean.Enum_InputTel;
 import com.bangqu.eshow.demo.common.CommonActivity;
 import com.bangqu.eshow.fragment.ESProgressDialogFragment;
 import com.bangqu.eshow.util.ESToastUtil;
@@ -44,7 +45,7 @@ public class LoginActivity extends CommonActivity {
     TextView mTvTitle;
     @ViewById(R.id.tvSubTitle)
     TextView mTvSubTitle;
-//    @ViewById(R.id.etTel)
+    //    @ViewById(R.id.etTel)
 //    LoginAutoCompleteEdit mEtTel;
 //    @ViewById(R.id.etPassword)
 //    LoginAutoCompleteEdit mEtPassword;
@@ -60,6 +61,7 @@ public class LoginActivity extends CommonActivity {
     UMShareAPI umShareAPI;
 
     ESProgressDialogFragment progressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,13 +75,15 @@ public class LoginActivity extends CommonActivity {
         mMaterialBackButton.setState(MaterialMenuDrawable.IconState.ARROW);
         mMaterialBackButton.setVisibility(View.GONE);
     }
+
     @Click(R.id.btnLogin)
-    void onLogin(){
+    void onLogin() {
         MainActivity_.intent(mContext).start();
     }
+
     @Click(R.id.tvForgetPW)
-    void onForgetPW(){
-        InputTelActivity_.intent(mContext).extra(InputTelActivity.INTENT_ISREGISTER,false).start();
+    void onForgetPW() {
+        InputTelActivity_.intent(mContext).extra(InputTelActivity.INTENT_ISREGISTER, Enum_InputTel.FINDPASSWORD).start();
 //        progressDialog = ESDialogUtil.showProgressDialog(mContext, Global.LOADING_PROGRESSBAR_ID,"正在请求登录中...");
     }
 
@@ -87,16 +91,16 @@ public class LoginActivity extends CommonActivity {
      * 点击注册
      */
     @Click(R.id.tvSubTitle)
-    void onRegister(){
-        InputTelActivity_.intent(mContext).extra(InputTelActivity_.INTENT_ISREGISTER, true).start();
+    void onRegister() {
+        InputTelActivity_.intent(mContext).extra(InputTelActivity_.INTENT_ISREGISTER, Enum_InputTel.REGISTER).start();
     }
+
     /**
      * 微信授权登录
      */
     @Click(R.id.llWechatLogin)
-    void onWechatLogin(){
-        Config.dialog = ProgressDialog.show(mContext,"提示","正在请求跳转....");
-
+    void onWechatLogin() {
+        Config.dialog = ProgressDialog.show(mContext, "提示", "正在请求跳转....");
         SHARE_MEDIA platform = SHARE_MEDIA.WEIXIN;
         umShareAPI = UMShareAPI.get(mContext);
         umShareAPI.doOauthVerify(this, platform, umAuthListener);
@@ -106,8 +110,8 @@ public class LoginActivity extends CommonActivity {
      * QQ授权登录
      */
     @Click(R.id.llQQLogin)
-    void onQQLogin(){
-        Config.dialog = ProgressDialog.show(mContext,"提示","正在请求跳转....");
+    void onQQLogin() {
+        Config.dialog = ProgressDialog.show(mContext, "提示", "正在请求跳转....");
         SHARE_MEDIA platform = SHARE_MEDIA.QQ;
         UMShareAPI umShareAPI = UMShareAPI.get(mContext);
         umShareAPI.doOauthVerify(this, platform, umAuthListener);
@@ -120,28 +124,28 @@ public class LoginActivity extends CommonActivity {
     private UMAuthListener umAuthListener = new UMAuthListener() {
         @Override
         public void onComplete(SHARE_MEDIA platform, int action, Map<String, String> data) {
-            ESToastUtil.showToast(mContext,  platform.name()+"Authorize succeed");
+            ESToastUtil.showToast(mContext, platform.name() + "Authorize succeed");
 
         }
 
         @Override
         public void onError(SHARE_MEDIA platform, int action, Throwable t) {
-            ESToastUtil.showToast(mContext,  platform.name()+"Authorize fail");
+            ESToastUtil.showToast(mContext, platform.name() + "Authorize fail");
 
         }
 
         @Override
         public void onCancel(SHARE_MEDIA platform, int action) {
-            ESToastUtil.showToast(mContext, platform.name()+"Authorize cancel");
+            ESToastUtil.showToast(mContext, platform.name() + "Authorize cancel");
         }
     };
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(umShareAPI != null){
+        if (umShareAPI != null) {
             umShareAPI.onActivityResult(requestCode, resultCode, data);
-        }else{
+        } else {
             //应用未审核
         }
     }

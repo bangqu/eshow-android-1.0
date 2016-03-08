@@ -22,8 +22,8 @@ import org.androidannotations.annotations.ViewById;
  * Created by daikting on 16/2/24.
  */
 @EActivity(R.layout.activity_findpassword)
-public class FindPasswordActivity extends CommonActivity {
-    private Context mContext = FindPasswordActivity.this;
+public class InputPasswordActivity extends CommonActivity {
+    private Context mContext = InputPasswordActivity.this;
     @ViewById(R.id.rlBack)
     RelativeLayout mRlMenu;
     @ViewById(R.id.material_back_button)

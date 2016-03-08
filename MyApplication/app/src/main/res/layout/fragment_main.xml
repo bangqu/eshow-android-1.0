@@ -1,38 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/llParent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".activity.MainActivity">
+    android:background="@color/white"
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tvTitile"
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="130dp"-->
+        <!--android:background="@color/gray">-->
+
+        <!--<ImageView-->
+            <!--android:id="@+id/ivLogo"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:scaleType="centerInside"-->
+            <!--android:src="@drawable/logo" />-->
+
+    <!--</LinearLayout>-->
+
+    <!--<ListView-->
+        <!--android:id="@+id/lvFunction"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content" />-->
+    <com.ecloud.pulltozoomview.PullToZoomListViewEx
+        android:id="@+id/listview"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/titleBarSize"
-        android:background="@color/colorPrimaryDark"
-        android:gravity="center"
-        android:text="首页"
-        android:textColor="@color/title"
-        android:textSize="@dimen/title_textSize" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="130dp"
-        android:background="@color/gray">
-
-        <ImageView
-            android:id="@+id/ivLogo"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerInside"
-            android:src="@drawable/logo" />
-
-    </LinearLayout>
-
-    <ListView
-        android:id="@+id/lvFunction"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
+        android:layout_height="match_parent"
+        custom:headerView="@null"
+        android:background="@null"
+        android:divider="@null"
+        custom:zoomView="@layout/list_head_zoom_view" />
 </LinearLayout>

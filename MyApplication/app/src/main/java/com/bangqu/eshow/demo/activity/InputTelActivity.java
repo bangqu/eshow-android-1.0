@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -12,13 +11,25 @@ import android.widget.TextView;
 import com.balysv.materialmenu.MaterialMenuDrawable;
 import com.balysv.materialmenu.MaterialMenuView;
 import com.bangqu.eshow.demo.R;
+import com.bangqu.eshow.demo.bean.Enum_InputTel;
+import com.bangqu.eshow.demo.bean.Switch_InputTel;
 import com.bangqu.eshow.demo.common.CommonActivity;
+import com.bangqu.eshow.demo.common.Global;
+import com.bangqu.eshow.demo.network.ESResponseListener;
+import com.bangqu.eshow.demo.network.NetworkInterface;
+import com.bangqu.eshow.demo.view.LoginAutoCompleteEdit;
+import com.bangqu.eshow.fragment.ESProgressDialogFragment;
+import com.bangqu.eshow.util.ESDialogUtil;
+import com.bangqu.eshow.util.ESLogUtil;
+import com.bangqu.eshow.util.ESStrUtil;
+import com.bangqu.eshow.util.ESToastUtil;
 import com.bangqu.eshow.util.ESViewUtil;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
+import org.json.JSONObject;
 
 /**
  * 输入登录手机号码的页面,是注册和找回密码公用的页面
@@ -29,7 +40,7 @@ import org.androidannotations.annotations.ViewById;
 public class InputTelActivity extends CommonActivity {
 
     //是否要进入注册页面
-    public static final String INTENT_ISREGISTER = "IsRegister";
+    public static final String INTENT_ISREGISTER = "InputTelType";
 
     private Context mContext = InputTelActivity.this;
     @ViewById(R.id.rlBack)
@@ -39,7 +50,7 @@ public class InputTelActivity extends CommonActivity {
     @ViewById(R.id.tvTitle)
     TextView mTvTitle;
     @ViewById(R.id.etTel)
-    EditText mEtTel;
+    LoginAutoCompleteEdit mEtTel;
     @ViewById(R.id.btnSubmit)
     Button mBtnSubmit;
     @ViewById(R.id.llAgreement)
@@ -48,8 +59,11 @@ public class InputTelActivity extends CommonActivity {
     CheckBox mCbAgree;
     @ViewById(R.id.tvAgreement)
     TextView mTvAgreement;
+    ESProgressDialogFragment progressDialog;
 
-    private boolean isRegisterUI = true;
+    //页面跳转的intent标识
+    private Enum_InputTel inentExtra = Enum_InputTel.REGISTER;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,20 +72,85 @@ public class InputTelActivity extends CommonActivity {
     @AfterViews
     void init() {
         ESViewUtil.scaleContentView((LinearLayout) findViewById(R.id.llParent));
-        isRegisterUI = getIntent().getBooleanExtra(INTENT_ISREGISTER,true);
-        if(isRegisterUI){
-            this.setTitle("注册");
-        }else{
-            this.setTitle("找回密码");
-        }
+
+        inentExtra = (Enum_InputTel) getIntent().getSerializableExtra(INTENT_ISREGISTER);
+
+        new Switch_InputTel(inentExtra) {
+            @Override
+            public void onRegister() {
+                InputTelActivity.this.setTitle("注册");
+
+            }
+
+            @Override
+            public void onFindPassword() {
+                InputTelActivity.this.setTitle("找回密码");
+
+            }
+        };
         mTvTitle.setText(getTitle());
         mMaterialBackButton.setState(MaterialMenuDrawable.IconState.ARROW);
 
 
     }
+
     @Click(R.id.rlBack)
-    void onBack(){
+    void onBack() {
         finish();
     }
+
+    @Click(R.id.btnSubmit)
+    void onSubmit() {
+        String userName = mEtTel.getText().toString();
+        if(!ESStrUtil.isMobileNo(userName)){
+            ESToastUtil.showToast(mContext,"请输入正确的手机号码！");
+            return;
+        }
+        NetworkInterface.register(mContext, userName, new ESResponseListener(mContext) {
+            @Override
+            public void onStart() {
+                progressDialog = ESDialogUtil.showProgressDialog(mContext, Global.LOADING_PROGRESSBAR_ID, "请求数据中...");
+
+            }
+
+            @Override
+            public void onFinish() {
+                progressDialog.dismiss();
+            }
+
+            @Override
+            public void onFailure(int statusCode, String content, Throwable error) {
+                progressDialog.dismiss();
+                ESToastUtil.showToast(mContext,"请求失败，错误码："+statusCode);
+            }
+
+            @Override
+            public void onBQSucess(String esMsg, JSONObject resultJson) {
+                InputPasswordActivity_.intent(mContext).extra(InputTelActivity_.INTENT_ISREGISTER, Enum_InputTel.REGISTER).start();
+
+            }
+
+            @Override
+            public void onBQNoData() {
+                ESLogUtil.d(mContext,"onBQNoData");
+
+            }
+
+            @Override
+            public void onBQNotify(String bqMsg) {
+                ESToastUtil.showToast(mContext,bqMsg);
+            }
+
+        });
+    }
+
+    /**
+     * 跳转使用协议
+     */
+    @Click(R.id.tvAgreement)
+    void onReadAgreement() {
+
+    }
+
 
 }

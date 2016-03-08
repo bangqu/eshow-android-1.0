@@ -13,6 +13,11 @@ import java.text.SimpleDateFormat;
  * Created by daikting on 16/2/19.
  */
 public class Global {
+    /**
+     * 请求服务器的Url地址
+     */
+    public static final String SERVER_URL = "http://api.eshow.org.cn/";
+
     public static final SimpleDateFormat mDateFormat = new SimpleDateFormat("yyyy-MM-dd EEE");
     public static final SimpleDateFormat mDateYMDHH = new SimpleDateFormat("yyyy-MM-dd HH:mm");
     private static final SimpleDateFormat sFormatToday = new SimpleDateFormat("今天 HH:mm");
@@ -64,5 +69,12 @@ public class Global {
      */
     public static final int LOADING_PROGRESSBAR_ID = R.drawable.icon_progressbar;
 
+    public static class EShow_Broadcast_Action {
+        /**
+        /**
+         * 登录信息过期
+         */
+        public static final String ACTION_MISSING_TOKEN = "bangqu.missing.token";
+    }
 
 }

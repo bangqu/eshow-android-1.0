@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bangqu.eshow.demo.R;
@@ -43,18 +44,21 @@ public class FunctionAdapter extends BaseAdapter{
         ViewHold viewHold;
         if(convertView == null){
             viewHold = new ViewHold();
-            View view = LayoutInflater.from(mContext).inflate(R.layout.item_function,null);
-            viewHold.tvName = (TextView) view.findViewById(R.id.tvName);
+            convertView = LayoutInflater.from(mContext).inflate(R.layout.item_function,null);
+            viewHold.tvName = (TextView) convertView.findViewById(R.id.tvName);
+            viewHold.ivIcon = (ImageView) convertView.findViewById(R.id.ivIcon);
             convertView.setTag(viewHold);
         }else{
             viewHold = (ViewHold) convertView.getTag();
         }
 
         viewHold.tvName.setText(functions.get(position).getName());
+        viewHold.ivIcon.setImageDrawable(mContext.getResources().getDrawable(functions.get(position).getIconId()));
         return convertView;
     }
 
     class ViewHold{
         TextView tvName;
+        ImageView ivIcon;
     }
 }
