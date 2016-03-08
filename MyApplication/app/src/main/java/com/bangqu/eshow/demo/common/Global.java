@@ -17,6 +17,10 @@ public class Global {
      * 请求服务器的Url地址
      */
     public static final String SERVER_URL = "http://api.eshow.org.cn/";
+    /**
+     * 短信验证码发送周期60s
+     */
+    public static final long SEND_CODE_CYCLE = 60 * 1000;
 
     public static final SimpleDateFormat mDateFormat = new SimpleDateFormat("yyyy-MM-dd EEE");
     public static final SimpleDateFormat mDateYMDHH = new SimpleDateFormat("yyyy-MM-dd HH:mm");

@@ -26,15 +26,32 @@ public class NetworkInterface {
     }
 
     /**
-     * 注册
+     * 注册时发送短信验证码
      * @param context
      * @param userName
      * @param responseListener
      */
-    public static void register(Context context,String userName,ESResponseListener responseListener){
+    public static void sendCode(Context context,String userName,String type,ESResponseListener responseListener){
         ESRequestParams abRequestParams = new ESRequestParams();
         abRequestParams.put("user.username", userName);
+        abRequestParams.put("type",type.toString());
         new ESHttpUtil(context).post("user/check", abRequestParams, responseListener);
+    }
+
+    /**
+     * 注册
+     * @param context
+     * @param userName
+     * @param code
+     * @param password
+     * @param responseListener
+     */
+    public static void regist(Context context,String userName,String code,String password,ESResponseListener responseListener){
+        ESRequestParams abRequestParams = new ESRequestParams();
+        abRequestParams.put("user.username", userName);
+        abRequestParams.put("code",code);
+        abRequestParams.put("user.password",password);
+        new ESHttpUtil(context).post("user/singup", abRequestParams, responseListener);
     }
 
     /**

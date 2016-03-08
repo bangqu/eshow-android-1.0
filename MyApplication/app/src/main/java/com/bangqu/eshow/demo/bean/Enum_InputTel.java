@@ -5,7 +5,7 @@ package com.bangqu.eshow.demo.bean;
  * Created by daikting on 16/3/7.
  */
 public enum Enum_InputTel {
-    REGISTER("Register"),FINDPASSWORD("FindPassword");
+    REGISTER("register"),FINDPASSWORD("FindPassword");
 
     private String intentExtra;
     private Enum_InputTel(String intentExtra){

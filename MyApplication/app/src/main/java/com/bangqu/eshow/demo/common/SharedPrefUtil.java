@@ -11,6 +11,8 @@ import android.preference.PreferenceManager;
 public class SharedPrefUtil {
     // 用户第一次登陆
     private static final String IS_FIRST_IN = "IsFirstIn";
+    //存储发送短信验证码的时刻
+    private static final String SEND_CODE_TIME = "SendCodeTime";
     //存储accesstoken
     private static final String ACCESSTOKEN = "AccessToken";
     //存储QiniuToken
@@ -39,7 +41,28 @@ public class SharedPrefUtil {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
         return sp.getBoolean(IS_FIRST_IN, true);
     }
-
+    /**
+     * 存储发送短信验证码的时间
+     *
+     * @param context
+     */
+    public static void setSendCodeTime(Context context) {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor e = sp.edit();
+        long currentTime = System.currentTimeMillis();
+        e.putLong(SEND_CODE_TIME, currentTime);
+        e.commit();
+    }
+    /**
+     * 获取发送短信验证的时间
+     *
+     * @param context
+     * @return
+     */
+    public static long getSendCodeTime(Context context) {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+        return sp.getLong(SEND_CODE_TIME, 0l);
+    }
     /**
      * 存储accesstoken
      *

@@ -15,6 +15,7 @@ import com.bangqu.eshow.demo.bean.Enum_InputTel;
 import com.bangqu.eshow.demo.bean.Switch_InputTel;
 import com.bangqu.eshow.demo.common.CommonActivity;
 import com.bangqu.eshow.demo.common.Global;
+import com.bangqu.eshow.demo.common.SharedPrefUtil;
 import com.bangqu.eshow.demo.network.ESResponseListener;
 import com.bangqu.eshow.demo.network.NetworkInterface;
 import com.bangqu.eshow.demo.view.LoginAutoCompleteEdit;
@@ -62,7 +63,7 @@ public class InputTelActivity extends CommonActivity {
     ESProgressDialogFragment progressDialog;
 
     //页面跳转的intent标识
-    private Enum_InputTel inentExtra = Enum_InputTel.REGISTER;
+    private Enum_InputTel intentExtra = Enum_InputTel.REGISTER;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,9 +74,9 @@ public class InputTelActivity extends CommonActivity {
     void init() {
         ESViewUtil.scaleContentView((LinearLayout) findViewById(R.id.llParent));
 
-        inentExtra = (Enum_InputTel) getIntent().getSerializableExtra(INTENT_ISREGISTER);
+        intentExtra = (Enum_InputTel) getIntent().getSerializableExtra(INTENT_ISREGISTER);
 
-        new Switch_InputTel(inentExtra) {
+        new Switch_InputTel(intentExtra) {
             @Override
             public void onRegister() {
                 InputTelActivity.this.setTitle("注册");
@@ -101,49 +102,67 @@ public class InputTelActivity extends CommonActivity {
 
     @Click(R.id.btnSubmit)
     void onSubmit() {
-        String userName = mEtTel.getText().toString();
+        final String userName = mEtTel.getText().toString();
         if(!ESStrUtil.isMobileNo(userName)){
             ESToastUtil.showToast(mContext,"请输入正确的手机号码！");
             return;
         }
-        NetworkInterface.register(mContext, userName, new ESResponseListener(mContext) {
+        new Switch_InputTel(intentExtra){
             @Override
-            public void onStart() {
-                progressDialog = ESDialogUtil.showProgressDialog(mContext, Global.LOADING_PROGRESSBAR_ID, "请求数据中...");
+            public void onRegister() {
+                NetworkInterface.sendCode(mContext, userName, "register", checkResponseListener);
 
             }
 
             @Override
-            public void onFinish() {
-                progressDialog.dismiss();
-            }
-
-            @Override
-            public void onFailure(int statusCode, String content, Throwable error) {
-                progressDialog.dismiss();
-                ESToastUtil.showToast(mContext,"请求失败，错误码："+statusCode);
-            }
-
-            @Override
-            public void onBQSucess(String esMsg, JSONObject resultJson) {
-                InputPasswordActivity_.intent(mContext).extra(InputTelActivity_.INTENT_ISREGISTER, Enum_InputTel.REGISTER).start();
+            public void onFindPassword() {
+                NetworkInterface.sendCode(mContext, userName, "", checkResponseListener);
 
             }
-
-            @Override
-            public void onBQNoData() {
-                ESLogUtil.d(mContext,"onBQNoData");
-
-            }
-
-            @Override
-            public void onBQNotify(String bqMsg) {
-                ESToastUtil.showToast(mContext,bqMsg);
-            }
-
-        });
+        };
     }
 
+    /**
+     * 检验手机号接口
+     */
+    ESResponseListener checkResponseListener = new ESResponseListener(mContext) {
+        @Override
+        public void onStart() {
+            progressDialog = ESDialogUtil.showProgressDialog(mContext, Global.LOADING_PROGRESSBAR_ID, "请求数据中...");
+
+        }
+
+        @Override
+        public void onFinish() {
+            progressDialog.dismiss();
+        }
+
+        @Override
+        public void onFailure(int statusCode, String content, Throwable error) {
+            progressDialog.dismiss();
+            ESToastUtil.showToast(mContext,"请求失败，错误码："+statusCode);
+        }
+
+        @Override
+        public void onBQSucess(String esMsg, JSONObject resultJson) {
+            SharedPrefUtil.setSendCodeTime(mContext);
+            final String userName = mEtTel.getText().toString();
+            InputPasswordActivity_.intent(mContext).extra(InputTelActivity_.INTENT_ISREGISTER, Enum_InputTel.REGISTER).extra(InputPasswordActivity_.INTENT_TEL,userName).start();
+
+        }
+
+        @Override
+        public void onBQNoData() {
+            ESLogUtil.d(mContext,"onBQNoData");
+
+        }
+
+        @Override
+        public void onBQNotify(String bqMsg) {
+            ESToastUtil.showToast(mContext,bqMsg);
+        }
+
+    };
     /**
      * 跳转使用协议
      */
