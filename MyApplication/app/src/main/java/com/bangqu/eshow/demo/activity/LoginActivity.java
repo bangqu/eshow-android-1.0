@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.balysv.materialmenu.MaterialMenuDrawable;
 import com.balysv.materialmenu.MaterialMenuView;
 import com.bangqu.eshow.demo.R;
-import com.bangqu.eshow.demo.bean.Enum_InputTel;
+import com.bangqu.eshow.demo.bean.Enum_CodeType;
 import com.bangqu.eshow.demo.common.CommonActivity;
 import com.bangqu.eshow.fragment.ESProgressDialogFragment;
 import com.bangqu.eshow.util.ESToastUtil;
@@ -83,7 +83,7 @@ public class LoginActivity extends CommonActivity {
 
     @Click(R.id.tvForgetPW)
     void onForgetPW() {
-        InputTelActivity_.intent(mContext).extra(InputTelActivity.INTENT_ISREGISTER, Enum_InputTel.FINDPASSWORD).start();
+        InputTelActivity_.intent(mContext).extra(InputTelActivity.INTENT_ISREGISTER, Enum_CodeType.FINDPASSWORD).start();
 //        progressDialog = ESDialogUtil.showProgressDialog(mContext, Global.LOADING_PROGRESSBAR_ID,"正在请求登录中...");
     }
 
@@ -92,7 +92,7 @@ public class LoginActivity extends CommonActivity {
      */
     @Click(R.id.tvSubTitle)
     void onRegister() {
-        InputTelActivity_.intent(mContext).extra(InputTelActivity_.INTENT_ISREGISTER, Enum_InputTel.REGISTER).start();
+        InputTelActivity_.intent(mContext).extra(InputTelActivity_.INTENT_ISREGISTER, Enum_CodeType.REGISTER).start();
     }
 
     /**

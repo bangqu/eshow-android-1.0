@@ -11,8 +11,8 @@ import android.widget.TextView;
 import com.balysv.materialmenu.MaterialMenuDrawable;
 import com.balysv.materialmenu.MaterialMenuView;
 import com.bangqu.eshow.demo.R;
-import com.bangqu.eshow.demo.bean.Enum_InputTel;
-import com.bangqu.eshow.demo.bean.Switch_InputTel;
+import com.bangqu.eshow.demo.bean.Enum_CodeType;
+import com.bangqu.eshow.demo.bean.Switch_CodeType;
 import com.bangqu.eshow.demo.common.CommonActivity;
 import com.bangqu.eshow.demo.common.Global;
 import com.bangqu.eshow.demo.common.SharedPrefUtil;
@@ -63,7 +63,7 @@ public class InputTelActivity extends CommonActivity {
     ESProgressDialogFragment progressDialog;
 
     //页面跳转的intent标识
-    private Enum_InputTel intentExtra = Enum_InputTel.REGISTER;
+    private Enum_CodeType intentExtra = Enum_CodeType.REGISTER;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,9 +74,9 @@ public class InputTelActivity extends CommonActivity {
     void init() {
         ESViewUtil.scaleContentView((LinearLayout) findViewById(R.id.llParent));
 
-        intentExtra = (Enum_InputTel) getIntent().getSerializableExtra(INTENT_ISREGISTER);
+        intentExtra = (Enum_CodeType) getIntent().getSerializableExtra(INTENT_ISREGISTER);
 
-        new Switch_InputTel(intentExtra) {
+        new Switch_CodeType(intentExtra) {
             @Override
             public void onRegister() {
                 InputTelActivity.this.setTitle("注册");
@@ -102,12 +102,16 @@ public class InputTelActivity extends CommonActivity {
 
     @Click(R.id.btnSubmit)
     void onSubmit() {
+        if(!mCbAgree.isChecked()){
+            ESToastUtil.showToast(mContext,"请先同意使用协议！");
+            return;
+        }
         final String userName = mEtTel.getText().toString();
         if(!ESStrUtil.isMobileNo(userName)){
             ESToastUtil.showToast(mContext,"请输入正确的手机号码！");
             return;
         }
-        new Switch_InputTel(intentExtra){
+        new Switch_CodeType(intentExtra){
             @Override
             public void onRegister() {
                 NetworkInterface.sendCode(mContext, userName, "register", checkResponseListener);
@@ -147,7 +151,7 @@ public class InputTelActivity extends CommonActivity {
         public void onBQSucess(String esMsg, JSONObject resultJson) {
             SharedPrefUtil.setSendCodeTime(mContext);
             final String userName = mEtTel.getText().toString();
-            InputPasswordActivity_.intent(mContext).extra(InputTelActivity_.INTENT_ISREGISTER, Enum_InputTel.REGISTER).extra(InputPasswordActivity_.INTENT_TEL,userName).start();
+            InputPasswordActivity_.intent(mContext).extra(InputTelActivity_.INTENT_ISREGISTER, Enum_CodeType.REGISTER).extra(InputPasswordActivity_.INTENT_TEL,userName).start();
 
         }
 

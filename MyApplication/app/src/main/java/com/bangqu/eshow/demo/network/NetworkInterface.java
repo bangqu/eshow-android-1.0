@@ -2,7 +2,7 @@ package com.bangqu.eshow.demo.network;
 
 import android.content.Context;
 
-import com.bangqu.eshow.demo.bean.Enum_VoiceType;
+import com.bangqu.eshow.demo.bean.Enum_CodeType;
 import com.bangqu.eshow.http.ESRequestParams;
 
 /**
@@ -51,20 +51,20 @@ public class NetworkInterface {
         abRequestParams.put("user.username", userName);
         abRequestParams.put("code",code);
         abRequestParams.put("user.password",password);
-        new ESHttpUtil(context).post("user/singup", abRequestParams, responseListener);
+        new ESHttpUtil(context).post("user/signup", abRequestParams, responseListener);
     }
 
     /**
      * 语音播报
      * @param context
      * @param mobile
-     * @param enum_voiceType
+     * @param enum_codeType
      * @param responseListener
      */
-    public static void voice(Context context,String mobile,Enum_VoiceType enum_voiceType,ESResponseListener responseListener){
+    public static void voice(Context context,String mobile,Enum_CodeType enum_codeType,ESResponseListener responseListener){
         ESRequestParams abRequestParams = new ESRequestParams();
         abRequestParams.put("mobile", mobile);
-        abRequestParams.put("type",enum_voiceType.toString());
+        abRequestParams.put("type",enum_codeType.toString());
         new ESHttpUtil(context).post("code/voice", abRequestParams, responseListener);
     }
     /**

@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.balysv.materialmenu.MaterialMenuDrawable;
 import com.balysv.materialmenu.MaterialMenuView;
 import com.bangqu.eshow.demo.R;
+import com.bangqu.eshow.demo.bean.Enum_CodeType;
 import com.bangqu.eshow.demo.common.CommonActivity;
 import com.bangqu.eshow.demo.common.SharedPrefUtil;
 import com.bangqu.eshow.demo.fragment.MainFragment;
@@ -128,7 +129,7 @@ public class MainActivity extends CommonActivity {
                         overridePendingTransition(R.anim.dropdown_in, R.anim.dropdown_out);
                         break;
                     case 1:
-                        InputPasswordActivity_.intent(mContext).start();
+                        InputPasswordActivity_.intent(mContext).extra(InputTelActivity_.INTENT_ISREGISTER, Enum_CodeType.FINDPASSWORD).extra(InputPasswordActivity_.INTENT_TEL, "15050692352").start();
                         overridePendingTransition(R.anim.dropdown_in, R.anim.dropdown_out);
                         break;
                     case 2:

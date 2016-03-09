@@ -14,8 +14,8 @@ import android.widget.TextView;
 import com.balysv.materialmenu.MaterialMenuDrawable;
 import com.balysv.materialmenu.MaterialMenuView;
 import com.bangqu.eshow.demo.R;
-import com.bangqu.eshow.demo.bean.Enum_InputTel;
-import com.bangqu.eshow.demo.bean.Switch_InputTel;
+import com.bangqu.eshow.demo.bean.Enum_CodeType;
+import com.bangqu.eshow.demo.bean.Switch_CodeType;
 import com.bangqu.eshow.demo.common.CommonActivity;
 import com.bangqu.eshow.demo.common.Global;
 import com.bangqu.eshow.demo.common.SharedPrefUtil;
@@ -63,7 +63,7 @@ public class InputPasswordActivity extends CommonActivity {
     @ViewById(R.id.btnSubmit)
     Button btnSubmit;
     //页面跳转的intent标识
-    private Enum_InputTel intentExtra = Enum_InputTel.REGISTER;
+    private Enum_CodeType intentExtra = Enum_CodeType.REGISTER;
 
     private String userName = "";
     ESProgressDialogFragment progressDialog;
@@ -78,9 +78,9 @@ public class InputPasswordActivity extends CommonActivity {
     void init() {
         ESViewUtil.scaleContentView((LinearLayout) findViewById(R.id.llParent));
 
-        intentExtra = (Enum_InputTel) getIntent().getSerializableExtra(InputTelActivity_.INTENT_ISREGISTER);
+        intentExtra = (Enum_CodeType) getIntent().getSerializableExtra(InputTelActivity_.INTENT_ISREGISTER);
         userName = getIntent().getStringExtra(INTENT_TEL);
-        new Switch_InputTel(intentExtra) {
+        new Switch_CodeType(intentExtra) {
             @Override
             public void onRegister() {
                 InputPasswordActivity.this.setTitle("注册");
@@ -147,7 +147,39 @@ public class InputPasswordActivity extends CommonActivity {
 
     @Click(R.id.btnVoice)
     void onVoice(){
+        ESResponseListener responseListener = new ESResponseListener(mContext) {
+            @Override
+            public void onBQSucess(String esMsg, JSONObject resultJson) {
+               ESToastUtil.showToast(mContext,"请求语音播报验证码成功，请注意来电！");
+            }
 
+            @Override
+            public void onBQNoData() {
+
+            }
+
+            @Override
+            public void onBQNotify(String bqMsg) {
+                ESToastUtil.showToast(mContext, bqMsg);
+            }
+
+            @Override
+            public void onStart() {
+                progressDialog = ESDialogUtil.showProgressDialog(mContext, Global.LOADING_PROGRESSBAR_ID, "请求数据中...");
+            }
+
+            @Override
+            public void onFinish() {
+                progressDialog.dismiss();
+            }
+
+            @Override
+            public void onFailure(int statusCode, String content, Throwable error) {
+                progressDialog.dismiss();
+                ESToastUtil.showToast(mContext, "请求失败，错误码：" + statusCode);
+            }
+        };
+        NetworkInterface.voice(mContext,userName,intentExtra,responseListener);
     }
 
     @Click(R.id.btnSubmit)
