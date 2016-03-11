@@ -106,7 +106,7 @@ public class MainActivity extends CommonActivity {
         operatingAnim.setInterpolator(lin);
         operatingAnim.setFillAfter(true);
         mIvAdd.startAnimation(operatingAnim);
-        addPopupwindow.show(mIvAdd);
+        addPopupwindow.show(mContext,mIvAdd);
 
         addPopupwindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override

@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 
 import com.bangqu.eshow.demo.R;
 import com.bangqu.eshow.util.ESViewUtil;
@@ -17,16 +18,16 @@ import com.bangqu.eshow.util.ESViewUtil;
  */
 public class AddPopupwindow extends PopupWindow {
     private View contentView;
-    private int width;
-    private LinearLayout llParent;
+    private RelativeLayout rlParent;
     private LinearLayout llScan,llSystemInfo,llTransformInfo;
+
     public AddPopupwindow(Activity context){
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         contentView = layoutInflater.from(context).inflate(R.layout.pop_more,null);
-        int w = context.getWindowManager().getDefaultDisplay().getWidth();
         this.setContentView(contentView);
-        llParent = (LinearLayout) contentView.findViewById(R.id.llParent);
-        ESViewUtil.scaleContentView(llParent);
+
+        rlParent = (RelativeLayout) contentView.findViewById(R.id.rlParent);
+        ESViewUtil.scaleContentView(rlParent);
 
         // 设置SelectPicPopupWindow弹出窗体的宽
         this.setWidth(LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -72,13 +73,13 @@ public class AddPopupwindow extends PopupWindow {
 
     }
 
-    public void show(final View parent){
+    public void show(Context context,final View parent){
 
         if (!AddPopupwindow.this.isShowing()) {
-            int x = 0;
+            int x = -130;
             int y = -20;
             // 以下拉方式显示popupwindow
-            AddPopupwindow.this.showAsDropDown(parent, x, y);
+            AddPopupwindow.this.showAsDropDown(parent,ESViewUtil.scaleValue(context,x),ESViewUtil.scaleValue(context,y));
         } else {
             AddPopupwindow.this.dismiss();
         }
