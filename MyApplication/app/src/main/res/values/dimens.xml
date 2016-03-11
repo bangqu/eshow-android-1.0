@@ -33,6 +33,6 @@
     <!--分隔线高度-->
     <dimen name="divide_height">1px</dimen>
     <!--列表高度-->
-    <dimen name="list_itemHeight">86px</dimen>
+    <dimen name="list_itemHeight">96px</dimen>
 
 </resources>

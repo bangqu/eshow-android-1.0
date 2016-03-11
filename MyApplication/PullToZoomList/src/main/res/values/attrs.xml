@@ -6,4 +6,48 @@
         <attr name="zoomView" format="reference" />
         <attr name="isHeaderParallax" format="boolean" />
     </declare-styleable>
+
+
+    <declare-styleable name="JazzyListView" >
+        <attr name="effect" format="enum" >
+            <!--   -->
+            <enum name="standard" value="0" />
+            <!-- 成长型，从小变大 -->
+            <enum name="grow" value="1" />
+            <!-- 卡片 翻开 -->
+            <enum name="cards" value="2" />
+            <!-- 盘绕在左，向右展开 -->
+            <enum name="curl" value="3" />
+            <!-- 波浪式：左到右  -->
+            <enum name="wave" value="4" />
+            <!-- 蹦跳式 -->
+            <enum name="flip" value="5" />
+            <!-- 类型卡片，飞滚式 -->
+            <enum name="fly" value="6" />
+            <!-- 跟上面类，反向 -->
+            <enum name="reverse_fly" value="7" />
+            <!-- 螺旋 -->
+            <enum name="helix" value="8" />
+            <!-- 扇形飘动 -->
+            <enum name="fan" value="9" />
+            <!-- 倾斜,看起来是 挻起来的效果 -->
+            <enum name="tilt" value="10" />
+            <!-- 拉链式， 左右交织 -->
+            <enum name="zipper" value="11" />
+            <!-- 淡到明 -->
+            <enum name="fade" value="12" />
+            <!-- 旋转 -->
+            <enum name="twirl" value="13" />
+            <!-- 滑动式 -->
+            <enum name="slide_in" value="14" />
+        </attr>
+        <!-- 仅在新item 有动画 -->
+        <attr name="only_animate_new_items" format="boolean" />
+        <!-- 仅在飞滚时 有动画-->
+        <attr name="only_animate_fling" format="boolean" />
+        <!--  -->
+        <attr name="simulate_grid_with_list" format="boolean" />
+        <!-- 最大速率 -->
+        <attr name="max_velocity" format="integer" />
+    </declare-styleable>
 </resources>

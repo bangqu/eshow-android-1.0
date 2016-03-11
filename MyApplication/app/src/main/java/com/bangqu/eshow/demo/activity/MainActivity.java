@@ -4,8 +4,12 @@ package com.bangqu.eshow.demo.activity;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -17,6 +21,7 @@ import com.bangqu.eshow.demo.common.CommonActivity;
 import com.bangqu.eshow.demo.common.SharedPrefUtil;
 import com.bangqu.eshow.demo.fragment.MainFragment;
 import com.bangqu.eshow.demo.fragment.NaviFragment;
+import com.bangqu.eshow.demo.view.AddPopupwindow;
 import com.bangqu.eshow.global.ESActivityManager;
 import com.bangqu.eshow.util.ESLogUtil;
 import com.bangqu.eshow.util.ESToastUtil;
@@ -47,7 +52,9 @@ public class MainActivity extends CommonActivity {
 
     private Context mContext = MainActivity.this;
     private SlidingMenu menu;
+    private AddPopupwindow addPopupwindow;
 
+    private MainFragment mainFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,8 +73,9 @@ public class MainActivity extends CommonActivity {
     @AfterViews
     void init() {
         ESViewUtil.scaleContentView((LinearLayout) findViewById(R.id.llParent));
+        addPopupwindow = new AddPopupwindow(this);
         initSliding();
-        MainFragment mainFragment = new MainFragment();
+        mainFragment = new MainFragment();
         getFragmentManager()
                 .beginTransaction()
                 .replace(R.id.container, mainFragment)
@@ -85,6 +93,33 @@ public class MainActivity extends CommonActivity {
         }
 
     }
+
+    @Click(R.id.ivSearch)
+    protected void onSearch(){
+
+    }
+
+    @Click(R.id.ivAdd)
+    protected void onAddClick(){
+        Animation operatingAnim = AnimationUtils.loadAnimation(mContext, R.anim.pop_add_show_rotate);
+        LinearInterpolator lin = new LinearInterpolator();
+        operatingAnim.setInterpolator(lin);
+        operatingAnim.setFillAfter(true);
+        mIvAdd.startAnimation(operatingAnim);
+        addPopupwindow.show(mIvAdd);
+
+        addPopupwindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                Animation operatingAnim = AnimationUtils.loadAnimation(mContext, R.anim.pop_add_dismiss_rotate);
+                LinearInterpolator lin = new LinearInterpolator();
+                operatingAnim.setInterpolator(lin);
+                operatingAnim.setFillAfter(true);
+                mIvAdd.startAnimation(operatingAnim);
+            }
+        });
+    }
+
 
     /**
      * 初始化滑动分页
@@ -117,6 +152,10 @@ public class MainActivity extends CommonActivity {
             @Override
             public void onClose() {
                 materialMenuView.animateState(MaterialMenuDrawable.IconState.BURGER);
+                //关闭侧边栏的时候通知MainFragment
+                if(mainFragment != null){
+                    mainFragment.onSlindingClose((int)getResources().getDimension(R.dimen.slidingmenu_offset));
+                }
             }
         });
         NaviFragment naviFragment = new NaviFragment();

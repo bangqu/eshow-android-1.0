@@ -6,10 +6,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bangqu.eshow.demo.R;
 import com.bangqu.eshow.demo.bean.FunctionBean;
+import com.bangqu.eshow.util.ESViewUtil;
 
 import java.util.List;
 
@@ -45,6 +47,7 @@ public class FunctionAdapter extends BaseAdapter{
         if(convertView == null){
             viewHold = new ViewHold();
             convertView = LayoutInflater.from(mContext).inflate(R.layout.item_function,null);
+            ESViewUtil.scaleContentView((LinearLayout)convertView.findViewById(R.id.llParent));
             viewHold.tvName = (TextView) convertView.findViewById(R.id.tvName);
             viewHold.ivIcon = (ImageView) convertView.findViewById(R.id.ivIcon);
             convertView.setTag(viewHold);

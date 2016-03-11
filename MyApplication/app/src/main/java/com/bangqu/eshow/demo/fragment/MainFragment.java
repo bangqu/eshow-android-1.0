@@ -26,15 +26,14 @@ public class MainFragment extends ESFragment implements View.OnClickListener {
     private Context mContext;
     private PullToZoomListViewEx listView;
 
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         mContext = this.getActivity();
         View view = inflater.inflate(R.layout.fragment_main, null);
         ESViewUtil.scaleContentView((LinearLayout) view.findViewById(R.id.llParent));
-        listView = (PullToZoomListViewEx) view.findViewById(R.id.listview);
 
+        listView = (PullToZoomListViewEx) view.findViewById(R.id.listview);
         String[] functionNames = getResources().getStringArray(R.array.functions);
         int[] funcitonIcons = {R.drawable.main_function_1,
                 R.drawable.main_function_2,
@@ -58,12 +57,19 @@ public class MainFragment extends ESFragment implements View.OnClickListener {
         this.getActivity().getWindowManager().getDefaultDisplay().getMetrics(localDisplayMetrics);
         int mScreenWidth = localDisplayMetrics.widthPixels;
         listView.ZOOM_ANIMATION_DURING = 100l;
-        listView.setHeaderViewSize(mScreenWidth,300);
+        int height =  ESViewUtil.scaleValue(mContext,300.0f);
+        listView.setHeaderViewSize(mScreenWidth, (int) height);
         return view;
     }
 
     @Override
     public void onClick(View v) {
 
+    }
+
+    public void onSlindingClose(int xPoint){
+        if(listView != null){
+            listView.startJazzyItemAnimate(xPoint);
+        }
     }
 }

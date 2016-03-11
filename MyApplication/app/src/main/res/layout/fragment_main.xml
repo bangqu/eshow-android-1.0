@@ -32,5 +32,6 @@
         custom:headerView="@null"
         android:background="@null"
         android:divider="@null"
-        custom:zoomView="@layout/list_head_zoom_view" />
+        custom:zoomView="@layout/list_head_zoom_view"
+        custom:effect="wave"/>
 </LinearLayout>

@@ -13,7 +13,8 @@ import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ListAdapter;
-import android.widget.ListView;
+
+import jazzylistview.JazzyListView;
 
 /**
  * Author:    ZhuWenWu
@@ -26,7 +27,7 @@ import android.widget.ListView;
  * 2014/11/7        ZhuWenWu            1.0                    1.0
  * Why & What is modified:
  */
-public class PullToZoomListViewEx extends PullToZoomBase<ListView> implements AbsListView.OnScrollListener {
+public class PullToZoomListViewEx extends PullToZoomBase<JazzyListView> implements AbsListView.OnScrollListener {
     private static final String TAG = PullToZoomListViewEx.class.getSimpleName();
     private FrameLayout mHeaderContainer;
     private int mHeaderHeight;
@@ -115,9 +116,15 @@ public class PullToZoomListViewEx extends PullToZoomBase<ListView> implements Ab
         mRootView.setOnItemClickListener(listener);
     }
 
+    private JazzyListView lv;
+    public void startJazzyItemAnimate(int xPoint){
+        if(lv != null){
+            lv.startAnimate(xPoint);
+        }
+    }
     @Override
-    protected ListView createRootView(Context context, AttributeSet attrs) {
-        ListView lv = new ListView(context, attrs);
+    protected JazzyListView createRootView(Context context, AttributeSet attrs) {
+        lv = new JazzyListView(context, attrs);
         // Set it to this so it can be used in ListActivity/ListFragment
         lv.setId(android.R.id.list);
         return lv;

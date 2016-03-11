@@ -30,4 +30,8 @@
         <item name="android:button">@drawable/checkbox_agree</item>
     </style>
 
+    <style name="AnimationPreview">
+        <item name="android:windowEnterAnimation">@anim/share_popup_enter</item>
+        <item name="android:windowExitAnimation">@anim/share_popup_exit</item>
+    </style>
 </resources>
