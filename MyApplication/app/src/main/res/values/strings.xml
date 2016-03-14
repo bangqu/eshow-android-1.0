@@ -5,6 +5,7 @@
     <string name="title_activity_regist">注册</string>
     <string name="title_activity_findPassword">找回密码</string>
     <string name="title_activity_setting">设置</string>
+    <string name="title_activity_scan">扫一扫</string>
     <string name="empty"></string>
     <string-array name="functions">
         <item>信息表单</item>
@@ -17,4 +18,5 @@
         <item>分享</item>
         <item>聊天</item>
     </string-array>
+    <string name="scan_tip">将条形码/二维码放入框内，即可自动扫描</string>
 </resources>

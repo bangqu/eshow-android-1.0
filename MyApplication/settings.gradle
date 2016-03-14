@@ -1,4 +1,1 @@
-include ':app'
-include ':EShow'
-include ':social_sdk_library_project'
-include ':PullToZoomList'
+include ':app',':EShow',':social_sdk_library_project',':PullToZoomList'

@@ -16,7 +16,12 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.USE_CREDENTIALS" />
     <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
-
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.FLASHLIGHT"/>
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-feature android:name="android.hardware.camera.flash" />
     <application
         android:name=".MyApp"
         android:allowBackup="true"
@@ -69,6 +74,12 @@
         <activity
             android:name=".activity.SettingActivity_"
             android:label="@string/title_activity_setting"
+            android:screenOrientation="portrait"/>
+
+        <!--扫描条码、二维码页面-->
+        <activity
+            android:name="com.bangqu.eshow.demo.activity.ScanActivity"
+            android:label="@string/title_activity_scan"
             android:screenOrientation="portrait"/>
 
         <!--使用友盟5.0SDK-->

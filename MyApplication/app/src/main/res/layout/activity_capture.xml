@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+    <RelativeLayout
+        android:id="@+id/rlParent"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+
+        <SurfaceView
+            android:id="@+id/preview_view"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center" />
+
+        <zxing.view.ViewfinderView
+            android:id="@+id/viewfinder_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <RelativeLayout
+            android:layout_width="400px"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50px">
+            <ImageButton
+                android:id="@+id/ibLignt"
+                android:layout_width="74px"
+                android:layout_height="74px"
+                android:background="@drawable/icon"
+                android:layout_centerInParent="true"/>
+
+            <ImageButton
+                android:id="@+id/ibPhoto"
+                android:layout_width="74px"
+                android:layout_height="74px"
+                android:background="@drawable/icon"/>
+
+            <ImageButton
+                android:id="@+id/ibClose"
+                android:layout_width="74px"
+                android:layout_height="74px"
+                android:background="@drawable/icon"
+                android:layout_alignParentRight="true"/>
+        </RelativeLayout>
+    </RelativeLayout>
+
+</FrameLayout>

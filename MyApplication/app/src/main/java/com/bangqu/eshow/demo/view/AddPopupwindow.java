@@ -2,6 +2,7 @@ package com.bangqu.eshow.demo.view;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 
 import com.bangqu.eshow.demo.R;
+import com.bangqu.eshow.demo.activity.ScanActivity;
 import com.bangqu.eshow.util.ESViewUtil;
 
 /**
@@ -21,7 +23,7 @@ public class AddPopupwindow extends PopupWindow {
     private RelativeLayout rlParent;
     private LinearLayout llScan,llSystemInfo,llTransformInfo;
 
-    public AddPopupwindow(Activity context){
+    public AddPopupwindow(final Activity context){
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         contentView = layoutInflater.from(context).inflate(R.layout.pop_more,null);
         this.setContentView(contentView);
@@ -50,7 +52,8 @@ public class AddPopupwindow extends PopupWindow {
         llScan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(context, ScanActivity.class);
+                context.startActivity(intent);
                 AddPopupwindow.this.dismiss();
             }
         });
