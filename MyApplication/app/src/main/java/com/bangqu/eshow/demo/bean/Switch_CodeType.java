@@ -15,6 +15,9 @@ public class Switch_CodeType {
             case REPASSWORD:
                 onRePassword();
                 break;
+            case BOUND:
+                onBoundTel();
+                break;
         }
     }
 
@@ -32,5 +35,10 @@ public class Switch_CodeType {
      * 重置密码
      */
     public void onRePassword(){};
+
+    /**
+     * 账号绑定
+     * */
+    public void onBoundTel(){};
 
 }

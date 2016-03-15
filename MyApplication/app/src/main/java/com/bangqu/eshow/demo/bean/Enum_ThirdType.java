@@ -5,7 +5,7 @@ package com.bangqu.eshow.demo.bean;
  * Created by daikting on 16/3/14.
  */
 public enum Enum_ThirdType {
-    QQ("qq"),WeChat("winxin");
+    QQ("qq"),WeChat("weixin");
 
     private String platformType;
     Enum_ThirdType(String platformType){

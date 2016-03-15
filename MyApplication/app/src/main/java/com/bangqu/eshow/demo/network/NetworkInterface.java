@@ -84,6 +84,7 @@ public class NetworkInterface {
         abRequestParams.put("type",enum_codeType.toString());
         new ESHttpUtil(context).post("code/voice", abRequestParams, responseListener);
     }
+
     /**
      * 获取七牛token
      *
@@ -115,5 +116,19 @@ public class NetworkInterface {
         abRequestParams.put("thirdParty.platform", type.toString());
         abRequestParams.put("thirdParty.username", token);
         new ESHttpUtil(context).post("user/third", abRequestParams, responseListener);
+    }
+
+    /**
+     * 绑定第三方账号到手机号
+     * @param context
+     * @param userName
+     * @param token
+     * @param responseListener
+     */
+    public static void thirdBound(Context context,String userName,String token,ESResponseListener responseListener){
+        ESRequestParams abRequestParams = new ESRequestParams();
+        abRequestParams.put("user.username", userName);
+        abRequestParams.put("thirdParty.username",token);
+        new ESHttpUtil(context).post("user/mobile", abRequestParams, responseListener);
     }
 }

@@ -30,6 +30,7 @@ import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -42,6 +43,8 @@ public class InputTelActivity extends CommonActivity {
 
     //是否要进入注册页面
     public static final String INTENT_ISREGISTER = "InputTelType";
+    //进行第三方账号登录操作时需要的token
+    public static final String INTENT_THIRDTOEKN = "ThirdToken";
 
     private Context mContext = InputTelActivity.this;
     @ViewById(R.id.rlBack)
@@ -64,7 +67,8 @@ public class InputTelActivity extends CommonActivity {
 
     //页面跳转的intent标识
     private Enum_CodeType intentExtra = Enum_CodeType.REGISTER;
-
+    //第三方授权成功得到的token
+    String thirdToken = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,7 +79,7 @@ public class InputTelActivity extends CommonActivity {
         ESViewUtil.scaleContentView((LinearLayout) findViewById(R.id.llParent));
 
         intentExtra = (Enum_CodeType) getIntent().getSerializableExtra(INTENT_ISREGISTER);
-
+        thirdToken = getIntent().getStringExtra(INTENT_THIRDTOEKN);
         new Switch_CodeType(intentExtra) {
             @Override
             public void onRegister() {
@@ -87,6 +91,11 @@ public class InputTelActivity extends CommonActivity {
             public void onFindPassword() {
                 InputTelActivity.this.setTitle("找回密码");
 
+            }
+
+            @Override
+            public void onBoundTel() {
+                InputTelActivity.this.setTitle("绑定账号");
             }
         };
         mTvTitle.setText(getTitle());
@@ -111,9 +120,61 @@ public class InputTelActivity extends CommonActivity {
             ESToastUtil.showToast(mContext,"请输入正确的手机号码！");
             return;
         }
-        NetworkInterface.sendCode(mContext, userName,intentExtra, checkResponseListener);
+
+        if(intentExtra == Enum_CodeType.BOUND){
+            ESLogUtil.d(mContext,"userName:"+userName+"    thirdToken:"+thirdToken);
+
+            NetworkInterface.thirdBound(mContext, userName, thirdToken, boundResponseListener);
+        }else{
+            NetworkInterface.sendCode(mContext, userName, intentExtra, checkResponseListener);
+        }
     }
 
+    /**
+     * 绑定账号回调
+     */
+    ESResponseListener boundResponseListener = new ESResponseListener(mContext) {
+        @Override
+        public void onBQSucess(String esMsg, JSONObject resultJson) {
+            try {
+                String userStr = resultJson.getJSONObject("user").toString();
+                ESLogUtil.d(mContext, "Login  userStr:" + userStr);
+                SharedPrefUtil.setUser(mContext, userStr);
+                JSONObject tokenJson = resultJson.getJSONObject("accessToken");
+                String token = tokenJson.getString("accessToken");
+                SharedPrefUtil.setAccesstoken(mContext,token);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            MainActivity_.intent(mContext).start();
+        }
+
+        @Override
+        public void onBQNoData() {
+
+        }
+
+        @Override
+        public void onBQNotify(String bqMsg) {
+            ESToastUtil.showToast(mContext, bqMsg);
+        }
+
+        @Override
+        public void onStart() {
+            progressDialog = ESDialogUtil.showProgressDialog(mContext, Global.LOADING_PROGRESSBAR_ID, "请求数据中...");
+        }
+
+        @Override
+        public void onFinish() {
+            progressDialog.dismiss();
+        }
+
+        @Override
+        public void onFailure(int statusCode, String content, Throwable error) {
+            progressDialog.dismiss();
+            ESToastUtil.showToast(mContext, "请求失败，错误码：" + statusCode);
+        }
+    };
     /**
      * 检验手机号接口
      */

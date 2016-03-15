@@ -74,7 +74,8 @@ public class LoginActivity extends CommonActivity {
     ESProgressDialogFragment progressDialog;
 
     String userName = "";
-
+    //第三方授权成功得到的token
+    String thirdToken = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -200,14 +201,18 @@ public class LoginActivity extends CommonActivity {
     private UMAuthListener umAuthListener = new UMAuthListener() {
         @Override
         public void onComplete(SHARE_MEDIA platform, int action, Map<String, String> data) {
-            String token = data.get("access_token");
+            thirdToken = data.get("access_token");
+            //截取前16位
+            thirdToken = thirdToken.substring(0,16);
             Enum_ThirdType thirdType = Enum_ThirdType.QQ;
-            if(platform.name().equals(SHARE_MEDIA.WEIXIN)){
+
+            ESLogUtil.d(mContext,"thirdToken:"+thirdToken);
+            if(platform.name().equals(SHARE_MEDIA.WEIXIN.toString())){
                 thirdType = Enum_ThirdType.WeChat;
-            }else if(platform.name().equals(SHARE_MEDIA.QQ)){
+            }else if(platform.name().equals(SHARE_MEDIA.QQ.toString())){
                 thirdType = Enum_ThirdType.QQ;
             }
-            NetworkInterface.thirdLogin(mContext,token,thirdType,thirdLoginResListener);
+            NetworkInterface.thirdLogin(mContext,thirdToken,thirdType,thirdLoginResListener);
 
         }
 
@@ -240,7 +245,23 @@ public class LoginActivity extends CommonActivity {
     ESResponseListener thirdLoginResListener = new ESResponseListener(mContext) {
         @Override
         public void onBQSucess(String esMsg, JSONObject resultJson) {
+            try {
+                boolean isBound = resultJson.getBoolean("type");
+                if(isBound){
+                    String userStr = resultJson.getJSONObject("user").toString();
+                    ESLogUtil.d(mContext, "Login  userStr:" + userStr);
+                    SharedPrefUtil.setUser(mContext, userStr);
+                    JSONObject tokenJson = resultJson.getJSONObject("accessToken");
+                    String token = tokenJson.getString("accessToken");
+                    SharedPrefUtil.setAccesstoken(mContext,token);
 
+                    MainActivity_.intent(mContext).start();
+                }else{//进行手机号码绑定
+                    InputTelActivity_.intent(mContext).extra(InputTelActivity_.INTENT_ISREGISTER, Enum_CodeType.BOUND).extra(InputTelActivity_.INTENT_THIRDTOEKN,thirdToken).start();
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
 
         @Override

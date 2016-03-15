@@ -5,7 +5,7 @@ package com.bangqu.eshow.demo.bean;
  * Created by daikting on 16/3/7.
  */
 public enum Enum_CodeType {
-    REGISTER("register"),FINDPASSWORD("identity"),REPASSWORD("identity");
+    REGISTER("register"),FINDPASSWORD("identity"),REPASSWORD("identity"),BOUND("bound");
 
     private String intentExtra;
     Enum_CodeType(String intentExtra){
