@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@id/circleLayout"
-            android:text="李宁"
+            android:text=""
             android:textColor="#ffffff"
             android:textSize="38px" />
 

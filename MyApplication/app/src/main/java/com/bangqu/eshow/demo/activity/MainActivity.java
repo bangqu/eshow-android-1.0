@@ -3,6 +3,7 @@ package com.bangqu.eshow.demo.activity;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -18,11 +19,16 @@ import com.balysv.materialmenu.MaterialMenuView;
 import com.bangqu.eshow.demo.R;
 import com.bangqu.eshow.demo.bean.Enum_CodeType;
 import com.bangqu.eshow.demo.common.CommonActivity;
+import com.bangqu.eshow.demo.common.Global;
 import com.bangqu.eshow.demo.common.SharedPrefUtil;
 import com.bangqu.eshow.demo.fragment.MainFragment;
 import com.bangqu.eshow.demo.fragment.NaviFragment;
+import com.bangqu.eshow.demo.network.ESResponseListener;
+import com.bangqu.eshow.demo.network.NetworkInterface;
 import com.bangqu.eshow.demo.view.AddPopupwindow;
+import com.bangqu.eshow.fragment.ESProgressDialogFragment;
 import com.bangqu.eshow.global.ESActivityManager;
+import com.bangqu.eshow.util.ESDialogUtil;
 import com.bangqu.eshow.util.ESLogUtil;
 import com.bangqu.eshow.util.ESToastUtil;
 import com.bangqu.eshow.util.ESViewUtil;
@@ -32,6 +38,7 @@ import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -55,6 +62,8 @@ public class MainActivity extends CommonActivity {
     private AddPopupwindow addPopupwindow;
 
     private MainFragment mainFragment;
+    ESProgressDialogFragment progressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,18 +104,18 @@ public class MainActivity extends CommonActivity {
     }
 
     @Click(R.id.ivSearch)
-    protected void onSearch(){
+    protected void onSearch() {
 
     }
 
     @Click(R.id.ivAdd)
-    protected void onAddClick(){
+    protected void onAddClick() {
         Animation operatingAnim = AnimationUtils.loadAnimation(mContext, R.anim.pop_add_show_rotate);
         LinearInterpolator lin = new LinearInterpolator();
         operatingAnim.setInterpolator(lin);
         operatingAnim.setFillAfter(true);
         mIvAdd.startAnimation(operatingAnim);
-        addPopupwindow.show(mContext,mIvAdd);
+        addPopupwindow.show(mContext, mIvAdd);
 
         addPopupwindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
@@ -153,8 +162,8 @@ public class MainActivity extends CommonActivity {
             public void onClose() {
                 materialMenuView.animateState(MaterialMenuDrawable.IconState.BURGER);
                 //关闭侧边栏的时候通知MainFragment
-                if(mainFragment != null){
-                    mainFragment.onSlindingClose((int)getResources().getDimension(R.dimen.slidingmenu_offset));
+                if (mainFragment != null) {
+                    mainFragment.onSlindingClose((int) getResources().getDimension(R.dimen.slidingmenu_offset));
                 }
             }
         });
@@ -168,11 +177,12 @@ public class MainActivity extends CommonActivity {
                         overridePendingTransition(R.anim.dropdown_in, R.anim.dropdown_out);
                         break;
                     case 1:
-                        InputPasswordActivity_.intent(mContext).extra(InputTelActivity_.INTENT_ISREGISTER, Enum_CodeType.FINDPASSWORD).extra(InputPasswordActivity_.INTENT_TEL, "15050692352").start();
-                        overridePendingTransition(R.anim.dropdown_in, R.anim.dropdown_out);
+                        String userName = SharedPrefUtil.getUser(mContext).getUsername();
+                        NetworkInterface.sendCode(mContext, userName, Enum_CodeType.REPASSWORD, checkResponseListener);
                         break;
                     case 2:
-                        finish();
+                        Intent intent = new Intent(Global.EShow_Broadcast_Action.ACTION_EXIT);
+                        sendBroadcast(intent);
                         break;
                 }
             }
@@ -198,4 +208,47 @@ public class MainActivity extends CommonActivity {
             finish();
         }
     }
+
+    /**
+     * 检验手机号接口
+     */
+    ESResponseListener checkResponseListener = new ESResponseListener(mContext) {
+        @Override
+        public void onStart() {
+            progressDialog = ESDialogUtil.showProgressDialog(mContext, Global.LOADING_PROGRESSBAR_ID, "请求数据中...");
+
+        }
+
+        @Override
+        public void onFinish() {
+            progressDialog.dismiss();
+        }
+
+        @Override
+        public void onFailure(int statusCode, String content, Throwable error) {
+            progressDialog.dismiss();
+            ESToastUtil.showToast(mContext, "请求失败，错误码：" + statusCode);
+        }
+
+        @Override
+        public void onBQSucess(String esMsg, JSONObject resultJson) {
+            SharedPrefUtil.setSendCodeTime(mContext);
+
+            String userName = SharedPrefUtil.getUser(mContext).getUsername();
+            InputPasswordActivity_.intent(mContext).extra(InputTelActivity_.INTENT_ISREGISTER, Enum_CodeType.REPASSWORD).extra(InputPasswordActivity_.INTENT_TEL, userName).start();
+            overridePendingTransition(R.anim.dropdown_in, R.anim.dropdown_out);
+        }
+
+        @Override
+        public void onBQNoData() {
+            ESLogUtil.d(mContext, "onBQNoData");
+
+        }
+
+        @Override
+        public void onBQNotify(String bqMsg) {
+            ESToastUtil.showToast(mContext, bqMsg);
+        }
+
+    };
 }

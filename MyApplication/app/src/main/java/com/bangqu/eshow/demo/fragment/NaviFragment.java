@@ -8,8 +8,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
+import android.widget.TextView;
 
 import com.bangqu.eshow.demo.R;
+import com.bangqu.eshow.demo.common.SharedPrefUtil;
 import com.bangqu.eshow.fragment.ESFragment;
 import com.bangqu.eshow.util.ESViewUtil;
 
@@ -22,6 +24,7 @@ public class NaviFragment extends ESFragment implements View.OnClickListener {
     final int radioIds[] = {R.id.radio0, R.id.radio1};
     RadioButton radios[] = new RadioButton[radioIds.length];
     Button buttonExit;
+    TextView tvName;
     private NaviCallbacks naviCallbacks;
 
     @Override
@@ -29,12 +32,16 @@ public class NaviFragment extends ESFragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         mContext = this.getActivity();
         View view = inflater.inflate(R.layout.fragment_navi, null);
-        ESViewUtil.scaleContentView((LinearLayout)view.findViewById(R.id.llParent));
+        ESViewUtil.scaleContentView((LinearLayout) view.findViewById(R.id.llParent));
         for (int i = 0; i < radioIds.length; ++i) {
             radios[i] = (RadioButton) view.findViewById(radioIds[i]);
             radios[i].setOnClickListener(this);
         }
         radios[0].setChecked(true);
+
+        tvName = (TextView) view.findViewById(R.id.tvName);
+        String userName = SharedPrefUtil.getUser(mContext).getUsername();
+        tvName.setText(userName);
 
         buttonExit = (Button) view.findViewById(R.id.buttonExit);
         buttonExit.setOnClickListener(this);

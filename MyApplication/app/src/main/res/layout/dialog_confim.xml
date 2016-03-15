@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/llParent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@null"
+    android:gravity="center">
+
+    <LinearLayout
+        android:layout_width="580px"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/btn_bg_border_white"
+        android:orientation="vertical">
+
+        <!-- Title -->
+
+        <LinearLayout
+            android:id="@+id/dialog_lay_title"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30px"
+            android:layout_marginRight="30px"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingTop="30px">
+
+
+            <TextView
+                android:id="@+id/dialog_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="aaaaaaa"
+                android:textColor="@color/normal_text"
+                android:textSize="@dimen/normal_textSize" />
+
+        </LinearLayout>
+
+        <!--&lt;!&ndash; split &ndash;&gt;-->
+
+        <!--<View-->
+        <!--android:id="@+id/dialog_lay_split"-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="@dimen/divide_height"-->
+        <!--android:layout_marginLeft="@dimen/margin_normal"-->
+        <!--android:layout_marginRight="@dimen/margin_normal" />-->
+        <!-- Content -->
+        <TextView
+            android:id="@+id/dialog_content"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:gravity="center_vertical"
+            android:padding="30px"
+            android:text="ok"
+            android:textColor="@color/normal_text"
+            android:textSize="@dimen/normal_textSize" />
+
+
+        <!-- OK&Cancel Button -->
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/divide_height"
+            android:background="#c7c8cc" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="30px"
+            android:paddingRight="30px">
+
+            <TextView
+                android:id="@+id/dialog_btn_cancel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="30px"
+                android:layout_weight="1"
+                android:focusable="true"
+                android:gravity="center"
+                android:paddingBottom="15px"
+                android:paddingTop="15px"
+                android:text="ok"
+                android:textColor="#02ABF0"
+                android:textSize="@dimen/normal_textSize" />
+
+            <TextView
+                android:layout_width="@dimen/divide_height"
+                android:layout_height="fill_parent"
+                android:background="#c7c8cc" />
+
+            <TextView
+                android:id="@+id/dialog_btn_ok"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:focusable="true"
+                android:gravity="center"
+                android:paddingBottom="15px"
+                android:paddingTop="15px"
+                android:text="ok"
+                android:textColor="#02ABF0"
+                android:textSize="@dimen/normal_textSize" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

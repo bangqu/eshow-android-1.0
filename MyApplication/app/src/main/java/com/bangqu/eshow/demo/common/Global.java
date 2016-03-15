@@ -75,10 +75,20 @@ public class Global {
 
     public static class EShow_Broadcast_Action {
         /**
+         * 退出程序
+         */
+        public static final String ACTION_EXIT = "bangqu.exit";
+        /**
         /**
          * 登录信息过期
          */
         public static final String ACTION_MISSING_TOKEN = "bangqu.missing.token";
+
+        /**
+         *
+         * 由于密码修改，需要退出
+         * */
+        public static final String ACTION_EXIT_REPASSWORD = "bangqu.exit.repassword";
     }
 
 }

@@ -6,6 +6,7 @@ import android.preference.PreferenceManager;
 
 import com.bangqu.eshow.demo.bean.UserBean;
 import com.bangqu.eshow.util.ESJsonUtil;
+import com.bangqu.eshow.util.ESStrUtil;
 
 /**
  * 程序配置保存到SharedPreferances
@@ -121,6 +122,30 @@ public class SharedPrefUtil {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
         String accessToken = sp.getString(ACCESSTOKEN, null);
         return accessToken;
+    }
+
+    /**
+     * 判断是否已经登录
+     *
+     * @return
+     */
+    public static boolean isLogin(Context context) {
+        UserBean userBean = getUser(context);
+        String token = getAccessToken(context);
+        if (userBean != null && !ESStrUtil.isEmpty(token)) {
+            return true;
+        }
+        return false;
+    }
+    /**
+     * 登出时清空缓存信息
+     *
+     * @param context
+     * @return
+     */
+    public static void logout(Context context) {
+        setAccesstoken(context, null);
+        setUser(context, null);
     }
 
     /**

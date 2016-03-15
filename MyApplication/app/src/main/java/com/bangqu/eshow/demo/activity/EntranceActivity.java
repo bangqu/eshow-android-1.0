@@ -80,11 +80,13 @@ public class EntranceActivity extends CommonActivity implements Handler.Callback
                 startActivity(intent);
                 overridePendingTransition(R.anim.scroll_in, R.anim.scroll_out);
                 finish();
-            } else {
+            } else if( SharedPrefUtil.isLogin(mContext)){
                 Intent intent = new Intent(mContext, MainActivity_.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.scroll_in, R.anim.scroll_out);
                 finish();
+            } else{
+                LoginActivity_.intent(mContext).start();
             }
 
         }

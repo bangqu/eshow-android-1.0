@@ -2,6 +2,7 @@ package com.bangqu.eshow.demo.activity;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -9,6 +10,7 @@ import com.balysv.materialmenu.MaterialMenuDrawable;
 import com.balysv.materialmenu.MaterialMenuView;
 import com.bangqu.eshow.demo.R;
 import com.bangqu.eshow.demo.common.CommonActivity;
+import com.bangqu.eshow.util.ESViewUtil;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
@@ -36,8 +38,12 @@ public class SettingActivity extends CommonActivity {
 
     @AfterViews
     void init() {
+        ESViewUtil.scaleContentView((LinearLayout) findViewById(R.id.llParent));
+
         mTvTitle.setText(getTitle());
         mMaterialBackButton.setState(MaterialMenuDrawable.IconState.ARROW);
+
+
     }
 
     @Click(R.id.rlBack)

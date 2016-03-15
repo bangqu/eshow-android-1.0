@@ -1,6 +1,7 @@
 package com.bangqu.eshow.demo.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -211,12 +212,16 @@ public class InputPasswordActivity extends CommonActivity {
 
                     @Override
                     public void onFindPassword() {
-
+                        ESToastUtil.showToast(mContext, "密码修改成功！");
+                        finish();
                     }
 
                     @Override
                     public void onRePassword() {
-
+                        Intent intent = new Intent(Global.EShow_Broadcast_Action.ACTION_EXIT_REPASSWORD);
+                        sendBroadcast(intent);
+                        ESToastUtil.showToast(mContext, "密码修改成功！");
+                        finish();
                     }
                 };
             }
