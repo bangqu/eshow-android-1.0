@@ -14,8 +14,17 @@ import com.balysv.materialmenu.MaterialMenuDrawable;
 import com.balysv.materialmenu.MaterialMenuView;
 import com.bangqu.eshow.demo.R;
 import com.bangqu.eshow.demo.bean.Enum_CodeType;
+import com.bangqu.eshow.demo.bean.Enum_ThirdType;
 import com.bangqu.eshow.demo.common.CommonActivity;
+import com.bangqu.eshow.demo.common.Global;
+import com.bangqu.eshow.demo.common.SharedPrefUtil;
+import com.bangqu.eshow.demo.network.ESResponseListener;
+import com.bangqu.eshow.demo.network.NetworkInterface;
+import com.bangqu.eshow.demo.view.LoginAutoCompleteEdit;
 import com.bangqu.eshow.fragment.ESProgressDialogFragment;
+import com.bangqu.eshow.util.ESDialogUtil;
+import com.bangqu.eshow.util.ESLogUtil;
+import com.bangqu.eshow.util.ESStrUtil;
 import com.bangqu.eshow.util.ESToastUtil;
 import com.bangqu.eshow.util.ESViewUtil;
 import com.umeng.socialize.Config;
@@ -27,6 +36,8 @@ import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.Map;
 
@@ -45,10 +56,10 @@ public class LoginActivity extends CommonActivity {
     TextView mTvTitle;
     @ViewById(R.id.tvSubTitle)
     TextView mTvSubTitle;
-    //    @ViewById(R.id.etTel)
-//    LoginAutoCompleteEdit mEtTel;
-//    @ViewById(R.id.etPassword)
-//    LoginAutoCompleteEdit mEtPassword;
+    @ViewById(R.id.etTel)
+    LoginAutoCompleteEdit mEtTel;
+    @ViewById(R.id.etPassword)
+    LoginAutoCompleteEdit mEtPassword;
     @ViewById(R.id.btnLogin)
     Button mBtnLogin;
     @ViewById(R.id.tvForgetPW)
@@ -62,6 +73,8 @@ public class LoginActivity extends CommonActivity {
 
     ESProgressDialogFragment progressDialog;
 
+    String userName = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,11 +87,74 @@ public class LoginActivity extends CommonActivity {
         mTvSubTitle.setVisibility(View.VISIBLE);
         mMaterialBackButton.setState(MaterialMenuDrawable.IconState.ARROW);
         mMaterialBackButton.setVisibility(View.GONE);
+
+        userName = getIntent().getStringExtra(InputPasswordActivity.INTENT_TEL);
+        mEtTel.setText(userName);
     }
 
     @Click(R.id.btnLogin)
     void onLogin() {
-        MainActivity_.intent(mContext).start();
+
+        String userName = mEtTel.getText().toString();
+        final String password = mEtPassword.getText().toString();
+
+        if (ESStrUtil.isEmpty(userName) && !ESStrUtil.isMobileNo(userName)) {
+            ESToastUtil.showToast(mContext, "请输入账号！！");
+            return;
+        }
+
+        if (ESStrUtil.isEmpty(password)) {
+            ESToastUtil.showToast(mContext, "请输入密码！");
+            return;
+        }
+
+        if (ESStrUtil.strLength(password) > 20) {
+            ESToastUtil.showToast(mContext, "密码长度过长！");
+            return;
+        }
+        ESResponseListener responseListener = new ESResponseListener(mContext) {
+            @Override
+            public void onBQSucess(String esMsg, JSONObject resultJson) {
+                try {
+                    String userStr = resultJson.getJSONObject("user").toString();
+                    ESLogUtil.d(mContext, "Login  userStr:" + userStr);
+                    SharedPrefUtil.setUser(mContext, userStr);
+                    JSONObject tokenJson = resultJson.getJSONObject("accessToken");
+                    String token = tokenJson.getString("accessToken");
+                    SharedPrefUtil.setAccesstoken(mContext,token);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                MainActivity_.intent(mContext).start();
+            }
+
+            @Override
+            public void onBQNoData() {
+
+            }
+
+            @Override
+            public void onBQNotify(String bqMsg) {
+                ESToastUtil.showToast(mContext, bqMsg);
+            }
+
+            @Override
+            public void onStart() {
+                progressDialog = ESDialogUtil.showProgressDialog(mContext, Global.LOADING_PROGRESSBAR_ID, "请求数据中...");
+            }
+
+            @Override
+            public void onFinish() {
+                progressDialog.dismiss();
+            }
+
+            @Override
+            public void onFailure(int statusCode, String content, Throwable error) {
+                progressDialog.dismiss();
+                ESToastUtil.showToast(mContext, "请求失败，错误码：" + statusCode);
+            }
+        };
+        NetworkInterface.login(mContext, userName, password, responseListener);
     }
 
     @Click(R.id.tvForgetPW)
@@ -124,19 +200,26 @@ public class LoginActivity extends CommonActivity {
     private UMAuthListener umAuthListener = new UMAuthListener() {
         @Override
         public void onComplete(SHARE_MEDIA platform, int action, Map<String, String> data) {
-            ESToastUtil.showToast(mContext, platform.name() + "Authorize succeed");
+            String token = data.get("access_token");
+            Enum_ThirdType thirdType = Enum_ThirdType.QQ;
+            if(platform.name().equals(SHARE_MEDIA.WEIXIN)){
+                thirdType = Enum_ThirdType.WeChat;
+            }else if(platform.name().equals(SHARE_MEDIA.QQ)){
+                thirdType = Enum_ThirdType.QQ;
+            }
+            NetworkInterface.thirdLogin(mContext,token,thirdType,thirdLoginResListener);
 
         }
 
         @Override
         public void onError(SHARE_MEDIA platform, int action, Throwable t) {
-            ESToastUtil.showToast(mContext, platform.name() + "Authorize fail");
+            ESToastUtil.showToast(mContext, platform.name() + " Authorize fail");
 
         }
 
         @Override
         public void onCancel(SHARE_MEDIA platform, int action) {
-            ESToastUtil.showToast(mContext, platform.name() + "Authorize cancel");
+            ESToastUtil.showToast(mContext, platform.name() + " Authorize cancel");
         }
     };
 
@@ -147,6 +230,43 @@ public class LoginActivity extends CommonActivity {
             umShareAPI.onActivityResult(requestCode, resultCode, data);
         } else {
             //应用未审核
+            ESToastUtil.showToast(mContext, "应用未审核，平台拒绝了应用的授权请求！");
         }
     }
+
+    /**
+     * 第三方登录接口回调
+     */
+    ESResponseListener thirdLoginResListener = new ESResponseListener(mContext) {
+        @Override
+        public void onBQSucess(String esMsg, JSONObject resultJson) {
+
+        }
+
+        @Override
+        public void onBQNoData() {
+
+        }
+
+        @Override
+        public void onBQNotify(String bqMsg) {
+            ESToastUtil.showToast(mContext, bqMsg);
+        }
+
+        @Override
+        public void onStart() {
+            progressDialog = ESDialogUtil.showProgressDialog(mContext, Global.LOADING_PROGRESSBAR_ID, "请求登录中...");
+        }
+
+        @Override
+        public void onFinish() {
+            progressDialog.dismiss();
+        }
+
+        @Override
+        public void onFailure(int statusCode, String content, Throwable error) {
+            progressDialog.dismiss();
+            ESToastUtil.showToast(mContext, "请求失败，错误码：" + statusCode);
+        }
+    };
 }

@@ -111,19 +111,7 @@ public class InputTelActivity extends CommonActivity {
             ESToastUtil.showToast(mContext,"请输入正确的手机号码！");
             return;
         }
-        new Switch_CodeType(intentExtra){
-            @Override
-            public void onRegister() {
-                NetworkInterface.sendCode(mContext, userName, "register", checkResponseListener);
-
-            }
-
-            @Override
-            public void onFindPassword() {
-                NetworkInterface.sendCode(mContext, userName, "", checkResponseListener);
-
-            }
-        };
+        NetworkInterface.sendCode(mContext, userName,intentExtra, checkResponseListener);
     }
 
     /**
@@ -151,7 +139,8 @@ public class InputTelActivity extends CommonActivity {
         public void onBQSucess(String esMsg, JSONObject resultJson) {
             SharedPrefUtil.setSendCodeTime(mContext);
             final String userName = mEtTel.getText().toString();
-            InputPasswordActivity_.intent(mContext).extra(InputTelActivity_.INTENT_ISREGISTER, Enum_CodeType.REGISTER).extra(InputPasswordActivity_.INTENT_TEL,userName).start();
+            InputPasswordActivity_.intent(mContext).extra(InputTelActivity_.INTENT_ISREGISTER, intentExtra).extra(InputPasswordActivity_.INTENT_TEL,userName).start();
+            finish();
 
         }
 

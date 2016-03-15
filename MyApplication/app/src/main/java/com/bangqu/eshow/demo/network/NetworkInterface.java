@@ -3,6 +3,7 @@ package com.bangqu.eshow.demo.network;
 import android.content.Context;
 
 import com.bangqu.eshow.demo.bean.Enum_CodeType;
+import com.bangqu.eshow.demo.bean.Enum_ThirdType;
 import com.bangqu.eshow.http.ESRequestParams;
 
 /**
@@ -26,12 +27,12 @@ public class NetworkInterface {
     }
 
     /**
-     * 注册时发送短信验证码
+     * 注册、找回密码时发送短信验证码
      * @param context
      * @param userName
      * @param responseListener
      */
-    public static void sendCode(Context context,String userName,String type,ESResponseListener responseListener){
+    public static void sendCode(Context context,String userName,Enum_CodeType type,ESResponseListener responseListener){
         ESRequestParams abRequestParams = new ESRequestParams();
         abRequestParams.put("user.username", userName);
         abRequestParams.put("type",type.toString());
@@ -52,6 +53,22 @@ public class NetworkInterface {
         abRequestParams.put("code",code);
         abRequestParams.put("user.password",password);
         new ESHttpUtil(context).post("user/signup", abRequestParams, responseListener);
+    }
+
+    /**
+     * 重置密码
+     * @param context
+     * @param userName
+     * @param code
+     * @param password
+     * @param responseListener
+     */
+    public static void rePassword(Context context,String userName,String code,String password,ESResponseListener responseListener){
+        ESRequestParams abRequestParams = new ESRequestParams();
+        abRequestParams.put("user.username", userName);
+        abRequestParams.put("code",code);
+        abRequestParams.put("user.password",password);
+        new ESHttpUtil(context).post("user/password", abRequestParams, responseListener);
     }
 
     /**
@@ -86,4 +103,17 @@ public class NetworkInterface {
         new ESHttpUtil(context).post("qiniu/key", abRequestParams, responseListener);
     }
 
+    /**
+     * 第三放登录
+     * @param context
+     * @param token
+     * @param type 平台类型
+     * @param responseListener
+     */
+    public static void thirdLogin(Context context,String token,Enum_ThirdType type,ESResponseListener responseListener){
+        ESRequestParams abRequestParams = new ESRequestParams();
+        abRequestParams.put("thirdParty.platform", type.toString());
+        abRequestParams.put("thirdParty.username", token);
+        new ESHttpUtil(context).post("user/third", abRequestParams, responseListener);
+    }
 }

@@ -5,10 +5,10 @@ package com.bangqu.eshow.demo.bean;
  * Created by daikting on 16/3/7.
  */
 public enum Enum_CodeType {
-    REGISTER("register"),FINDPASSWORD("FindPassword"),LOGIN("login"),IDENTITY("identity");
+    REGISTER("register"),FINDPASSWORD("identity"),REPASSWORD("identity");
 
     private String intentExtra;
-    private Enum_CodeType(String intentExtra){
+    Enum_CodeType(String intentExtra){
         this.intentExtra = intentExtra;
     }
 

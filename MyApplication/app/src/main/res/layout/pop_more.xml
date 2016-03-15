@@ -5,14 +5,14 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
     <ImageView
-        android:layout_width="200px"
-        android:layout_height="200px"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
         android:background="@drawable/pop_bg"/>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="25px"
+        android:layout_marginTop="15dp"
         android:orientation="vertical">
 
         <LinearLayout
@@ -20,22 +20,22 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="10px"
+            android:padding="5dp"
             android:background="@drawable/drawer_selector_bg">
 
             <ImageView
-                android:layout_width="35px"
-                android:layout_height="35px"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:background="@drawable/pop_scan" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:layout_marginLeft="@dimen/small_margin"
+                android:layout_marginLeft="14dp"
                 android:gravity="center"
                 android:text="扫一扫"
                 android:textColor="@color/white"
-                android:textSize="@dimen/small_textSize_24" />
+                android:textSize="14dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -43,22 +43,22 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="10px"
+            android:padding="5dp"
             android:background="@drawable/drawer_selector_bg">
 
             <ImageView
-                android:layout_width="35px"
-                android:layout_height="35px"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:background="@drawable/pop_system" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:layout_marginLeft="@dimen/small_margin"
+                android:layout_marginLeft="14dp"
                 android:gravity="center"
                 android:text="系统信息"
                 android:textColor="@color/white"
-                android:textSize="@dimen/small_textSize_24" />
+                android:textSize="14dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -66,22 +66,22 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="10px"
+            android:padding="5dp"
             android:background="@drawable/drawer_selector_bg">
 
             <ImageView
-                android:layout_width="35px"
-                android:layout_height="35px"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:background="@drawable/pop_trans" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:layout_marginLeft="@dimen/small_margin"
+                android:layout_marginLeft="14dp"
                 android:gravity="center"
                 android:text="透传信息"
                 android:textColor="@color/white"
-                android:textSize="@dimen/small_textSize_24" />
+                android:textSize="14dp" />
         </LinearLayout>
 
     </LinearLayout>

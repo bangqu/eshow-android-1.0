@@ -3,7 +3,7 @@ package com.bangqu.eshow.demo.bean;
 /**
  * Created by daikting on 16/3/7.
  */
-public abstract class Switch_CodeType {
+public class Switch_CodeType {
     public Switch_CodeType(Enum_CodeType enum_inputTel){
         switch (enum_inputTel){
             case REGISTER:
@@ -12,22 +12,25 @@ public abstract class Switch_CodeType {
             case FINDPASSWORD:
                 onFindPassword();
                 break;
-            case LOGIN:
-                onLogin();
+            case REPASSWORD:
+                onRePassword();
                 break;
-            case IDENTITY:
-                onIdentity();
-                break;
-
         }
     }
 
+    /**
+     * 注册
+     */
     public void onRegister(){};
 
+    /**
+     * 找回密码
+     */
     public void onFindPassword(){};
 
-    public void onLogin(){};
-
-    public void onIdentity(){};
+    /**
+     * 重置密码
+     */
+    public void onRePassword(){};
 
 }

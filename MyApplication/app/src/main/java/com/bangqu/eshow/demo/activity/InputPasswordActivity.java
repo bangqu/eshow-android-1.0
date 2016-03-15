@@ -90,6 +90,11 @@ public class InputPasswordActivity extends CommonActivity {
             public void onFindPassword() {
                 InputPasswordActivity.this.setTitle("找回密码");
             }
+
+            @Override
+            public void onRePassword() {
+                InputPasswordActivity.this.setTitle("重置密码");
+            }
         };
         mTvTitle.setText(getTitle());
         mMaterialBackButton.setState(MaterialMenuDrawable.IconState.ARROW);
@@ -102,19 +107,7 @@ public class InputPasswordActivity extends CommonActivity {
         }
         mTvReminder.setText("已将短信发送至您的手机  " + tempTel);
 
-        long sendTime = SharedPrefUtil.getSendCodeTime(mContext);
-        long currentTime = System.currentTimeMillis();
-        long time = (Global.SEND_CODE_CYCLE - (currentTime - sendTime)) / 1000;
-        if (time > 0) {//还没有达到再次发送短信验证码的时间限制
-            btnVoice.setClickable(false);
-            btnVoice.setBackgroundResource(R.drawable.btn_long_pressed);
-            btnVoice.setText(time + "S");
-            countDownTimer.schedule(countDownTask, 0, 1000);//开始倒计时
-        } else {
-            btnVoice.setClickable(true);
-            btnVoice.setBackgroundResource(R.drawable.btn_long);
-            btnVoice.setText("语音播报");
-        }
+        checkVoiceState();
 
         mEtPassword.addTextChangedListener(new TextWatcher() {
             @Override
@@ -140,17 +133,20 @@ public class InputPasswordActivity extends CommonActivity {
         });
 
     }
+
     @Click(R.id.rlBack)
-    void onBack(){
+    void onBack() {
         finish();
     }
 
     @Click(R.id.btnVoice)
-    void onVoice(){
+    void onVoice() {
         ESResponseListener responseListener = new ESResponseListener(mContext) {
             @Override
             public void onBQSucess(String esMsg, JSONObject resultJson) {
-               ESToastUtil.showToast(mContext,"请求语音播报验证码成功，请注意来电！");
+                ESToastUtil.showToast(mContext, "请求语音播报验证码成功，请注意来电！");
+                SharedPrefUtil.setSendCodeTime(mContext);
+                checkVoiceState();
             }
 
             @Override
@@ -179,12 +175,12 @@ public class InputPasswordActivity extends CommonActivity {
                 ESToastUtil.showToast(mContext, "请求失败，错误码：" + statusCode);
             }
         };
-        NetworkInterface.voice(mContext,userName,intentExtra,responseListener);
+        NetworkInterface.voice(mContext, userName, intentExtra, responseListener);
     }
 
     @Click(R.id.btnSubmit)
     void onSubmit() {
-        String code = etCode.getText().toString();
+        final String code = etCode.getText().toString();
         final String password = mEtPassword.getText().toString();
 
         if (ESStrUtil.isEmpty(code)) {
@@ -202,10 +198,27 @@ public class InputPasswordActivity extends CommonActivity {
             return;
         }
 
-        ESResponseListener responseListener = new ESResponseListener(mContext) {
+        final ESResponseListener responseListener = new ESResponseListener(mContext) {
             @Override
             public void onBQSucess(String esMsg, JSONObject resultJson) {
-                LoginActivity_.intent(mContext).extra("userName", userName).extra("password", password).start();
+                new Switch_CodeType(intentExtra) {
+                    @Override
+                    public void onRegister() {
+                        ESToastUtil.showToast(mContext, "注册成功！");
+                        LoginActivity_.intent(mContext).extra("userName", userName).start();
+                        finish();
+                    }
+
+                    @Override
+                    public void onFindPassword() {
+
+                    }
+
+                    @Override
+                    public void onRePassword() {
+
+                    }
+                };
             }
 
             @Override
@@ -234,29 +247,31 @@ public class InputPasswordActivity extends CommonActivity {
                 ESToastUtil.showToast(mContext, "请求失败，错误码：" + statusCode);
             }
         };
-        NetworkInterface.regist(mContext, userName, code, password, responseListener);
+
+        new Switch_CodeType(intentExtra) {
+            @Override
+            public void onRegister() {
+                NetworkInterface.regist(mContext, userName, code, password, responseListener);
+            }
+
+            @Override
+            public void onFindPassword() {
+                NetworkInterface.rePassword(mContext, userName, code, password, responseListener);
+            }
+
+            @Override
+            public void onRePassword() {
+                NetworkInterface.rePassword(mContext, userName, code, password, responseListener);
+            }
+        };
+
+
     }
 
     //倒计时
-    private Timer countDownTimer = new Timer();
+    private Timer countDownTimer ;
     //倒计时
-    private TimerTask countDownTask = new TimerTask() {
-        @Override
-        public void run() {
-            long sendTime = SharedPrefUtil.getSendCodeTime(mContext);
-            long currentTime = System.currentTimeMillis();
-            long time = (Global.SEND_CODE_CYCLE - (currentTime - sendTime)) / 1000;
-
-            Message msg = new Message();
-            if (time > 0) {//还没有达到再次发送短信验证码的时间限制
-                msg.what = 0;
-            } else {
-                msg.what = 1;
-            }
-            msg.obj = time;
-            countDownHandler.sendMessage(msg);
-        }
-    };
+    private TimerTask countDownTask;
     //倒计时
     private Handler countDownHandler = new Handler() {
         public void handleMessage(Message msg) {
@@ -275,13 +290,52 @@ public class InputPasswordActivity extends CommonActivity {
 
                     if (countDownTask != null) {
                         countDownTask.cancel();
+                        countDownTask = null;
                     }
 
                     if (countDownTimer != null) {
                         countDownTimer.cancel();
+                        countDownTimer = null;
                     }
                     break;
             }
         }
     };
+
+    /**
+     * 检测语音播报按钮状态
+     */
+    private void checkVoiceState() {
+        long sendTime = SharedPrefUtil.getSendCodeTime(mContext);
+        long currentTime = System.currentTimeMillis();
+        long time = (Global.SEND_CODE_CYCLE - (currentTime - sendTime)) / 1000;
+        if (time > 0) {//还没有达到再次发送短信验证码的时间限制
+            btnVoice.setClickable(false);
+            btnVoice.setBackgroundResource(R.drawable.btn_long_pressed);
+            btnVoice.setText(time + "S");
+            countDownTimer = new Timer();
+            countDownTask= new TimerTask() {
+                @Override
+                public void run() {
+                    long sendTime = SharedPrefUtil.getSendCodeTime(mContext);
+                    long currentTime = System.currentTimeMillis();
+                    long time = (Global.SEND_CODE_CYCLE - (currentTime - sendTime)) / 1000;
+
+                    Message msg = new Message();
+                    if (time > 0) {//还没有达到再次发送短信验证码的时间限制
+                        msg.what = 0;
+                    } else {
+                        msg.what = 1;
+                    }
+                    msg.obj = time;
+                    countDownHandler.sendMessage(msg);
+                }
+            };
+            countDownTimer.schedule(countDownTask, 0, 1000);//开始倒计时
+        } else {
+            btnVoice.setClickable(true);
+            btnVoice.setBackgroundResource(R.drawable.btn_long);
+            btnVoice.setText("语音播报");
+        }
+    }
 }

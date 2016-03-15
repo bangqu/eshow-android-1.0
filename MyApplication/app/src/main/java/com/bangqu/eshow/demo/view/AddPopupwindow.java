@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
-import android.widget.RelativeLayout;
 
 import com.bangqu.eshow.demo.R;
 import com.bangqu.eshow.demo.activity.ScanActivity;
@@ -20,7 +19,6 @@ import com.bangqu.eshow.util.ESViewUtil;
  */
 public class AddPopupwindow extends PopupWindow {
     private View contentView;
-    private RelativeLayout rlParent;
     private LinearLayout llScan,llSystemInfo,llTransformInfo;
 
     public AddPopupwindow(final Activity context){
@@ -28,8 +26,6 @@ public class AddPopupwindow extends PopupWindow {
         contentView = layoutInflater.from(context).inflate(R.layout.pop_more,null);
         this.setContentView(contentView);
 
-        rlParent = (RelativeLayout) contentView.findViewById(R.id.rlParent);
-        ESViewUtil.scaleContentView(rlParent);
 
         // 设置SelectPicPopupWindow弹出窗体的宽
         this.setWidth(LinearLayout.LayoutParams.WRAP_CONTENT);

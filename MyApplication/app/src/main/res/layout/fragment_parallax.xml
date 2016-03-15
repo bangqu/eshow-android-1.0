@@ -18,33 +18,32 @@
         android:layout_marginBottom="15dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingLeft="@dimen/normal_margin"
-        android:paddingRight="@dimen/normal_margin">
+        android:paddingLeft="23dp"
+        android:paddingRight="23dp">
 
         <Button
             android:id="@+id/register_button"
             android:layout_width="0dp"
-            android:layout_height="@dimen/edittext_height"
+            android:layout_height="40dp"
             android:layout_weight="1"
             android:background="@drawable/btn_register"
             android:gravity="center"
             android:text="注册"
             android:textColor="@drawable/btn_regis_text"
-            android:textSize="@dimen/normal_textSize" />
+            android:textSize="16dp" />
 
         <Button
             android:id="@+id/login_button"
             android:layout_width="0dp"
-            android:layout_height="@dimen/edittext_height"
-            android:layout_marginLeft="@dimen/normal_margin"
+            android:layout_height="40dp"
+            android:layout_marginLeft="30dp"
             android:layout_weight="1"
             android:width="0dp"
             android:background="@drawable/btn_login"
             android:gravity="center"
             android:text="登录"
             android:textColor="@drawable/btn_login_text"
-
-            android:textSize="@dimen/normal_textSize" />
+            android:textSize="16dp" />
     </LinearLayout>
 
     <com.bangqu.eshow.demo.guide.IndicatorView

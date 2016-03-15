@@ -4,6 +4,9 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import com.bangqu.eshow.demo.bean.UserBean;
+import com.bangqu.eshow.util.ESJsonUtil;
+
 /**
  * 程序配置保存到SharedPreferances
  * Created by daikting on 16/2/24.
@@ -13,6 +16,8 @@ public class SharedPrefUtil {
     private static final String IS_FIRST_IN = "IsFirstIn";
     //存储发送短信验证码的时刻
     private static final String SEND_CODE_TIME = "SendCodeTime";
+    //存储登录时获取的user对象
+    private static final String USER = "User";
     //存储accesstoken
     private static final String ACCESSTOKEN = "AccessToken";
     //存储QiniuToken
@@ -63,13 +68,43 @@ public class SharedPrefUtil {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
         return sp.getLong(SEND_CODE_TIME, 0l);
     }
+
+    /**
+     * 存储用户实体类
+     *
+     * @param context
+     * @param user
+     */
+    public static void setUser(Context context, String user) {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor e = sp.edit();
+        e.putString(USER, user);
+        e.commit();
+    }
+
+    /**
+     * 获取缓存的店铺信息实体类对象
+     *
+     * @param context
+     * @return
+     */
+    public static UserBean getUser(Context context) {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+        String user = sp.getString(USER, null);
+        UserBean userBean = null;
+        if (user != null) {
+            userBean = (UserBean) ESJsonUtil.fromJson(user, UserBean.class);
+        }
+        return userBean;
+    }
+
     /**
      * 存储accesstoken
      *
      * @param context
      * @param accesstoken
      */
-    private static void setAccesstoken(Context context, String accesstoken) {
+    public static void setAccesstoken(Context context, String accesstoken) {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor e = sp.edit();
         e.putString(ACCESSTOKEN, accesstoken);
