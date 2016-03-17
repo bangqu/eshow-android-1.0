@@ -16,13 +16,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/normal_margin_top"
             android:orientation="vertical">
-
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="@dimen/divide_height"
-                android:layout_marginTop="@dimen/normal_margin_top"
-                android:background="@color/system_divide" />
 
             <RelativeLayout
                 android:id="@+id/rlFeedback"
@@ -31,25 +26,17 @@
                 android:background="@drawable/list_item_selector"
                 android:gravity="center_vertical">
 
-                <ImageView
-                    android:id="@+id/ivIcon1"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginLeft="@dimen/normal_margin"
-                    android:background="@drawable/icon" />
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/normal_margin"
-                    android:layout_toRightOf="@id/ivIcon1"
                     android:text="意见反馈"
                     android:textColor="@color/normal_text"
-                    android:textSize="@dimen/normal_textSize" />
+                    android:textSize="@dimen/list_textSize" />
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="30px"
+                    android:layout_height="40px"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="@dimen/normal_margin"
                     android:background="@drawable/right_arrow" />
@@ -58,7 +45,7 @@
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/divide_height"
-                android:background="@color/system_divide" />
+                android:background="@color/divide" />
 
             <RelativeLayout
                 android:id="@+id/rlQuestion"
@@ -66,68 +53,41 @@
                 android:layout_height="@dimen/list_itemHeight"
                 android:background="@drawable/list_item_selector"
                 android:gravity="center_vertical">
-
-                <ImageView
-                    android:id="@+id/ivIcon2"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginLeft="@dimen/normal_margin"
-                    android:background="@drawable/icon" />
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/normal_margin"
-                    android:layout_toRightOf="@id/ivIcon2"
                     android:text="常见问题"
                     android:textColor="@color/normal_text"
-                    android:textSize="@dimen/normal_textSize" />
+                    android:textSize="@dimen/list_textSize" />
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="30px"
+                    android:layout_height="40px"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="@dimen/normal_margin"
                     android:background="@drawable/right_arrow" />
             </RelativeLayout>
-
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="@dimen/divide_height"
-                android:background="@color/system_divide" />
-
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="@dimen/divide_height"
-                android:layout_marginTop="@dimen/normal_margin"
-                android:background="@color/system_divide" />
 
             <RelativeLayout
                 android:id="@+id/rlAbout"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/list_itemHeight"
+                android:layout_marginTop="@dimen/normal_margin"
                 android:background="@drawable/list_item_selector"
                 android:gravity="center_vertical">
-
-                <ImageView
-                    android:id="@+id/ivIcon3"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginLeft="@dimen/normal_margin"
-                    android:background="@drawable/icon" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/normal_margin"
-                    android:layout_toRightOf="@id/ivIcon3"
                     android:text="关于我们"
                     android:textColor="@color/normal_text"
-                    android:textSize="@dimen/normal_textSize" />
+                    android:textSize="@dimen/list_textSize" />
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="30px"
+                    android:layout_height="40px"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="@dimen/normal_margin"
                     android:background="@drawable/right_arrow" />
@@ -136,7 +96,7 @@
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/divide_height"
-                android:background="@color/system_divide" />
+                android:background="@color/divide" />
 
             <RelativeLayout
                 android:id="@+id/rlWelcome"
@@ -144,35 +104,21 @@
                 android:layout_height="@dimen/list_itemHeight"
                 android:background="@drawable/list_item_selector"
                 android:gravity="center_vertical">
-
-                <ImageView
-                    android:id="@+id/ivIcon4"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginLeft="@dimen/normal_margin"
-                    android:background="@drawable/icon" />
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/normal_margin"
-                    android:layout_toRightOf="@id/ivIcon4"
                     android:text="欢迎页"
                     android:textColor="@color/normal_text"
-                    android:textSize="@dimen/normal_textSize" />
+                    android:textSize="@dimen/list_textSize" />
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="30px"
+                    android:layout_height="40px"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="@dimen/normal_margin"
                     android:background="@drawable/right_arrow" />
             </RelativeLayout>
-
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="@dimen/divide_height"
-                android:background="@color/system_divide" />
 
         </LinearLayout>
     </ScrollView>

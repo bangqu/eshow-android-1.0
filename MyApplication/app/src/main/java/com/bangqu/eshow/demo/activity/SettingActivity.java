@@ -1,6 +1,7 @@
 package com.bangqu.eshow.demo.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -10,6 +11,7 @@ import com.balysv.materialmenu.MaterialMenuDrawable;
 import com.balysv.materialmenu.MaterialMenuView;
 import com.bangqu.eshow.demo.R;
 import com.bangqu.eshow.demo.common.CommonActivity;
+import com.bangqu.eshow.demo.guide.ParallaxFragment;
 import com.bangqu.eshow.util.ESViewUtil;
 
 import org.androidannotations.annotations.AfterViews;
@@ -31,6 +33,16 @@ public class SettingActivity extends CommonActivity {
     @ViewById(R.id.tvTitle)
     TextView mTvTitle;
 
+    @ViewById(R.id.rlFeedback)
+    RelativeLayout mRlFeedback;
+    @ViewById(R.id.rlQuestion)
+    RelativeLayout mRlQuestion;
+    @ViewById(R.id.rlAbout)
+    RelativeLayout mRlAbout;
+    @ViewById(R.id.rlWelcome)
+    RelativeLayout mRlWelcome;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,5 +61,28 @@ public class SettingActivity extends CommonActivity {
     @Click(R.id.rlBack)
     void onBack(){
         finish();
+    }
+
+    @Click(R.id.rlFeedback)
+    void onFeedBack(){
+
+    }
+
+    @Click(R.id.rlQuestion)
+    void onQuestion(){
+
+    }
+
+    @Click(R.id.rlAbout)
+    void onAbout(){
+
+    }
+
+    @Click(R.id.rlWelcome)
+    void onWelcome(){
+        Intent intent = new Intent(mContext, GuideActivity.class);
+        intent.putExtra(ParallaxFragment.INTENT_ISSHOWBUTTON,false);
+        startActivity(intent);
+        overridePendingTransition(R.anim.scroll_in, R.anim.scroll_out);
     }
 }

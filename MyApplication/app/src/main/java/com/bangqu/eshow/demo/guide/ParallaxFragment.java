@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 import com.bangqu.eshow.demo.R;
 import com.bangqu.eshow.demo.activity.InputTelActivity_;
@@ -18,9 +19,11 @@ import com.prolificinteractive.parallaxpager.ParallaxContainer;
  * 引导页面
  */
 public class ParallaxFragment extends Fragment implements ViewPager.OnPageChangeListener {
-
+    public static final String INTENT_ISSHOWBUTTON = "IsShowButton";
     IndicatorView mIndicatorView;
 
+    LinearLayout layoutBottom;
+    boolean isShowButton = true;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -40,6 +43,14 @@ public class ParallaxFragment extends Fragment implements ViewPager.OnPageChange
 
         parallaxContainer.setOnPageChangeListener(this);
 
+        layoutBottom = (LinearLayout) view.findViewById(R.id.layoutBottom);
+        if(isShowButton){
+            layoutBottom.setVisibility(View.VISIBLE);
+
+        }else{
+            layoutBottom.setVisibility(View.GONE);
+
+        }
         final Button registButton = (Button) view.findViewById(R.id.register_button);
         registButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,9 +68,12 @@ public class ParallaxFragment extends Fragment implements ViewPager.OnPageChange
             }
         });
 
+
         return view;
     }
-
+    public void setIsShowButton(boolean isShow){
+        this.isShowButton = isShow;
+    }
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);

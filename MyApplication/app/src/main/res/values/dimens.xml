@@ -31,7 +31,7 @@
     <!--长按钮高度-->
     <dimen name="btn_long_height">77px</dimen>
     <!--分隔线高度-->
-    <dimen name="divide_height">1px</dimen>
+    <dimen name="divide_height">2px</dimen>
     <!--列表高度-->
     <dimen name="list_itemHeight">96px</dimen>
 

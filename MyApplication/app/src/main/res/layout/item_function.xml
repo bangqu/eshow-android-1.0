@@ -41,6 +41,6 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="2px"
-        android:background="@color/app_bg"/>
+        android:layout_height="@dimen/divide_height"
+        android:background="@color/divide"/>
 </LinearLayout>

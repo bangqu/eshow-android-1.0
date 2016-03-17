@@ -14,7 +14,7 @@ import com.prolificinteractive.parallaxpager.ParallaxContextWrapper;
  * Created by daikting on 16/2/24.
  */
 public class GuideActivity  extends CommonActivity {
-
+    boolean isShowButton = true;
     @Override
     protected void attachBaseContext(Context newBase) {
         //ParallaxPager and Calligraphy don't seem to play nicely together
@@ -29,9 +29,13 @@ public class GuideActivity  extends CommonActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parallax);
+
+        isShowButton = getIntent().getBooleanExtra(ParallaxFragment.INTENT_ISSHOWBUTTON,true);
         if (savedInstanceState == null) {
+            ParallaxFragment parallaxFragment = new ParallaxFragment();
+            parallaxFragment.setIsShowButton(isShowButton);
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.content, new ParallaxFragment())
+                    .add(R.id.content, parallaxFragment)
                     .commit();
         }
     }
