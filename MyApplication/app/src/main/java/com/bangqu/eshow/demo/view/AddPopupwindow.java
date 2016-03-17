@@ -75,10 +75,10 @@ public class AddPopupwindow extends PopupWindow {
     public void show(Context context,final View parent){
 
         if (!AddPopupwindow.this.isShowing()) {
-            int x = -130;
-            int y = -20;
+            int x = 30;
+            int y = 0;
             // 以下拉方式显示popupwindow
-            AddPopupwindow.this.showAsDropDown(parent,ESViewUtil.scaleValue(context,x),ESViewUtil.scaleValue(context,y));
+            AddPopupwindow.this.showAsDropDown(parent,ESViewUtil.scaleValue(context,x),y);
         } else {
             AddPopupwindow.this.dismiss();
         }

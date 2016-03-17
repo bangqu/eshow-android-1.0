@@ -28,6 +28,7 @@ import android.widget.RelativeLayout;
 import com.bangqu.eshow.demo.R;
 import com.bangqu.eshow.demo.common.CommonActivity;
 import com.bangqu.eshow.util.ESLogUtil;
+import com.bangqu.eshow.util.ESStrUtil;
 import com.bangqu.eshow.util.ESToastUtil;
 import com.bangqu.eshow.util.ESViewUtil;
 import com.google.zxing.BarcodeFormat;
@@ -75,6 +76,9 @@ public class ScanActivity extends CommonActivity implements Callback,OnClickList
 	private Bitmap scanBitmap;
 	private static final int PARSE_BARCODE_SUC = 300;
 	private static final int PARSE_BARCODE_FAIL = 303;
+	private SurfaceView surfaceView;
+
+	private RelativeLayout rlScanFailed;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -89,7 +93,10 @@ public class ScanActivity extends CommonActivity implements Callback,OnClickList
 		viewfinderView = (ViewfinderView) findViewById(R.id.viewfinder_view);
 		hasSurface = false;
 		inactivityTimer = new InactivityTimer(this);
-
+		surfaceView = (SurfaceView) findViewById(R.id.preview_view);
+		rlScanFailed = (RelativeLayout) findViewById(R.id.rlScanFailed);
+		rlScanFailed.setOnClickListener(this);
+		rlScanFailed.setVisibility(View.GONE);
 		ibClose = (ImageButton) findViewById(R.id.ibClose);
 		ibLignt=(ImageButton)findViewById(R.id.ibLignt);
 		ibPhoto=(ImageButton)findViewById(R.id.ibPhoto);
@@ -109,10 +116,11 @@ public class ScanActivity extends CommonActivity implements Callback,OnClickList
 					parameters = CameraManager.get().camera.getParameters();
 					if(parameters.getFlashMode().equals(Parameters.FLASH_MODE_TORCH)){
 						parameters.setFlashMode(Parameters.FLASH_MODE_OFF);
+						ibLignt.setBackgroundResource(R.drawable.ic_light_close);
 
 					}else{
 						parameters.setFlashMode(Parameters.FLASH_MODE_TORCH);
-
+						ibLignt.setBackgroundResource(R.drawable.ic_light_open);
 					}
 					CameraManager.get().camera.setParameters(parameters);
 					CameraManager.get().camera.autoFocus(CameraManager.get().autoFocusCallback);
@@ -129,6 +137,11 @@ public class ScanActivity extends CommonActivity implements Callback,OnClickList
 				break;
 			case R.id.ibClose:
 				finish();
+				break;
+			case R.id.rlScanFailed:
+				onResume();
+
+				rlScanFailed.setVisibility(View.GONE);
 				break;
 		}
 
@@ -153,7 +166,6 @@ public class ScanActivity extends CommonActivity implements Callback,OnClickList
 	@Override
 	protected void onResume() {
 		super.onResume();
-		SurfaceView surfaceView = (SurfaceView) findViewById(R.id.preview_view);
 		SurfaceHolder surfaceHolder = surfaceView.getHolder();
 		if (hasSurface) {
 			initCamera(surfaceHolder);
@@ -264,9 +276,13 @@ public class ScanActivity extends CommonActivity implements Callback,OnClickList
 		inactivityTimer.onActivity();
 		playBeepSoundAndVibrate();
 		String scan_res = result.getText();
-		onResultHandler(scan_res,barcode);
+		if(!ESStrUtil.isEmpty(scan_res)){
+			onResultHandler(scan_res,barcode);
+		}else{
+			rlScanFailed.setVisibility(View.VISIBLE);
+		}
 		onPause();
-		// onResume();
+
 	}
 
 	@Override
@@ -319,10 +335,10 @@ public class ScanActivity extends CommonActivity implements Callback,OnClickList
 			mProgress.dismiss();
 			switch (msg.what) {
 				case PARSE_BARCODE_SUC:
-					onResultHandler((String)msg.obj, scanBitmap);
+					onResultHandler((String) msg.obj, scanBitmap);
 					break;
 				case PARSE_BARCODE_FAIL:
-					ESToastUtil.showToast(context,(String)msg.obj);
+					ESToastUtil.showToast(context, (String) msg.obj);
 					break;
 
 			}

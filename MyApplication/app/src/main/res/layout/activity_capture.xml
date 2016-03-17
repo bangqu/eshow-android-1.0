@@ -24,27 +24,57 @@
             android:layout_width="400px"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="50px">
+            android:layout_marginTop="100px">
             <ImageButton
                 android:id="@+id/ibLignt"
                 android:layout_width="74px"
                 android:layout_height="74px"
-                android:background="@drawable/icon"
+                android:background="@drawable/ic_light_close"
                 android:layout_centerInParent="true"/>
 
             <ImageButton
                 android:id="@+id/ibPhoto"
                 android:layout_width="74px"
                 android:layout_height="74px"
-                android:background="@drawable/icon"/>
+                android:background="@drawable/ic_takephoto"/>
 
             <ImageButton
                 android:id="@+id/ibClose"
                 android:layout_width="74px"
                 android:layout_height="74px"
-                android:background="@drawable/icon"
+                android:background="@drawable/ic_scan_close"
                 android:layout_alignParentRight="true"/>
         </RelativeLayout>
     </RelativeLayout>
 
+    <RelativeLayout
+        android:id="@+id/rlScanFailed"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/pop_bg">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="二维码扫描失败"
+                android:textColor="@color/white"
+                android:textSize="@dimen/normal_textSize"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:textColor="@color/white"
+                android:text="轻触屏幕继续扫描"
+                android:layout_marginTop="@dimen/small_margin"
+                android:textSize="@dimen/small_textSize_24"/>
+        </LinearLayout>
+
+    </RelativeLayout>
 </FrameLayout>

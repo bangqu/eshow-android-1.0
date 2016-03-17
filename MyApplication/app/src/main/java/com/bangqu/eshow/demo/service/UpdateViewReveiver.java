@@ -31,6 +31,11 @@ public class UpdateViewReveiver extends BroadcastReceiver
                         LoginActivity_.intent(context).start();
                         activity.finish();
                     }
+
+                    @Override
+                    public void OnCustomDialogCancel(String str) {
+
+                    }
                 };
                 ConfirmDialog confirmDialog = new ConfirmDialog(context,"退出","确定退出？","确定","取消",onCustomDialogListener);
                 confirmDialog.show();
@@ -44,6 +49,13 @@ public class UpdateViewReveiver extends BroadcastReceiver
                 ConfirmDialog.OnCustomDialogListener onCustomDialogListener = new ConfirmDialog.OnCustomDialogListener() {
                     @Override
                     public void OnCustomDialogConfim(String str) {
+                        SharedPrefUtil.logout(context);
+                        LoginActivity_.intent(context).start();
+                        activity.finish();
+                    }
+
+                    @Override
+                    public void OnCustomDialogCancel(String str) {
                         SharedPrefUtil.logout(context);
                         LoginActivity_.intent(context).start();
                         activity.finish();

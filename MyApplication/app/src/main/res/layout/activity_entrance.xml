@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:background="@drawable/entrance_bg"/>
+        android:background="@drawable/welcome_bg"/>
 
     <!--<View-->
     <!--android:id="@+id/mask"-->
@@ -35,12 +35,11 @@
         android:layout_height="match_parent"
         android:background="@color/black"/>
 
-    <View
+    <ImageView
         android:id="@+id/logo"
-        android:layout_width="226dp"
-        android:layout_height="47dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="85dp"
-        android:background="@drawable/entrance_logo" />
+        android:src="@drawable/entrance_logo" />
 
 </RelativeLayout>

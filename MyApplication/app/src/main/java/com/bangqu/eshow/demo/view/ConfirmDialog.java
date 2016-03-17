@@ -84,12 +84,7 @@ public class ConfirmDialog extends Dialog {
         if (null != strLeft) {
             tvLeft.setText(strLeft);
             tvLeft.setVisibility(View.VISIBLE);
-            tvLeft.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    ConfirmDialog.this.dismiss();
-                }
-            });
+            tvLeft.setOnClickListener(clickListener);
         }
         if (null != strRight) {
             tvRight.setText(strRight);
@@ -112,17 +107,28 @@ public class ConfirmDialog extends Dialog {
 
         @Override
         public void onClick(View v) {
-
-            if (null != customDialogListener) {
-                customDialogListener.OnCustomDialogConfim("");
+            switch (v.getId()){
+                case R.id.dialog_btn_ok:
+                    if (null != customDialogListener) {
+                        customDialogListener.OnCustomDialogConfim("");
+                    }
+                    ConfirmDialog.this.dismiss();
+                    break;
+                case R.id.dialog_btn_cancel:
+                    if (null != customDialogListener) {
+                        customDialogListener.OnCustomDialogCancel("");
+                    }
+                    ConfirmDialog.this.dismiss();
+                    break;
             }
-            ConfirmDialog.this.dismiss();
+
         }
     };
 
     //定义回调事件，用于dialog的点击事件
     public interface OnCustomDialogListener {
         public void OnCustomDialogConfim(String str);
+        public void OnCustomDialogCancel(String str);
     }
 
 }

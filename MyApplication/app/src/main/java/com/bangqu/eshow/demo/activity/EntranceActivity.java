@@ -37,7 +37,7 @@ public class EntranceActivity extends CommonActivity implements Handler.Callback
     @ViewById
     View foreMask;
     @ViewById
-    View logo;
+    ImageView logo;
     WeakRefHandler mWeakRefHandler;
     Animation entrance;
 
