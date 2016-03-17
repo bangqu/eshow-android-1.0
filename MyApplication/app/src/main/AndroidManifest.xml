@@ -76,10 +76,22 @@
             android:label="@string/title_activity_setting"
             android:screenOrientation="portrait"/>
 
+        <!--条码、二维码扫描结果文本显示页面-->
+        <activity
+            android:name=".activity.ScanTextResultActivity_"
+            android:label="@string/title_activity_scan"
+            android:screenOrientation="portrait"/>
+
         <!--扫描条码、二维码页面-->
         <activity
             android:name="com.bangqu.eshow.demo.activity.ScanActivity"
             android:label="@string/title_activity_scan"
+            android:screenOrientation="portrait"/>
+
+        <!--网址显示页面-->
+        <activity
+            android:name="com.bangqu.eshow.demo.activity.WebActivity"
+            android:label="@string/title_activity_web"
             android:screenOrientation="portrait"/>
 
         <!--使用友盟5.0SDK-->

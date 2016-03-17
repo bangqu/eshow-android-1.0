@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rlParent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_bg">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <include layout="@layout/common_actionbar_withback"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginTop="200px">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="已扫描到以下内容"
+                android:textColor="@color/normal_text"
+                android:textSize="@dimen/small_textSize" />
+
+            <TextView
+                android:id="@+id/tvScanResult"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="已扫描到以下内容"
+                android:textColor="@color/normal_text"
+                android:textSize="@dimen/normal_textSize"
+                android:background="@drawable/btn_bg_border_white"
+                android:paddingLeft="@dimen/normal_margin"
+                android:paddingRight="@dimen/normal_margin"
+                android:paddingTop="@dimen/small_margin"
+                android:paddingBottom="@dimen/small_margin"
+                android:layout_marginTop="@dimen/normal_margin"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="扫描所得的内容并非EShow提供，请谨慎使用"
+                android:textColor="@color/normal_text"
+                android:textSize="@dimen/small_textSize_24"
+                android:layout_marginTop="@dimen/small_margin"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

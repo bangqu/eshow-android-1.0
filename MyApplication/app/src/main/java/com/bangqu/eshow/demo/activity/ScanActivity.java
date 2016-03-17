@@ -394,5 +394,13 @@ public class ScanActivity extends CommonActivity implements Callback,OnClickList
 		}
 		ESLogUtil.d(context, "result:" + resultString);
 		//进入扫描结果显示页面
+		if(resultString.startsWith("http")){
+			Intent intent = new Intent(context,WebActivity.class);
+			intent.putExtra(WebActivity.INTENT_TAG_URL,resultString);
+			startActivity(intent);
+			finish();
+		}else{
+			ScanTextResultActivity_.intent(context).extra(ScanTextResultActivity_.INTENT_RESULT,resultString).start();
+		}
 	}
 }
