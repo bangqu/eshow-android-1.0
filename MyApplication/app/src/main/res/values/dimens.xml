@@ -24,6 +24,7 @@
 
     <!--间距-->
     <dimen name="small_margin">20px</dimen>
+    <dimen name="small_margin_10">10px</dimen>
     <dimen name="normal_margin_top">46px</dimen>
     <!--文本框高度-->
     <dimen name="edittext_height">84px</dimen>

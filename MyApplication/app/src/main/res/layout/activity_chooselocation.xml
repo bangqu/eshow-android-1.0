@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/llParent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_bg"
+    android:orientation="vertical">
+    <include layout="@layout/common_actionbar_withsearch" />
+
+    <com.amap.api.maps2d.MapView
+        android:id="@+id/mvMap"
+        android:layout_width="fill_parent"
+        android:layout_height="500px" />
+
+    <FrameLayout
+        android:id="@+id/content_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>

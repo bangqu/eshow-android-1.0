@@ -23,7 +23,7 @@ public class NetworkInterface {
         ESRequestParams abRequestParams = new ESRequestParams();
         abRequestParams.put("user.username", userName);
         abRequestParams.put("user.password", password);
-        new ESHttpUtil(context).post("user/login", abRequestParams, responseListener);
+        new MyHttpUtil(context).post("user/login", abRequestParams, responseListener);
     }
 
     /**
@@ -36,7 +36,7 @@ public class NetworkInterface {
         ESRequestParams abRequestParams = new ESRequestParams();
         abRequestParams.put("user.username", userName);
         abRequestParams.put("type",type.toString());
-        new ESHttpUtil(context).post("user/check", abRequestParams, responseListener);
+        new MyHttpUtil(context).post("user/check", abRequestParams, responseListener);
     }
 
     /**
@@ -52,7 +52,7 @@ public class NetworkInterface {
         abRequestParams.put("user.username", userName);
         abRequestParams.put("code",code);
         abRequestParams.put("user.password",password);
-        new ESHttpUtil(context).post("user/signup", abRequestParams, responseListener);
+        new MyHttpUtil(context).post("user/signup", abRequestParams, responseListener);
     }
 
     /**
@@ -68,7 +68,7 @@ public class NetworkInterface {
         abRequestParams.put("user.username", userName);
         abRequestParams.put("code",code);
         abRequestParams.put("user.password",password);
-        new ESHttpUtil(context).post("user/password", abRequestParams, responseListener);
+        new MyHttpUtil(context).post("user/password", abRequestParams, responseListener);
     }
 
     /**
@@ -82,7 +82,7 @@ public class NetworkInterface {
         ESRequestParams abRequestParams = new ESRequestParams();
         abRequestParams.put("mobile", mobile);
         abRequestParams.put("type",enum_codeType.toString());
-        new ESHttpUtil(context).post("code/voice", abRequestParams, responseListener);
+        new MyHttpUtil(context).post("code/voice", abRequestParams, responseListener);
     }
 
     /**
@@ -93,7 +93,7 @@ public class NetworkInterface {
      */
     public static void getQiniuToken(Context context, ESResponseListener responseListener) {
         ESRequestParams abRequestParams = new ESRequestParams();
-        new ESHttpUtil(context).post("qiniu/token", abRequestParams, responseListener);
+        new MyHttpUtil(context).post("qiniu/token", abRequestParams, responseListener);
     }
 
     /**
@@ -101,7 +101,7 @@ public class NetworkInterface {
      */
     public static void getQiniuKey(Context context, ESResponseListener responseListener) {
         ESRequestParams abRequestParams = new ESRequestParams();
-        new ESHttpUtil(context).post("qiniu/key", abRequestParams, responseListener);
+        new MyHttpUtil(context).post("qiniu/key", abRequestParams, responseListener);
     }
 
     /**
@@ -115,7 +115,7 @@ public class NetworkInterface {
         ESRequestParams abRequestParams = new ESRequestParams();
         abRequestParams.put("thirdParty.platform", type.toString());
         abRequestParams.put("thirdParty.username", token);
-        new ESHttpUtil(context).post("user/third", abRequestParams, responseListener);
+        new MyHttpUtil(context).post("user/third", abRequestParams, responseListener);
     }
 
     /**
@@ -129,6 +129,23 @@ public class NetworkInterface {
         ESRequestParams abRequestParams = new ESRequestParams();
         abRequestParams.put("user.username", userName);
         abRequestParams.put("thirdParty.username",token);
-        new ESHttpUtil(context).post("user/mobile", abRequestParams, responseListener);
+        new MyHttpUtil(context).post("user/mobile", abRequestParams, responseListener);
+    }
+
+    /**
+     * 请求高德地图获取周边的小区、写字楼、学校
+     * @param context
+     * @param location
+     * @param types
+     * @param responseListener
+     */
+    public static void placeAround(Context context,String location,String types,AMapResponseListener responseListener){
+        ESRequestParams esRequestParams = new ESRequestParams();
+        esRequestParams.put("key", "b9410630740ff6a90c303b4bfdfef1ef");
+        esRequestParams.put("location",location);
+        esRequestParams.put("output","json");
+        esRequestParams.put("radius","1000");
+        esRequestParams.put("types",types);
+        new AMapHttpUtil(context).post("v3/place/around",esRequestParams,responseListener);
     }
 }

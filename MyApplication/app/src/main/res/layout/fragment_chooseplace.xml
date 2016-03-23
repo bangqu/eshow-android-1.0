@@ -4,15 +4,24 @@
     android:id="@+id/llParent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/app_bg"
     android:orientation="vertical">
-    <com.ecloud.pulltozoomview.PullToZoomListViewEx
+
+    <jazzylistview.JazzyListView
         android:id="@+id/listview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        custom:headerView="@null"
         android:background="@null"
         android:divider="@null"
-        custom:zoomView="@layout/list_head_zoom_view"
-        custom:effect="wave"/>
+        custom:effect="flip"
+        custom:max_velocity="100"/>
+    <TextView
+        android:id="@+id/tvNoData"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="未获取到数据"
+        android:gravity="center"
+        android:textSize="@dimen/btn_textSize"
+        android:textColor="@color/colorAccent"/>
+
 </LinearLayout>

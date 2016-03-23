@@ -9,10 +9,10 @@ import com.bangqu.eshow.http.ESRequestParams;
  * 网络请求公共模块
  * Created by daikting on 15/9/28.
  */
-public class ESHttpUtil {
+public class MyHttpUtil {
     private com.bangqu.eshow.http.ESHttpUtil abHttpUtil;
 
-    public ESHttpUtil(Context context) {
+    public MyHttpUtil(Context context) {
         abHttpUtil = com.bangqu.eshow.http.ESHttpUtil.getInstance(context);
 
 

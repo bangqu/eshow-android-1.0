@@ -5,22 +5,13 @@ package com.bangqu.eshow.demo.bean;
  * Created by daikting on 16/2/18.
  */
 public class FunctionBean {
-    String name;
-    int iconId;
+    Enum_FunctionsInMain enum_functionsInMain;
 
-    public String getName() {
-        return name;
+    public Enum_FunctionsInMain getEnum_functionsInMain() {
+        return enum_functionsInMain;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getIconId() {
-        return iconId;
-    }
-
-    public void setIconId(int iconId) {
-        this.iconId = iconId;
+    public void setEnum_functionsInMain(Enum_FunctionsInMain enum_functionsInMain) {
+        this.enum_functionsInMain = enum_functionsInMain;
     }
 }

@@ -56,6 +56,10 @@ dependencies {
     compile project(':EShow')
     compile project(':social_sdk_library_project')
     compile project(':PullToZoomList')
+    compile files('libs/AMap_2DMap_V2.8.1_20160202.jar')
+    compile files('libs/AMap_Location_V2.4.0_20160308.jar')
+    compile files('libs/AMap_Search_V3.2.1_20160308.jar')
+
 }
 
 apt {

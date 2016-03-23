@@ -5,37 +5,34 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bangqu.eshow.demo.R;
-import com.bangqu.eshow.demo.bean.Enum_FunctionsInMain;
-import com.bangqu.eshow.demo.bean.Intent_FunctionInMain;
+import com.bangqu.eshow.demo.bean.AMapLocationBean;
 import com.bangqu.eshow.util.ESViewUtil;
 
 import java.util.List;
 
 /**
- * 主页功能列表适配器
+ * 高德地图获取到的周围信息
  * Created by daikting on 16/2/18.
  */
-public class FunctionAdapter extends BaseAdapter{
+public class PlaceAdapter extends BaseAdapter{
     private Context mContext;
-    private List<Enum_FunctionsInMain> functions;
-    public FunctionAdapter(Context context,List<Enum_FunctionsInMain> functions){
+    private List<AMapLocationBean> aroundList;
+    public PlaceAdapter(Context context, List<AMapLocationBean> aroundList){
         this.mContext = context;
-        this.functions = functions;
+        this.aroundList = aroundList;
     }
     @Override
     public int getCount() {
-        return functions.size();
+        return aroundList.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return functions.get(position);
+        return aroundList.get(position);
     }
 
     @Override
@@ -48,30 +45,22 @@ public class FunctionAdapter extends BaseAdapter{
         ViewHold viewHold;
         if(convertView == null){
             viewHold = new ViewHold();
-            convertView = LayoutInflater.from(mContext).inflate(R.layout.item_function,null);
+            convertView = LayoutInflater.from(mContext).inflate(R.layout.item_place,null);
             ESViewUtil.scaleContentView((LinearLayout)convertView.findViewById(R.id.llParent));
             viewHold.tvName = (TextView) convertView.findViewById(R.id.tvName);
-            viewHold.ivIcon = (ImageView) convertView.findViewById(R.id.ivIcon);
-            viewHold.rlItem = (RelativeLayout) convertView.findViewById(R.id.rlItem);
+            viewHold.tvAddress = (TextView) convertView.findViewById(R.id.tvAddress);
             convertView.setTag(viewHold);
         }else{
             viewHold = (ViewHold) convertView.getTag();
         }
 
-        viewHold.tvName.setText(functions.get(position).toString());
-        viewHold.ivIcon.setImageDrawable(mContext.getResources().getDrawable(functions.get(position).getDrawableId()));
-        viewHold.rlItem.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new Intent_FunctionInMain(mContext,functions.get(position));
-            }
-        });
+        viewHold.tvName.setText(aroundList.get(position).getName());
+        viewHold.tvAddress.setText(aroundList.get(position).getAddress());
         return convertView;
     }
 
     class ViewHold{
         TextView tvName;
-        ImageView ivIcon;
-        RelativeLayout rlItem;
+        TextView tvAddress;
     }
 }

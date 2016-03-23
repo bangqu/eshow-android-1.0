@@ -9,16 +9,5 @@
     <string name="title_activity_web">链接跳转</string>
 
     <string name="empty"></string>
-    <string-array name="functions">
-        <item>信息表单</item>
-        <item>图片列表</item>
-        <item>文件下载</item>
-        <item>城市选择</item>
-        <item>音乐播放</item>
-        <item>地图</item>
-        <item>支付</item>
-        <item>分享</item>
-        <item>聊天</item>
-    </string-array>
     <string name="scan_tip">将条形码/二维码放入框内，即可自动扫描</string>
 </resources>

@@ -7,10 +7,12 @@
     android:background="@color/white">
 
     <RelativeLayout
+        android:id="@+id/rlItem"
         android:layout_width="match_parent"
         android:layout_height="@dimen/list_itemHeight"
         android:orientation="horizontal"
-        android:layout_marginLeft="@dimen/normal_margin">
+        android:paddingLeft="@dimen/normal_margin"
+        android:background="@drawable/list_item_selector">
 
         <ImageView
             android:id="@+id/ivIcon"

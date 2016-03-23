@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/llParent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="@dimen/small_margin"
+        android:layout_marginBottom="@dimen/small_margin"
+        android:paddingLeft="@dimen/small_margin"
+        android:paddingRight="@dimen/small_margin"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="25px"
+            android:layout_height="25px"
+            android:background="@drawable/icon_location" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/normal_margin"
+                android:background="@null"
+                android:gravity="center"
+                android:text="福建沙县小dd等方式地方撒旦发射点发吃"
+                android:singleLine="true"
+                android:textColor="@color/normal_text"
+                android:textSize="@dimen/small_textSize" />
+
+            <TextView
+                android:id="@+id/tvAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/normal_margin"
+                android:layout_marginTop="@dimen/small_margin_10"
+                android:singleLine="true"
+                android:text="梁青路6撒旦发射点发撒旦发射点发撒旦发射点发969号"
+                android:textSize="@dimen/small_textSize_24" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divide_height"
+        android:background="@color/divide" />
+</LinearLayout>

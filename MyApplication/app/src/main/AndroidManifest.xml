@@ -22,6 +22,8 @@
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
     <uses-feature android:name="android.hardware.camera.flash" />
+    <!--这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位-->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
     <application
         android:name=".MyApp"
         android:allowBackup="true"
@@ -94,6 +96,12 @@
             android:label="@string/title_activity_web"
             android:screenOrientation="portrait"/>
 
+        <!--地图上选择地址的页面-->
+        <activity
+            android:name="com.bangqu.eshow.demo.activity.ChooseLocationActivity_"
+            android:screenOrientation="portrait"/>
+
+
         <!--使用友盟5.0SDK-->
         <activity
             android:name="com.umeng.socialize.editorpage.ShareActivity"
@@ -124,6 +132,11 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
             android:screenOrientation="portrait" />
+        <!--高德地图-->
+        <service android:name="com.amap.api.location.APSService"></service>
+        <meta-data android:name="com.amap.api.v2.apikey" android:value="b6637b594ae3e6f4d5a6c2f5d568d602"/>
+
+
     </application>
 
 </manifest>
