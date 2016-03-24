@@ -136,6 +136,12 @@ public class ChooseLocationActivity extends CommonActivity implements LocationSo
         finish();
     }
 
+    @Click(R.id.etSearch)
+    void onSearch(){
+        SearchLocationActivity_.intent(mContext).extra(SearchLocationActivity_.INTENT_CITYNAME,"").start();
+        overridePendingTransition(R.anim.alpha_in, R.anim.alpha_out);
+        finish();
+    }
 
     @Override
     public void onLocationChanged(AMapLocation aMapLocation) {

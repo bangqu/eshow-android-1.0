@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/llParent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_bg"
+    android:orientation="vertical">
+    <include layout="@layout/common_actionbar_withsearch" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divide_height"
+        android:background="@color/divide"/>
+    <jazzylistview.JazzyListView
+        android:id="@+id/listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@null"
+        android:divider="@null"
+        custom:effect="flip"
+        custom:max_velocity="100"
+        android:visibility="visible"/>
+    <TextView
+        android:id="@+id/tvNoData"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="未获取到数据"
+        android:textColor="@drawable/chaining_text_selector"
+        android:gravity="center"
+        android:textSize="@dimen/btn_textSize"
+        android:visibility="gone"/>
+
+    <RelativeLayout
+        android:id="@+id/rlProgress"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+        <ImageView
+            android:layout_width="80px"
+            android:layout_height="80px"
+            android:layout_centerInParent="true"
+            android:src="@drawable/icon_progressbar"/>
+    </RelativeLayout>
+</LinearLayout>

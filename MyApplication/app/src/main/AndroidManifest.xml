@@ -101,7 +101,10 @@
             android:name="com.bangqu.eshow.demo.activity.ChooseLocationActivity_"
             android:screenOrientation="portrait"/>
 
-
+        <!--根据用户输入地方名搜索-->
+        <activity
+            android:name="com.bangqu.eshow.demo.activity.SearchLocationActivity_"
+            android:screenOrientation="portrait"/>
         <!--使用友盟5.0SDK-->
         <activity
             android:name="com.umeng.socialize.editorpage.ShareActivity"

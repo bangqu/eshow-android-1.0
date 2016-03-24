@@ -54,7 +54,7 @@ public class AroundPlaceFragment extends Fragment implements View.OnClickListene
                                     Bundle savedInstanceState) {
 
         mContext = this.getActivity();
-        View view = inflater.inflate(R.layout.fragment_chooseplace, null);
+        View view = inflater.inflate(R.layout.fragment_aroundplace, null);
         ESViewUtil.scaleContentView((LinearLayout) view.findViewById(R.id.llParent));
         rlProgress = (RelativeLayout) view.findViewById(R.id.rlProgress);
         rlProgress.setVisibility(View.VISIBLE);
@@ -90,9 +90,17 @@ public class AroundPlaceFragment extends Fragment implements View.OnClickListene
         public void onAMapSucess(JSONObject resultJson) {
             ESLogUtil.d(mContext, "resultJson");
             AMapLocationListResultBean aMapLocationListResult = (AMapLocationListResultBean) ESJsonUtil.fromJson(resultJson.toString(), AMapLocationListResultBean.class);
-            aroundList.clear();
-            aroundList.addAll(aMapLocationListResult.getPois());
-            placeAdapter.notifyDataSetChanged();
+            if(aMapLocationListResult != null){
+                aroundList.clear();
+                aroundList.addAll(aMapLocationListResult.getPois());
+                placeAdapter.notifyDataSetChanged();
+            }else{
+                rlProgress.setVisibility(View.GONE);
+                listView.setVisibility(View.GONE);
+                tvNoData.setVisibility(View.VISIBLE);
+                tvNoData.setText("请求失败，点击可以重试！");
+                tvNoData.setClickable(true);
+            }
         }
 
         @Override

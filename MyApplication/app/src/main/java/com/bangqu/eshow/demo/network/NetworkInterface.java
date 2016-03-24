@@ -133,7 +133,7 @@ public class NetworkInterface {
     }
 
     /**
-     * 请求高德地图获取周边的小区、写字楼、学校
+     * 请求高德地图获取周边的小区、写字楼\产业园区、学校、
      * @param context
      * @param location
      * @param types
@@ -147,5 +147,28 @@ public class NetworkInterface {
         esRequestParams.put("radius","1000");
         esRequestParams.put("types",types);
         new AMapHttpUtil(context).post("v3/place/around",esRequestParams,responseListener);
+    }
+
+    /**
+     * 请求高德地图根据关键词搜索
+     * @param context
+     * @param searchStr
+     * @param city
+     * @param responseListener
+     */
+    public static void searchPlace(Context context,String searchStr,String city,AMapResponseListener responseListener){
+        ESRequestParams esRequestParams = new ESRequestParams();
+        esRequestParams.put("key", "b9410630740ff6a90c303b4bfdfef1ef");
+        esRequestParams.put("keywords",searchStr);
+        esRequestParams.put("city",city);
+        esRequestParams.put("citylimit","true");
+        esRequestParams.put("output","json");
+        esRequestParams.put("offset","10");
+        esRequestParams.put("page","1");
+        esRequestParams.put("extensions","base");
+        esRequestParams.put("types","写字楼|产业园区|小区|学校");
+        new AMapHttpUtil(context).post("v3/place/text",esRequestParams,responseListener);
+
+
     }
 }

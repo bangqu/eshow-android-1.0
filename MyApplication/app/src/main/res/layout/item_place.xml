@@ -37,7 +37,7 @@
                 android:layout_marginLeft="@dimen/normal_margin"
                 android:background="@null"
                 android:gravity="center"
-                android:text="福建沙县小dd等方式地方撒旦发射点发吃"
+                android:text=""
                 android:singleLine="true"
                 android:textColor="@color/normal_text"
                 android:textSize="@dimen/small_textSize" />
@@ -49,7 +49,7 @@
                 android:layout_marginLeft="@dimen/normal_margin"
                 android:layout_marginTop="@dimen/small_margin_10"
                 android:singleLine="true"
-                android:text="梁青路6撒旦发射点发撒旦发射点发撒旦发射点发969号"
+                android:text=""
                 android:textSize="@dimen/small_textSize_24" />
         </LinearLayout>
     </LinearLayout>
