@@ -7,11 +7,36 @@
     android:orientation="vertical">
     <include layout="@layout/common_actionbar_withsearch" />
 
-    <com.amap.api.maps2d.MapView
-        android:id="@+id/mvMap"
-        android:layout_width="fill_parent"
-        android:layout_height="500px" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="500px">
+        <com.amap.api.maps2d.MapView
+            android:id="@+id/mvMap"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+                <ImageView
+                    android:layout_width="45px"
+                    android:layout_height="46px"
+                    android:layout_centerHorizontal="true"
+                    android:layout_alignParentBottom="true"
+                    android:background="@drawable/icon_marker"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
 
+            </RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
     <FrameLayout
         android:id="@+id/content_frame"
         android:layout_width="match_parent"

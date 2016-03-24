@@ -89,6 +89,11 @@ public class Global {
          * 由于密码修改，需要退出
          * */
         public static final String ACTION_EXIT_REPASSWORD = "bangqu.exit.repassword";
+
+        /**
+         * 地图上改变经纬度后用于更新界面的广播
+         */
+        public static final String ACTION_LOCATION_CHANGED = "map.location.changed";
     }
 
 }

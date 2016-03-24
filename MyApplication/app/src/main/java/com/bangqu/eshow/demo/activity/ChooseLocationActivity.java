@@ -1,8 +1,10 @@
 package com.bangqu.eshow.demo.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -17,11 +19,15 @@ import com.amap.api.maps2d.CameraUpdateFactory;
 import com.amap.api.maps2d.LocationSource;
 import com.amap.api.maps2d.MapView;
 import com.amap.api.maps2d.model.BitmapDescriptorFactory;
+import com.amap.api.maps2d.model.CameraPosition;
+import com.amap.api.maps2d.model.LatLng;
 import com.amap.api.maps2d.model.MyLocationStyle;
 import com.balysv.materialmenu.MaterialMenuDrawable;
 import com.balysv.materialmenu.MaterialMenuView;
 import com.bangqu.eshow.demo.R;
 import com.bangqu.eshow.demo.common.CommonActivity;
+import com.bangqu.eshow.demo.common.Global;
+import com.bangqu.eshow.demo.fragment.AroundPlaceFragment;
 import com.bangqu.eshow.demo.fragment.AroundPlaceSlidingFragment;
 import com.bangqu.eshow.demo.view.LoginAutoCompleteEdit;
 import com.bangqu.eshow.util.ESLogUtil;
@@ -37,7 +43,7 @@ import org.androidannotations.annotations.ViewById;
  * Created by daikting on 16/3/17.
  */
 @EActivity(R.layout.activity_chooselocation)
-public class ChooseLocationActivity extends CommonActivity implements LocationSource,AMapLocationListener{
+public class ChooseLocationActivity extends CommonActivity implements LocationSource,AMapLocationListener,AMap.OnCameraChangeListener{
 
     private Context mContext = ChooseLocationActivity.this;
     @ViewById(R.id.rlBack)
@@ -82,13 +88,13 @@ public class ChooseLocationActivity extends CommonActivity implements LocationSo
                     .fromResource(R.drawable.location_marker));// 设置小蓝点的图标
             myLocationStyle.strokeColor(Color.BLACK);// 设置圆形的边框颜色
             myLocationStyle.radiusFillColor(Color.argb(100, 0, 0, 180));// 设置圆形的填充颜色
-            // myLocationStyle.anchor(int,int)//设置小蓝点的锚点
             myLocationStyle.strokeWidth(1.0f);// 设置圆形的边框粗细
             aMap.setMyLocationStyle(myLocationStyle);
             aMap.setLocationSource(this);
             aMap.getUiSettings().setZoomControlsEnabled(false);
             aMap.getUiSettings().setMyLocationButtonEnabled(true);// 设置默认定位按钮是否显示
             aMap.setMyLocationEnabled(true);// 设置为true表示显示定位层并可触发定位，false表示隐藏定位层并不可触发定位，默认是false
+            aMap.setOnCameraChangeListener(this);
         }
     }
 
@@ -136,10 +142,9 @@ public class ChooseLocationActivity extends CommonActivity implements LocationSo
         if (mListener != null && aMapLocation != null) {
             if (aMapLocation != null
                     && aMapLocation.getErrorCode() == 0) {
-                aMap.moveCamera(CameraUpdateFactory.zoomTo(18));
+                aMap.moveCamera(CameraUpdateFactory.zoomTo(19));
                 mListener.onLocationChanged(aMapLocation);// 显示系统小蓝点
                 String aoiname = aMapLocation.getAoiName();
-
                 double lat = aMapLocation.getLatitude();
                 double lon = aMapLocation.getLongitude();
                 String location = changeLocationStr(lon,lat);
@@ -208,5 +213,24 @@ public class ChooseLocationActivity extends CommonActivity implements LocationSo
                 .beginTransaction()
                 .replace(R.id.content_frame, aroundPlaceSlidingFragment)
                 .commit();
+    }
+
+    @Override
+    public void onCameraChange(CameraPosition cameraPosition) {
+
+    }
+
+    @Override
+    public void onCameraChangeFinish(CameraPosition cameraPosition) {
+        LatLng latLng = cameraPosition.target;
+        double lat = latLng.latitude;
+        double lon = latLng.longitude;
+        String locationStr = changeLocationStr(lon,lat);
+        ESLogUtil.d(mContext, "移动后的坐标：" + locationStr);
+
+        Intent locationChange = new Intent();
+        locationChange.setAction(Global.EShow_Broadcast_Action.ACTION_LOCATION_CHANGED);
+        locationChange.putExtra(AroundPlaceFragment.INTENT_CURRENT_LOCATION,locationStr);
+        LocalBroadcastManager.getInstance(mContext).sendBroadcast(locationChange);
     }
 }
