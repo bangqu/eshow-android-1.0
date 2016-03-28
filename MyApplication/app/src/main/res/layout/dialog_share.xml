@@ -108,7 +108,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/small_margin"
         android:layout_marginLeft="@dimen/normal_margin"
-        android:layout_marginRight="@dimen/normal_margin">
+        android:layout_marginRight="@dimen/normal_margin"
+        android:layout_marginTop="@dimen/small_margin">
 
         <LinearLayout
             android:id="@+id/llQQ"
