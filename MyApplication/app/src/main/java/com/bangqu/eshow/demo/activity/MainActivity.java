@@ -33,6 +33,7 @@ import com.bangqu.eshow.util.ESLogUtil;
 import com.bangqu.eshow.util.ESToastUtil;
 import com.bangqu.eshow.util.ESViewUtil;
 import com.bangqu.eshow.view.slidingmenu.SlidingMenu;
+import com.umeng.socialize.UMShareAPI;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
@@ -251,4 +252,10 @@ public class MainActivity extends CommonActivity {
         }
 
     };
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        UMShareAPI.get(this).onActivityResult( requestCode, resultCode, data);
+    }
 }

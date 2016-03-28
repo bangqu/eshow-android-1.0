@@ -25,7 +25,7 @@ public class MyApp extends MultiDexApplication {
         //微信 appid appsecret
         PlatformConfig.setWeixin("wx747d053fa471eb15", "95072c38637c0dc19256cc968165ff6a");
         //新浪微博 appkey appsecret
-        PlatformConfig.setSinaWeibo("","");
+        PlatformConfig.setSinaWeibo("", "");
         // QQ和Qzone appid appkey
         PlatformConfig.setQQZone("1105134763", "rexsau2NHZYARCJw");
     }

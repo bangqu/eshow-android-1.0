@@ -3,6 +3,7 @@ package com.bangqu.eshow.demo.bean;
 import android.content.Context;
 
 import com.bangqu.eshow.demo.activity.ChooseLocationActivity_;
+import com.bangqu.eshow.demo.view.ShareDialog;
 
 /**
  * 首页上的功能列表选择性的跳转
@@ -69,8 +70,8 @@ public class Intent_FunctionInMain {
 
     }
 
-    void onShare(Context context){
-
+    void onShare(final Context context){
+        new ShareDialog(context).show();
     }
 
     void onChat(Context context){

@@ -50,4 +50,8 @@
         <item name="android:backgroundDimEnabled">true</item>
     </style>
 
+    <style name="ShowShareDialogAni" parent="android:Animation">
+    <item name="android:windowEnterAnimation">@anim/push_bottom_in</item>
+    <item name="android:windowExitAnimation">@anim/push_bottom_out</item>
+    </style>
 </resources>
