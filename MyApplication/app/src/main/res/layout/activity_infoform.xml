@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rlParent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/common_actionbar_withback"/>
+
+    <RelativeLayout
+        android:id="@+id/rlTab"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/titleBarSize"
+        android:background="@color/colorPrimary"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/llBaseInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/drawer_selector"
+            android:orientation="vertical"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/normal_margin"
+            android:paddingBottom="@dimen/small_margin_10"
+            android:paddingTop="@dimen/small_margin_10">
+
+            <ImageView
+                android:id="@+id/ivBaseInfo"
+                android:layout_width="40px"
+                android:layout_height="40px"
+                android:layout_gravity="center_horizontal" />
+
+            <TextView
+                android:id="@+id/tvBaseInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/small_margin_5"
+                android:text="基本信息"
+                android:textColor="@drawable/gray_text_selector"
+                android:textSize="@dimen/small_textSize_20" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llPerson"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/drawer_selector"
+            android:orientation="vertical"
+            android:layout_centerVertical="true"
+            android:paddingBottom="@dimen/small_margin_10"
+            android:paddingTop="@dimen/small_margin_10"
+            android:layout_centerInParent="true">
+
+            <ImageView
+                android:id="@+id/ivPerson"
+                android:layout_width="40px"
+                android:layout_height="40px"
+                android:layout_gravity="center_horizontal" />
+
+            <TextView
+                android:id="@+id/tvPerson"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/small_margin_5"
+                android:text="个人信息"
+                android:textColor="@drawable/gray_text_selector"
+                android:textSize="@dimen/small_textSize_20" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llAccount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/drawer_selector"
+            android:orientation="vertical"
+            android:layout_marginRight="@dimen/normal_margin"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:paddingBottom="@dimen/small_margin_10"
+            android:paddingTop="@dimen/small_margin_10">
+
+            <ImageView
+                android:id="@+id/ivAccount"
+                android:layout_width="40px"
+                android:layout_height="40px"
+                android:layout_gravity="center_horizontal" />
+
+            <TextView
+                android:id="@+id/tvAccount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/small_margin_5"
+                android:text="账号绑定"
+                android:textColor="@drawable/gray_text_selector"
+                android:textSize="@dimen/small_textSize_20" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_below="@id/include"
+        android:layout_above="@id/rlTab"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+</RelativeLayout>

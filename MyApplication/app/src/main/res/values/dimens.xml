@@ -20,11 +20,13 @@
     <dimen name="normal_textSize">32px</dimen>
     <dimen name="small_textSize">28px</dimen>
     <dimen name="small_textSize_24">24px</dimen>
+    <dimen name="small_textSize_20">20px</dimen>
     <dimen name="btn_textSize">30px</dimen>
 
     <!--间距-->
     <dimen name="small_margin">20px</dimen>
     <dimen name="small_margin_10">10px</dimen>
+    <dimen name="small_margin_5">5px</dimen>
     <dimen name="normal_margin_top">46px</dimen>
     <!--文本框高度-->
     <dimen name="edittext_height">84px</dimen>

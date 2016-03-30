@@ -3,6 +3,7 @@ package com.bangqu.eshow.demo.bean;
 import android.content.Context;
 
 import com.bangqu.eshow.demo.activity.ChooseLocationActivity_;
+import com.bangqu.eshow.demo.activity.InfoFormActivity_;
 import com.bangqu.eshow.demo.view.ShareDialog;
 
 /**
@@ -43,7 +44,7 @@ public class Intent_FunctionInMain {
     }
 
     void onFrom(Context context) {
-
+        InfoFormActivity_.intent(context).start();
     }
 
     void onImage(Context context) {

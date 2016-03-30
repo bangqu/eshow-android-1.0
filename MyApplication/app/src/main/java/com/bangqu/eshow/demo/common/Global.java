@@ -94,6 +94,16 @@ public class Global {
          * 地图上改变经纬度后用于更新界面的广播
          */
         public static final String ACTION_LOCATION_CHANGED = "map.location.changed";
+
+        /**
+         * framework通知activity进行qq授权动作
+         */
+        public static final String ACTION_QQ_AUTHORIZE = "bangqu.authorize.qq";
+
+        /**
+         * framework通知activity进行微信授权动作
+         */
+        public static final String ACTION_WECHAT_AUTHORIZE = "bangqu.authorize.wechat";
     }
 
 }

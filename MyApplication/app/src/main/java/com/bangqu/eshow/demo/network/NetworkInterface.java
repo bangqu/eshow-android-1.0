@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.bangqu.eshow.demo.bean.Enum_CodeType;
 import com.bangqu.eshow.demo.bean.Enum_ThirdType;
+import com.bangqu.eshow.demo.common.SharedPrefUtil;
 import com.bangqu.eshow.http.ESRequestParams;
 
 /**
@@ -168,7 +169,46 @@ public class NetworkInterface {
         esRequestParams.put("extensions","base");
         esRequestParams.put("types","写字楼|产业园区|小区|学校");
         new AMapHttpUtil(context).post("v3/place/text",esRequestParams,responseListener);
-
-
     }
+
+    /**
+     * 获取绑定第三方账号状态
+     * @param context
+     * @param responseListener
+     */
+    public static void checkThirdBound(Context context,ESResponseListener responseListener){
+        ESRequestParams abRequestParams = new ESRequestParams();
+        String token = SharedPrefUtil.getAccessToken(context);
+        abRequestParams.put("accessToken", token);
+        new MyHttpUtil(context).post("third-party/check", abRequestParams, responseListener);
+    }
+
+    /**
+     * 取消绑定第三方账号状态
+     * @param context
+     * @param responseListener
+     */
+    public static void clearnThirdBound(Context context,Enum_ThirdType type,ESResponseListener responseListener){
+        ESRequestParams abRequestParams = new ESRequestParams();
+        String token = SharedPrefUtil.getAccessToken(context);
+        abRequestParams.put("accessToken", token);
+        abRequestParams.put("thirdParty.platform",type.toString());
+        new MyHttpUtil(context).post("user/cancel", abRequestParams, responseListener);
+    }
+
+    /**
+     * 绑定第三方账号
+     * @param context
+     * @param type
+     * @param thirdToken
+     * @param responseListener
+     */
+    public static void thirdBound(Context context,Enum_ThirdType type,String thirdToken,ESResponseListener responseListener){
+        ESRequestParams abRequestParams = new ESRequestParams();
+        abRequestParams.put("accessToken", SharedPrefUtil.getAccessToken(context));
+        abRequestParams.put("thirdParty.platform",type.toString());
+        abRequestParams.put("thirdParty.username",thirdToken);
+        new MyHttpUtil(context).post("third-party/save", abRequestParams, responseListener);
+    }
+
 }

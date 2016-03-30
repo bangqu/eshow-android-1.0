@@ -10,5 +10,4 @@
     <dimen name="guide_item1_h">230dp</dimen>
     <dimen name="guide_item2_h">68dp</dimen>
     <dimen name="guide_item0_h">85dp</dimen>
-
 </resources>

@@ -7,6 +7,7 @@
     <string name="title_activity_setting">设置</string>
     <string name="title_activity_scan">扫一扫</string>
     <string name="title_activity_web">链接跳转</string>
+    <string name="title_activity_infoform">信息表单</string>
 
     <string name="empty"></string>
     <string name="scan_tip">将条形码/二维码放入框内，即可自动扫描</string>
