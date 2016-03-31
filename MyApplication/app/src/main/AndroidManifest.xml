@@ -116,6 +116,11 @@
         <activity android:name=".activity.ModifyStringValueActivity_"
             android:screenOrientation="portrait"/>
 
+        <!-- 支付跳转页面 -->
+        <activity
+            android:name=".activity.PayWebViewActivity"
+            android:screenOrientation="portrait" />
+
 
         <!--使用友盟5.0SDK-->
         <activity
@@ -171,6 +176,26 @@
         <service android:name="com.amap.api.location.APSService"></service>
         <meta-data android:name="com.amap.api.v2.apikey" android:value="b6637b594ae3e6f4d5a6c2f5d568d602"/>
 
+        <!--支付-->
+        <activity
+            android:name="com.pingplusplus.android.PaymentActivity"
+            android:launchMode="singleTop"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity
+            android:name="com.alipay.sdk.app.H5PayActivity"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:exported="false"
+            android:screenOrientation="behind" />
+        <activity
+            android:name="com.alipay.sdk.auth.AuthActivity"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:exported="false"
+            android:screenOrientation="behind" />
+
+        <activity-alias
+            android:name=".wxapi.WXPayEntryActivity"
+            android:exported="true"
+            android:targetActivity="com.pingplusplus.android.PaymentActivity" />
 
     </application>
 
