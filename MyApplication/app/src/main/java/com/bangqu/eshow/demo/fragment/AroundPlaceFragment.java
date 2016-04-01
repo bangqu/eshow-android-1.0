@@ -1,5 +1,6 @@
 package com.bangqu.eshow.demo.fragment;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -53,6 +54,7 @@ public class AroundPlaceFragment extends Fragment implements View.OnClickListene
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                     Bundle savedInstanceState) {
 
+        final Activity parentActivity = this.getActivity();
         mContext = this.getActivity();
         View view = inflater.inflate(R.layout.fragment_aroundplace, null);
         ESViewUtil.scaleContentView((LinearLayout) view.findViewById(R.id.llParent));

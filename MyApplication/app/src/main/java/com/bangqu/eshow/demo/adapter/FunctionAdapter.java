@@ -1,5 +1,6 @@
 package com.bangqu.eshow.demo.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -64,6 +65,8 @@ public class FunctionAdapter extends BaseAdapter{
             @Override
             public void onClick(View v) {
                 new Intent_FunctionInMain(mContext,functions.get(position));
+                Activity activity = (Activity) mContext;
+                activity.overridePendingTransition(R.anim.dropdown_in, R.anim.dropdown_out);
             }
         });
         return convertView;

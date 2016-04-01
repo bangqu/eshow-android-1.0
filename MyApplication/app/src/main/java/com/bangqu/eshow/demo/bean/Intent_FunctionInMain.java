@@ -3,8 +3,8 @@ package com.bangqu.eshow.demo.bean;
 import android.content.Context;
 import android.content.Intent;
 
-import com.bangqu.eshow.demo.activity.ChooseLocationActivity_;
 import com.bangqu.eshow.demo.activity.InfoFormActivity_;
+import com.bangqu.eshow.demo.activity.MapActivity_;
 import com.bangqu.eshow.demo.activity.PayWebViewActivity;
 import com.bangqu.eshow.demo.common.SharedPrefUtil;
 import com.bangqu.eshow.demo.view.ShareDialog;
@@ -59,7 +59,6 @@ public class Intent_FunctionInMain {
     }
 
     void onCity(Context context){
-
     }
 
     void onMusic(Context context){
@@ -67,14 +66,15 @@ public class Intent_FunctionInMain {
     }
 
     void onMap(Context context){
-        ChooseLocationActivity_.intent(context).start();
+        MapActivity_.intent(context).start();
     }
 
     void onPay(Context context){
         Intent intent = new Intent(context, PayWebViewActivity.class);
         String url = "http://api.eshow.org.cn/pingpay/pay.jsp?accessToken="+ SharedPrefUtil.getAccessToken(context);
-        intent.putExtra(PayWebViewActivity.INTENT_URL_TAG,url);
+        intent.putExtra(PayWebViewActivity.INTENT_URL_TAG, url);
         context.startActivity(intent);
+
     }
 
     void onShare(final Context context){

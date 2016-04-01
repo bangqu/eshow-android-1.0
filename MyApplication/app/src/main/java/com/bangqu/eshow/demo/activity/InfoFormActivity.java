@@ -79,7 +79,6 @@ public class InfoFormActivity extends FragmentActivity {
     TextView tvAccount;
     @ViewById
     FrameLayout container;
-
     int tab_title_color_choose;
     int tab_title_color_normal;
     Drawable ic_baseInfo_normal;
@@ -96,6 +95,8 @@ public class InfoFormActivity extends FragmentActivity {
     //友盟分享
     UMShareAPI umShareAPI;
     ESProgressDialogFragment progressDialog;
+
+    private long lastClickTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -135,20 +136,26 @@ public class InfoFormActivity extends FragmentActivity {
 
     @Click(R.id.llBaseInfo)
     void onBaseInfo() {
-        chooseBaseInfo();
+        if (checkClickState()) {
+            chooseBaseInfo();
 
+        }
     }
 
     @Click(R.id.llPerson)
     void onPerson() {
-        choosePerson();
+        if (checkClickState()) {
+            choosePerson();
+        }
 
     }
 
     @Click(R.id.llAccount)
     void onAccount() {
-        chooseAccount();
+        if (checkClickState()) {
+            chooseAccount();
 
+        }
     }
 
     private void chooseBaseInfo() {
@@ -162,6 +169,7 @@ public class InfoFormActivity extends FragmentActivity {
 
         tvAccount.setTextColor(tab_title_color_normal);
         ivAccount.setImageDrawable(ic_account_normal);
+        lastClickTime = System.currentTimeMillis();
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -184,6 +192,7 @@ public class InfoFormActivity extends FragmentActivity {
 
         tvAccount.setTextColor(tab_title_color_normal);
         ivAccount.setImageDrawable(ic_account_normal);
+        lastClickTime = System.currentTimeMillis();
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -196,6 +205,7 @@ public class InfoFormActivity extends FragmentActivity {
 
         fragmentTransaction.replace(R.id.container, personFragment);
         fragmentTransaction.commit();
+
     }
 
     private void chooseAccount() {
@@ -210,6 +220,7 @@ public class InfoFormActivity extends FragmentActivity {
 
         tvAccount.setTextColor(tab_title_color_choose);
         ivAccount.setImageDrawable(ic_account_choose);
+        lastClickTime = System.currentTimeMillis();
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -222,18 +233,15 @@ public class InfoFormActivity extends FragmentActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         //这里应该可以定义一个枚举来处理多种返回情况，目前只做了昵称的修改，看看效果吧
-        if(resultCode == 0x22){
+        if (resultCode == 0x22) {
             ESLogUtil.d(mContext, "onActivityResult+++++++");
 //            data.setAction(Global.EShow_Broadcast_Action.ACTION_USERBASEINFO_CHANGED);
 //            sendBroadcast(data);
             String nickName = data.getStringExtra(ModifyStringValueActivity_.INTENT_PARAMVALUE_TAG);
             baseInfoFragment.setNickName(nickName);
-        }else{
+        } else {
             if (umShareAPI != null) {
                 umShareAPI.onActivityResult(requestCode, resultCode, data);
-            } else {
-                //应用未审核
-                ESToastUtil.showToast(mContext, "应用未审核，平台拒绝了应用的授权请求！");
             }
         }
     }
@@ -241,22 +249,22 @@ public class InfoFormActivity extends FragmentActivity {
     /**
      * 注册用于更新界面的广播
      */
-    private void registerBroadcast(){
+    private void registerBroadcast() {
         LocalBroadcastManager broadcastManager = LocalBroadcastManager.getInstance(mContext);
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(Global.EShow_Broadcast_Action.ACTION_QQ_AUTHORIZE);
         intentFilter.addAction(Global.EShow_Broadcast_Action.ACTION_WECHAT_AUTHORIZE);
         BroadcastReceiver receiver = new BroadcastReceiver() {
             @Override
-            public void onReceive(Context context, Intent intent){
+            public void onReceive(Context context, Intent intent) {
                 String action = intent.getAction();
                 ESLogUtil.d(mContext, "++++++++++broadcast action:" + action);
-                if(action.equals(Global.EShow_Broadcast_Action.ACTION_QQ_AUTHORIZE)){
+                if (action.equals(Global.EShow_Broadcast_Action.ACTION_QQ_AUTHORIZE)) {
                     Config.dialog = ProgressDialog.show(mContext, "提示", "正在请求跳转....");
                     SHARE_MEDIA platform = SHARE_MEDIA.QQ;
-                    UMShareAPI umShareAPI = UMShareAPI.get(mContext);
+                    umShareAPI = UMShareAPI.get(mContext);
                     umShareAPI.doOauthVerify(InfoFormActivity.this, platform, umAuthListener);
-                }else if(action.equals(Global.EShow_Broadcast_Action.ACTION_WECHAT_AUTHORIZE)){
+                } else if (action.equals(Global.EShow_Broadcast_Action.ACTION_WECHAT_AUTHORIZE)) {
                     Config.dialog = ProgressDialog.show(mContext, "提示", "正在请求跳转....");
                     SHARE_MEDIA platform = SHARE_MEDIA.WEIXIN;
                     umShareAPI = UMShareAPI.get(mContext);
@@ -275,20 +283,20 @@ public class InfoFormActivity extends FragmentActivity {
         public void onComplete(SHARE_MEDIA platform, int action, Map<String, String> data) {
             String thirdToken = data.get("access_token");
             //截取前16位
-            thirdToken = thirdToken.substring(0,16);
+            thirdToken = thirdToken.substring(0, 16);
             Enum_ThirdType thirdType = Enum_ThirdType.QQ;
 
             ESLogUtil.d(mContext, "thirdToken:" + thirdToken);
-            if(platform.name().equals(SHARE_MEDIA.WEIXIN.toString())){
+            if (platform.name().equals(SHARE_MEDIA.WEIXIN.toString())) {
                 thirdType = Enum_ThirdType.WeChat;
-            }else if(platform.name().equals(SHARE_MEDIA.QQ.toString())){
+            } else if (platform.name().equals(SHARE_MEDIA.QQ.toString())) {
                 thirdType = Enum_ThirdType.QQ;
             }
-            final  Enum_ThirdType tempThirdType = thirdType;
+            final Enum_ThirdType tempThirdType = thirdType;
             NetworkInterface.thirdBound(mContext, tempThirdType, thirdToken, new ESResponseListener(mContext) {
                 @Override
                 public void onBQSucess(String esMsg, JSONObject resultJson) {
-                    switch (tempThirdType){
+                    switch (tempThirdType) {
                         case WeChat:
                             accountFragment.setWechatStateUI(true);
                             break;
@@ -338,4 +346,16 @@ public class InfoFormActivity extends FragmentActivity {
         }
     };
 
+    /**
+     * 检测是否可以点击，在进行Fragment之间的切换动画的时候，如果过于频繁的点击会导致程序奔溃
+     */
+    private boolean checkClickState() {
+        long curTime = System.currentTimeMillis();
+        long time = curTime - lastClickTime;
+        if (time > 500) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

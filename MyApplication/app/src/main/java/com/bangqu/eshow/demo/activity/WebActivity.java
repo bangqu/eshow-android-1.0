@@ -132,12 +132,12 @@ public class WebActivity extends CommonActivity implements View.OnClickListener 
 
         public void onPageFinished(WebView view, String url) {
             progressBar.setProgress(100);
-            progressBar.setVisibility(View.GONE);
+            progressBar.setVisibility(View.INVISIBLE);
         }
 
         public void onReceivedError(WebView view, int errorCode,
                                     String description, String failingUrl) {
-            progressBar.setVisibility(View.GONE);
+            progressBar.setVisibility(View.INVISIBLE);
 
         }
     }

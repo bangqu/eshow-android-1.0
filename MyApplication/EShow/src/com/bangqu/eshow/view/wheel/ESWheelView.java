@@ -195,7 +195,9 @@ public class ESWheelView extends View {
 	
 	/** 中间覆盖条高度. */
 	private int additionalItemHeight = 30;
-	
+
+	/*一行中最大允许显示的字符数*/
+	private static int signlTextLength = 6;
 	/**
 	 * Constructor.
 	 *
@@ -587,6 +589,10 @@ public class ESWheelView extends View {
 		for (int i = currentItem - addItems; i <= currentItem + addItems; i++) {
 			if (useCurrentValue || i != currentItem) {
 				String text = getTextItem(i);
+				if(text != null && text.length() > signlTextLength ){
+					text = text.substring(0,signlTextLength -1);
+					text = text + "...";
+				}
 				if (text != null) {
 					itemsText.append(text);
 				}
@@ -727,7 +733,8 @@ public class ESWheelView extends View {
 		//if(D)Log.d(TAG, "widthLabel:"+widthLabel);
 		
 		if (itemsLayout == null || itemsLayout.getWidth() > widthItems) {
-			itemsLayout = new StaticLayout(buildText(isScrollingPerformed), itemsPaint, widthItems,
+			String text = buildText(isScrollingPerformed);
+			itemsLayout = new StaticLayout(text, itemsPaint, widthItems,
 					widthLabel > 0 ? Layout.Alignment.ALIGN_OPPOSITE : Layout.Alignment.ALIGN_CENTER, 1,
 					additionalItemHeight, false);
 		} else {
@@ -736,6 +743,10 @@ public class ESWheelView extends View {
 
 		if (!isScrollingPerformed && (valueLayout == null || valueLayout.getWidth() > widthItems)) {
 			String text = getAdapter() != null ? getAdapter().getItem(currentItem) : null;
+			if(text != null && text.length() > signlTextLength ){
+				text = text.substring(0,signlTextLength -1);
+				text = text + "...";
+			}
 			valueLayout = new StaticLayout(text != null ? text : "", valuePaint, widthItems,
 					widthLabel > 0 ? Layout.Alignment.ALIGN_OPPOSITE : Layout.Alignment.ALIGN_CENTER, 1,
 					additionalItemHeight, false);

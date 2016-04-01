@@ -8,6 +8,7 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -37,8 +38,10 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
     RelativeLayout rlQQ;
     TextView tvQQState;
 
-    ESProgressDialogFragment progressDialog;
+    ImageView ivQQProgress;
+    ImageView ivWechatProgress;
 
+    ESProgressDialogFragment progressDialog;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -48,10 +51,15 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
         rlWechat = (RelativeLayout) view.findViewById(R.id.rlWechat);
         rlWechat.setOnClickListener(this);
         tvWechatState = (TextView) view.findViewById(R.id.tvWechatState);
+        tvWechatState.setVisibility(View.GONE);
+        ivWechatProgress = (ImageView) view.findViewById(R.id.ivWechatProgress);
+        ivWechatProgress.setVisibility(View.VISIBLE);
         rlQQ = (RelativeLayout) view.findViewById(R.id.rlQQ);
         rlQQ.setOnClickListener(this);
         tvQQState = (TextView) view.findViewById(R.id.tvQQState);
-
+        tvQQState.setVisibility(View.GONE);
+        ivQQProgress = (ImageView) view.findViewById(R.id.ivQQProgress);
+        ivQQProgress.setVisibility(View.VISIBLE);
         NetworkInterface.checkThirdBound(mContext, checkThirdResListener);
         return view;
     }
@@ -95,7 +103,7 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
     }
 
     /**
-     * 第三方登录接口回调
+     * 检测第三方登录是否绑定接口回调
      */
     ESResponseListener checkThirdResListener = new ESResponseListener(mContext) {
         @Override
@@ -123,18 +131,23 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
 
         @Override
         public void onStart() {
-            progressDialog = ESDialogUtil.showProgressDialog(mContext, Global.LOADING_PROGRESSBAR_ID, "请求数据中...");
-            progressDialog.setCancelable(false);
+
         }
 
         @Override
         public void onFinish() {
-            progressDialog.dismiss();
+            tvQQState.setVisibility(View.VISIBLE);
+            tvWechatState.setVisibility(View.VISIBLE);
+            ivQQProgress.setVisibility(View.GONE);
+            ivWechatProgress.setVisibility(View.GONE);
         }
 
         @Override
         public void onFailure(int statusCode, String content, Throwable error) {
-            progressDialog.dismiss();
+            tvQQState.setVisibility(View.VISIBLE);
+            tvWechatState.setVisibility(View.VISIBLE);
+            ivQQProgress.setVisibility(View.GONE);
+            ivWechatProgress.setVisibility(View.GONE);
             ESToastUtil.showToast(mContext, "请求失败，错误码：" + statusCode);
         }
     };
@@ -162,6 +175,8 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
                 @Override
                 public void onStart() {
                     progressDialog = ESDialogUtil.showProgressDialog(mContext, Global.LOADING_PROGRESSBAR_ID, "取消绑定中...");
+                    progressDialog.setCancelable(false);
+
                 }
 
                 @Override
@@ -206,6 +221,8 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
                 @Override
                 public void onStart() {
                     progressDialog = ESDialogUtil.showProgressDialog(mContext, Global.LOADING_PROGRESSBAR_ID, "取消绑定中...");
+                    progressDialog.setCancelable(false);
+
                 }
 
                 @Override

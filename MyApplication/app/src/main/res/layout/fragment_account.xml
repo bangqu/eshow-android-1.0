@@ -40,13 +40,13 @@
                             android:layout_height="40px"
                             android:background="@drawable/wechat_icon_normal" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/small_margin_10"
-                            android:text="微信账号"
-                            android:textColor="@color/normal_text"
-                            android:textSize="@dimen/list_textSize" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="微信账号"
+                                android:layout_marginLeft="@dimen/small_margin_10"
+                                android:textColor="@color/normal_text"
+                                android:textSize="@dimen/list_textSize" />
                     </LinearLayout>
 
 
@@ -57,15 +57,28 @@
                         android:layout_marginRight="@dimen/small_margin"
                         android:orientation="horizontal">
 
-                        <TextView
-                            android:id="@+id/tvWechatState"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:text=""
-                            android:textColor="@color/text_gray"
-                            android:textSize="@dimen/list_textSize" />
 
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent">
+                            <ImageView
+                                android:id="@+id/ivWechatProgress"
+                                android:layout_width="30px"
+                                android:layout_height="30px"
+                                android:layout_centerInParent="true"
+                                android:src="@drawable/icon_progressbar"
+                                android:visibility="gone"/>
+
+                            <TextView
+                                android:id="@+id/tvWechatState"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:text=""
+                                android:layout_centerInParent="true"
+                                android:textColor="@color/text_gray"
+                                android:textSize="@dimen/list_textSize" />
+                        </RelativeLayout>
                         <ImageView
                             android:layout_width="30px"
                             android:layout_height="40px"
@@ -115,14 +128,27 @@
                         android:layout_marginRight="@dimen/small_margin"
                         android:orientation="horizontal">
 
-                        <TextView
-                            android:id="@+id/tvQQState"
+                        <RelativeLayout
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:text=""
-                            android:textColor="@color/text_gray"
-                            android:textSize="@dimen/list_textSize" />
+                            android:layout_height="match_parent">
+                            <ImageView
+                                android:id="@+id/ivQQProgress"
+                                android:layout_width="30px"
+                                android:layout_height="30px"
+                                android:layout_centerInParent="true"
+                                android:src="@drawable/icon_progressbar"
+                                android:visibility="gone"/>
+
+                            <TextView
+                                android:id="@+id/tvQQState"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:text=""
+                                android:layout_centerInParent="true"
+                                android:textColor="@color/text_gray"
+                                android:textSize="@dimen/list_textSize" />
+                        </RelativeLayout>
 
                         <ImageView
                             android:layout_width="30px"

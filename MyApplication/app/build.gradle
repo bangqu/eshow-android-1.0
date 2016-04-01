@@ -64,6 +64,9 @@ dependencies {
     compile files('libs/alipayutdid.jar')
     compile files('libs/libpingpp.jar')
     compile files('libs/okhttp-2.0.0-RC1.jar')
+    compile files('libs/okio-1.0.0.jar')
+    compile files('libs/libpingpp-2.1.1.jar')
+    compile files('libs/alipaySingle-20160111.jar')
 }
 
 apt {

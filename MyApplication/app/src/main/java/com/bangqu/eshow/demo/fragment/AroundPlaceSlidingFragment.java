@@ -55,8 +55,10 @@ public class AroundPlaceSlidingFragment extends Fragment {
         allPlaceFragment.setAroundInfo(allType, location);
         AroundPlaceFragment type1PlaceFragment = new AroundPlaceFragment();
         type1PlaceFragment.setAroundInfo(type1, location);
+
         AroundPlaceFragment type2PlaceFragment = new AroundPlaceFragment();
         type2PlaceFragment.setAroundInfo(type2, location);
+
         AroundPlaceFragment type3PlaceFragment = new AroundPlaceFragment();
         type3PlaceFragment.setAroundInfo(type3, location);
 

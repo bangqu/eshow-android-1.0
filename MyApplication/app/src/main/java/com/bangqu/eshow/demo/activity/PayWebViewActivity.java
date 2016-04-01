@@ -2,7 +2,6 @@ package com.bangqu.eshow.demo.activity;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -29,6 +28,7 @@ import com.bangqu.eshow.demo.common.Global;
 import com.bangqu.eshow.util.ESLogUtil;
 import com.bangqu.eshow.util.ESViewUtil;
 import com.google.gson.Gson;
+import com.pingplusplus.android.PaymentActivity;
 import com.squareup.okhttp.MediaType;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
@@ -53,9 +53,8 @@ public class PayWebViewActivity extends CommonActivity implements OnClickListene
     private WebView webView;
     private String title = "";
     private Context mContext;
-    ProgressBar pbCash;
+    ProgressBar progressBar;
     private String webUrl = "";
-    private static final String tag = "PayWebViewActivity";
 
     /**
      * 开发者需要填一个服务端 CHARGE_URL 该 CHARGE_URL 是用来请求支付需要的 charge 。务必确保，CHARGE_URL
@@ -71,7 +70,7 @@ public class PayWebViewActivity extends CommonActivity implements OnClickListene
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.web_view_location_layout);
+        setContentView(R.layout.activity_web);
         ESViewUtil.scaleContentView((LinearLayout) findViewById(R.id.llParent));
         mContext = this;
         webUrl = getIntent().getStringExtra(PayWebViewActivity.INTENT_URL_TAG);
@@ -90,9 +89,9 @@ public class PayWebViewActivity extends CommonActivity implements OnClickListene
         tvTitle = (TextView) findViewById(R.id.tvTitle);
         tvTitle.setText(title);
 
-        webView = (WebView) findViewById(R.id.wvtBangQu);
-        pbCash = (ProgressBar) findViewById(R.id.pbCash);
-        pbCash.setVisibility(View.VISIBLE);
+        webView = (WebView) findViewById(R.id.webview);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.VISIBLE);
     }
 
     @SuppressLint("SetJavaScriptEnabled")
@@ -110,7 +109,7 @@ public class PayWebViewActivity extends CommonActivity implements OnClickListene
         ESLogUtil.d(mContext, "webUrl:" + webUrl);
         webView.setWebViewClient(new MyWebViewClient());
         webView.setWebChromeClient(new WebChromeClient());
-        pbCash.setVisibility(View.VISIBLE);
+        progressBar.setVisibility(View.VISIBLE);
         /**
          * 设置 js 交互类
          */
@@ -120,7 +119,7 @@ public class PayWebViewActivity extends CommonActivity implements OnClickListene
     public class WebChromeClient extends android.webkit.WebChromeClient {
         @Override
         public void onProgressChanged(WebView view, int newProgress) {
-            pbCash.setProgress(newProgress);
+            progressBar.setProgress(newProgress);
             super.onProgressChanged(view, newProgress);
         }
     }
@@ -142,16 +141,16 @@ public class PayWebViewActivity extends CommonActivity implements OnClickListene
         }
 
         public void onPageStarted(WebView view, String url, Bitmap favicon) {
-            pbCash.setVisibility(View.VISIBLE);
+            progressBar.setVisibility(View.VISIBLE);
         }
 
         public void onPageFinished(WebView view, String url) {
-            pbCash.setVisibility(View.GONE);
+            progressBar.setVisibility(View.INVISIBLE);
         }
 
         public void onReceivedError(WebView view, int errorCode,
                                     String description, String failingUrl) {
-            pbCash.setVisibility(View.GONE);
+            progressBar.setVisibility(View.INVISIBLE);
 
         }
     }
@@ -174,9 +173,9 @@ public class PayWebViewActivity extends CommonActivity implements OnClickListene
         @JavascriptInterface
         // JS代码调用接口，调用方法：PINGPP_ANDROID_SDK.callPay(channel, amount);
         public void callPay(String url) {
+            ESLogUtil.d(mContext,"callPay url:"+url);
             url = url.substring(1, url.length());
             charge_url = Global.SERVER_URL + url;
-            ESLogUtil.d(mContext, String.valueOf(url));
             new PaymentTask().execute(new PaymentRequest(url));
 
         }
@@ -226,12 +225,17 @@ public class PayWebViewActivity extends CommonActivity implements OnClickListene
         @Override
         protected void onPostExecute(String data) {
             ESLogUtil.d(mContext, data);
-            Intent intent = new Intent();
-            String packageName = getPackageName();
-            ComponentName componentName = new ComponentName(packageName, packageName + ".wxapi.WXPayEntryActivity");
-            intent.setComponent(componentName);
-            intent.putExtra(com.pingplusplus.android.PaymentActivity.EXTRA_CHARGE, data);
+
+            Intent intent = new Intent(mContext, PaymentActivity.class);
+            intent.putExtra(PaymentActivity.EXTRA_CHARGE, data);
             startActivityForResult(intent, 1);
+
+//            Intent intent = new Intent();
+//            String packageName = getPackageName();
+//            ComponentName componentName = new ComponentName(packageName, packageName + ".wxapi.WXPayEntryActivity");
+//            intent.setComponent(componentName);
+//            intent.putExtra(com.pingplusplus.android.PaymentActivity.EXTRA_CHARGE, data);
+//            startActivityForResult(intent, 1);
         }
     }
 

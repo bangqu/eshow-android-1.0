@@ -96,6 +96,12 @@ public class Global {
         public static final String ACTION_LOCATION_CHANGED = "map.location.changed";
 
         /**
+         * 通过高德地图获得到想要的地理位置
+         */
+        public static final String ACTION_LOCATION_GOT = "map.location.got";
+
+
+        /**
          * framework通知activity进行qq授权动作
          */
         public static final String ACTION_QQ_AUTHORIZE = "bangqu.authorize.qq";

@@ -211,4 +211,15 @@ public class NetworkInterface {
         new MyHttpUtil(context).post("third-party/save", abRequestParams, responseListener);
     }
 
+    /**
+     * 刷新用户信息
+     * @param context
+     * @param responseListener
+     */
+    public static void refreshUserInfo(Context context,ESResponseListener responseListener){
+        ESRequestParams abRequestParams = new ESRequestParams();
+        abRequestParams.put("user.username", SharedPrefUtil.getUser(context).getUsername());
+        new MyHttpUtil(context).post("user/view", abRequestParams, responseListener);
+    }
+
 }
