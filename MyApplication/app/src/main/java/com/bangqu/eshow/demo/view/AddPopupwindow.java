@@ -19,7 +19,7 @@ import com.bangqu.eshow.util.ESViewUtil;
  */
 public class AddPopupwindow extends PopupWindow {
     private View contentView;
-    private LinearLayout llScan,llSystemInfo,llTransformInfo;
+    private LinearLayout llScan,llSystemInfo;
 
     public AddPopupwindow(final Activity context){
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -55,14 +55,6 @@ public class AddPopupwindow extends PopupWindow {
         });
         llSystemInfo = (LinearLayout) contentView.findViewById(R.id.llSystemInfo);
         llSystemInfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                AddPopupwindow.this.dismiss();
-            }
-        });
-        llTransformInfo = (LinearLayout) contentView.findViewById(R.id.llTransInfo);
-        llTransformInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 

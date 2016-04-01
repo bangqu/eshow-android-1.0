@@ -6,7 +6,7 @@
 
     <RelativeLayout
         android:id="@+id/rlParent"
-        android:layout_width="130dp"
+        android:layout_width="120dp"
         android:layout_height="100dp">
 
         <ImageView
@@ -38,13 +38,18 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="fill_parent"
-                    android:layout_marginLeft="14dp"
+                    android:layout_marginLeft="10dp"
                     android:gravity="center"
                     android:text="扫一扫"
                     android:textColor="@color/white"
                     android:textSize="14dp" />
             </LinearLayout>
-
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/white"
+                android:layout_marginLeft="@dimen/small_margin_5"
+                android:layout_marginRight="@dimen/small_margin_5"/>
             <LinearLayout
                 android:id="@+id/llSystemInfo"
                 android:layout_width="fill_parent"
@@ -63,34 +68,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="fill_parent"
-                    android:layout_marginLeft="14dp"
+                    android:layout_marginLeft="10dp"
                     android:gravity="center"
                     android:text="系统信息"
-                    android:textColor="@color/white"
-                    android:textSize="14dp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/llTransInfo"
-                android:layout_width="fill_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:background="@drawable/drawer_selector_bg"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingLeft="15dp">
-
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:background="@drawable/pop_trans" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
-                    android:layout_marginLeft="14dp"
-                    android:gravity="center"
-                    android:text="透传信息"
                     android:textColor="@color/white"
                     android:textSize="14dp" />
             </LinearLayout>
