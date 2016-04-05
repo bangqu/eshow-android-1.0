@@ -172,7 +172,7 @@ public class MainActivity extends CommonActivity {
                 switch (position) {
                     case 0:
                         SettingActivity_.intent(mContext).start();
-                        overridePendingTransition(R.anim.dropdown_in, R.anim.dropdown_out);
+                        overridePendingTransition(R.anim.downtoup_in, R.anim.downtoup_out);
                         break;
                     case 1:
                         ConfirmDialog.OnCustomDialogListener onCustomDialogListener = new ConfirmDialog.OnCustomDialogListener() {
@@ -180,7 +180,7 @@ public class MainActivity extends CommonActivity {
                             public void OnCustomDialogConfim(String str) {
                                 String userName = SharedPrefUtil.getUser(mContext).getUsername();
                                 InputTelActivity_.intent(mContext).extra(InputTelActivity_.INTENT_ISREGISTER, Enum_CodeType.REPASSWORD).extra(InputTelActivity_.INTENT_TEL,userName).start();
-                                overridePendingTransition(R.anim.dropdown_in, R.anim.dropdown_out);
+                                overridePendingTransition(R.anim.downtoup_in, R.anim.downtoup_out);
                             }
 
                             @Override

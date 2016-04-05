@@ -63,7 +63,7 @@ public class LoginAutoCompleteEdit extends AutoCompleteTextView {
         }
 
         // 添加删除箭头
-        int crossedRes = useDark ? R.drawable.delete_edit : R.drawable.delete_edit_black;
+        int crossedRes = useDark ? R.drawable.edit_delete : R.drawable.edit_delete;
         drawable = getResources().getDrawable(crossedRes);
         drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
         addTextChangedListener(new SimpleTextWatcher() {

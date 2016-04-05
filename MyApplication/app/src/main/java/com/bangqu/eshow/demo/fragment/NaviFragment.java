@@ -1,5 +1,6 @@
 package com.bangqu.eshow.demo.fragment;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.bangqu.eshow.demo.R;
+import com.bangqu.eshow.demo.activity.InfoFormActivity_;
 import com.bangqu.eshow.demo.activity.LoginActivity_;
 import com.bangqu.eshow.demo.common.SharedPrefUtil;
 import com.bangqu.eshow.fragment.ESFragment;
@@ -45,6 +47,15 @@ public class NaviFragment extends ESFragment implements View.OnClickListener {
         if(SharedPrefUtil.isLogin(mContext)){
             String userName = SharedPrefUtil.getUser(mContext).getUsername();
             tvName.setText(userName);
+            tvName.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    InfoFormActivity_.intent(mContext).start();
+                    Activity curActivity = (Activity) mContext;
+                    curActivity.overridePendingTransition(R.anim.downtoup_in, R.anim.downtoup_out);
+
+                }
+            });
         }else{
             tvName.setText("登录/注册");
             tvName.setOnClickListener(new View.OnClickListener() {

@@ -91,18 +91,20 @@ public class InputTelActivity extends CommonActivity {
             @Override
             public void onRegister() {
                 InputTelActivity.this.setTitle("注册");
-
+                mBtnSubmit.setText("提交");
             }
 
             @Override
             public void onFindPassword() {
                 InputTelActivity.this.setTitle("找回密码");
+                mBtnSubmit.setText("发送验证码");
 
             }
 
             @Override
             public void onRePassword() {
                 InputTelActivity.this.setTitle("重置密码");
+                mBtnSubmit.setText("发送验证码");
 
             }
 

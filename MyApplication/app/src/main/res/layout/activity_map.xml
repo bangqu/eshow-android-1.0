@@ -26,6 +26,7 @@
                 android:gravity="right"
                 android:layout_gravity="center_vertical"
                 android:text="详细地址："
+                android:textColor="@color/normal_text"
                 android:textSize="@dimen/small_textSize" />
 
             <RelativeLayout
@@ -42,6 +43,7 @@
                     android:gravity="center_vertical"
                     android:background="@null"
                     android:hint="请输入地址"
+                    android:textColorHint="#919197"
                     android:inputType="text"
                     android:maxLines="1"
                     android:singleLine="true"
@@ -52,7 +54,7 @@
                     android:layout_height="40px"
                     android:layout_alignParentRight="true"
                     android:layout_centerInParent="true"
-                    android:background="@drawable/icon_location" />
+                    android:background="@drawable/ic_map_location" />
             </RelativeLayout>
 
         </LinearLayout>
@@ -71,6 +73,7 @@
             android:layout_marginRight="@dimen/small_margin"
             android:background="@null"
             android:hint="请完善详细地址"
+            android:textColorHint="#919197"
             android:inputType="text"
             android:textSize="@dimen/small_textSize" />
     </LinearLayout>

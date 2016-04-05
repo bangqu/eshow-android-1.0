@@ -94,7 +94,7 @@ public class NetworkInterface {
      */
     public static void getQiniuToken(Context context, ESResponseListener responseListener) {
         ESRequestParams abRequestParams = new ESRequestParams();
-        new MyHttpUtil(context).post("qiniu/token", abRequestParams, responseListener);
+        new MyHttpUtil(context).post("qiniu/uptoken", abRequestParams, responseListener);
     }
 
     /**

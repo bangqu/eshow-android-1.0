@@ -1,25 +1,48 @@
 package com.bangqu.eshow.demo.fragment;
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bangqu.eshow.demo.R;
+import com.bangqu.eshow.demo.activity.CropImageActivity;
 import com.bangqu.eshow.demo.activity.InfoFormActivity_;
 import com.bangqu.eshow.demo.activity.ModifySexActivity_;
 import com.bangqu.eshow.demo.activity.ModifyStringValueActivity_;
 import com.bangqu.eshow.demo.bean.UserBean;
 import com.bangqu.eshow.demo.common.SharedPrefUtil;
+import com.bangqu.eshow.demo.network.ESResponseListener;
+import com.bangqu.eshow.demo.network.MyHttpUtil;
+import com.bangqu.eshow.demo.network.NetworkInterface;
+import com.bangqu.eshow.http.ESRequestParams;
+import com.bangqu.eshow.image.ESImageLoader;
+import com.bangqu.eshow.util.ESDialogUtil;
+import com.bangqu.eshow.util.ESFileUtil;
+import com.bangqu.eshow.util.ESLogUtil;
+import com.bangqu.eshow.util.ESStrUtil;
+import com.bangqu.eshow.util.ESToastUtil;
 import com.bangqu.eshow.util.ESViewUtil;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.File;
 
 /**
  * 基本信息修改分页
@@ -43,6 +66,19 @@ public class BaseInfoFragment extends Fragment implements View.OnClickListener {
     RelativeLayout rlSex;
     TextView tvSex;
 
+    /* 用来标识请求照相功能的activity */
+    public static final int CAMERA_WITH_DATA = 10;
+    /* 用来标识请求gallery的activity */
+    public static final int PHOTO_PICKED_WITH_DATA = 11;
+    /* 用来标识请求裁剪图片后的activity */
+    public static final int CAMERA_CROP_DATA = 12;
+    /* 拍照的照片存储位置 */
+    private File PHOTO_DIR = null;
+    // 照相机拍照得到的图片
+    private File mCurrentPhotoFile;
+    private String mFileName;
+    String photo;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -54,7 +90,7 @@ public class BaseInfoFragment extends Fragment implements View.OnClickListener {
         tvNotify.setVisibility(View.GONE);
 
         rlIcon = (RelativeLayout) view.findViewById(R.id.rlIcon);
-//        rlIcon.setOnClickListener(this);
+        rlIcon.setOnClickListener(this);
         ivIcon = (ImageView) view.findViewById(R.id.ivIcon);
 
         rlAccount = (RelativeLayout) view.findViewById(R.id.rlAccount);
@@ -78,6 +114,15 @@ public class BaseInfoFragment extends Fragment implements View.OnClickListener {
         tvSex = (TextView) view.findViewById(R.id.tvSex);
 
         setBaseInfo(false);
+
+        //初始化图片保存路径
+        String photo_dir = ESFileUtil.getImageDownloadDir(mContext);
+        if (ESStrUtil.isEmpty(photo_dir)) {
+            ESToastUtil.showToast(mContext, "存储卡不存在");
+        } else {
+            PHOTO_DIR = new File(photo_dir);
+        }
+
         return view;
     }
 
@@ -85,6 +130,47 @@ public class BaseInfoFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.rlIcon:
+                LayoutInflater mInflater = LayoutInflater.from(mContext);
+                View mAvatarView = mInflater.inflate(R.layout.choose_avatar, null);
+                Button albumButton = (Button) mAvatarView.findViewById(R.id.choose_album);
+                Button camButton = (Button) mAvatarView.findViewById(R.id.choose_cam);
+                Button cancelButton = (Button) mAvatarView.findViewById(R.id.choose_cancel);
+                albumButton.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        ESDialogUtil.removeDialog(mContext);
+                        // 从相册中去获取
+                        try {
+                            Intent intent = new Intent(Intent.ACTION_GET_CONTENT, null);
+                            intent.setType("image/*");
+                            startActivityForResult(intent, PHOTO_PICKED_WITH_DATA);
+                        } catch (ActivityNotFoundException e) {
+                            ESToastUtil.showToast(mContext, "没有找到照片");
+                        }
+                    }
+
+                });
+
+                camButton.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        ESDialogUtil.removeDialog(mContext);
+                        doPickPhotoAction();
+                    }
+
+                });
+
+                cancelButton.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        ESDialogUtil.removeDialog(mContext);
+                    }
+
+                });
+                ESDialogUtil.showDialog(mAvatarView, Gravity.BOTTOM);
 
                 break;
             case R.id.rlAccount:
@@ -131,10 +217,6 @@ public class BaseInfoFragment extends Fragment implements View.OnClickListener {
                 break;
         }
     }
-    public void setNickName(String nickName){
-        tvNickName.setText(nickName);
-        showNotify();
-    }
 
     /**
      * 设置基本信息页面数据
@@ -148,11 +230,17 @@ public class BaseInfoFragment extends Fragment implements View.OnClickListener {
         String age = userBean.getAge();
         String sexStr = userBean.getSexStr();
 
+        if(!ESStrUtil.isEmpty(photo) && photo.startsWith("http")){
+            ivIcon.setImageResource(R.drawable.icon_progressbar);
+            ESImageLoader.getInstance(mContext).display(ivIcon,photo);
+        }
+
         tvAccount.setText(username);
         tvNickName.setText(nickname);
         tvName.setText(realname);
         tvAge.setText(age);
         tvSex.setText(sexStr);
+
         if(isShowNofity){
             showNotify();
         }
@@ -187,4 +275,130 @@ public class BaseInfoFragment extends Fragment implements View.OnClickListener {
         });
         tvNotify.startAnimation(mHiddenAction);
     }
+
+    /**
+     * 从照相机获取
+     */
+    private void doPickPhotoAction() {
+        String status = Environment.getExternalStorageState();
+        //判断是否有SD卡,如果有sd卡存入sd卡在说，没有sd卡直接转换为图片
+        if (status.equals(Environment.MEDIA_MOUNTED)) {
+            doTakePhoto();
+        } else {
+            ESToastUtil.showToast(mContext, "没有可用的存储卡");
+        }
+    }
+    /**
+     * 拍照获取图片
+     */
+    private void doTakePhoto() {
+        try {
+            mFileName = System.currentTimeMillis() + ".jpg";
+            mCurrentPhotoFile = new File(PHOTO_DIR, mFileName);
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            Uri uri = Uri.fromFile(mCurrentPhotoFile);
+            ESLogUtil.d(mContext, "save uri:" + uri.getPath());
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+            startActivityForResult(intent, CAMERA_WITH_DATA);
+        } catch (Exception e) {
+            ESToastUtil.showToast(mContext, "未找到系统相机程序");
+        }
+    }
+
+    public void doCammera(){
+        if (mCurrentPhotoFile != null) {
+            ESLogUtil.d(mContext, "将要进行裁剪的图片的路径是 = " + mCurrentPhotoFile.getPath());
+            String currentFilePath2 = mCurrentPhotoFile.getPath();
+            Intent intent2 = new Intent(mContext, CropImageActivity.class);
+            intent2.putExtra("PATH", currentFilePath2);
+            startActivityForResult(intent2, BaseInfoFragment.CAMERA_CROP_DATA);
+        } else {
+            ESToastUtil.showToast(mContext, "图片地址获取异常，请重试！");
+        }
+    }
+
+
+    public void setIconLoading(){
+        ivIcon.setImageResource(R.drawable.icon_progressbar);
+    }
+
+    public void setIconImage(String url){
+        ESImageLoader.getInstance(mContext).display(ivIcon,url);
+        saveIconUrl(url);
+    }
+
+    private void saveIconUrl(String url) {
+        ESRequestParams abRequestParams = new ESRequestParams();
+        abRequestParams.put("accessToken", SharedPrefUtil.getAccessToken(mContext));
+        abRequestParams.put("user.photo", url);
+        ESLogUtil.d(mContext,"保存头像地址："+url);
+        new MyHttpUtil(mContext).post("user/update", abRequestParams, responseListener);
+    }
+
+    ESResponseListener responseListener = new ESResponseListener(mContext) {
+        @Override
+        public void onBQSucess(String esMsg, JSONObject resultJson) {
+            NetworkInterface.refreshUserInfo(mContext, userBeanResponseListener);
+        }
+
+        @Override
+        public void onBQNoData() {
+
+        }
+
+        @Override
+        public void onBQNotify(String bqMsg) {
+            ESToastUtil.showToast(mContext, bqMsg);
+        }
+
+        @Override
+        public void onStart() {
+
+        }
+
+        @Override
+        public void onFinish() {
+        }
+
+        @Override
+        public void onFailure(int statusCode, String content, Throwable error) {
+            ESToastUtil.showToast(mContext, "请求失败，错误码：" + statusCode);
+        }
+    };
+
+    ESResponseListener userBeanResponseListener = new ESResponseListener(mContext) {
+        @Override
+        public void onBQSucess(String esMsg, JSONObject resultJson) {
+            String userStr = null;
+            try {
+                userStr = resultJson.getJSONObject("user").toString();
+                ESLogUtil.d(mContext, "Login  userStr:" + userStr);
+                SharedPrefUtil.setUser(mContext, userStr);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        @Override
+        public void onBQNoData() {
+
+        }
+        @Override
+        public void onBQNotify(String bqMsg) {
+            ESToastUtil.showToast(mContext, bqMsg);
+        }
+
+        @Override
+        public void onStart() {
+        }
+
+        @Override
+        public void onFinish() {
+        }
+
+        @Override
+        public void onFailure(int statusCode, String content, Throwable error) {
+            ESToastUtil.showToast(mContext, "请求失败，错误码：" + statusCode);
+        }
+    };
 }

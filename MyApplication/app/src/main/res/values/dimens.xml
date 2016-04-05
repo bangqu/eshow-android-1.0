@@ -38,4 +38,7 @@
     <!--列表高度-->
     <dimen name="list_itemHeight">96px</dimen>
 
+    <dimen name="form_arrow_width">18px</dimen>
+    <dimen name="form_arrow_height">40px</dimen>
+
 </resources>

@@ -22,13 +22,15 @@ import java.util.List;
  * 主页功能列表适配器
  * Created by daikting on 16/2/18.
  */
-public class FunctionAdapter extends BaseAdapter{
+public class FunctionAdapter extends BaseAdapter {
     private Context mContext;
     private List<Enum_FunctionsInMain> functions;
-    public FunctionAdapter(Context context,List<Enum_FunctionsInMain> functions){
+
+    public FunctionAdapter(Context context, List<Enum_FunctionsInMain> functions) {
         this.mContext = context;
         this.functions = functions;
     }
+
     @Override
     public int getCount() {
         return functions.size();
@@ -47,15 +49,15 @@ public class FunctionAdapter extends BaseAdapter{
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         ViewHold viewHold;
-        if(convertView == null){
+        if (convertView == null) {
             viewHold = new ViewHold();
-            convertView = LayoutInflater.from(mContext).inflate(R.layout.item_function,null);
-            ESViewUtil.scaleContentView((LinearLayout)convertView.findViewById(R.id.llParent));
+            convertView = LayoutInflater.from(mContext).inflate(R.layout.item_function, null);
+            ESViewUtil.scaleContentView((LinearLayout) convertView.findViewById(R.id.llParent));
             viewHold.tvName = (TextView) convertView.findViewById(R.id.tvName);
             viewHold.ivIcon = (ImageView) convertView.findViewById(R.id.ivIcon);
             viewHold.rlItem = (RelativeLayout) convertView.findViewById(R.id.rlItem);
             convertView.setTag(viewHold);
-        }else{
+        } else {
             viewHold = (ViewHold) convertView.getTag();
         }
 
@@ -64,15 +66,16 @@ public class FunctionAdapter extends BaseAdapter{
         viewHold.rlItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new Intent_FunctionInMain(mContext,functions.get(position));
+                new Intent_FunctionInMain(mContext, functions.get(position));
                 Activity activity = (Activity) mContext;
-                activity.overridePendingTransition(R.anim.dropdown_in, R.anim.dropdown_out);
+                activity.overridePendingTransition(R.anim.downtoup_in, R.anim.downtoup_out);
+
             }
         });
         return convertView;
     }
 
-    class ViewHold{
+    class ViewHold {
         TextView tvName;
         ImageView ivIcon;
         RelativeLayout rlItem;

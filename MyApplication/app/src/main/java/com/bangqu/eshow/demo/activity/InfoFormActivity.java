@@ -5,8 +5,11 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.database.Cursor;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -28,9 +31,11 @@ import com.bangqu.eshow.demo.fragment.BaseInfoFragment;
 import com.bangqu.eshow.demo.fragment.PersonFragment;
 import com.bangqu.eshow.demo.network.ESResponseListener;
 import com.bangqu.eshow.demo.network.NetworkInterface;
+import com.bangqu.eshow.demo.network.UploadQiNiu;
 import com.bangqu.eshow.fragment.ESProgressDialogFragment;
 import com.bangqu.eshow.util.ESDialogUtil;
 import com.bangqu.eshow.util.ESLogUtil;
+import com.bangqu.eshow.util.ESStrUtil;
 import com.bangqu.eshow.util.ESToastUtil;
 import com.bangqu.eshow.util.ESViewUtil;
 import com.umeng.socialize.Config;
@@ -100,6 +105,7 @@ public class InfoFormActivity extends FragmentActivity {
 
     public static final int RETURN_BASEINFO_CODE = 0x11;
     public static final int RETURN_PERSON_CODE = 0x22;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -108,6 +114,7 @@ public class InfoFormActivity extends FragmentActivity {
     @AfterViews
     void init() {
         ESViewUtil.scaleContentView((RelativeLayout) findViewById(R.id.rlParent));
+
         mTvTitle.setText(getTitle());
         mMaterialBackButton.setState(MaterialMenuDrawable.IconState.ARROW);
         mMaterialBackButton.setVisibility(View.VISIBLE);
@@ -234,15 +241,43 @@ public class InfoFormActivity extends FragmentActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        //这里应该可以定义一个枚举来处理多种返回情况，目前只做了昵称的修改，看看效果吧
+        ESLogUtil.d(mContext, "onActivityResult+++++++resultCode:" + resultCode);
+        ESLogUtil.d(mContext, "onActivityResult+++++++requestCode:" + requestCode);
+
         if (resultCode == RETURN_BASEINFO_CODE) {
             ESLogUtil.d(mContext, "onActivityResult+++++++");
             baseInfoFragment.setBaseInfo(true);
-        } else if(resultCode == RETURN_PERSON_CODE) {
+        } else if (resultCode == RETURN_PERSON_CODE) {
             personFragment.setPersonInfo(true);
-        }else{
+        } else {
             if (umShareAPI != null) {
                 umShareAPI.onActivityResult(requestCode, resultCode, data);
+            }
+        }
+
+        if (requestCode == BaseInfoFragment.CAMERA_CROP_DATA || BaseInfoFragment.CAMERA_CROP_DATA == requestCode - 65536) {
+            if(data == null){
+                return;
+            }
+            String photo = data.getStringExtra("PATH");
+            ESLogUtil.d(mContext, "CAMERA_CROP_DATA裁剪后得到的图片的路径是 = " + photo);
+            upLoadToQiNiu(photo);
+        } else if (requestCode == BaseInfoFragment.CAMERA_WITH_DATA || BaseInfoFragment.CAMERA_WITH_DATA == requestCode - 65536) {
+            baseInfoFragment.doCammera();
+        } else if (requestCode == BaseInfoFragment.PHOTO_PICKED_WITH_DATA || BaseInfoFragment.PHOTO_PICKED_WITH_DATA == requestCode - 65536) {
+            if(data == null){
+                return;
+            }
+            Uri uri = data.getData();
+            String currentFilePath = getPath(uri);
+            ESLogUtil.d(mContext, "选择的图片路径 currentFilePath= " + currentFilePath);
+
+            if (!ESStrUtil.isEmpty(currentFilePath)) {
+                Intent intent1 = new Intent(this, CropImageActivity.class);
+                intent1.putExtra("PATH", currentFilePath);
+                startActivityForResult(intent1, BaseInfoFragment.CAMERA_CROP_DATA);
+            } else {
+                ESToastUtil.showToast(mContext, "未在存储卡中找到这个文件");
             }
         }
     }
@@ -353,11 +388,44 @@ public class InfoFormActivity extends FragmentActivity {
     private boolean checkClickState() {
         long curTime = System.currentTimeMillis();
         long time = curTime - lastClickTime;
-        if (time > 500) {
+        if (time > 601) {
             return true;
         } else {
             return false;
         }
+    }
+
+    /**
+     * 从相册得到的url转换为SD卡中图片路径
+     */
+    private String getPath(Uri uri) {
+        if (ESStrUtil.isEmpty(uri.getAuthority())) {
+            return null;
+        }
+        String[] projection = {MediaStore.Images.Media.DATA};
+        Cursor cursor = managedQuery(uri, projection, null, null, null);
+        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+        cursor.moveToFirst();
+        String path = cursor.getString(column_index);
+        return path;
+    }
+
+    //图片上传到七牛
+    private void upLoadToQiNiu(String photo) {
+        baseInfoFragment.setIconLoading();
+       new UploadQiNiu(mContext, photo,new UploadQiNiu.UploadListener() {
+            @Override
+            public void onSucess(String url) {
+                ESToastUtil.showToast(mContext, "上传成功！");
+                //显示头像
+                baseInfoFragment.setIconImage(url);
+            }
+
+            @Override
+            public void onFailed(String msg) {
+
+            }
+        });
     }
 
 }

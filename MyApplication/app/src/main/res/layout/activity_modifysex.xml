@@ -34,11 +34,11 @@
 
             <ImageView
                 android:id="@+id/ivChooseMan"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="33px"
+                android:layout_height="33px"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:background="@drawable/ch_select" />
+                android:background="@drawable/ic_choiced" />
 
         </RelativeLayout>
 
@@ -67,11 +67,11 @@
 
             <ImageView
                 android:id="@+id/ivChooseWoman"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="33px"
+                android:layout_height="33px"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:background="@drawable/ch_select"
+                android:background="@drawable/ic_choiced"
                 android:visibility="invisible"/>
 
         </RelativeLayout>

@@ -28,6 +28,7 @@
 
     <style name="AgreeCheckboxTheme" parent="@android:style/Widget.CompoundButton.CheckBox">
         <item name="android:button">@drawable/checkbox_agree</item>
+        <item name="android:paddingLeft">5dp</item>
     </style>
 
     <style name="AnimationPreview">

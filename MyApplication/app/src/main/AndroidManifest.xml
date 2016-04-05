@@ -127,13 +127,19 @@
 
         <!--地图功能页面-->
         <activity android:name=".activity.MapActivity_"
-            android:label="@string/title_activity_infoform"
+            android:label="@string/title_activity_map"
             android:screenOrientation="portrait"/>
 
         <!--分享功能页面-->
         <activity android:name=".activity.ShareActivity_"
             android:label="@string/title_activity_share"
             android:screenOrientation="portrait"/>
+
+        <!--裁剪图片页面-->
+        <activity android:name=".activity.CropImageActivity"
+            android:label="@string/title_activity_share"
+            android:screenOrientation="portrait"/>
+
 
         <!--使用友盟5.0SDK-->
         <activity

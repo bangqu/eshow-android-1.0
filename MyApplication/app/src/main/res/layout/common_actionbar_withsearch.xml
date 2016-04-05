@@ -46,6 +46,7 @@
         android:background="@drawable/edit_bg_gray"
         android:paddingLeft="@dimen/small_textSize"
         android:hint="请输入您的地址"
+        android:textColorHint="#bebebe"
         android:inputType="text"
         android:maxLines="1"
         android:singleLine="true"

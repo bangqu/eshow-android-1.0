@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -59,6 +60,10 @@ public class InputPasswordActivity extends CommonActivity {
     LoginAutoCompleteEdit etCode;
     @ViewById(R.id.etPassword)
     LoginAutoCompleteEdit mEtPassword;
+    @ViewById(R.id.llAgainPassword)
+    LinearLayout llAgainPassword;
+    @ViewById(R.id.etRePassword)
+    LoginAutoCompleteEdit etRePassword;
     @ViewById(R.id.btnVoice)
     Button btnVoice;
     @ViewById(R.id.btnSubmit)
@@ -85,16 +90,23 @@ public class InputPasswordActivity extends CommonActivity {
             @Override
             public void onRegister() {
                 InputPasswordActivity.this.setTitle("注册");
+                llAgainPassword.setVisibility(View.GONE);
             }
 
             @Override
             public void onFindPassword() {
                 InputPasswordActivity.this.setTitle("找回密码");
+                llAgainPassword.setVisibility(View.VISIBLE);
+                mEtPassword.setHint("请输入新密码");
+                etRePassword.setHint("请再次输入新密码");
             }
 
             @Override
             public void onRePassword() {
                 InputPasswordActivity.this.setTitle("重置密码");
+                llAgainPassword.setVisibility(View.VISIBLE);
+                mEtPassword.setHint("请输入新密码");
+                etRePassword.setHint("请再次输入新密码");
             }
         };
         mTvTitle.setText(getTitle());
@@ -199,6 +211,13 @@ public class InputPasswordActivity extends CommonActivity {
             return;
         }
 
+        if(llAgainPassword.isShown()){
+            String againPassword = etRePassword.getText().toString();
+            if(!againPassword.equals(password)){
+                ESToastUtil.showToast(mContext, "两次输入的密码不一样！");
+                return;
+            }
+        }
         final ESResponseListener responseListener = new ESResponseListener(mContext) {
             @Override
             public void onBQSucess(String esMsg, JSONObject resultJson) {

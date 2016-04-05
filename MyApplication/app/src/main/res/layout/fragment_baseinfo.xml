@@ -43,7 +43,7 @@
                    <TextView
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
-                       android:layout_marginLeft="@dimen/small_margin"
+                       android:layout_marginLeft="@dimen/normal_margin"
                        android:text="头像"
                        android:layout_centerVertical="true"
                        android:textColor="@color/normal_text"
@@ -55,7 +55,7 @@
                        android:orientation="horizontal"
                        android:layout_alignParentRight="true"
                        android:layout_centerVertical="true"
-                       android:layout_marginRight="@dimen/small_margin">
+                       android:layout_marginRight="@dimen/normal_margin">
 
                        <ImageView
                            android:id="@+id/ivIcon"
@@ -63,11 +63,11 @@
                            android:layout_height="80px"
                            android:src="@drawable/ic_default_user"/>
                        <ImageView
-                           android:layout_width="30px"
-                           android:layout_height="40px"
+                           android:layout_width="@dimen/form_arrow_width"
+                           android:layout_height="@dimen/form_arrow_height"
                            android:layout_gravity="center"
                            android:layout_marginLeft="@dimen/small_margin"
-                           android:background="@drawable/right_arrow" />
+                           android:background="@drawable/ic_arrow_form" />
                    </LinearLayout>
 
                </RelativeLayout>
@@ -86,7 +86,7 @@
                    <TextView
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
-                       android:layout_marginLeft="@dimen/small_margin"
+                       android:layout_marginLeft="@dimen/normal_margin"
                        android:text="账号"
                        android:textColor="@color/normal_text"
                        android:textSize="@dimen/list_textSize" />
@@ -99,7 +99,7 @@
                        android:text=""
                        android:textColor="@color/text_gray"
                        android:textSize="@dimen/list_textSize"
-                       android:layout_marginRight="@dimen/small_margin" />
+                       android:layout_marginRight="@dimen/normal_margin" />
                </RelativeLayout>
 
                <View
@@ -116,7 +116,7 @@
                    <TextView
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
-                       android:layout_marginLeft="@dimen/small_margin"
+                       android:layout_marginLeft="@dimen/normal_margin"
                        android:text="姓名"
                        android:textColor="@color/normal_text"
                        android:textSize="@dimen/list_textSize" />
@@ -126,7 +126,7 @@
                        android:layout_height="wrap_content"
                        android:orientation="horizontal"
                        android:layout_alignParentRight="true"
-                       android:layout_marginRight="@dimen/small_margin">
+                       android:layout_marginRight="@dimen/normal_margin">
 
                        <TextView
                            android:id="@+id/tvName"
@@ -138,11 +138,11 @@
                            android:layout_gravity="center_vertical" />
 
                        <ImageView
-                           android:layout_width="30px"
-                           android:layout_height="40px"
+                           android:layout_width="@dimen/form_arrow_width"
+                           android:layout_height="@dimen/form_arrow_height"
                            android:layout_gravity="center"
                            android:layout_marginLeft="@dimen/small_margin"
-                           android:background="@drawable/right_arrow" />
+                           android:background="@drawable/ic_arrow_form" />
                    </LinearLayout>
                </RelativeLayout>
 
@@ -160,7 +160,7 @@
                    <TextView
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
-                       android:layout_marginLeft="@dimen/small_margin"
+                       android:layout_marginLeft="@dimen/normal_margin"
                        android:text="昵称"
                        android:textColor="@color/normal_text"
                        android:textSize="@dimen/list_textSize" />
@@ -170,7 +170,7 @@
                        android:layout_height="wrap_content"
                        android:orientation="horizontal"
                        android:layout_alignParentRight="true"
-                       android:layout_marginRight="@dimen/small_margin">
+                       android:layout_marginRight="@dimen/normal_margin">
 
                        <TextView
                            android:id="@+id/tvNickName"
@@ -182,11 +182,11 @@
                            android:layout_gravity="center_vertical" />
 
                        <ImageView
-                           android:layout_width="30px"
-                           android:layout_height="40px"
+                           android:layout_width="@dimen/form_arrow_width"
+                           android:layout_height="@dimen/form_arrow_height"
                            android:layout_gravity="center"
                            android:layout_marginLeft="@dimen/small_margin"
-                           android:background="@drawable/right_arrow" />
+                           android:background="@drawable/ic_arrow_form" />
                    </LinearLayout>
                </RelativeLayout>
                <View
@@ -203,7 +203,7 @@
                    <TextView
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
-                       android:layout_marginLeft="@dimen/small_margin"
+                       android:layout_marginLeft="@dimen/normal_margin"
                        android:text="年龄"
                        android:textColor="@color/normal_text"
                        android:textSize="@dimen/list_textSize" />
@@ -213,7 +213,7 @@
                        android:layout_height="wrap_content"
                        android:orientation="horizontal"
                        android:layout_alignParentRight="true"
-                       android:layout_marginRight="@dimen/small_margin">
+                       android:layout_marginRight="@dimen/normal_margin">
 
                        <TextView
                            android:id="@+id/tvAge"
@@ -225,11 +225,11 @@
                            android:layout_gravity="center_vertical" />
 
                        <ImageView
-                           android:layout_width="30px"
-                           android:layout_height="40px"
+                           android:layout_width="@dimen/form_arrow_width"
+                           android:layout_height="@dimen/form_arrow_height"
                            android:layout_gravity="center"
                            android:layout_marginLeft="@dimen/small_margin"
-                           android:background="@drawable/right_arrow" />
+                           android:background="@drawable/ic_arrow_form" />
                    </LinearLayout>
                </RelativeLayout>
                <View
@@ -246,7 +246,7 @@
                    <TextView
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
-                       android:layout_marginLeft="@dimen/small_margin"
+                       android:layout_marginLeft="@dimen/normal_margin"
                        android:text="性别"
                        android:textColor="@color/normal_text"
                        android:textSize="@dimen/list_textSize" />
@@ -256,7 +256,7 @@
                        android:layout_height="wrap_content"
                        android:orientation="horizontal"
                        android:layout_alignParentRight="true"
-                       android:layout_marginRight="@dimen/small_margin">
+                       android:layout_marginRight="@dimen/normal_margin">
 
                        <TextView
                            android:id="@+id/tvSex"
@@ -268,11 +268,11 @@
                            android:layout_gravity="center_vertical" />
 
                        <ImageView
-                           android:layout_width="30px"
-                           android:layout_height="40px"
+                           android:layout_width="@dimen/form_arrow_width"
+                           android:layout_height="@dimen/form_arrow_height"
                            android:layout_gravity="center"
                            android:layout_marginLeft="@dimen/small_margin"
-                           android:background="@drawable/right_arrow" />
+                           android:background="@drawable/ic_arrow_form" />
                    </LinearLayout>
                </RelativeLayout>
            </LinearLayout>

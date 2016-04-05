@@ -3,6 +3,7 @@ package com.bangqu.eshow.demo.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.RelativeLayout;
@@ -93,7 +94,10 @@ public class ModifyStringValueActivity extends CommonActivity {
         paramKey = getIntent().getStringExtra(INTNET_PARAMKEY_TAG);
         if(paramKey.equals("user.age")){
             etValue.setInputType(EditorInfo.TYPE_CLASS_NUMBER);
+        }else if(paramKey.equals("user.intro")){
+            etValue.setFilters(new InputFilter[]{new InputFilter.LengthFilter(20)});
         }
+
         String paramValue = getIntent().getStringExtra(INTENT_PARAMVALUE_TAG);
         if(!ESStrUtil.isEmpty(paramValue)){
             etValue.setText(paramValue);

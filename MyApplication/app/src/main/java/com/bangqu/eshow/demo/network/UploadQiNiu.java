@@ -18,7 +18,7 @@ public class UploadQiNiu {
     /**
      * 七牛空间上传地址
      */
-    private static final String QINIU_URL = "http://7xlxt5.com2.z0.glb.qiniucdn.com/";
+    private static final String QINIU_URL = "http://77wdb6.com2.z0.glb.qiniucdn.com/";
     private Context mContext;
     private String fileUrl;
     private UploadListener uploadListener;
@@ -27,9 +27,11 @@ public class UploadQiNiu {
      * @param context
      * @param fileUrl 本地文件存放路径
      */
-    public UploadQiNiu(Context context, String fileUrl) {
+    public UploadQiNiu(Context context, String fileUrl,UploadListener uploadListener) {
         this.mContext = context;
         this.fileUrl = fileUrl;
+        this.uploadListener = uploadListener;
+
         NetworkInterface.getQiniuToken(context,getTokenResonseListener);
     }
 
@@ -40,6 +42,7 @@ public class UploadQiNiu {
     ESResponseListener getTokenResonseListener = new ESResponseListener(mContext) {
         @Override
         public void onBQSucess( String bqMsg, JSONObject resultJson) {
+            ESLogUtil.d(mContext,"七牛token:"+bqMsg);
             SharedPrefUtil.setQiniuToken(mContext, bqMsg);
             NetworkInterface.getQiniuKey(mContext,getKeyResonseListener);
         }
@@ -66,6 +69,8 @@ public class UploadQiNiu {
 
         @Override
         public void onFailure(int statusCode, String content, Throwable error) {
+            ESLogUtil.d(mContext,"Token获取失败");
+
             if(uploadListener != null){
                 uploadListener.onFailed("Token获取失败！");
             }
@@ -146,15 +151,6 @@ public class UploadQiNiu {
                 }
             }
         }).start();
-    }
-
-
-    /**
-     * 设置上传结果的回调监听
-     * @param uploadListener
-     */
-    public void setUploadListener(UploadListener uploadListener){
-        this.uploadListener = uploadListener;
     }
 
     public interface UploadListener{

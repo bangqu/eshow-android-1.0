@@ -291,13 +291,15 @@ public class ScanActivity extends CommonActivity implements Callback,OnClickList
 		if(resultCode == RESULT_OK){
 			switch(requestCode){
 				case REQUEST_CODE:
+					ESLogUtil.d(context,"返回的地址："+data.getData().toString());
 					//获取选中图片的路径
 					Cursor cursor = getContentResolver().query(data.getData(), null, null, null, null);
-					if (cursor.moveToFirst()) {
+					if (cursor != null && cursor.moveToFirst()) {
 						photo_path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
+						cursor.close();
+					}else{
+						ESToastUtil.showToast(context,"无法访问图片地址！");
 					}
-					cursor.close();
-
 					mProgress = new ProgressDialog(ScanActivity.this);
 					mProgress.setMessage("正在扫描...");
 					mProgress.setCancelable(false);

@@ -43,7 +43,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/small_margin"
+                        android:layout_marginLeft="@dimen/normal_margin"
                         android:text="手机号码"
                         android:textColor="@color/normal_text"
                         android:textSize="@dimen/list_textSize" />
@@ -52,7 +52,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:layout_marginRight="@dimen/small_margin"
+                        android:layout_marginRight="@dimen/normal_margin"
                         android:orientation="horizontal">
 
                         <TextView
@@ -82,7 +82,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/small_margin"
+                        android:layout_marginLeft="@dimen/normal_margin"
                         android:text="电子邮件"
                         android:textColor="@color/normal_text"
                         android:textSize="@dimen/list_textSize" />
@@ -91,7 +91,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:layout_marginRight="@dimen/small_margin"
+                        android:layout_marginRight="@dimen/normal_margin"
                         android:orientation="horizontal">
 
                         <TextView
@@ -104,11 +104,11 @@
                             android:textSize="@dimen/list_textSize" />
 
                         <ImageView
-                            android:layout_width="30px"
-                            android:layout_height="40px"
+                            android:layout_width="@dimen/form_arrow_width"
+                            android:layout_height="@dimen/form_arrow_height"
                             android:layout_gravity="center"
                             android:layout_marginLeft="@dimen/small_margin"
-                            android:background="@drawable/right_arrow" />
+                            android:background="@drawable/ic_arrow_form" />
                     </LinearLayout>
                 </RelativeLayout>
 
@@ -127,7 +127,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/small_margin"
+                        android:layout_marginLeft="@dimen/normal_margin"
                         android:text="出生日期"
                         android:textColor="@color/normal_text"
                         android:textSize="@dimen/list_textSize" />
@@ -136,7 +136,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:layout_marginRight="@dimen/small_margin"
+                        android:layout_marginRight="@dimen/normal_margin"
                         android:orientation="horizontal">
 
                         <TextView
@@ -149,11 +149,11 @@
                             android:textSize="@dimen/list_textSize" />
 
                         <ImageView
-                            android:layout_width="30px"
-                            android:layout_height="40px"
+                            android:layout_width="@dimen/form_arrow_width"
+                            android:layout_height="@dimen/form_arrow_height"
                             android:layout_gravity="center"
                             android:layout_marginLeft="@dimen/small_margin"
-                            android:background="@drawable/right_arrow" />
+                            android:background="@drawable/ic_arrow_form" />
                     </LinearLayout>
                 </RelativeLayout>
 
@@ -172,7 +172,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/small_margin"
+                        android:layout_marginLeft="@dimen/normal_margin"
                         android:text="常住城市"
                         android:textColor="@color/normal_text"
                         android:textSize="@dimen/list_textSize" />
@@ -181,7 +181,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:layout_marginRight="@dimen/small_margin"
+                        android:layout_marginRight="@dimen/normal_margin"
                         android:orientation="horizontal">
 
                         <TextView
@@ -194,11 +194,11 @@
                             android:textSize="@dimen/list_textSize" />
 
                         <ImageView
-                            android:layout_width="30px"
-                            android:layout_height="40px"
+                            android:layout_width="@dimen/form_arrow_width"
+                            android:layout_height="@dimen/form_arrow_height"
                             android:layout_gravity="center"
                             android:layout_marginLeft="@dimen/small_margin"
-                            android:background="@drawable/right_arrow" />
+                            android:background="@drawable/ic_arrow_form" />
                     </LinearLayout>
                 </RelativeLayout>
 
@@ -214,19 +214,19 @@
                         android:id="@+id/tvSignTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/small_margin"
+                        android:layout_marginLeft="@dimen/normal_margin"
                         android:text="个性签名"
                         android:textColor="@color/normal_text"
                         android:textSize="@dimen/list_textSize" />
 
                     <ImageView
                         android:id="@+id/ivArrow"
-                        android:layout_width="30px"
-                        android:layout_height="40px"
+                        android:layout_width="@dimen/form_arrow_width"
+                        android:layout_height="@dimen/form_arrow_height"
                         android:layout_alignParentRight="true"
                         android:layout_gravity="center"
-                        android:layout_marginRight="@dimen/small_margin"
-                        android:background="@drawable/right_arrow" />
+                        android:layout_marginRight="@dimen/normal_margin"
+                        android:background="@drawable/ic_arrow_form" />
 
                     <TextView
                         android:id="@+id/tvSignature"
@@ -237,6 +237,7 @@
                         android:layout_toRightOf="@id/tvSignTitle"
                         android:layout_marginLeft="@dimen/small_margin"
                         android:layout_marginRight="@dimen/small_margin"
+                        android:gravity="right"
                         android:text=""
                         android:textColor="@color/text_gray"
                         android:textSize="@dimen/list_textSize" />

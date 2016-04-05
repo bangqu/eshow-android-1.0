@@ -31,7 +31,7 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/small_margin"
+                        android:layout_marginLeft="@dimen/normal_margin"
                         android:gravity="center_vertical"
                         android:orientation="horizontal">
 
@@ -54,7 +54,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:layout_marginRight="@dimen/small_margin"
+                        android:layout_marginRight="@dimen/normal_margin"
                         android:orientation="horizontal">
 
 
@@ -80,11 +80,11 @@
                                 android:textSize="@dimen/list_textSize" />
                         </RelativeLayout>
                         <ImageView
-                            android:layout_width="30px"
-                            android:layout_height="40px"
+                            android:layout_width="@dimen/form_arrow_width"
+                            android:layout_height="@dimen/form_arrow_height"
                             android:layout_gravity="center"
                             android:layout_marginLeft="@dimen/small_margin"
-                            android:background="@drawable/right_arrow" />
+                            android:background="@drawable/ic_arrow_form" />
                     </LinearLayout>
                 </RelativeLayout>
 
@@ -103,7 +103,7 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/small_margin"
+                        android:layout_marginLeft="@dimen/normal_margin"
                         android:gravity="center_vertical"
                         android:orientation="horizontal">
 
@@ -125,7 +125,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:layout_marginRight="@dimen/small_margin"
+                        android:layout_marginRight="@dimen/normal_margin"
                         android:orientation="horizontal">
 
                         <RelativeLayout
@@ -151,11 +151,11 @@
                         </RelativeLayout>
 
                         <ImageView
-                            android:layout_width="30px"
-                            android:layout_height="40px"
+                            android:layout_width="@dimen/form_arrow_width"
+                            android:layout_height="@dimen/form_arrow_height"
                             android:layout_gravity="center"
                             android:layout_marginLeft="@dimen/small_margin"
-                            android:background="@drawable/right_arrow" />
+                            android:background="@drawable/ic_arrow_form" />
                     </LinearLayout>
                 </RelativeLayout>
             </LinearLayout>
