@@ -21,6 +21,9 @@ public class SharedPrefUtil {
     private static final String USER = "User";
     //存储accesstoken
     private static final String ACCESSTOKEN = "AccessToken";
+
+    private static final String TEMP_TEL = "TempTel";
+
     //存储QiniuToken
     private static final String QINIUTOKEN = "QiniuToken";
     //存储QiniuKey
@@ -98,6 +101,32 @@ public class SharedPrefUtil {
         }
         return userBean;
     }
+
+    /**
+     * 存储临时用户输入的手机号码
+     *
+     * @param context
+     * @param accesstoken
+     */
+    public static void setTempTel(Context context, String tel) {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor e = sp.edit();
+        e.putString(TEMP_TEL, tel);
+        e.commit();
+    }
+
+    /**
+     * 临时用户输入的手机号码
+     *
+     * @param context
+     * @return
+     */
+    public static String getTempTel(Context context) {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+        String accessToken = sp.getString(TEMP_TEL, null);
+        return accessToken;
+    }
+
 
     /**
      * 存储accesstoken

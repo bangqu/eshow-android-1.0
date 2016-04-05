@@ -90,6 +90,9 @@ public class LoginActivity extends CommonActivity {
         mMaterialBackButton.setVisibility(View.GONE);
 
         userName = getIntent().getStringExtra(InputPasswordActivity.INTENT_TEL);
+        if(ESStrUtil.isEmpty(userName)){
+            userName = SharedPrefUtil.getTempTel(mContext);
+        }
         mEtTel.setText(userName);
     }
 
@@ -160,8 +163,8 @@ public class LoginActivity extends CommonActivity {
 
     @Click(R.id.tvForgetPW)
     void onForgetPW() {
-        InputTelActivity_.intent(mContext).extra(InputTelActivity.INTENT_ISREGISTER, Enum_CodeType.FINDPASSWORD).start();
-//        progressDialog = ESDialogUtil.showProgressDialog(mContext, Global.LOADING_PROGRESSBAR_ID,"正在请求登录中...");
+        String userName = mEtTel.getText().toString();
+        InputTelActivity_.intent(mContext).extra(InputTelActivity_.INTENT_ISREGISTER, Enum_CodeType.FINDPASSWORD).extra(InputTelActivity_.INTENT_TEL,userName).start();
     }
 
     /**
@@ -169,7 +172,8 @@ public class LoginActivity extends CommonActivity {
      */
     @Click(R.id.tvSubTitle)
     void onRegister() {
-        InputTelActivity_.intent(mContext).extra(InputTelActivity_.INTENT_ISREGISTER, Enum_CodeType.REGISTER).start();
+        String userName = mEtTel.getText().toString();
+        InputTelActivity_.intent(mContext).extra(InputTelActivity_.INTENT_ISREGISTER, Enum_CodeType.REGISTER).extra(InputTelActivity_.INTENT_TEL,userName).start();
     }
 
     /**
@@ -257,7 +261,8 @@ public class LoginActivity extends CommonActivity {
 
                     MainActivity_.intent(mContext).start();
                 }else{//进行手机号码绑定
-                    InputTelActivity_.intent(mContext).extra(InputTelActivity_.INTENT_ISREGISTER, Enum_CodeType.BOUND).extra(InputTelActivity_.INTENT_THIRDTOEKN,thirdToken).start();
+                    String userName = mEtTel.getText().toString();
+                    InputTelActivity_.intent(mContext).extra(InputTelActivity_.INTENT_ISREGISTER, Enum_CodeType.BOUND).extra(InputTelActivity_.INTENT_THIRDTOEKN, thirdToken).extra(InputTelActivity_.INTENT_TEL,userName).start();
                 }
             } catch (JSONException e) {
                 e.printStackTrace();

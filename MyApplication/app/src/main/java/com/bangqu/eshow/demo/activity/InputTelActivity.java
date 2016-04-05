@@ -46,6 +46,9 @@ public class InputTelActivity extends CommonActivity {
     //进行第三方账号登录操作时需要的token
     public static final String INTENT_THIRDTOEKN = "ThirdToken";
 
+    public static final String INTENT_TEL = "InputTel";
+
+
     private Context mContext = InputTelActivity.this;
     @ViewById(R.id.rlBack)
     RelativeLayout mRlMenu;
@@ -80,6 +83,9 @@ public class InputTelActivity extends CommonActivity {
 
         intentExtra = (Enum_CodeType) getIntent().getSerializableExtra(INTENT_ISREGISTER);
         thirdToken = getIntent().getStringExtra(INTENT_THIRDTOEKN);
+        String tel = getIntent().getStringExtra(INTENT_TEL);
+        mEtTel.setText(tel);
+
         new Switch_CodeType(intentExtra) {
             @Override
             public void onRegister() {
@@ -90,6 +96,12 @@ public class InputTelActivity extends CommonActivity {
             @Override
             public void onFindPassword() {
                 InputTelActivity.this.setTitle("找回密码");
+
+            }
+
+            @Override
+            public void onRePassword() {
+                InputTelActivity.this.setTitle("重置密码");
 
             }
 
@@ -121,9 +133,10 @@ public class InputTelActivity extends CommonActivity {
             return;
         }
 
+        SharedPrefUtil.setTempTel(mContext,userName);
+
         if(intentExtra == Enum_CodeType.BOUND){
             ESLogUtil.d(mContext,"userName:"+userName+"    thirdToken:"+thirdToken);
-
             NetworkInterface.thirdBound(mContext, userName, thirdToken, boundResponseListener);
         }else{
             NetworkInterface.sendCode(mContext, userName, intentExtra, checkResponseListener);

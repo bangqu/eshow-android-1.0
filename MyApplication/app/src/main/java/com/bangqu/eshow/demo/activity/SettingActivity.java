@@ -65,17 +65,29 @@ public class SettingActivity extends CommonActivity {
 
     @Click(R.id.rlFeedback)
     void onFeedBack(){
-
+        String url = "http://api.eshow.org.cn/info/feedback";
+        Intent intent = new Intent(mContext,WebActivity.class);
+        intent.putExtra(WebActivity.INTENT_TAG_URL, url);
+        intent.putExtra(WebActivity.INTENT_TAG_TITLE,"意见反馈");
+        startActivity(intent);
     }
 
     @Click(R.id.rlQuestion)
     void onQuestion(){
-
+        String url = "http://api.eshow.org.cn/info/question";
+        Intent intent = new Intent(mContext,WebActivity.class);
+        intent.putExtra(WebActivity.INTENT_TAG_URL, url);
+        intent.putExtra(WebActivity.INTENT_TAG_TITLE,"常见问题");
+        startActivity(intent);
     }
 
     @Click(R.id.rlAbout)
     void onAbout(){
-
+        String url = "http://api.eshow.org.cn/info/about";
+        Intent intent = new Intent(mContext,WebActivity.class);
+        intent.putExtra(WebActivity.INTENT_TAG_URL,url);
+        intent.putExtra(WebActivity.INTENT_TAG_TITLE,"关于我们");
+        startActivity(intent);
     }
 
     @Click(R.id.rlWelcome)

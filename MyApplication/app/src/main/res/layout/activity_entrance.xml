@@ -25,7 +25,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="17dp"
         android:gravity="center_horizontal"
-        android:text="diakting © EShowAndroid"
+        android:text="daikting © EShowAndroid"
         android:textColor="#b3ffffff"
         android:textSize="9sp" />
 
