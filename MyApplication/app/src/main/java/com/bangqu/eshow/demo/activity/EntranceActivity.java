@@ -75,7 +75,8 @@ public class EntranceActivity extends CommonActivity implements Handler.Callback
         if (msg.what == HANDLER_MESSAGE_ANIMATION) {
             foreMask.startAnimation(entrance);
         } else if (msg.what == HANDLER_MESSAGE_NEXT_ACTIVITY) {
-            if (SharedPrefUtil.isFirstIn(mContext)) {
+            boolean isLogin = SharedPrefUtil.isLogin(mContext);
+            if (SharedPrefUtil.isFirstIn(mContext) || !isLogin) {
                 Intent intent = new Intent(mContext, GuideActivity.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.scroll_in, R.anim.scroll_out);
@@ -87,6 +88,7 @@ public class EntranceActivity extends CommonActivity implements Handler.Callback
                 finish();
             } else{
                 LoginActivity_.intent(mContext).start();
+                finish();
             }
 
         }

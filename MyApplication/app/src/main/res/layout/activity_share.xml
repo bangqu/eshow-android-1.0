@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/llParent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_bg"
+    android:orientation="vertical">
+    <include layout="@layout/common_actionbar_withback"/>
+
+    <ImageView
+        android:id="@+id/ivCode"
+        android:layout_width="450px"
+        android:layout_height="450px"
+        android:layout_marginTop="80px"
+        android:layout_gravity="center_horizontal"/>
+
+    <Button
+        android:id="@+id/btnShare"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/btn_long_height"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="@dimen/small_margin"
+        android:layout_marginRight="@dimen/small_margin"
+        android:layout_marginTop="60px"
+        android:background="@drawable/btn_long"
+        android:text="分享"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/btn_textSize" />
+
+</LinearLayout>

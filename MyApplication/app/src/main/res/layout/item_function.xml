@@ -12,7 +12,7 @@
         android:layout_height="@dimen/list_itemHeight"
         android:orientation="horizontal"
         android:paddingLeft="@dimen/normal_margin"
-        android:background="@drawable/list_item_selector">
+        android:background="@drawable/drawer_function_list">
 
         <ImageView
             android:id="@+id/ivIcon"

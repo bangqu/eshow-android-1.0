@@ -8,10 +8,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.bangqu.eshow.demo.R;
 import com.bangqu.eshow.demo.activity.InputTelActivity_;
 import com.bangqu.eshow.demo.activity.LoginActivity_;
+import com.bangqu.eshow.demo.activity.MainActivity_;
 import com.bangqu.eshow.demo.bean.Enum_CodeType;
 import com.prolificinteractive.parallaxpager.ParallaxContainer;
 
@@ -23,9 +25,10 @@ public class ParallaxFragment extends Fragment implements ViewPager.OnPageChange
     IndicatorView mIndicatorView;
 
     LinearLayout layoutBottom;
+    TextView tvPass;
     boolean isShowButton = true;
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_parallax, container, false);
         mIndicatorView = (IndicatorView) view.findViewById(R.id.indicatorView);
@@ -43,6 +46,13 @@ public class ParallaxFragment extends Fragment implements ViewPager.OnPageChange
 
         parallaxContainer.setOnPageChangeListener(this);
 
+        tvPass = (TextView) view.findViewById(R.id.tvPass);
+        tvPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity_.intent(ParallaxFragment.this).start();
+            }
+        });
         layoutBottom = (LinearLayout) view.findViewById(R.id.layoutBottom);
         if(isShowButton){
             layoutBottom.setVisibility(View.VISIBLE);

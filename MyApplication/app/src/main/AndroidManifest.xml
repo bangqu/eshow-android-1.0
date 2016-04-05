@@ -130,6 +130,10 @@
             android:label="@string/title_activity_infoform"
             android:screenOrientation="portrait"/>
 
+        <!--分享功能页面-->
+        <activity android:name=".activity.ShareActivity_"
+            android:label="@string/title_activity_share"
+            android:screenOrientation="portrait"/>
 
         <!--使用友盟5.0SDK-->
         <activity

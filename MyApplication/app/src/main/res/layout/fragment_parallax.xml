@@ -10,6 +10,23 @@
         android:layout_height="match_parent"
         android:layout_marginBottom="80dp" />
 
+    <TextView
+        android:id="@+id/tvPass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="center_vertical"
+        android:layout_marginRight="@dimen/normal_margin"
+        android:layout_marginTop="100px"
+        android:background="@drawable/parallax_pass_bg"
+        android:paddingBottom="5dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="5dp"
+        android:text="跳过"
+        android:textColor="@drawable/drawer_selector_pass"
+        android:textSize="@dimen/small_textSize" />
+
     <LinearLayout
         android:id="@+id/layoutBottom"
         android:layout_width="match_parent"

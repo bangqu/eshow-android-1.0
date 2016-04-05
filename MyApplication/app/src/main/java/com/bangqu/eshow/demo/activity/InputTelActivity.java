@@ -1,6 +1,7 @@
 package com.bangqu.eshow.demo.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -235,7 +236,11 @@ public class InputTelActivity extends CommonActivity {
      */
     @Click(R.id.tvAgreement)
     void onReadAgreement() {
-
+        String url = "http://api.eshow.org.cn/info/agreement";
+        Intent intent = new Intent(mContext,WebActivity.class);
+        intent.putExtra(WebActivity.INTENT_TAG_URL,url);
+        intent.putExtra(WebActivity.INTENT_TAG_TITLE,"使用协议");
+        startActivity(intent);
     }
 
 

@@ -11,6 +11,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.bangqu.eshow.demo.R;
+import com.bangqu.eshow.demo.activity.LoginActivity_;
 import com.bangqu.eshow.demo.common.SharedPrefUtil;
 import com.bangqu.eshow.fragment.ESFragment;
 import com.bangqu.eshow.util.ESViewUtil;
@@ -40,8 +41,20 @@ public class NaviFragment extends ESFragment implements View.OnClickListener {
         radios[0].setChecked(true);
 
         tvName = (TextView) view.findViewById(R.id.tvName);
-        String userName = SharedPrefUtil.getUser(mContext).getUsername();
-        tvName.setText(userName);
+
+        if(SharedPrefUtil.isLogin(mContext)){
+            String userName = SharedPrefUtil.getUser(mContext).getUsername();
+            tvName.setText(userName);
+        }else{
+            tvName.setText("登录/注册");
+            tvName.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    LoginActivity_.intent(mContext).start();
+                }
+            });
+        }
+
 
         buttonExit = (Button) view.findViewById(R.id.buttonExit);
         buttonExit.setOnClickListener(this);

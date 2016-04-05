@@ -46,4 +46,15 @@
         android:textSize="@dimen/subtitile_texstSize"
         android:gravity="center_vertical"
         android:visibility="gone"/>
+    <ImageView
+        android:id="@+id/ivShare"
+        android:layout_width="40px"
+        android:layout_height="40px"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10px"
+        android:background="@drawable/btn_share"
+        android:gravity="center_vertical"
+        android:visibility="gone"/>
+
 </RelativeLayout>

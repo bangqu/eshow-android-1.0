@@ -1,13 +1,16 @@
 package com.bangqu.eshow.demo.bean;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
 import com.bangqu.eshow.demo.activity.InfoFormActivity_;
+import com.bangqu.eshow.demo.activity.LoginActivity_;
 import com.bangqu.eshow.demo.activity.MapActivity_;
 import com.bangqu.eshow.demo.activity.PayWebViewActivity;
+import com.bangqu.eshow.demo.activity.ShareActivity_;
 import com.bangqu.eshow.demo.common.SharedPrefUtil;
-import com.bangqu.eshow.demo.view.ShareDialog;
+import com.bangqu.eshow.util.ESToastUtil;
 
 /**
  * 首页上的功能列表选择性的跳转
@@ -47,7 +50,15 @@ public class Intent_FunctionInMain {
     }
 
     void onFrom(Context context) {
-        InfoFormActivity_.intent(context).start();
+        if(SharedPrefUtil.isLogin(context)){
+            InfoFormActivity_.intent(context).start();
+
+        }else{
+            ESToastUtil.showToast(context,"请先登录再尝试使用此功能！");
+            LoginActivity_.intent(context).start();
+            Activity curActivity = (Activity) context;
+            curActivity.finish();
+        }
     }
 
     void onImage(Context context) {
@@ -70,15 +81,21 @@ public class Intent_FunctionInMain {
     }
 
     void onPay(Context context){
-        Intent intent = new Intent(context, PayWebViewActivity.class);
-        String url = "http://api.eshow.org.cn/pingpay/pay.jsp?accessToken="+ SharedPrefUtil.getAccessToken(context);
-        intent.putExtra(PayWebViewActivity.INTENT_URL_TAG, url);
-        context.startActivity(intent);
-
+        if(SharedPrefUtil.isLogin(context)){
+            Intent intent = new Intent(context, PayWebViewActivity.class);
+            String url = "http://api.eshow.org.cn/pingpay/pay.jsp?accessToken="+ SharedPrefUtil.getAccessToken(context);
+            intent.putExtra(PayWebViewActivity.INTENT_URL_TAG, url);
+            context.startActivity(intent);
+        }else{
+            ESToastUtil.showToast(context,"请先登录再尝试使用此功能！");
+            LoginActivity_.intent(context).start();
+            Activity curActivity = (Activity) context;
+            curActivity.finish();
+        }
     }
 
     void onShare(final Context context){
-        new ShareDialog(context).show();
+        ShareActivity_.intent(context).start();
     }
 
     void onChat(Context context){
