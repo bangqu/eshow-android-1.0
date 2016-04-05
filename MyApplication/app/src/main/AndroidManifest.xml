@@ -116,6 +116,10 @@
         <activity android:name=".activity.ModifyStringValueActivity_"
             android:screenOrientation="portrait"/>
 
+        <!--表单信息修改性别页面-->
+        <activity android:name=".activity.ModifySexActivity_"
+            android:screenOrientation="portrait"/>
+
         <!-- 网页支付页面 -->
         <activity
             android:name=".activity.PayWebViewActivity"

@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -17,7 +17,6 @@ import com.bangqu.eshow.demo.common.SharedPrefUtil;
 import com.bangqu.eshow.demo.network.ESResponseListener;
 import com.bangqu.eshow.demo.network.MyHttpUtil;
 import com.bangqu.eshow.demo.network.NetworkInterface;
-import com.bangqu.eshow.demo.view.LoginAutoCompleteEdit;
 import com.bangqu.eshow.fragment.ESProgressDialogFragment;
 import com.bangqu.eshow.http.ESRequestParams;
 import com.bangqu.eshow.util.ESDialogUtil;
@@ -36,9 +35,9 @@ import org.json.JSONObject;
 /**
  * 修改表单页面，只修改某项字符串类型的值
  * Created by daikting on 16/3/30.
- */@EActivity(R.layout.activity_modifystringvalue)
-public class ModifyStringValueActivity extends CommonActivity {
-    private Context mContext = ModifyStringValueActivity.this;
+ */@EActivity(R.layout.activity_modifysex)
+public class ModifySexActivity extends CommonActivity {
+    private Context mContext = ModifySexActivity.this;
     @ViewById(R.id.rlBack)
     RelativeLayout mRlMenu;
     @ViewById(R.id.material_back_button)
@@ -49,12 +48,16 @@ public class ModifyStringValueActivity extends CommonActivity {
     TextView mTvSubTitle;
 
     @ViewById
-    LoginAutoCompleteEdit etValue;
+    RelativeLayout rlMan;
+    @ViewById
+    ImageView ivChooseMan;
+    @ViewById
+    RelativeLayout rlWomen;
+    @ViewById
+    ImageView ivChooseWoman;
 
     //页面需要传递页面标题
     public static final String INTENT_TITLE_TAG ="intent.title";
-    //页面需要传递输入框提示文本
-    public static final String INTNET_HINTTEXT_TAG ="intent.hintText";
     //页面需要传递保存操作的接口名字
     public static final String INTNET_INTERFACE_TAG ="intent.interface";
     //页面需要传递保存操作的发送的参数键名
@@ -85,40 +88,36 @@ public class ModifyStringValueActivity extends CommonActivity {
         returnCode = getIntent().getIntExtra(INTENT_RETURN_CODE_TAG,InfoFormActivity_.RETURN_BASEINFO_CODE);
         String title = getIntent().getStringExtra(INTENT_TITLE_TAG);
         mTvTitle.setText(title);
-        String hintText = getIntent().getStringExtra(INTNET_HINTTEXT_TAG);
-        etValue.setHint(hintText);
-
 
         interfaceName = getIntent().getStringExtra(INTNET_INTERFACE_TAG);
         paramKey = getIntent().getStringExtra(INTNET_PARAMKEY_TAG);
-        if(paramKey.equals("user.age")){
-            etValue.setInputType(EditorInfo.TYPE_CLASS_NUMBER);
-        }
+
         String paramValue = getIntent().getStringExtra(INTENT_PARAMVALUE_TAG);
         if(!ESStrUtil.isEmpty(paramValue)){
-            etValue.setText(paramValue);
-        }
-    }
-    @Click(R.id.tvSubTitle)
-    void onSave(){
-        String inputStr = etValue.getText().toString();
-        if(ESStrUtil.isEmpty(inputStr)){
-            ESToastUtil.showToast(mContext,"请输入信息再保存！");
-          return;
-        }
-        if(paramKey.equals("user.age")) {
-            int age =Integer.valueOf(inputStr);
-            if(age < 0){
-                ESToastUtil.showToast(mContext,"年龄不能为负数！");
-                return;
-            }else if(age > 50 && age < 100){
-                ESToastUtil.showToast(mContext,"您的年纪可真大呀！");
-            }else if(age > 100){
-                ESToastUtil.showToast(mContext,"这是您的真实年龄！？反正我是不信！");
-                return;
+            if(paramValue.equals("男")){
+                chooseSex(true);
+            }else{
+                chooseSex(false);
             }
         }
-            saveInfo(inputStr);
+    }
+    @Click(R.id.rlMan)
+    void onManChoose(){
+        chooseSex(true);
+    }
+    @Click(R.id.rlWomen)
+    void onWomanChoose(){
+        chooseSex(false);
+    }
+
+    @Click(R.id.tvSubTitle)
+    void onSave(){
+            if(ivChooseMan.isShown()){
+                saveInfo("true");
+            }else{
+                saveInfo("false");
+            }
+
     }
 
     @Click(R.id.rlBack)
@@ -136,7 +135,7 @@ public class ModifyStringValueActivity extends CommonActivity {
     ESResponseListener responseListener = new ESResponseListener(mContext) {
         @Override
         public void onBQSucess(String esMsg, JSONObject resultJson) {
-            NetworkInterface.refreshUserInfo(mContext,userBeanResponseListener);
+            NetworkInterface.refreshUserInfo(mContext, userBeanResponseListener);
         }
 
         @Override
@@ -207,4 +206,14 @@ public class ModifyStringValueActivity extends CommonActivity {
             ESToastUtil.showToast(mContext, "请求失败，错误码：" + statusCode);
         }
     };
+
+    private void chooseSex(boolean isMan){
+        if(isMan){
+            ivChooseMan.setVisibility(View.VISIBLE);
+            ivChooseWoman.setVisibility(View.INVISIBLE);
+        }else{
+            ivChooseWoman.setVisibility(View.VISIBLE);
+            ivChooseMan.setVisibility(View.INVISIBLE);
+        }
+    }
 }

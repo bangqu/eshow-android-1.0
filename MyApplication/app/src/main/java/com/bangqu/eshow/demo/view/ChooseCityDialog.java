@@ -210,7 +210,7 @@ public class ChooseCityDialog extends Dialog {
         this.onFinishListener = onFinishListener;
     }
 
-    interface  OnFinishListener {
+    public interface  OnFinishListener {
         public void onFinishListener(ProviceBean proviceBean,CityBean cityBean,AreaBean areaBean);
     }
 }

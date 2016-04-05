@@ -276,8 +276,8 @@ public class ESStrUtil {
 		}
 		return sb.toString();
 	}
- 	
- 	/**
+
+	/**
 	  * 描述：标准化日期时间类型的数据，不足两位的补0.
 	  *
 	  * @param dateTime 预格式的时间字符串，如:2012-3-2 12:2:20

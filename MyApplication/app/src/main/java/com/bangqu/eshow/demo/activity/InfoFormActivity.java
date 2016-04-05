@@ -98,6 +98,8 @@ public class InfoFormActivity extends FragmentActivity {
 
     private long lastClickTime = 0;
 
+    public static final int RETURN_BASEINFO_CODE = 0x11;
+    public static final int RETURN_PERSON_CODE = 0x22;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -233,13 +235,12 @@ public class InfoFormActivity extends FragmentActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         //这里应该可以定义一个枚举来处理多种返回情况，目前只做了昵称的修改，看看效果吧
-        if (resultCode == 0x22) {
+        if (resultCode == RETURN_BASEINFO_CODE) {
             ESLogUtil.d(mContext, "onActivityResult+++++++");
-//            data.setAction(Global.EShow_Broadcast_Action.ACTION_USERBASEINFO_CHANGED);
-//            sendBroadcast(data);
-            String nickName = data.getStringExtra(ModifyStringValueActivity_.INTENT_PARAMVALUE_TAG);
-            baseInfoFragment.setNickName(nickName);
-        } else {
+            baseInfoFragment.setBaseInfo(true);
+        } else if(resultCode == RETURN_PERSON_CODE) {
+            personFragment.setPersonInfo(true);
+        }else{
             if (umShareAPI != null) {
                 umShareAPI.onActivityResult(requestCode, resultCode, data);
             }
@@ -358,4 +359,5 @@ public class InfoFormActivity extends FragmentActivity {
             return false;
         }
     }
+
 }
