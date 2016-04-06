@@ -110,6 +110,14 @@ public class Global {
          * framework通知activity进行微信授权动作
          */
         public static final String ACTION_WECHAT_AUTHORIZE = "bangqu.authorize.wechat";
+
+        /**
+         *
+         * 用户登录
+         *
+         * */
+        public static final String ACTION_LOGIN_SUCESS = "bangqu.login.sucess";
+
     }
 
 }

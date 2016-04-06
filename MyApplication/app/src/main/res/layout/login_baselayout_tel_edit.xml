@@ -7,6 +7,7 @@
     android:layout_marginRight="@dimen/normal_margin"
     android:background="@null"
     android:hint="请输入手机号码"
+    android:textColorHint="@color/text_hint"
     android:inputType="phone"
     android:maxLength="11"
     android:maxLines="1"

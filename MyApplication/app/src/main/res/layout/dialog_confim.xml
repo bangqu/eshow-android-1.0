@@ -23,7 +23,8 @@
             android:layout_marginRight="30px"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:paddingTop="30px">
+            android:paddingTop="30px"
+            android:visibility="gone">
 
 
             <TextView
@@ -52,8 +53,8 @@
             android:layout_height="wrap_content"
             android:focusable="true"
             android:gravity="center_vertical"
-            android:padding="30px"
-            android:text="ok"
+            android:padding="@dimen/normal_margin"
+            android:text=""
             android:textColor="@color/normal_text"
             android:textSize="@dimen/normal_textSize" />
 
@@ -62,7 +63,7 @@
         <View
             android:layout_width="fill_parent"
             android:layout_height="@dimen/divide_height"
-            android:background="#c7c8cc" />
+            android:background="#eaeaea" />
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -87,7 +88,7 @@
             <TextView
                 android:layout_width="@dimen/divide_height"
                 android:layout_height="fill_parent"
-                android:background="#c7c8cc" />
+                android:background="#eaeaea" />
 
             <TextView
                 android:id="@+id/dialog_btn_ok"

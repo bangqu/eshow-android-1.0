@@ -41,7 +41,7 @@ public class ShareDialog extends Dialog {
     Context context;
 
     String shareTitle = "EShow开源框架";
-    String shareText = "EShow是一套完整的移动端框架";
+    String shareText = "简单、快捷、易用。集合文件下载，地图定位，音乐播放，用户聊天等功能框架。";
     String imgUrl ="http://77wdb6.com2.z0.glb.qiniucdn.com/icon.png";
     String showUrl = "http://www.eshow.org.cn";
     ShareCallBackListener shareCallBackListener;

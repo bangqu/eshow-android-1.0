@@ -2,9 +2,12 @@ package com.bangqu.eshow.demo.activity;
 
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
+import android.support.v4.content.LocalBroadcastManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LinearInterpolator;
@@ -62,6 +65,7 @@ public class MainActivity extends CommonActivity {
     private MainFragment mainFragment;
     ESProgressDialogFragment progressDialog;
 
+    NaviFragment naviFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,6 +79,8 @@ public class MainActivity extends CommonActivity {
                 agoActivity.get(i).finish();
             }
         }
+
+        registerBroadcast();
     }
 
     @AfterViews
@@ -165,7 +171,7 @@ public class MainActivity extends CommonActivity {
                 }
             }
         });
-        NaviFragment naviFragment = new NaviFragment();
+        naviFragment = new NaviFragment();
         naviFragment.setNaviCallbacks(new NaviFragment.NaviCallbacks() {
             @Override
             public void onNaviItemSelected(int position) {
@@ -175,6 +181,11 @@ public class MainActivity extends CommonActivity {
                         overridePendingTransition(R.anim.downtoup_in, R.anim.downtoup_out);
                         break;
                     case 1:
+                        if(!SharedPrefUtil.isLogin(mContext)) {
+                            ESToastUtil.showToast(mContext, "您还未登录！");
+                            LoginActivity_.intent(mContext).start();
+                            return;
+                        }
                         ConfirmDialog.OnCustomDialogListener onCustomDialogListener = new ConfirmDialog.OnCustomDialogListener() {
                             @Override
                             public void OnCustomDialogConfim(String str) {
@@ -225,5 +236,27 @@ public class MainActivity extends CommonActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         UMShareAPI.get(this).onActivityResult( requestCode, resultCode, data);
+    }
+
+    /**
+     * 注册用于更新界面的广播
+     */
+    private void registerBroadcast() {
+        LocalBroadcastManager broadcastManager = LocalBroadcastManager.getInstance(mContext);
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(Global.EShow_Broadcast_Action.ACTION_LOGIN_SUCESS);
+        BroadcastReceiver receiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                String action = intent.getAction();
+                ESLogUtil.d(mContext, "++++++++++broadcast action:" + action);
+                if (action.equals(Global.EShow_Broadcast_Action.ACTION_LOGIN_SUCESS)) {
+                    if(naviFragment != null){
+                        naviFragment.updateUserInfo();
+                    }
+                }
+            }
+        };
+        broadcastManager.registerReceiver(receiver, intentFilter);
     }
 }

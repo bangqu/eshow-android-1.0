@@ -1,6 +1,5 @@
 package com.bangqu.eshow.demo.bean;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
@@ -56,8 +55,6 @@ public class Intent_FunctionInMain {
         }else{
             ESToastUtil.showToast(context,"请先登录再尝试使用此功能！");
             LoginActivity_.intent(context).start();
-            Activity curActivity = (Activity) context;
-            curActivity.finish();
         }
     }
 
@@ -89,8 +86,6 @@ public class Intent_FunctionInMain {
         }else{
             ESToastUtil.showToast(context,"请先登录再尝试使用此功能！");
             LoginActivity_.intent(context).start();
-            Activity curActivity = (Activity) context;
-            curActivity.finish();
         }
     }
 

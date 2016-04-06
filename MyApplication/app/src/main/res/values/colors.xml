@@ -37,4 +37,6 @@
     <color name="possible_result_points">#c0ffff00</color>
 
     <color name="divide">#fff7f7f0</color>
+
+    <color name="text_hint">#c7c7c7</color>
 </resources>

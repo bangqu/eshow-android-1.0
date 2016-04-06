@@ -138,7 +138,7 @@
             android:paddingLeft="42px"
             android:paddingRight="0px"
             android:text="系统设置"
-            android:textColor="@drawable/drawer_selector_font"
+            android:textColor="@color/white"
             android:textSize="@dimen/normal_textSize" />
 
         <RadioButton
@@ -152,7 +152,7 @@
             android:paddingLeft="42px"
             android:paddingRight="0px"
             android:text="密码修改"
-            android:textColor="@drawable/drawer_selector_font"
+            android:textColor="@color/white"
             android:textSize="@dimen/normal_textSize" />
 
         <Button
@@ -167,7 +167,7 @@
             android:paddingLeft="42px"
             android:paddingRight="0px"
             android:text="退出系统"
-            android:textColor="@drawable/drawer_selector_font"
+            android:textColor="@color/white"
             android:textSize="@dimen/normal_textSize" />
 
     </LinearLayout>

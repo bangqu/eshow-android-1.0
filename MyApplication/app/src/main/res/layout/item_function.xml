@@ -30,14 +30,14 @@
             android:layout_marginLeft="@dimen/normal_margin"
             android:textColor="@color/normal_text"
             android:textSize="@dimen/list_textSize" />
-
         <ImageView
-            android:layout_width="30px"
-            android:layout_height="40px"
-            android:background="@drawable/right_arrow"
+            android:layout_width="@dimen/form_arrow_width"
+            android:layout_height="@dimen/form_arrow_height"
+            android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="@dimen/small_margin"
-            android:layout_alignParentRight="true"/>
+            android:layout_marginRight="@dimen/normal_margin"
+            android:background="@drawable/ic_arrow_form" />
+
     </RelativeLayout>
 
 

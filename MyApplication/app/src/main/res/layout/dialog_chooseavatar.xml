@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/llParent"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="@dimen/small_margin">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/white_bg"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/choose_album"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/edittext_height"
+                android:background="@null"
+                android:textColor="@drawable/drawer_selector_font_gray"
+                android:text="本地相册"
+                android:textSize="@dimen/small_textSize" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divide_height"
+                android:background="@color/app_bg"/>
+            <Button
+                android:id="@+id/choose_cam"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/edittext_height"
+                android:background="@null"
+                android:textColor="@drawable/drawer_selector_font_gray"
+                android:text="相机拍照"
+                android:textSize="@dimen/small_textSize" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/white_bg"
+            android:layout_marginTop="@dimen/small_textSize_20"
+            android:orientation="vertical">
+            <Button
+                android:id="@+id/choose_cancel"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/edittext_height"
+                android:background="@drawable/drawer_selector"
+                android:text="取消"
+                android:textSize="@dimen/small_textSize"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

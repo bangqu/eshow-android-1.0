@@ -35,11 +35,11 @@
                     android:textSize="@dimen/list_textSize" />
 
                 <ImageView
-                    android:layout_width="30px"
-                    android:layout_height="40px"
+                    android:layout_width="@dimen/form_arrow_width"
+                    android:layout_height="@dimen/form_arrow_height"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="@dimen/normal_margin"
-                    android:background="@drawable/right_arrow" />
+                    android:background="@drawable/ic_arrow_form" />
             </RelativeLayout>
 
             <View
@@ -62,11 +62,11 @@
                     android:textSize="@dimen/list_textSize" />
 
                 <ImageView
-                    android:layout_width="30px"
-                    android:layout_height="40px"
+                    android:layout_width="@dimen/form_arrow_width"
+                    android:layout_height="@dimen/form_arrow_height"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="@dimen/normal_margin"
-                    android:background="@drawable/right_arrow" />
+                    android:background="@drawable/ic_arrow_form" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -86,11 +86,11 @@
                     android:textSize="@dimen/list_textSize" />
 
                 <ImageView
-                    android:layout_width="30px"
-                    android:layout_height="40px"
+                    android:layout_width="@dimen/form_arrow_width"
+                    android:layout_height="@dimen/form_arrow_height"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="@dimen/normal_margin"
-                    android:background="@drawable/right_arrow" />
+                    android:background="@drawable/ic_arrow_form" />
             </RelativeLayout>
 
             <View
@@ -113,11 +113,11 @@
                     android:textSize="@dimen/list_textSize" />
 
                 <ImageView
-                    android:layout_width="30px"
-                    android:layout_height="40px"
+                    android:layout_width="@dimen/form_arrow_width"
+                    android:layout_height="@dimen/form_arrow_height"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="@dimen/normal_margin"
-                    android:background="@drawable/right_arrow" />
+                    android:background="@drawable/ic_arrow_form" />
             </RelativeLayout>
 
         </LinearLayout>

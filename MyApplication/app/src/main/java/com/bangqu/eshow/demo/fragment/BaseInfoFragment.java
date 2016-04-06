@@ -8,13 +8,11 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -30,9 +28,9 @@ import com.bangqu.eshow.demo.common.SharedPrefUtil;
 import com.bangqu.eshow.demo.network.ESResponseListener;
 import com.bangqu.eshow.demo.network.MyHttpUtil;
 import com.bangqu.eshow.demo.network.NetworkInterface;
+import com.bangqu.eshow.demo.view.ChoosePhotoDialog;
 import com.bangqu.eshow.http.ESRequestParams;
 import com.bangqu.eshow.image.ESImageLoader;
-import com.bangqu.eshow.util.ESDialogUtil;
 import com.bangqu.eshow.util.ESFileUtil;
 import com.bangqu.eshow.util.ESLogUtil;
 import com.bangqu.eshow.util.ESStrUtil;
@@ -130,16 +128,10 @@ public class BaseInfoFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.rlIcon:
-                LayoutInflater mInflater = LayoutInflater.from(mContext);
-                View mAvatarView = mInflater.inflate(R.layout.choose_avatar, null);
-                Button albumButton = (Button) mAvatarView.findViewById(R.id.choose_album);
-                Button camButton = (Button) mAvatarView.findViewById(R.id.choose_cam);
-                Button cancelButton = (Button) mAvatarView.findViewById(R.id.choose_cancel);
-                albumButton.setOnClickListener(new View.OnClickListener() {
-
+                ChoosePhotoDialog choosePhotoDialog = new ChoosePhotoDialog(mContext);
+                choosePhotoDialog.setOnChooseListener(new ChoosePhotoDialog.OnChooseListener() {
                     @Override
-                    public void onClick(View v) {
-                        ESDialogUtil.removeDialog(mContext);
+                    public void onLocalChooseListener() {
                         // 从相册中去获取
                         try {
                             Intent intent = new Intent(Intent.ACTION_GET_CONTENT, null);
@@ -150,28 +142,12 @@ public class BaseInfoFragment extends Fragment implements View.OnClickListener {
                         }
                     }
 
-                });
-
-                camButton.setOnClickListener(new View.OnClickListener() {
-
                     @Override
-                    public void onClick(View v) {
-                        ESDialogUtil.removeDialog(mContext);
+                    public void onTakePhotoListener() {
                         doPickPhotoAction();
                     }
-
                 });
-
-                cancelButton.setOnClickListener(new View.OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        ESDialogUtil.removeDialog(mContext);
-                    }
-
-                });
-                ESDialogUtil.showDialog(mAvatarView, Gravity.BOTTOM);
-
+                choosePhotoDialog.show();
                 break;
             case R.id.rlAccount:
 

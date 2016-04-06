@@ -43,30 +43,7 @@ public class NaviFragment extends ESFragment implements View.OnClickListener {
         radios[0].setChecked(true);
 
         tvName = (TextView) view.findViewById(R.id.tvName);
-
-        if(SharedPrefUtil.isLogin(mContext)){
-            String userName = SharedPrefUtil.getUser(mContext).getUsername();
-            tvName.setText(userName);
-            tvName.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    InfoFormActivity_.intent(mContext).start();
-                    Activity curActivity = (Activity) mContext;
-                    curActivity.overridePendingTransition(R.anim.downtoup_in, R.anim.downtoup_out);
-
-                }
-            });
-        }else{
-            tvName.setText("登录/注册");
-            tvName.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    LoginActivity_.intent(mContext).start();
-                }
-            });
-        }
-
-
+        updateUserInfo();
         buttonExit = (Button) view.findViewById(R.id.buttonExit);
         buttonExit.setOnClickListener(this);
         return view;
@@ -106,6 +83,30 @@ public class NaviFragment extends ESFragment implements View.OnClickListener {
 
     public interface NaviCallbacks {
         void onNaviItemSelected(int position);
+    }
+
+    public void updateUserInfo(){
+        if(SharedPrefUtil.isLogin(mContext)){
+            String userName = SharedPrefUtil.getUser(mContext).getUsername();
+            tvName.setText(userName);
+            tvName.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    InfoFormActivity_.intent(mContext).start();
+                    Activity curActivity = (Activity) mContext;
+                    curActivity.overridePendingTransition(R.anim.downtoup_in, R.anim.downtoup_out);
+
+                }
+            });
+        }else{
+            tvName.setText("登录/注册");
+            tvName.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    LoginActivity_.intent(mContext).start();
+                }
+            });
+        }
     }
 
 }

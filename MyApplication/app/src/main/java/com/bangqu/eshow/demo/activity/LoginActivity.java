@@ -87,13 +87,17 @@ public class LoginActivity extends CommonActivity {
         mTvTitle.setText(getTitle());
         mTvSubTitle.setVisibility(View.VISIBLE);
         mMaterialBackButton.setState(MaterialMenuDrawable.IconState.ARROW);
-        mMaterialBackButton.setVisibility(View.GONE);
+        mMaterialBackButton.setVisibility(View.VISIBLE);
 
         userName = getIntent().getStringExtra(InputPasswordActivity.INTENT_TEL);
         if(ESStrUtil.isEmpty(userName)){
             userName = SharedPrefUtil.getTempTel(mContext);
         }
         mEtTel.setText(userName);
+    }
+    @Click(R.id.rlBack)
+    void onBack() {
+        finish();
     }
 
     @Click(R.id.btnLogin)

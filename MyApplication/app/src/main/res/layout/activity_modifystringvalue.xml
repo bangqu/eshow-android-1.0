@@ -20,6 +20,7 @@
             android:paddingLeft="@dimen/normal_margin"
             android:paddingRight="@dimen/normal_margin"
             android:background="@color/white"
+            android:textColorHint="@color/text_hint"
             android:hint=""
             android:inputType="text"
             android:maxLines="1"

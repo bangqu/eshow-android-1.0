@@ -12,7 +12,7 @@
     <dimen name="guide_photo_divide_height">30dp</dimen>
 
     <!--标题栏高度-->
-    <dimen name="titleBarSize">96px</dimen>
+    <dimen name="titleBarSize">110px</dimen>
     <!--字体大小-->
     <dimen name="title_textSize">38px</dimen>
     <dimen name="subtitile_texstSize">32px</dimen>

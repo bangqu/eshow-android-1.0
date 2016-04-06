@@ -7,7 +7,7 @@
 
     <RelativeLayout
         android:id="@+id/rlBack"
-        android:layout_width="80px"
+        android:layout_width="100px"
         android:layout_height="match_parent"
         android:background="@drawable/drawer_selector">
 
@@ -52,9 +52,9 @@
         android:layout_height="40px"
         android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="10px"
+        android:layout_marginRight="@dimen/small_margin"
         android:background="@drawable/btn_share"
         android:gravity="center_vertical"
-        android:visibility="gone"/>
+        android:visibility="visible"/>
 
 </RelativeLayout>

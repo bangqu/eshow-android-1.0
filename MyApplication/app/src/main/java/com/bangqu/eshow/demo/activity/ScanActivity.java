@@ -297,32 +297,32 @@ public class ScanActivity extends CommonActivity implements Callback,OnClickList
 					if (cursor != null && cursor.moveToFirst()) {
 						photo_path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
 						cursor.close();
+
+						mProgress = new ProgressDialog(ScanActivity.this);
+						mProgress.setMessage("正在扫描...");
+						mProgress.setCancelable(false);
+						mProgress.show();
+
+						new Thread(new Runnable() {
+							@Override
+							public void run() {
+								Result result = scanningImage(photo_path);
+								if (result != null) {
+									Message m = mHandler.obtainMessage();
+									m.what = PARSE_BARCODE_SUC;
+									m.obj = result.getText();
+									mHandler.sendMessage(m);
+								} else {
+									Message m = mHandler.obtainMessage();
+									m.what = PARSE_BARCODE_FAIL;
+									m.obj = "扫描失败!";
+									mHandler.sendMessage(m);
+								}
+							}
+						}).start();
 					}else{
 						ESToastUtil.showToast(context,"无法访问图片地址！");
 					}
-					mProgress = new ProgressDialog(ScanActivity.this);
-					mProgress.setMessage("正在扫描...");
-					mProgress.setCancelable(false);
-					mProgress.show();
-
-					new Thread(new Runnable() {
-						@Override
-						public void run() {
-							Result result = scanningImage(photo_path);
-							if (result != null) {
-								Message m = mHandler.obtainMessage();
-								m.what = PARSE_BARCODE_SUC;
-								m.obj = result.getText();
-								mHandler.sendMessage(m);
-							} else {
-								Message m = mHandler.obtainMessage();
-								m.what = PARSE_BARCODE_FAIL;
-								m.obj = "Scan failed!";
-								mHandler.sendMessage(m);
-							}
-						}
-					}).start();
-
 					break;
 
 			}

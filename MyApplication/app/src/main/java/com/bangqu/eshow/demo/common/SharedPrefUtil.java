@@ -1,8 +1,10 @@
 package com.bangqu.eshow.demo.common;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.support.v4.content.LocalBroadcastManager;
 
 import com.bangqu.eshow.demo.bean.UserBean;
 import com.bangqu.eshow.util.ESJsonUtil;
@@ -84,6 +86,9 @@ public class SharedPrefUtil {
         SharedPreferences.Editor e = sp.edit();
         e.putString(USER, user);
         e.commit();
+
+        Intent intent = new Intent(Global.EShow_Broadcast_Action.ACTION_LOGIN_SUCESS);
+        LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
     }
 
     /**
@@ -106,7 +111,7 @@ public class SharedPrefUtil {
      * 存储临时用户输入的手机号码
      *
      * @param context
-     * @param accesstoken
+     * @param tel
      */
     public static void setTempTel(Context context, String tel) {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
