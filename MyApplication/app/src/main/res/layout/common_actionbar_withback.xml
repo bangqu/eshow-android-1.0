@@ -55,6 +55,6 @@
         android:layout_marginRight="@dimen/small_margin"
         android:background="@drawable/btn_share"
         android:gravity="center_vertical"
-        android:visibility="visible"/>
+        android:visibility="gone"/>
 
 </RelativeLayout>
