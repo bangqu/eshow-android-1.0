@@ -3,6 +3,7 @@ package com.bangqu.eshow.demo.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
@@ -92,12 +93,14 @@ public class InputTelActivity extends CommonActivity {
             public void onRegister() {
                 InputTelActivity.this.setTitle("注册");
                 mBtnSubmit.setText("提交");
+                mLlAgreement.setVisibility(View.VISIBLE);
             }
 
             @Override
             public void onFindPassword() {
                 InputTelActivity.this.setTitle("找回密码");
                 mBtnSubmit.setText("获取验证码");
+                mLlAgreement.setVisibility(View.INVISIBLE);
 
             }
 
@@ -105,6 +108,7 @@ public class InputTelActivity extends CommonActivity {
             public void onRePassword() {
                 InputTelActivity.this.setTitle("重置密码");
                 mBtnSubmit.setText("获取验证码");
+                mLlAgreement.setVisibility(View.INVISIBLE);
 
             }
 

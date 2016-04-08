@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
+import android.util.DisplayMetrics;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LinearInterpolator;
@@ -30,6 +31,7 @@ import com.bangqu.eshow.demo.view.AddPopupwindow;
 import com.bangqu.eshow.demo.view.ConfirmDialog;
 import com.bangqu.eshow.fragment.ESProgressDialogFragment;
 import com.bangqu.eshow.global.ESActivityManager;
+import com.bangqu.eshow.util.ESAppUtil;
 import com.bangqu.eshow.util.ESLogUtil;
 import com.bangqu.eshow.util.ESToastUtil;
 import com.bangqu.eshow.util.ESViewUtil;
@@ -138,6 +140,13 @@ public class MainActivity extends CommonActivity {
      * 初始化滑动分页
      */
     private void initSliding() {
+
+        DisplayMetrics displayMetrics =  ESAppUtil.getDisplayMetrics(mContext);
+        int width = displayMetrics.widthPixels;
+        int slidingMenuOffset = width/5;
+        int shadowWidth = slidingMenuOffset/3;
+
+
         //SlidingMenu的配置
         menu = new SlidingMenu(this);
         menu.setMode(SlidingMenu.LEFT);
@@ -146,9 +155,9 @@ public class MainActivity extends CommonActivity {
         //可解决事件冲突问题
         menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);
 
-        menu.setShadowWidthRes(R.dimen.shadow_width);
+        menu.setShadowWidth(shadowWidth);
         menu.setShadowDrawable(R.drawable.shadow);
-        menu.setBehindOffsetRes(R.dimen.slidingmenu_offset);
+        menu.setBehindOffset(slidingMenuOffset);
         menu.setFadeDegree(0.35f);
         menu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
         //menu视图的Fragment添加

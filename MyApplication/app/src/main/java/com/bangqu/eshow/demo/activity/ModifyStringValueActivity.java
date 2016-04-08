@@ -121,6 +121,11 @@ public class ModifyStringValueActivity extends CommonActivity {
                 ESToastUtil.showToast(mContext,"这是您的真实年龄！？反正我是不信！");
                 return;
             }
+        }else if(paramKey.equals("user.email")){
+            if(!ESStrUtil.isEmail(inputStr)){
+                ESToastUtil.showToast(mContext,"请输入正确的邮箱地址！");
+                return;
+            }
         }
             saveInfo(inputStr);
     }

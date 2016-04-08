@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bangqu.eshow.demo.R;
@@ -15,6 +16,7 @@ import com.bangqu.eshow.demo.activity.InputTelActivity_;
 import com.bangqu.eshow.demo.activity.LoginActivity_;
 import com.bangqu.eshow.demo.activity.MainActivity_;
 import com.bangqu.eshow.demo.bean.Enum_CodeType;
+import com.bangqu.eshow.util.ESViewUtil;
 import com.prolificinteractive.parallaxpager.ParallaxContainer;
 
 /**
@@ -31,6 +33,7 @@ public class ParallaxFragment extends Fragment implements ViewPager.OnPageChange
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_parallax, container, false);
+        ESViewUtil.scaleContentView((RelativeLayout) view.findViewById(R.id.rlParent));
         mIndicatorView = (IndicatorView) view.findViewById(R.id.indicatorView);
 
         ParallaxContainer parallaxContainer =
