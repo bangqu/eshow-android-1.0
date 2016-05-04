@@ -28,7 +28,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.bangqu.eshow.demo.R;
+import cn.org.eshow.demo.R;
 import com.google.zxing.ResultPoint;
 
 import java.util.Collection;

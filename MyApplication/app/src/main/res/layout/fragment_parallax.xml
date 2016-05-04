@@ -12,7 +12,7 @@
         android:layout_alignParentBottom="true"
         android:orientation="vertical">
 
-        <com.bangqu.eshow.demo.guide.IndicatorView
+        <cn.org.eshow.demo.guide.IndicatorView
             android:id="@+id/indicatorView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

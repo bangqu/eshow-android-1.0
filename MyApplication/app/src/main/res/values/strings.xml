@@ -10,6 +10,7 @@
     <string name="title_activity_infoform">信息表单</string>
     <string name="title_activity_map">地图</string>
     <string name="title_activity_share">分享信息</string>
+    <string name="title_activity_bluetooth">蓝牙搜索</string>
     <string name="empty"></string>
     <string name="scan_tip">将条形码/二维码放入框内，即可自动扫描</string>
 </resources>

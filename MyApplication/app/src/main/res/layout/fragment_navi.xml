@@ -18,7 +18,7 @@
             android:layout_marginLeft="42px"
             android:layout_marginRight="25px">
 
-            <com.bangqu.eshow.demo.view.CircleImageView
+            <cn.org.eshow.demo.view.CircleImageView
                 android:id="@+id/circleIcon"
                 android:layout_width="100px"
                 android:layout_height="100px"

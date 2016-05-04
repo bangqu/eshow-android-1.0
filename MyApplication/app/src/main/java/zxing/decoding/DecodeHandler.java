@@ -22,8 +22,8 @@ import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
 
-import com.bangqu.eshow.demo.R;
-import com.bangqu.eshow.demo.activity.ScanActivity;
+import cn.org.eshow.demo.R;
+import cn.org.eshow.demo.activity.ScanActivity;
 import com.google.zxing.BinaryBitmap;
 import com.google.zxing.DecodeHintType;
 import com.google.zxing.MultiFormatReader;

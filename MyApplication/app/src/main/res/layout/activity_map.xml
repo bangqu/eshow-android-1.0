@@ -64,7 +64,7 @@
             android:layout_height="@dimen/divide_height"
             android:background="@color/app_bg" />
 
-        <com.bangqu.eshow.demo.view.LoginAutoCompleteEdit
+        <cn.org.eshow.demo.view.LoginAutoCompleteEdit
             android:id="@+id/etSubAddress"
             android:layout_width="match_parent"
             android:layout_height="@dimen/edittext_height"
