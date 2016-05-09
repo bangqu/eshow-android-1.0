@@ -5,7 +5,7 @@
     android:background="@color/black"
     android:orientation="vertical" >
 
-    <cn.org.eshow.view.sliding.ESSlidingTabView
+    <cn.org.eshow_structure.view.sliding.ESSlidingTabView
         android:id="@+id/mAbSlidingTabView"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" />

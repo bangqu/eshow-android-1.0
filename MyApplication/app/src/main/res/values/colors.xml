@@ -42,4 +42,6 @@
 
     <color name="close_pin">#999999</color>
     <color name="open_pin">#3d4245</color>
+
+    <color name="colorMusicText">#C6C6C6</color>
 </resources>

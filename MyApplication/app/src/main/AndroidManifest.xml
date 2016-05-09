@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="cn.org.eshow.demo"
+    package="cn.org.eshow"
     android:versionCode="1"
     android:versionName="1.0.0">
     <uses-permission android:name="android.permission.CALL_PHONE" />
@@ -41,26 +41,26 @@
     <uses-permission android:name="android.permission.BATTERY_STATS" />
 
     <application
-        android:name="cn.org.eshow.demo.MyApp"
+        android:name="cn.org.eshow.MyApp"
         android:allowBackup="true"
         android:icon="@drawable/icon"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="cn.org.eshow.demo.activity.MainActivity_"
+            android:name="cn.org.eshow.activity.MainActivity_"
             android:label="@string/app_name"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"/>
         <!--引导页面-->
         <activity
-            android:name="cn.org.eshow.demo.activity.GuideActivity"
+            android:name="cn.org.eshow.activity.GuideActivity"
             android:label="@string/app_name"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
         <!--启动页面-->
         <activity
-            android:name="cn.org.eshow.demo.activity.EntranceActivity_"
+            android:name="cn.org.eshow.activity.EntranceActivity_"
             android:icon="@drawable/icon"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -70,94 +70,111 @@
         </activity>
         <!--注册页面-->
         <activity
-            android:name="cn.org.eshow.demo.activity.InputTelActivity_"
+            android:name="cn.org.eshow.activity.InputTelActivity_"
             android:label="@string/title_activity_regist"
             android:screenOrientation="portrait"/>
 
         <!--登录页面-->
         <activity
-            android:name="cn.org.eshow.demo.activity.LoginActivity_"
+            android:name="cn.org.eshow.activity.LoginActivity_"
             android:label="@string/title_activity_login"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden"/>
 
         <!--找回密码-->
         <activity
-            android:name="cn.org.eshow.demo.activity.InputPasswordActivity_"
+            android:name="cn.org.eshow.activity.InputPasswordActivity_"
             android:label="@string/title_activity_findPassword"
             android:screenOrientation="portrait"/>
 
         <!--设置-->
         <activity
-            android:name="cn.org.eshow.demo.activity.SettingActivity_"
+            android:name="cn.org.eshow.activity.SettingActivity_"
             android:label="@string/title_activity_setting"
             android:screenOrientation="portrait"/>
 
         <!--条码、二维码扫描结果文本显示页面-->
         <activity
-            android:name="cn.org.eshow.demo.activity.ScanTextResultActivity_"
+            android:name="cn.org.eshow.activity.ScanTextResultActivity_"
             android:label="@string/title_activity_scan"
             android:screenOrientation="portrait"/>
 
         <!--扫描条码、二维码页面-->
         <activity
-            android:name="cn.org.eshow.demo.activity.ScanActivity"
+            android:name="cn.org.eshow.activity.ScanActivity"
             android:label="@string/title_activity_scan"
             android:screenOrientation="portrait"/>
 
         <!--网址显示页面-->
         <activity
-            android:name="cn.org.eshow.demo.activity.WebActivity"
+            android:name="cn.org.eshow.activity.WebActivity"
             android:label="@string/title_activity_web"
             android:screenOrientation="portrait"/>
 
         <!--地图上选择地址的页面-->
         <activity
-            android:name="cn.org.eshow.demo.activity.ChooseLocationActivity_"
+            android:name="cn.org.eshow.activity.ChooseLocationActivity_"
             android:screenOrientation="portrait"/>
 
         <!--根据用户输入地方名搜索-->
         <activity
-            android:name="cn.org.eshow.demo.activity.SearchLocationActivity_"
+            android:name="cn.org.eshow.activity.SearchLocationActivity_"
             android:screenOrientation="portrait"/>
 
         <!--表单输入页面-->
         <activity
-            android:name="cn.org.eshow.demo.activity.InfoFormActivity_"
+            android:name="cn.org.eshow.activity.InfoFormActivity_"
             android:label="@string/title_activity_infoform"
             android:screenOrientation="portrait"/>
 
         <!--表单信息修改页面-->
-        <activity android:name="cn.org.eshow.demo.activity.ModifyStringValueActivity_"
+        <activity android:name="cn.org.eshow.activity.ModifyStringValueActivity_"
             android:screenOrientation="portrait"/>
 
         <!--表单信息修改性别页面-->
-        <activity android:name="cn.org.eshow.demo.activity.ModifySexActivity_"
+        <activity android:name="cn.org.eshow.activity.ModifySexActivity_"
             android:screenOrientation="portrait"/>
 
         <!-- 网页支付页面 -->
         <activity
-            android:name="cn.org.eshow.demo.activity.PayWebViewActivity"
+            android:name="cn.org.eshow.activity.PayWebViewActivity"
             android:screenOrientation="portrait" />
 
         <!--地图功能页面-->
-        <activity android:name="cn.org.eshow.demo.activity.MapActivity_"
+        <activity android:name="cn.org.eshow.activity.MapActivity_"
             android:label="@string/title_activity_map"
             android:screenOrientation="portrait"/>
 
         <!--分享功能页面-->
-        <activity android:name="cn.org.eshow.demo.activity.ShareActivity_"
+        <activity android:name="cn.org.eshow.activity.ShareActivity_"
             android:label="@string/title_activity_share"
             android:screenOrientation="portrait"/>
 
+        <!--音乐列表-->
+        <activity
+            android:name=".music.MusicListActivity_"
+            android:label="@string/title_activity_music"
+            android:screenOrientation="portrait" />
+        <!--音乐播放界面-->
+        <activity
+            android:name=".music.PlayActivity_"
+            android:label="@string/title_activity_music"
+            android:screenOrientation="portrait" />
+        <!--音乐下载界面-->
+        <activity
+            android:name=".music.MusicDownActivity_"
+            android:label="@string/title_activity_music"
+            android:screenOrientation="portrait" />
+        <service android:name=".music.MusicService_" />
+
         <!--蓝牙连接功能页面-->
-        <activity android:name="cn.org.eshow.demo.bluetooth.BluetoothActivity_"
+        <activity android:name="cn.org.eshow.bluetooth.BluetoothActivity_"
             android:label="@string/title_activity_bluetooth"
             android:screenOrientation="portrait"/>
-        <service android:name="cn.org.eshow.demo.bluetooth.BluetoothConnService"></service>
+        <service android:name="cn.org.eshow.bluetooth.BluetoothConnService"></service>
 
         <!--裁剪图片页面-->
-        <activity android:name="cn.org.eshow.demo.activity.CropImageActivity"
+        <activity android:name="cn.org.eshow.activity.CropImageActivity"
             android:label="@string/title_activity_share"
             android:screenOrientation="portrait"/>
 
@@ -189,14 +206,14 @@
             android:screenOrientation="portrait"/>
 
         <activity
-            android:name="cn.org.eshow.demo.wxapi.WXEntryActivity"
+            android:name="cn.org.eshow.wxapi.WXEntryActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
             android:screenOrientation="portrait" />
         <!--新浪微博-->
         <activity
-            android:name="cn.org.eshow.demo.sinaapi.WBShareActivity"
+            android:name="cn.org.eshow.sinaapi.WBShareActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" >
             <intent-filter>
@@ -303,7 +320,7 @@
             android:exported="true" >
             <intent-filter>
                 <!-- 【必须】 请修改为当前APP名包.PUSH_ACTION，如demo的包名为：com.yanwanfu.bluetoothchat -->
-                <action android:name="cn.org.eshow.demo.PUSH_ACTION" />
+                <action android:name="cn.org.eshow.PUSH_ACTION" />
             </intent-filter>
         </service>
 
@@ -322,7 +339,7 @@
         <!-- 【可选】APP实现的Receiver，用于接收消息透传和操作结果的回调，请根据需要添加 -->
         <!-- YOUR_PACKAGE_PATH.CustomPushReceiver需要改为自己的Receiver： -->
         <receiver android:name=".service.MessageReceiver"
-            android:exported="false" >
+                  android:exported="false" >
             <intent-filter>
                 <!-- 接收消息透传 -->
                 <action android:name="com.tencent.android.tpush.action.PUSH_MESSAGE" />
@@ -342,11 +359,11 @@
 
         <!--&lt;!&ndash; 【必须】 请修改为APP的AccessId，“21”开头的10位数字，中间没空格  package is cn.org.eshow.demo &ndash;&gt;-->
         <!--<meta-data-->
-            <!--android:name="XG_V2_ACCESS_ID"-->
-            <!--android:value="2100197160" />-->
+        <!--android:name="XG_V2_ACCESS_ID"-->
+        <!--android:value="2100197160" />-->
         <!--&lt;!&ndash; 【必须】 请修改为APP的AccessKey，“A”开头的12位字符串，中间没空格 &ndash;&gt;-->
         <!--<meta-data-->
-            <!--android:name="XG_V2_ACCESS_KEY"-->
-            <!--android:value="A3EG4Y12TG3W" />-->
+        <!--android:name="XG_V2_ACCESS_KEY"-->
+        <!--android:value="A3EG4Y12TG3W" />-->
     </application>
 </manifest>

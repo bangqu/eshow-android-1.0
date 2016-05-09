@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<song id="1">
+		<name>倩女幽魂</name>
+		<artist>张国荣</artist>
+		<album>丰盛的一生之国语精选</album>
+		<displayName>倩女幽魂.mp3</displayName>
+		<mimeType>audio/mpeg</mimeType>
+		<netUrl>http://www.zihou.me/music/danqu/qiannvyouhun.mp3</netUrl>
+		<durationTime>217000</durationTime>
+		<size>3484569</size>
+	</song>
+	<song id="2">
+		<name>白月光</name>
+		<artist>张信哲</artist>
+		<album>下一个永远</album>
+		<displayName>白月光.mp3</displayName>
+		<mimeType>audio/mpeg</mimeType>
+		<netUrl>http://vietnamese.cri.cn/mmsource/audio/2009/09/16/baiyueguang.mp3</netUrl>
+		<durationTime>267000</durationTime>
+		<size>4283836</size>
+	</song>
+	<song id="3">
+		<name>不分手的恋爱</name>
+		<artist>汪苏泷</artist>
+		<album>不分手的恋爱</album>
+		<displayName>不分手的恋爱.mp3</displayName>
+		<mimeType>audio/mpeg</mimeType>
+		<netUrl>http://77wdb6.com2.z0.glb.qiniucdn.com/Vi%20Finder%20Hjem.mp3</netUrl>
+		<durationTime>205000</durationTime>
+		<size>4939017</size>
+	</song>
+	<song id="4">
+		<name>老男孩</name>
+		<artist>筷子兄弟</artist>
+		<album>老男孩</album>
+		<displayName>老男孩.mp3</displayName>
+		<mimeType>audio/mpeg</mimeType>
+		<netUrl>http://77wdb6.com2.z0.glb.qiniucdn.com/my%20boy.mp3</netUrl>
+		<durationTime>300000</durationTime>
+		<size>4818954</size>
+	</song>
+	<song id="5">
+		<name>最初的梦想</name>
+		<artist>范玮琪</artist>
+		<album>最初的梦想</album>
+		<displayName>最初的梦想.mp3</displayName>
+		<mimeType>audio/mpeg</mimeType>
+		<netUrl>http://77wdb6.com2.z0.glb.qiniucdn.com/The%20Last%20of%20the%20Mohicans.mp3</netUrl>
+		<durationTime>296000</durationTime>
+		<size>4743808</size>
+	</song>
+	<song id="6">
+		<name>父亲</name>
+		<artist>筷子兄弟</artist>
+		<album>父亲</album>
+		<displayName>父亲.mp3</displayName>
+		<mimeType>audio/mpeg</mimeType>
+		<netUrl>http://77wdb6.com2.z0.glb.qiniucdn.com/%E6%88%91%E7%9A%84%E5%A4%A9%E7%A9%BA.mp3</netUrl>
+		<durationTime>301000</durationTime>
+		<size>7228717</size>
+	</song>
+	<song id="7">
+		<name>心要让你听见</name>
+		<artist>邰正宵</artist>
+		<album>邰正宵精选</album>
+		<displayName>心要让你听见.mp3</displayName>
+		<mimeType>audio/mpeg</mimeType>
+		<netUrl>http://77wdb6.com2.z0.glb.qiniucdn.com/Since%20You%27re%20Out%20Of%20My%20Life.mp3</netUrl>
+		<durationTime>265000</durationTime>
+		<size>4251776</size>
+	</song>
+	<song id="8">
+		<name>光辉岁月</name>
+		<artist>黄家驹</artist>
+		<album>光辉岁月</album>
+		<displayName>光辉岁月.mp3</displayName>
+		<mimeType>audio/mpeg</mimeType>
+		<netUrl>http://abv.cn/music/光辉岁月.mp3</netUrl>
+		<durationTime>265000</durationTime>
+		<size>4251776</size>
+	</song>
+</list>
