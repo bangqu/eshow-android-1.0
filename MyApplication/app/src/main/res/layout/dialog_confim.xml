@@ -73,7 +73,7 @@
 
             <TextView
                 android:id="@+id/dialog_btn_cancel"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="30px"
                 android:layout_weight="1"
@@ -82,17 +82,19 @@
                 android:paddingBottom="15px"
                 android:paddingTop="15px"
                 android:text="ok"
+                android:visibility="gone"
                 android:textColor="#02ABF0"
                 android:textSize="@dimen/normal_textSize" />
 
             <TextView
+                android:id="@+id/tv_dialog_view"
                 android:layout_width="@dimen/divide_height"
                 android:layout_height="fill_parent"
                 android:background="#eaeaea" />
 
             <TextView
                 android:id="@+id/dialog_btn_ok"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:focusable="true"

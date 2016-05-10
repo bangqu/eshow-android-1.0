@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/app_bg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/common_actionbar_withback"/>
+
+    <EditText
+        android:id="@+id/et_BluetoothStart"
+        android:background="@drawable/white"
+        android:hint="请输入设备前缀"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="15dp"
+        android:gravity="left|center"
+        android:textSize="15sp"
+        android:textColor="#3d4245"/>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/divide_height"
+        android:background="#dddddd" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/white"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:orientation="vertical">
+            <EditText
+                android:id="@+id/et_BluetoothPin"
+                android:background="#fff"
+                android:hint="请输入设备PIN码"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="15dp"
+                android:paddingTop="15dp"
+                android:gravity="left|bottom"
+                android:textSize="15sp"
+                android:textColor="#3d4245"/>
+            <TextView
+                android:id="@+id/tv_PinNote"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="15dp"
+                android:paddingTop="5dp"
+                android:gravity="left|top"
+                android:textSize="10sp"
+                android:textColor="#bebebe"
+                android:text="打开表示手动输入PIN码，关闭表示自动输入PIN码。"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingRight="15dp"
+            android:gravity="right|center"
+            android:orientation="vertical">
+            <ImageView
+                android:id="@+id/iv_InputPIN"
+                android:layout_width="50dp"
+                android:layout_height="20dp"
+                android:src="@drawable/btn_blueteeth_close"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_OperateBluetooth"
+        android:background="#f96650"
+        android:layout_width="match_parent"
+        android:layout_height="305dp"
+        android:gravity="top|center"
+        android:orientation="vertical">
+        <FrameLayout
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_marginTop="11dp">
+
+            <ImageView android:id="@+id/iv_Circle1"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:layout_gravity="center"
+                android:visibility="invisible"
+                android:src="@drawable/btn_blueteeth_one" />
+            <ImageView android:id="@+id/iv_Circle2"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
+                android:visibility="invisible"
+                android:src="@drawable/btn_blueteeth_one" />
+            <LinearLayout
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:orientation="vertical"
+                android:gravity="top|center">
+                <LinearLayout
+                    android:layout_width="250dp"
+                    android:layout_height="200dp">
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/tv_ConnMessage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:textColor="#ffffff"
+                    android:gravity="bottom|center"
+                    android:text="搜索附近的蓝牙设备"/>
+            </LinearLayout>
+            <ImageView android:id="@+id/iv_Circle3"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:visibility="invisible"
+                android:src="@drawable/btn_blueteeth_one" />
+            <ImageView android:id="@+id/iv_Circle4"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:src="@drawable/btn_blueteeth_n" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <TextView
+        android:background="#fff"
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:paddingLeft="15dp"
+        android:gravity="left|center"
+        android:textSize="12sp"
+        android:textColor="#bebebe"
+        android:text="设备列表"/>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/divide_height"
+        android:background="#fbfbf7" />
+    <LinearLayout
+        android:background="#fff"
+        android:id="@+id/ll_NearConn"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:gravity="left|center"
+        android:visibility="gone"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingLeft="15dp"
+                android:gravity="left|center"
+                android:textSize="12sp"
+                android:text="最近连接｜"/>
+            <TextView
+                android:id="@+id/tv_NearConn"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="left|center"
+                android:textSize="12sp"
+                android:text="test bluetoothdevice"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingRight="15dp"
+            android:gravity="right|center">
+            <ImageView
+                android:id="@+id/iv_Local_BtConn"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_blueteeth_unlink"/>
+        </LinearLayout>
+    </LinearLayout>
+    <TextView
+        android:id="@+id/tv_NoBluetooth"
+        android:background="#f7f7f0"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="32dp"
+        android:gravity="center"
+        android:textSize="15sp"
+        android:textColor="#3d4245"
+        android:visibility="gone"
+        android:text="暂无可连接的蓝牙设备"/>
+    <ListView
+        android:id="@+id/lv_BluetoothList"
+        android:background="#fff"
+        android:divider="#00000000"
+        android:dividerHeight="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+    </ListView>
+</LinearLayout>

@@ -25,8 +25,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 
-import com.bangqu.eshow.demo.R;
-import com.bangqu.eshow.demo.activity.ScanActivity;
+import cn.org.eshow.demo.R;
+import cn.org.eshow.demo.activity.ScanActivity;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
 

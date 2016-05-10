@@ -36,7 +36,7 @@
         android:gravity="center_vertical"
         android:visibility="gone"/>
 
-    <com.bangqu.eshow.demo.view.LoginAutoCompleteEdit
+    <cn.org.eshow.view.LoginAutoCompleteEdit
         android:id="@+id/etSearch"
         android:layout_width="match_parent"
         android:layout_height="60px"

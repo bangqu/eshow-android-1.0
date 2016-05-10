@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_actionbar_withback" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#F7F6F1" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btDowned"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#FFFFFF"
+            android:text="已下载"
+            android:textSize="12sp"
+            android:textColor="@color/textColorPrimary" />
+
+        <Button
+            android:id="@+id/btDowning"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#FFFFFF"
+            android:text="下载中"
+            android:textSize="12sp"
+            android:textColor="@color/textColorPrimary" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#F7F6F1" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="30px"
+        android:background="#F7F6F1" />
+    <ListView
+        android:id="@+id/lvMusicDownList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:dividerHeight="1dp"></ListView>
+</LinearLayout>

@@ -10,9 +10,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <include layout="@layout/common_actionbar_withback"/>
 
-        <com.bangqu.eshow.demo.view.LoginAutoCompleteEdit
+        <cn.org.eshow.view.LoginAutoCompleteEdit
             android:id="@+id/etValue"
             android:layout_width="match_parent"
             android:layout_height="@dimen/edittext_height"

@@ -22,19 +22,19 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <com.bangqu.eshow.view.wheel.ESWheelView
+        <cn.org.eshow_structure.view.wheel.ESWheelView
             android:id="@+id/wvYear"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content" />
 
-        <com.bangqu.eshow.view.wheel.ESWheelView
+        <cn.org.eshow_structure.view.wheel.ESWheelView
             android:id="@+id/wvMonth"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content" />
 
-        <com.bangqu.eshow.view.wheel.ESWheelView
+        <cn.org.eshow_structure.view.wheel.ESWheelView
             android:id="@+id/wvDay"
             android:layout_width="0dp"
             android:layout_weight="1"

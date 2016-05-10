@@ -151,7 +151,7 @@
                 android:layout_width="80px"
                 android:layout_height="80px"
                 android:layout_gravity="center_horizontal"
-                android:background="@drawable/ic_share_qzone" />
+                android:background="@drawable/ic_share_sina" />
 
             <TextView
                 android:layout_width="wrap_content"
