@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rlParent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_bg">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include layout="@layout/common_actionbar_withback"/>
+
+        <cn.org.eshow.demo.view.LoginAutoCompleteEdit
+            android:id="@+id/etValue"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/edittext_height"
+            android:layout_marginTop="@dimen/normal_margin"
+            android:paddingLeft="@dimen/normal_margin"
+            android:paddingRight="@dimen/normal_margin"
+            android:background="@color/white"
+            android:textColorHint="@color/text_hint"
+            android:hint=""
+            android:inputType="text"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textCursorDrawable="@null"
+            android:textSize="@dimen/small_textSize"/>
+
+
+    </LinearLayout>
+
+</RelativeLayout>
