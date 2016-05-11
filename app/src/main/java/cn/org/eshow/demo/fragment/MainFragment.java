@@ -15,8 +15,8 @@ import cn.ecloud.pulltozoomview.PullToZoomListViewEx;
 import cn.org.eshow.demo.R;
 import cn.org.eshow.demo.adapter.FunctionAdapter;
 import cn.org.eshow.demo.bean.Enum_FunctionsInMain;
-import cn.org.eshow_framwork.fragment.AbFragment;
-import cn.org.eshow_framwork.util.AbViewUtil;
+import cn.org.eshow.framwork.fragment.AbFragment;
+import cn.org.eshow.framwork.util.AbViewUtil;
 
 /**
  * 首页
@@ -31,7 +31,7 @@ public class MainFragment extends AbFragment {
                              Bundle savedInstanceState) {
         mContext = this.getActivity();
         View view = inflater.inflate(R.layout.fragment_main, null);
-        cn.org.eshow_framwork.util.AbViewUtil.scaleContentView((LinearLayout) view.findViewById(R.id.llParent));
+        cn.org.eshow.framwork.util.AbViewUtil.scaleContentView((LinearLayout) view.findViewById(R.id.llParent));
 
         listView = (PullToZoomListViewEx) view.findViewById(R.id.listview);
 

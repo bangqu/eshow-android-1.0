@@ -36,8 +36,8 @@ import cn.org.eshow.demo.common.Global;
 import cn.org.eshow.demo.fragment.AroundPlaceFragment;
 import cn.org.eshow.demo.fragment.AroundPlaceSlidingFragment;
 import cn.org.eshow.demo.view.LoginAutoCompleteEdit;
-import cn.org.eshow_framwork.util.AbLogUtil;
-import cn.org.eshow_framwork.util.AbViewUtil;
+import cn.org.eshow.framwork.util.AbLogUtil;
+import cn.org.eshow.framwork.util.AbViewUtil;
 
 /**
  * 地图选点页面

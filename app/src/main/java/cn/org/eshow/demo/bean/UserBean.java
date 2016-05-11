@@ -1,6 +1,6 @@
 package cn.org.eshow.demo.bean;
 
-import cn.org.eshow_framwork.util.AbStrUtil;
+import cn.org.eshow.framwork.util.AbStrUtil;
 
 /**
  * Created by daikting on 16/3/14.

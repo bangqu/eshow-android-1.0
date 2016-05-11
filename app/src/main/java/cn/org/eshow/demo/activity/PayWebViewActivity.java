@@ -38,8 +38,8 @@ import cn.google.gson.Gson;
 import cn.org.eshow.demo.R;
 import cn.org.eshow.demo.common.CommonActivity;
 import cn.org.eshow.demo.common.Global;
-import cn.org.eshow_framwork.util.AbLogUtil;
-import cn.org.eshow_framwork.util.AbViewUtil;
+import cn.org.eshow.framwork.util.AbLogUtil;
+import cn.org.eshow.framwork.util.AbViewUtil;
 
 /**
  * 网页支付页面

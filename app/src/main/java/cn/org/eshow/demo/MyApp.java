@@ -12,8 +12,8 @@ import com.umeng.socialize.PlatformConfig;
 
 import java.util.List;
 
-import cn.org.eshow_framwork.global.AbAppConfig;
-import cn.org.eshow_framwork.util.AbFontsOverride;
+import cn.org.eshow.framwork.global.AbAppConfig;
+import cn.org.eshow.framwork.util.AbFontsOverride;
 
 /**
  * Created by daikting on 16/2/19.

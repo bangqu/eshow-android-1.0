@@ -19,8 +19,8 @@ package cn.org.eshow.demo.adapter;
 import java.util.List;
 
 import cn.org.eshow.demo.bean.CityBean;
-import cn.org.eshow_framwork.util.AbStrUtil;
-import cn.org.eshow_framwork.view.wheel.AbWheelAdapter;
+import cn.org.eshow.framwork.util.AbStrUtil;
+import cn.org.eshow.framwork.view.wheel.AbWheelAdapter;
 
 // TODO: Auto-generated Javadoc
 

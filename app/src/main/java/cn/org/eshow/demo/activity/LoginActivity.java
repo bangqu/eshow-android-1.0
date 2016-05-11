@@ -39,12 +39,12 @@ import cn.org.eshow.demo.common.SharedPrefUtil;
 import cn.org.eshow.demo.network.ESResponseListener;
 import cn.org.eshow.demo.network.NetworkInterface;
 import cn.org.eshow.demo.view.LoginAutoCompleteEdit;
-import cn.org.eshow_framwork.fragment.AbProgressDialogFragment;
-import cn.org.eshow_framwork.util.AbDialogUtil;
-import cn.org.eshow_framwork.util.AbLogUtil;
-import cn.org.eshow_framwork.util.AbStrUtil;
-import cn.org.eshow_framwork.util.AbToastUtil;
-import cn.org.eshow_framwork.util.AbViewUtil;
+import cn.org.eshow.framwork.fragment.AbProgressDialogFragment;
+import cn.org.eshow.framwork.util.AbDialogUtil;
+import cn.org.eshow.framwork.util.AbLogUtil;
+import cn.org.eshow.framwork.util.AbStrUtil;
+import cn.org.eshow.framwork.util.AbToastUtil;
+import cn.org.eshow.framwork.util.AbViewUtil;
 
 
 /**
@@ -96,7 +96,7 @@ public class LoginActivity extends CommonActivity {
         mMaterialBackButton.setVisibility(View.VISIBLE);
 
         userName = getIntent().getStringExtra(InputPasswordActivity.INTENT_TEL);
-        if(cn.org.eshow_framwork.util.AbStrUtil.isEmpty(userName)){
+        if(cn.org.eshow.framwork.util.AbStrUtil.isEmpty(userName)){
             userName = SharedPrefUtil.getTempTel(mContext);
         }
         mEtTel.setText(userName);

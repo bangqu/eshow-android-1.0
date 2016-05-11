@@ -3,8 +3,8 @@ package cn.org.eshow.demo.network;
 import android.content.Context;
 
 import cn.org.eshow.demo.common.Global;
-import cn.org.eshow_framwork.http.AbHttpUtil;
-import cn.org.eshow_framwork.http.AbRequestParams;
+import cn.org.eshow.framwork.http.AbHttpUtil;
+import cn.org.eshow.framwork.http.AbRequestParams;
 
 /**
  * 网络请求公共模块

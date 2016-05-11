@@ -34,13 +34,13 @@ import cn.org.eshow.demo.network.ESResponseListener;
 import cn.org.eshow.demo.network.MyHttpUtil;
 import cn.org.eshow.demo.network.NetworkInterface;
 import cn.org.eshow.demo.view.ChoosePhotoDialog;
-import cn.org.eshow_framwork.http.AbRequestParams;
-import cn.org.eshow_framwork.image.AbImageLoader;
-import cn.org.eshow_framwork.util.AbFileUtil;
-import cn.org.eshow_framwork.util.AbLogUtil;
-import cn.org.eshow_framwork.util.AbStrUtil;
-import cn.org.eshow_framwork.util.AbToastUtil;
-import cn.org.eshow_framwork.util.AbViewUtil;
+import cn.org.eshow.framwork.http.AbRequestParams;
+import cn.org.eshow.framwork.image.AbImageLoader;
+import cn.org.eshow.framwork.util.AbFileUtil;
+import cn.org.eshow.framwork.util.AbLogUtil;
+import cn.org.eshow.framwork.util.AbStrUtil;
+import cn.org.eshow.framwork.util.AbToastUtil;
+import cn.org.eshow.framwork.util.AbViewUtil;
 
 /**
  * 基本信息修改分页
@@ -208,7 +208,7 @@ public class BaseInfoFragment extends Fragment implements View.OnClickListener {
 
         if(!AbStrUtil.isEmpty(photo) && photo.startsWith("http")){
             ivIcon.setImageResource(R.drawable.icon_progressbar);
-            cn.org.eshow_framwork.image.AbImageLoader.getInstance(mContext).display(ivIcon,photo);
+            cn.org.eshow.framwork.image.AbImageLoader.getInstance(mContext).display(ivIcon,photo);
         }
 
         tvAccount.setText(username);
@@ -304,7 +304,7 @@ public class BaseInfoFragment extends Fragment implements View.OnClickListener {
     }
 
     private void saveIconUrl(String url) {
-        AbRequestParams abRequestParams = new cn.org.eshow_framwork.http.AbRequestParams();
+        AbRequestParams abRequestParams = new cn.org.eshow.framwork.http.AbRequestParams();
         abRequestParams.put("accessToken", SharedPrefUtil.getAccessToken(mContext));
         abRequestParams.put("user.photo", url);
         AbLogUtil.d(mContext,"保存头像地址："+url);

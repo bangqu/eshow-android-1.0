@@ -9,7 +9,7 @@ import org.json.JSONObject;
  * 自定义网络请求回调接口
  * Created by daikting on 15/9/29.
  */
-public abstract class AMapResponseListener extends cn.org.eshow_framwork.http.AbStringHttpResponseListener {
+public abstract class AMapResponseListener extends cn.org.eshow.framwork.http.AbStringHttpResponseListener {
     private Context mContext;
 
     public AMapResponseListener(Context context) {

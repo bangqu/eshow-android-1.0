@@ -26,9 +26,9 @@ import cn.org.eshow.demo.adapter.ProviceWheelAdapter;
 import cn.org.eshow.demo.bean.AreaBean;
 import cn.org.eshow.demo.bean.CityBean;
 import cn.org.eshow.demo.bean.ProviceBean;
-import cn.org.eshow_framwork.util.AbJsonUtil;
-import cn.org.eshow_framwork.util.AbViewUtil;
-import cn.org.eshow_framwork.view.wheel.AbWheelView;
+import cn.org.eshow.framwork.util.AbJsonUtil;
+import cn.org.eshow.framwork.util.AbViewUtil;
+import cn.org.eshow.framwork.view.wheel.AbWheelView;
 
 
 /**
@@ -151,7 +151,7 @@ public class ChooseCityDialog extends Dialog {
 
         @Override
         public void run() {
-            provices = (List<ProviceBean>) cn.org.eshow_framwork.util.AbJsonUtil.fromJson(getJson(context, proviceJsonFile), new TypeToken<ArrayList<ProviceBean>>() {
+            provices = (List<ProviceBean>) cn.org.eshow.framwork.util.AbJsonUtil.fromJson(getJson(context, proviceJsonFile), new TypeToken<ArrayList<ProviceBean>>() {
             });
             cities = (List<CityBean>) AbJsonUtil.fromJson(getJson(context, cityJsonFile), new TypeToken<ArrayList<CityBean>>() {
             });
