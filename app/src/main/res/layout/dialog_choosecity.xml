@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/llParent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvFinish"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="完成"
+        android:textColor="@drawable/gray_text_selector"
+        android:textSize="@dimen/normal_textSize"
+        android:gravity="right"
+        android:paddingRight="@dimen/small_margin"
+        android:paddingBottom="@dimen/small_margin_10"
+        android:paddingTop="@dimen/small_margin_10"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <cn.org.eshow_framwork.view.wheel.AbWheelView
+            android:id="@+id/wvProvince"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+
+        <cn.org.eshow_framwork.view.wheel.AbWheelView
+            android:id="@+id/wvCity"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+
+        <cn.org.eshow_framwork.view.wheel.AbWheelView
+            android:id="@+id/wvArea"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</LinearLayout>

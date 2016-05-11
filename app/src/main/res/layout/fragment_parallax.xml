@@ -1,0 +1,81 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:myapp="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rlParent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff1f1f1">
+
+    <LinearLayout
+        android:id="@+id/llBottom"
+        android:layout_width="match_parent"
+        android:layout_height="150px"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <cn.org.eshow.demo.guide.IndicatorView
+            android:id="@+id/indicatorView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            myapp:pointCount="3" />
+
+        <LinearLayout
+            android:id="@+id/layoutBottom"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/normal_margin"
+            android:paddingRight="@dimen/normal_margin">
+
+            <Button
+                android:id="@+id/register_button"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/btn_long_height"
+                android:layout_weight="1"
+                android:background="@drawable/btn_register"
+                android:gravity="center"
+                android:text="注册"
+                android:textColor="@drawable/btn_regis_text"
+                android:textSize="@dimen/small_textSize" />
+
+            <Button
+                android:id="@+id/login_button"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/btn_long_height"
+                android:layout_marginLeft="@dimen/normal_margin"
+                android:layout_weight="1"
+                android:width="0dp"
+                android:background="@drawable/btn_login"
+                android:gravity="center"
+                android:text="登录"
+                android:textColor="@drawable/btn_login_text"
+                android:textSize="@dimen/small_textSize" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <com.prolificinteractive.parallaxpager.ParallaxContainer
+        android:id="@+id/parallax_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/llBottom"/>
+
+    <TextView
+        android:id="@+id/tvPass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="center_vertical"
+        android:layout_marginRight="@dimen/normal_margin"
+        android:layout_marginTop="100px"
+        android:background="@drawable/parallax_pass_bg"
+        android:paddingBottom="10px"
+        android:paddingLeft="20px"
+        android:paddingRight="20px"
+        android:paddingTop="10px"
+        android:text="跳过"
+        android:textColor="@drawable/drawer_selector_pass"
+        android:textSize="@dimen/small_textSize" />
+</RelativeLayout>
