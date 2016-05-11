@@ -12,8 +12,8 @@ import cn.org.eshow.demo.activity.ShareActivity_;
 import cn.org.eshow.demo.bluetooth.BluetoothActivity_;
 import cn.org.eshow.demo.common.SharedPrefUtil;
 import cn.org.eshow.demo.music.MusicListActivity_;
-import cn.org.eshow_framwork.util.AbLogUtil;
-import cn.org.eshow_framwork.util.AbToastUtil;
+import cn.org.eshow.framwork.util.AbLogUtil;
+import cn.org.eshow.framwork.util.AbToastUtil;
 
 /**
  * 首页上的功能列表选择性的跳转

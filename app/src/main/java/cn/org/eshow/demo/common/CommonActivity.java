@@ -6,8 +6,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import cn.org.eshow.demo.service.UpdateViewReveiver;
-import cn.org.eshow_framwork.global.AbActivityManager;
-import cn.org.eshow_framwork.util.AbLogUtil;
+import cn.org.eshow.framwork.global.AbActivityManager;
+import cn.org.eshow.framwork.util.AbLogUtil;
 
 /**
  * Created by daikting on 16/1/12.

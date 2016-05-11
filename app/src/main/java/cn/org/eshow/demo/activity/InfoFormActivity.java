@@ -45,11 +45,11 @@ import cn.org.eshow.demo.fragment.PersonFragment;
 import cn.org.eshow.demo.network.ESResponseListener;
 import cn.org.eshow.demo.network.NetworkInterface;
 import cn.org.eshow.demo.network.UploadQiNiu;
-import cn.org.eshow_framwork.fragment.AbProgressDialogFragment;
-import cn.org.eshow_framwork.util.AbLogUtil;
-import cn.org.eshow_framwork.util.AbStrUtil;
-import cn.org.eshow_framwork.util.AbToastUtil;
-import cn.org.eshow_framwork.util.AbViewUtil;
+import cn.org.eshow.framwork.fragment.AbProgressDialogFragment;
+import cn.org.eshow.framwork.util.AbLogUtil;
+import cn.org.eshow.framwork.util.AbStrUtil;
+import cn.org.eshow.framwork.util.AbToastUtil;
+import cn.org.eshow.framwork.util.AbViewUtil;
 
 /**
  * 信息表单页面
@@ -354,7 +354,7 @@ public class InfoFormActivity extends FragmentActivity {
 
                 @Override
                 public void onStart() {
-                    progressDialog = cn.org.eshow_framwork.util.AbDialogUtil.showProgressDialog(mContext, Global.LOADING_PROGRESSBAR_ID, "绑定第三方账号中...");
+                    progressDialog = cn.org.eshow.framwork.util.AbDialogUtil.showProgressDialog(mContext, Global.LOADING_PROGRESSBAR_ID, "绑定第三方账号中...");
                 }
 
                 @Override

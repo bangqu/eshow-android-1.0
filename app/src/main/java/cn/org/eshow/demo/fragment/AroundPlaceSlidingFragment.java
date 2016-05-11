@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.org.eshow.demo.R;
-import cn.org.eshow_framwork.view.sliding.AbSlidingTabView;
+import cn.org.eshow.framwork.view.sliding.AbSlidingTabView;
 
 /**
  * Created by daikting on 16/3/23.

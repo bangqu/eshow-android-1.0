@@ -18,7 +18,7 @@ import org.androidannotations.annotations.ViewById;
 import cn.org.eshow.demo.R;
 import cn.org.eshow.demo.common.CommonActivity;
 import cn.org.eshow.demo.guide.ParallaxFragment;
-import cn.org.eshow_framwork.util.AbViewUtil;
+import cn.org.eshow.framwork.util.AbViewUtil;
 
 /**
  * 设置页面

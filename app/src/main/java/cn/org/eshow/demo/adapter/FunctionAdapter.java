@@ -16,7 +16,7 @@ import java.util.List;
 import cn.org.eshow.demo.R;
 import cn.org.eshow.demo.bean.Enum_FunctionsInMain;
 import cn.org.eshow.demo.bean.Intent_FunctionInMain;
-import cn.org.eshow_framwork.util.AbViewUtil;
+import cn.org.eshow.framwork.util.AbViewUtil;
 
 /**
  * 主页功能列表适配器

@@ -19,7 +19,7 @@ import cn.org.eshow.demo.R;
 import cn.org.eshow.demo.common.CommonActivity;
 import cn.org.eshow.demo.common.SharedPrefUtil;
 import cn.org.eshow.demo.common.WeakRefHandler;
-import cn.org.eshow_framwork.util.AbLogUtil;
+import cn.org.eshow.framwork.util.AbLogUtil;
 
 /**
  * 启动页面

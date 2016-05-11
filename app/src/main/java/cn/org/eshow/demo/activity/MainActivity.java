@@ -47,13 +47,13 @@ import cn.org.eshow.demo.fragment.MainFragment;
 import cn.org.eshow.demo.fragment.NaviFragment;
 import cn.org.eshow.demo.view.AddPopupwindow;
 import cn.org.eshow.demo.view.ConfirmDialog;
-import cn.org.eshow_framwork.fragment.AbProgressDialogFragment;
-import cn.org.eshow_framwork.global.AbActivityManager;
-import cn.org.eshow_framwork.util.AbAppUtil;
-import cn.org.eshow_framwork.util.AbLogUtil;
-import cn.org.eshow_framwork.util.AbToastUtil;
-import cn.org.eshow_framwork.util.AbViewUtil;
-import cn.org.eshow_framwork.view.slidingmenu.SlidingMenu;
+import cn.org.eshow.framwork.fragment.AbProgressDialogFragment;
+import cn.org.eshow.framwork.global.AbActivityManager;
+import cn.org.eshow.framwork.util.AbAppUtil;
+import cn.org.eshow.framwork.util.AbLogUtil;
+import cn.org.eshow.framwork.util.AbToastUtil;
+import cn.org.eshow.framwork.util.AbViewUtil;
+import cn.org.eshow.framwork.view.slidingmenu.SlidingMenu;
 
 @EActivity(R.layout.activity_main)
 public class MainActivity extends CommonActivity {

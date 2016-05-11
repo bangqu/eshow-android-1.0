@@ -23,8 +23,8 @@ import cn.org.eshow.demo.bean.AMapLocationBean;
 import cn.org.eshow.demo.common.CommonActivity;
 import cn.org.eshow.demo.common.Global;
 import cn.org.eshow.demo.view.LoginAutoCompleteEdit;
-import cn.org.eshow_framwork.util.AbLogUtil;
-import cn.org.eshow_framwork.util.AbViewUtil;
+import cn.org.eshow.framwork.util.AbLogUtil;
+import cn.org.eshow.framwork.util.AbViewUtil;
 
 /**
  * 地图功能页面

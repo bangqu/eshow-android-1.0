@@ -15,8 +15,8 @@ import cn.org.eshow.demo.R;
 import cn.org.eshow.demo.activity.InfoFormActivity_;
 import cn.org.eshow.demo.activity.LoginActivity_;
 import cn.org.eshow.demo.common.SharedPrefUtil;
-import cn.org.eshow_framwork.fragment.AbFragment;
-import cn.org.eshow_framwork.util.AbViewUtil;
+import cn.org.eshow.framwork.fragment.AbFragment;
+import cn.org.eshow.framwork.util.AbViewUtil;
 
 /**
  * 导航分页

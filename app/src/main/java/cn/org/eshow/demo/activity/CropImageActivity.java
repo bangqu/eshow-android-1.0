@@ -22,9 +22,9 @@ import java.io.File;
 
 import cn.org.eshow.demo.R;
 import cn.org.eshow.demo.common.CommonActivity;
-import cn.org.eshow_framwork.util.AbViewUtil;
-import cn.org.eshow_framwork.view.cropimage.CropImage;
-import cn.org.eshow_framwork.view.cropimage.CropImageView;
+import cn.org.eshow.framwork.util.AbViewUtil;
+import cn.org.eshow.framwork.view.cropimage.CropImage;
+import cn.org.eshow.framwork.view.cropimage.CropImageView;
 
 
 /**
@@ -97,7 +97,7 @@ public class CropImageActivity extends CommonActivity implements OnClickListener
         //相册中原来的图片
         File mFile = new File(mPath);
         try {
-            mBitmap = cn.org.eshow_framwork.util.AbFileUtil.getBitmapFromSD(mFile, cn.org.eshow_framwork.util.AbImageUtil.SCALEIMG, 1000, 1000);
+            mBitmap = cn.org.eshow.framwork.util.AbFileUtil.getBitmapFromSD(mFile, cn.org.eshow.framwork.util.AbImageUtil.SCALEIMG, 1000, 1000);
             if (mBitmap == null) {
                 Toast.makeText(CropImageActivity.this, "没有找到图片", Toast.LENGTH_SHORT).show();
                 finish();

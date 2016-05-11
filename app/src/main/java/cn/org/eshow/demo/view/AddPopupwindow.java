@@ -11,7 +11,7 @@ import android.widget.PopupWindow;
 
 import cn.org.eshow.demo.R;
 import cn.org.eshow.demo.activity.ScanActivity;
-import cn.org.eshow_framwork.util.AbViewUtil;
+import cn.org.eshow.framwork.util.AbViewUtil;
 
 /**
  * 主页加号按钮点击弹出的浮窗

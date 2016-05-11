@@ -18,9 +18,9 @@ import com.umeng.socialize.bean.SHARE_MEDIA;
 
 import cn.org.eshow.demo.R;
 import cn.org.eshow.demo.third.UMShared;
-import cn.org.eshow_framwork.util.AbLogUtil;
-import cn.org.eshow_framwork.util.AbToastUtil;
-import cn.org.eshow_framwork.util.AbViewUtil;
+import cn.org.eshow.framwork.util.AbLogUtil;
+import cn.org.eshow.framwork.util.AbToastUtil;
+import cn.org.eshow.framwork.util.AbViewUtil;
 
 
 /**

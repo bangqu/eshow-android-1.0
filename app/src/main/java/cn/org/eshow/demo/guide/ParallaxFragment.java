@@ -18,7 +18,7 @@ import cn.org.eshow.demo.activity.InputTelActivity_;
 import cn.org.eshow.demo.activity.LoginActivity_;
 import cn.org.eshow.demo.activity.MainActivity_;
 import cn.org.eshow.demo.bean.Enum_CodeType;
-import cn.org.eshow_framwork.util.AbViewUtil;
+import cn.org.eshow.framwork.util.AbViewUtil;
 
 /**
  * 引导页面

@@ -9,7 +9,7 @@ import cn.org.eshow.demo.activity.LoginActivity_;
 import cn.org.eshow.demo.common.Global;
 import cn.org.eshow.demo.common.SharedPrefUtil;
 import cn.org.eshow.demo.view.ConfirmDialog;
-import cn.org.eshow_framwork.util.AbLogUtil;
+import cn.org.eshow.framwork.util.AbLogUtil;
 
 /**
  * 用于通知界面更新、界面操作、退出程序等的通知接收

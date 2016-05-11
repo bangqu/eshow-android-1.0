@@ -9,7 +9,7 @@ import com.qiniu.android.storage.UploadManager;
 import org.json.JSONObject;
 
 import cn.org.eshow.demo.common.SharedPrefUtil;
-import cn.org.eshow_framwork.util.AbLogUtil;
+import cn.org.eshow.framwork.util.AbLogUtil;
 
 /**
  * 上传文件到七牛上

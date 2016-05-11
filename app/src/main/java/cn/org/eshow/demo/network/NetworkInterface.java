@@ -7,7 +7,7 @@ import cn.org.eshow.demo.bean.Enum_CodeType;
 import cn.org.eshow.demo.bean.Enum_ThirdType;
 import cn.org.eshow.demo.common.Global;
 import cn.org.eshow.demo.common.SharedPrefUtil;
-import cn.org.eshow_framwork.http.AbRequestParams;
+import cn.org.eshow.framwork.http.AbRequestParams;
 
 /**
  * 网络接口

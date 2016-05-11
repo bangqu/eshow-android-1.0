@@ -22,10 +22,10 @@ import cn.org.eshow.demo.common.Global;
 import cn.org.eshow.demo.network.ESResponseListener;
 import cn.org.eshow.demo.network.NetworkInterface;
 import cn.org.eshow.demo.view.ConfirmDialog;
-import cn.org.eshow_framwork.fragment.AbProgressDialogFragment;
-import cn.org.eshow_framwork.util.AbDialogUtil;
-import cn.org.eshow_framwork.util.AbToastUtil;
-import cn.org.eshow_framwork.util.AbViewUtil;
+import cn.org.eshow.framwork.fragment.AbProgressDialogFragment;
+import cn.org.eshow.framwork.util.AbDialogUtil;
+import cn.org.eshow.framwork.util.AbToastUtil;
+import cn.org.eshow.framwork.util.AbViewUtil;
 
 /**
  * 账号绑定修改分页
@@ -148,7 +148,7 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
             tvWechatState.setVisibility(View.VISIBLE);
             ivQQProgress.setVisibility(View.GONE);
             ivWechatProgress.setVisibility(View.GONE);
-            cn.org.eshow_framwork.util.AbToastUtil.showToast(mContext, "请求失败，错误码：" + statusCode);
+            cn.org.eshow.framwork.util.AbToastUtil.showToast(mContext, "请求失败，错误码：" + statusCode);
         }
     };
 
