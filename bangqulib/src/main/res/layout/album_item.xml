@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    >
+    <FrameLayout
+        android:id="@+id/flLeft"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/ivLeft"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:layout_gravity="center"
+            android:src="@mipmap/icon"
+            android:layout_margin="5dp"/>
+
+        <TextView
+            android:id="@+id/tvLeft"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="@drawable/title_bg"
+            android:layout_gravity="bottom|center_horizontal"
+            android:textColor="@color/white"
+            android:textSize="@dimen/txt_14"
+            android:gravity="center"
+            android:layout_margin="5dp"/>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/flRight"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/ivRight"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:layout_gravity="center"
+            android:src="@mipmap/icon"
+            android:layout_margin="5dp"/>
+
+        <TextView
+            android:id="@+id/tvRight"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="@drawable/title_bg"
+            android:layout_gravity="bottom|center_horizontal"
+            android:textColor="@color/white"
+            android:textSize="@dimen/txt_14"
+            android:gravity="center"
+            android:layout_margin="5dp"/>
+    </FrameLayout>
+</LinearLayout>

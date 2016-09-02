@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<animation-list android:oneshot="false"
+	xmlns:android="http://schemas.android.com/apk/res/android">
+	<item android:duration="80" android:drawable="@mipmap/loading_f1_1920_1080"  />
+	<item android:duration="80" android:drawable="@mipmap/loading_f2_1920_1080"  />
+	<item android:duration="80" android:drawable="@mipmap/loading_f3_1920_1080"  />
+	<item android:duration="80" android:drawable="@mipmap/loading_f4_1920_1080"  />
+	<item android:duration="80" android:drawable="@mipmap/loading_f5_1920_1080"  />
+	<item android:duration="80" android:drawable="@mipmap/loading_f6_1920_1080"  />
+	<item android:duration="80" android:drawable="@mipmap/loading_f7_1920_1080"  />
+	<item android:duration="80" android:drawable="@mipmap/loading_f8_1920_1080"  />
+	<item android:duration="80" android:drawable="@mipmap/loading_f9_1920_1080"  />
+	<item android:duration="80" android:drawable="@mipmap/loading_f10_1920_1080"  />
+	<item android:duration="80" android:drawable="@mipmap/loading_f11_1920_1080"  />
+	<item android:duration="80" android:drawable="@mipmap/loading_f12_1920_1080"  />
+</animation-list>

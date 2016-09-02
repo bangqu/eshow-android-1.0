@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:id="@+id/rlBack"
+        android:layout_width="100px"
+        android:layout_height="match_parent"
+        android:background="@drawable/drawer_selector">
+
+        <com.balysv.materialmenu.MaterialMenuView
+            android:id="@+id/material_back_button"
+            app:mm_color="@color/textColorPrimary"
+            app:mm_scale="1"
+            app:mm_strokeWidth="2"
+            app:mm_transformDuration="1000"
+            app:mm_visible="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="首页"
+        android:textColor="@color/textColorPrimary"
+        android:textSize="@dimen/title" />
+
+
+    <TextView
+        android:id="@+id/tvSubTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:paddingRight="@dimen/small_margin"
+        android:paddingLeft="@dimen/small_margin"
+        android:text="注册"
+        android:textColor="@drawable/chaining_text_selector"
+        android:textSize="@dimen/txt_14"
+        android:gravity="center_vertical"
+        android:visibility="gone"/>
+    <ImageView
+        android:id="@+id/ivShare"
+        android:layout_width="48px"
+        android:layout_height="48px"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/small_margin"
+        android:gravity="center_vertical"
+        android:visibility="gone"/>
+
+    <ImageView
+        android:id="@+id/ivRight"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:padding="5dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:visibility="gone"/>
+
+</RelativeLayout>
