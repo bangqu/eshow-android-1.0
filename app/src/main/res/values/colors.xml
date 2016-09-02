@@ -29,7 +29,6 @@
     <!--长按钮的颜色-->
     <color name="btn_long_normal">#F76755</color>
     <color name="btn_long_pressed">#E2E4E4</color>
-    <color name="text_chainning">#F76755</color>
 
     <!--条码扫描-->
     <color name="result_view">#b0000000</color>

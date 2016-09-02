@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background"
+    tools:context="com.bangqu.activity.AlbumDetailsActivity">
+
+    <include layout="@layout/include_mune_header"/>
+
+    <ListView
+        android:id="@+id/lvAlbums"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never"
+        android:divider="@null"
+        android:scrollbars="none"></ListView>
+
+</LinearLayout>

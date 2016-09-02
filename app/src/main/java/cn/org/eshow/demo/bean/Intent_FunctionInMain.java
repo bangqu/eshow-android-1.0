@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
 
+import com.bangqu.activity.AlbumActivity;
+
 import cn.org.eshow.demo.activity.InfoFormActivity_;
 import cn.org.eshow.demo.activity.LoginActivity_;
 import cn.org.eshow.demo.activity.MapActivity_;
@@ -20,13 +22,16 @@ import cn.org.eshow.framwork.util.AbToastUtil;
  * Created by daikting on 16/3/17.
  */
 public class Intent_FunctionInMain {
+    Intent intent;
     public Intent_FunctionInMain(Context context, Enum_FunctionsInMain function) {
         switch (function) {
             case FROM:
                 onFrom(context);
                 break;
             case IMAGE:
-                Toast.makeText(context,"该功能正在开发中 ...",Toast.LENGTH_SHORT).show();
+                intent=new Intent(context, AlbumActivity.class);
+                context.startActivity(intent);
+//                Toast.makeText(context,"该功能正在开发中 ...",Toast.LENGTH_SHORT).show();
                 //onImage(context);
                 break;
             case DOWNLOAD:

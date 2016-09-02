@@ -1,8 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
-
-//android annotations使用的版本
-def AAVersion = '3.3.2'
+def AAVersion = '3.2+'
 
 android {
     compileSdkVersion 23
@@ -10,30 +8,10 @@ android {
     defaultConfig {
         applicationId "cn.org.eshow.demo"
         minSdkVersion 14
-        targetSdkVersion 23
+        targetSdkVersion 21
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
-    }
-
-    //配置keystore签名
-    signingConfigs {
-        release {
-            storeFile file("bangqu.keystore")
-            storePassword "bangqu123"
-            keyAlias "bangqu.keystore"
-            keyPassword "bangqu123"
-        }
-    }
-    productFlavors {
-    }
-    buildTypes {
-        release {
-            signingConfig signingConfigs.release
-        }
-        debug {
-            signingConfig signingConfigs.release
-        }
     }
 
 }
@@ -48,12 +26,10 @@ dependencies {
     compile 'com.android.support:multidex:1.0.1'
     apt "org.androidannotations:androidannotations:$AAVersion"
     compile "org.androidannotations:androidannotations-api:$AAVersion"
-    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.3'
     compile 'com.prolificinteractive:parallaxpager:2.2.1'
     // 高版本fix使用support库crash
     compile 'uk.co.chrisjenx:calligraphy:2.1.0'
     // stock actionBar
-    compile 'com.balysv.materialmenu:material-menu:1.5.4'
     compile project(':eshow_framwork')
     compile project(':social_sdk_library_project')
     compile project(':PullToZoomList')
@@ -67,8 +43,8 @@ dependencies {
     compile files('libs/okio-1.0.0.jar')
     compile files('libs/libpingpp-2.1.1.jar')
     compile files('libs/alipaySingle-20160111.jar')
-    compile files('libs/android-async-http-1.4.6.jar')
     compile files('libs/jg_filter_sdk_1.1.jar')
+    compile project(':bangqulib')
 }
 
 apt {

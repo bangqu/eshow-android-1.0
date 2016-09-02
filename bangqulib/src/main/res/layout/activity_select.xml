@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/rl_top"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/balck" >
+
+        <ImageButton
+            android:id="@+id/ibtn_mune"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="15dp"
+            android:background="@null"
+            android:layout_alignParentLeft="true"
+            android:scaleType="centerCrop"
+            />
+
+        <ImageView
+            android:id="@+id/iv_0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/ibtn_mune"
+            android:scaleType="centerCrop"
+            android:layout_marginRight="10dp"
+            />
+
+
+        <Button
+            android:id="@+id/btn_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:paddingBottom="10dp"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:background="@null"
+            android:text="分类"
+            android:textColor="@color/white"
+            android:visibility="gone" />
+
+        <ImageButton
+            android:id="@+id/ibtn_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp"
+            android:layout_marginRight="10dp"
+            android:paddingBottom="10dp"
+            android:padding="5dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:background="@null"
+            android:scaleType="centerCrop"
+            />
+
+        <ImageButton
+            android:id="@+id/ibtn_browse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp"
+            android:layout_marginRight="10dp"
+            android:paddingBottom="10dp"
+            android:padding="5dp"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/ibtn_search"
+            android:background="@null"
+            android:visibility="gone"
+            android:scaleType="centerCrop"
+            />
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/iv_0"
+            android:layout_toLeftOf="@id/ibtn_search"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            >
+
+
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:gravity="left"
+                android:textSize="20sp"
+                android:ellipsize="end"
+                android:lines="1"
+                />
+
+            <TextView
+                android:id="@+id/tv_smalltitle"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:gravity="left"
+                android:layout_below="@id/tv_title"
+                android:ellipsize="end"
+                android:lines="1"
+                android:visibility="gone"
+                android:text="精选笔记"
+                />
+
+        </RelativeLayout>
+
+
+
+    </RelativeLayout>
+
+    <ListView
+       android:id="@+id/lv_select"
+       android:layout_width="fill_parent"
+       android:layout_height="wrap_content"
+       android:divider="@null"
+       ></ListView>
+   
+   
+   <GridView 
+       android:id="@+id/gv_select"
+       android:layout_width="fill_parent"
+       android:layout_height="fill_parent"
+       android:numColumns="4"
+       android:layout_marginLeft="4dp"
+       android:listSelector="@color/transparent" 
+       ></GridView>
+
+</LinearLayout>

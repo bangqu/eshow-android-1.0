@@ -5,6 +5,7 @@ import android.content.Context;
 import android.support.multidex.MultiDexApplication;
 import android.util.Log;
 
+import com.bangqu.base.activity.BangquApplication;
 import com.tencent.android.tpush.XGNotifaction;
 import com.tencent.android.tpush.XGPushManager;
 import com.tencent.android.tpush.XGPushNotifactionCallback;
@@ -18,7 +19,7 @@ import cn.org.eshow.framwork.util.AbFontsOverride;
 /**
  * Created by daikting on 16/2/19.
  */
-public class MyApp extends MultiDexApplication {
+public class MyApp extends BangquApplication {
     private static final String tag="TPush_App";
     public static float sScale;
 

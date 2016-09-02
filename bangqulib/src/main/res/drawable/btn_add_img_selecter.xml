@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+<!--条目点击变色-->
+    <item android:drawable="@mipmap/ic_fabu_addpic_p" android:state_pressed="true"/>
+    <item android:drawable="@mipmap/ic_fabu_addpic_n" />
+
+</selector>
