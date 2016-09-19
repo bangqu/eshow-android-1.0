@@ -9,7 +9,7 @@ www.eshow.org.cn 旗下 Android开源框架
 Android Studio 1.5.1，用gradle引用的许多第三方库，第一次加载会有点慢，加载完毕后要build一下，这些待下划线的类（比如 MainActivity_）会在build之后自动生成（因为用了gradle，所以**不支持eclipse**）。
 
 ####下面介绍一下文件的大概目录先：
-  .
+    .
     ├── EShow-Android
     │   ├── Application
     │   ├── Activity：活动类
@@ -37,7 +37,7 @@ Android Studio 1.5.1，用gradle引用的许多第三方库，第一次加载会
     |   |   |—— umeng 封装了umeng  
     |   │   └── network 对网络做了一点封装  
     │   └── bangqulib：帮趣集成新模块
-    └── Pods：项目使用了[CocoaPods](http://code4app.com/article/cocoapods-install-usage)这个类库管理工具
+    └── 注解开发：项目使用(https://github.com/excilys/androidannotations)这个类库管理工具
 
 
 ##一些觉得有必要提一下的
