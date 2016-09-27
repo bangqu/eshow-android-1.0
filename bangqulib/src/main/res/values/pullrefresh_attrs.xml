@@ -28,6 +28,7 @@
             <flag name="pullUpFromBottom" value="0x2" />
         </attr>
 
+
         <!-- Whether the Indicator overlay(s) should be used -->
         <attr name="ptrShowIndicator" format="reference|boolean" />
 

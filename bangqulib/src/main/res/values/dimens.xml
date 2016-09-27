@@ -14,7 +14,7 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
-    !--间距-->
+    <!--间距-->
     <dimen name="small_margin">20px</dimen>
     <dimen name="small_margin_10">10px</dimen>
     <dimen name="small_margin_5">5px</dimen>
