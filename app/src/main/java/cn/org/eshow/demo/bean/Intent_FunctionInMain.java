@@ -6,6 +6,7 @@ import android.widget.Toast;
 
 import com.bangqu.activity.AlbumActivity;
 
+import cn.org.eshow.demo.activity.CityChangeActivity;
 import cn.org.eshow.demo.activity.InfoFormActivity_;
 import cn.org.eshow.demo.activity.LoginActivity_;
 import cn.org.eshow.demo.activity.MapActivity_;
@@ -23,24 +24,25 @@ import cn.org.eshow.framwork.util.AbToastUtil;
  */
 public class Intent_FunctionInMain {
     Intent intent;
+
     public Intent_FunctionInMain(Context context, Enum_FunctionsInMain function) {
         switch (function) {
             case FROM:
                 onFrom(context);
                 break;
             case IMAGE:
-                intent=new Intent(context, AlbumActivity.class);
+                intent = new Intent(context, AlbumActivity.class);
                 context.startActivity(intent);
 //                Toast.makeText(context,"该功能正在开发中 ...",Toast.LENGTH_SHORT).show();
                 //onImage(context);
                 break;
             case DOWNLOAD:
-                Toast.makeText(context,"该功能正在开发中 ...",Toast.LENGTH_SHORT).show();
-                //onDownload(context);
+//                Toast.makeText(context,"该功能正在开发中 ...",Toast.LENGTH_SHORT).show();
+                onDownload(context);
                 break;
             case CITY:
-                Toast.makeText(context,"该功能正在开发中 ...",Toast.LENGTH_SHORT).show();
-                //onCity(context);
+//                Toast.makeText(context,"该功能正在开发中 ...",Toast.LENGTH_SHORT).show();
+                onCity(context);
                 break;
             case MUSIC:
                 //Toast.makeText(context,"该功能正在开发中 ...",Toast.LENGTH_SHORT).show();
@@ -56,11 +58,11 @@ public class Intent_FunctionInMain {
                 onShare(context);
                 break;
             case CHAT:
-                Toast.makeText(context,"该功能正在开发中 ...",Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "该功能正在开发中 ...", Toast.LENGTH_SHORT).show();
                 //onChat(context);
                 break;
             case BLUETOOTH:
-                Toast.makeText(context,"该功能正在完善开发中 ...",Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "该功能正在完善开发中 ...", Toast.LENGTH_SHORT).show();
                 onBluetooth(context);
                 break;
         }
@@ -71,10 +73,10 @@ public class Intent_FunctionInMain {
     }
 
     void onFrom(Context context) {
-        if(SharedPrefUtil.isLogin(context)){
+        if (SharedPrefUtil.isLogin(context)) {
             InfoFormActivity_.intent(context).start();
 
-        }else{
+        } else {
             AbToastUtil.showToast(context, "请先登录再尝试使用此功能！");
             LoginActivity_.intent(context).start();
         }
@@ -85,41 +87,43 @@ public class Intent_FunctionInMain {
     }
 
     void onDownload(Context context) {
-
+        onMusic(context);
     }
 
-    void onCity(Context context){
+    void onCity(Context context) {
+        Intent intent = new Intent(context, CityChangeActivity.class);
+        context.startActivity(intent);
     }
 
-    void onMusic(Context context){
+    void onMusic(Context context) {
         MusicListActivity_.intent(context).start();
 
     }
 
-    void onMap(Context context){
+    void onMap(Context context) {
         MapActivity_.intent(context).start();
     }
 
-    void onPay(Context context){
-        if(SharedPrefUtil.isLogin(context)){
+    void onPay(Context context) {
+        if (SharedPrefUtil.isLogin(context)) {
             Intent intent = new Intent(context, PayWebViewActivity.class);
 
-            String url = "http://api.eshow.org.cn/pingpay/pay.jsp?accessToken="+ SharedPrefUtil.getAccessToken(context);
+            String url = "http://api.eshow.org.cn/pingpay/pay.jsp?accessToken=" + SharedPrefUtil.getAccessToken(context);
             AbLogUtil.i(context, "支付请求地址：" + url);
 
             intent.putExtra(PayWebViewActivity.INTENT_URL_TAG, url);
             context.startActivity(intent);
-        }else{
-            AbToastUtil.showToast(context,"请先登录再尝试使用此功能！");
+        } else {
+            AbToastUtil.showToast(context, "请先登录再尝试使用此功能！");
             LoginActivity_.intent(context).start();
         }
     }
 
-    void onShare(final Context context){
+    void onShare(final Context context) {
         ShareActivity_.intent(context).start();
     }
 
-    void onChat(Context context){
+    void onChat(Context context) {
 
     }
 }

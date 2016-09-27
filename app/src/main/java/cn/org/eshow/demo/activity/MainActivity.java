@@ -1,15 +1,20 @@
 package cn.org.eshow.demo.activity;
 
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.LocalBroadcastManager;
+import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.animation.Animation;
@@ -24,10 +29,12 @@ import android.widget.Toast;
 
 import com.balysv.materialmenu.MaterialMenuDrawable;
 import com.balysv.materialmenu.MaterialMenuView;
-import com.tencent.android.tpush.XGIOperateCallback;
-import com.tencent.android.tpush.XGPushClickedResult;
-import com.tencent.android.tpush.XGPushConfig;
-import com.tencent.android.tpush.XGPushManager;
+//import com.tencent.android.tpush.XGIOperateCallback;
+//import com.tencent.android.tpush.XGPushClickedResult;
+//import com.tencent.android.tpush.XGPushConfig;
+//import com.tencent.android.tpush.XGPushManager;
+import com.igexin.sdk.PushManager;
+import com.igexin.sdk.Tag;
 import com.umeng.socialize.UMShareAPI;
 
 import org.androidannotations.annotations.AfterViews;
@@ -71,7 +78,7 @@ public class MainActivity extends CommonActivity {
     ImageView mIvAdd;
 
     private Context mContext = MainActivity.this;
-    private static final String tag="TPush_MainActivity";
+    private static final String tag = "TPush_MainActivity";
 
     private SlidingMenu menu;
     private AddPopupwindow addPopupwindow;
@@ -81,49 +88,52 @@ public class MainActivity extends CommonActivity {
 
     NaviFragment naviFragment;
     Message m = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.i(tag,"onCreate");
+        Log.i(tag, "onCreate");
         super.onCreate(savedInstanceState);
-        XGPushConfig.enableDebug(this, true);///-----------
+//        XGPushConfig.enableDebug(this, true);///-----------
 
         // 1.获取设备Token
         Handler handler = new HandlerExtension(MainActivity.this);
         m = handler.obtainMessage();
         // 注册接口
-        XGPushManager.registerPush(getApplicationContext(), "18749490020",
-                new XGIOperateCallback() {
-                    @Override
-                    public void onSuccess(Object data, int flag) {
-                        Log.i(tag, "+++ register push sucess. token:" + data + ",flag = " + flag);
-                        m.obj = "+++ register push sucess. token:" + data;
-                        m.sendToTarget();
-                    }
-
-                    @Override
-                    public void onFail(Object data, int errCode, String msg) {
-                        Log.w(tag, "+++ register push fail. token:" + data + ", errCode:" + errCode + ",msg:" + msg);
-                        m.obj = "+++ register push fail. token:" + data + ", errCode:" + errCode + ",msg:" + msg;
-                        m.sendToTarget();
-                    }
-                }
-        );
+//        XGPushManager.registerPush(getApplicationContext(), "18749490020",
+//                new XGIOperateCallback() {
+//                    @Override
+//                    public void onSuccess(Object data, int flag) {
+//                        Log.i(tag, "+++ register push sucess. token:" + data + ",flag = " + flag);
+//                        m.obj = "+++ register push sucess. token:" + data;
+//                        m.sendToTarget();
+//                    }
+//
+//                    @Override
+//                    public void onFail(Object data, int errCode, String msg) {
+//                        Log.w(tag, "+++ register push fail. token:" + data + ", errCode:" + errCode + ",msg:" + msg);
+//                        m.obj = "+++ register push fail. token:" + data + ", errCode:" + errCode + ",msg:" + msg;
+//                        m.sendToTarget();
+//                    }
+//                }
+//        );
 
         SharedPrefUtil.setSecondIn(mContext);
 
         List<Activity> agoActivity = AbActivityManager.getInstance().getActivityList();
         for (int i = 0; i < agoActivity.size(); i++) {
             String activityName = agoActivity.get(i).getLocalClassName();
-            Log.i(tag,"activityName is "+activityName);
+            Log.i(tag, "activityName is " + activityName);
 
             if (!activityName.equals("activity.MainActivity_")) {
                 Log.i(tag, "结束MainActivity之前的界面：" + activityName);
                 agoActivity.get(i).finish();
             }
         }
-
+//        PushManager.getInstance().initialize(this.getApplicationContext());
+        setPush();
         registerBroadcast();
     }
+
     private static class HandlerExtension extends Handler {
         WeakReference<MainActivity> mActivity;
 
@@ -138,10 +148,10 @@ public class MainActivity extends CommonActivity {
             if (theActivity == null) {
                 theActivity = new MainActivity();
             }
-            if (msg != null) {
-                Log.w(tag, "信鸽注册接口返回结果："+msg.obj.toString());
-                Log.w(tag,"XGPushConfig.getToken(theActivity) is = "+ XGPushConfig.getToken(theActivity));
-            }
+//            if (msg != null) {
+//                Log.w(tag, "信鸽注册接口返回结果："+msg.obj.toString());
+//                Log.w(tag,"XGPushConfig.getToken(theActivity) is = "+ XGPushConfig.getToken(theActivity));
+//            }
             // XGPushManager.registerCustomNotification(theActivity,
             // "BACKSTREET", "BOYS", System.currentTimeMillis() + 5000, 0);
         }
@@ -203,10 +213,10 @@ public class MainActivity extends CommonActivity {
      */
     private void initSliding() {
 
-        DisplayMetrics displayMetrics =  AbAppUtil.getDisplayMetrics(mContext);
+        DisplayMetrics displayMetrics = AbAppUtil.getDisplayMetrics(mContext);
         int width = displayMetrics.widthPixels;
-        int slidingMenuOffset = width/5;
-        int shadowWidth = slidingMenuOffset/3;
+        int slidingMenuOffset = width / 5;
+        int shadowWidth = slidingMenuOffset / 3;
 
 
         //SlidingMenu的配置
@@ -253,7 +263,7 @@ public class MainActivity extends CommonActivity {
                                 overridePendingTransition(R.anim.scroll_in_re, R.anim.scroll_out_re);
                                 break;
                             case 1:
-                                if(!SharedPrefUtil.isLogin(mContext)) {
+                                if (!SharedPrefUtil.isLogin(mContext)) {
                                     AbToastUtil.showToast(mContext, "您还未登录！");
                                     LoginActivity_.intent(mContext).start();
                                     return;
@@ -262,7 +272,7 @@ public class MainActivity extends CommonActivity {
                                     @Override
                                     public void OnCustomDialogConfim(String str) {
                                         String userName = SharedPrefUtil.getUser(mContext).getUsername();
-                                        InputTelActivity_.intent(mContext).extra(InputTelActivity_.INTENT_ISREGISTER, Enum_CodeType.REPASSWORD).extra(InputTelActivity_.INTENT_TEL,userName).start();
+                                        InputTelActivity_.intent(mContext).extra(InputTelActivity_.INTENT_ISREGISTER, Enum_CodeType.REPASSWORD).extra(InputTelActivity_.INTENT_TEL, userName).start();
                                         overridePendingTransition(R.anim.scroll_in_re, R.anim.scroll_out_re);
                                     }
 
@@ -271,7 +281,7 @@ public class MainActivity extends CommonActivity {
 
                                     }
                                 };
-                                ConfirmDialog confirmDialog = new ConfirmDialog(mContext,"提示","确定进行重置密码操作？","确定","取消",onCustomDialogListener);
+                                ConfirmDialog confirmDialog = new ConfirmDialog(mContext, "提示", "确定进行重置密码操作？", "确定", "取消", onCustomDialogListener);
                                 confirmDialog.show();
 
                                 break;
@@ -309,7 +319,7 @@ public class MainActivity extends CommonActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        UMShareAPI.get(this).onActivityResult( requestCode, resultCode, data);
+        UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
     }
 
     /**
@@ -325,7 +335,7 @@ public class MainActivity extends CommonActivity {
                 String action = intent.getAction();
                 Log.i(tag, "++++++++++broadcast action:" + action);
                 if (action.equals(Global.EShow_Broadcast_Action.ACTION_LOGIN_SUCESS)) {
-                    if(naviFragment != null){
+                    if (naviFragment != null) {
                         naviFragment.updateUserInfo();
                     }
                 }
@@ -342,20 +352,77 @@ public class MainActivity extends CommonActivity {
 
     @Override
     protected void onResume() {
-        Log.i(tag,"onResume");
+        Log.i(tag, "onResume");
         super.onResume();
-        XGPushClickedResult click = XGPushManager.onActivityStarted(this);
-        Log.i(tag, "onResumeXGPushClickedResult:" + click);
-        if (click != null) { // 判断是否来自信鸽的打开方式
-            Toast.makeText(this, "通知被点击:" + click.toString(), Toast.LENGTH_SHORT).show();
-            Log.i(tag,"通知被点击:" + click.toString());
-        }
+//        XGPushClickedResult click = XGPushManager.onActivityStarted(this);
+//        Log.i(tag, "onResumeXGPushClickedResult:" + click);
+//        if (click != null) { // 判断是否来自信鸽的打开方式
+//            Toast.makeText(this, "通知被点击:" + click.toString(), Toast.LENGTH_SHORT).show();
+//            Log.i(tag,"通知被点击:" + click.toString());
+//        }
     }
 
     @Override
     protected void onPause() {
-        Log.i(tag,"onPause");
+        Log.i(tag, "onPause");
         super.onPause();
-        XGPushManager.onActivityStoped(this);
+//        XGPushManager.onActivityStoped(this);
+    }
+
+    private static final int REQUEST_PERMISSION = 0;
+
+    void setPush() {
+        // SDK初始化，第三方程序启动时，都要进行SDK初始化工作
+        Log.d("GetuiSdkDemo", "initializing sdk...");
+        PackageManager pkgManager = getPackageManager();
+        // 读写 sd card 权限非常重要, android6.0默认禁止的, 建议初始化之前就弹窗让用户赋予该权限
+        boolean sdCardWritePermission =
+                pkgManager.checkPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE, getPackageName()) == PackageManager.PERMISSION_GRANTED;
+
+
+        // read phone state用于获取 imei 设备信息
+        boolean phoneSatePermission =
+                pkgManager.checkPermission(Manifest.permission.READ_PHONE_STATE, getPackageName()) == PackageManager.PERMISSION_GRANTED;
+
+        if (Build.VERSION.SDK_INT >= 23 && !sdCardWritePermission || !phoneSatePermission) {
+            requestPermission();
+        } else {
+            // SDK初始化，第三方程序启动时，都要进行SDK初始化工作
+            PushManager.getInstance().initialize(this.getApplicationContext());
+            setTag();
+        }
+    }
+
+    private void requestPermission() {
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_PHONE_STATE},
+                REQUEST_PERMISSION);
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        if (requestCode == REQUEST_PERMISSION) {
+            if ((grantResults.length == 2 && grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED)) {
+                PushManager.getInstance().initialize(this.getApplicationContext());
+            } else {
+                Log.e("GetuiSdkDemo",
+                        "we highly recommend that you need to grant the special permissions before initializing the SDK, otherwise some "
+                                + "functions will not work");
+                PushManager.getInstance().initialize(this.getApplicationContext());
+                setTag();
+            }
+        } else {
+            onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+    }
+
+    void setTag() {
+        TelephonyManager TelephonyMgr = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
+        String imei = TelephonyMgr.getDeviceId();
+        Tag tag[] = new Tag[1];
+        Tag t = new Tag();
+        t.setName(imei);
+        tag[0] = t;
+        PushManager.getInstance().setTag(this, tag, System.currentTimeMillis() + "");
     }
 }

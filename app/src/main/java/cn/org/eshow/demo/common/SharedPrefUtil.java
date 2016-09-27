@@ -5,6 +5,24 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v4.content.LocalBroadcastManager;
+import android.text.TextUtils;
+
+import com.bangqu.bean.CityBean;
+import com.bangqu.utils.StringUtil;
+
+import org.apache.commons.codec.binary.Base64;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.StreamCorruptedException;
+import java.util.ArrayList;
+import java.util.List;
+
+import cn.google.gson.reflect.TypeToken;
+import cn.org.eshow.demo.activity.CityChangeActivity;
 import cn.org.eshow.demo.bean.UserBean;
 import cn.org.eshow.framwork.util.AbJsonUtil;
 import cn.org.eshow.framwork.util.AbStrUtil;
@@ -38,6 +56,10 @@ public class SharedPrefUtil {
     //存储刚才点击的音乐position
     private static final String DOWNEDMUSIC = "downedMusic";
 
+    public static final String CITYHIS = "city_his";
+    public static final String CITYALL = "city_all";
+    public static final String GPSCITY = "gpscity";
+
     /**
      * 存储selectPosition
      *
@@ -62,6 +84,7 @@ public class SharedPrefUtil {
         String seltetposition = sp.getString(SELTETPOSITION, null);
         return seltetposition;
     }
+
     /**
      * 存储下载列表
      *
@@ -85,6 +108,7 @@ public class SharedPrefUtil {
         String downedMusic = sp.getString(DOWNEDMUSIC, null);
         return downedMusic;
     }
+
     /**
      * 如果已经进入应用，则设置第一次登录为false
      *
@@ -107,6 +131,7 @@ public class SharedPrefUtil {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
         return sp.getBoolean(IS_FIRST_IN, true);
     }
+
     /**
      * 存储发送短信验证码的时间
      *
@@ -119,6 +144,7 @@ public class SharedPrefUtil {
         e.putLong(SEND_CODE_TIME, currentTime);
         e.commit();
     }
+
     /**
      * 获取发送短信验证的时间
      *
@@ -203,6 +229,7 @@ public class SharedPrefUtil {
 
     /**
      * 获取accesstoken
+     *
      * @param context
      * @return
      */
@@ -225,6 +252,7 @@ public class SharedPrefUtil {
         }
         return false;
     }
+
     /**
      * 登出时清空缓存信息
      *
@@ -287,21 +315,25 @@ public class SharedPrefUtil {
     }
 
     //--------保存之前已连接的蓝牙设备信息-----
+
     /**
      * 存储 addr
+     *
      * @param context
      * @param addr
      * @param name
      */
-    public static void setBluetooth(Context context, String addr,String name) {
+    public static void setBluetooth(Context context, String addr, String name) {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor e = sp.edit();
         e.putString(BLUETOOTH_ADDR, addr);
-        e.putString(BLUETOOTH_NAME,name);
+        e.putString(BLUETOOTH_NAME, name);
         e.commit();
     }
+
     /**
      * 获取 addr
+     *
      * @param context
      * @return
      */
@@ -310,8 +342,10 @@ public class SharedPrefUtil {
         String addr = sp.getString(BLUETOOTH_ADDR, null);
         return addr;
     }
+
     /**
      * 获取 name
+     *
      * @param context
      * @return
      */
@@ -320,4 +354,96 @@ public class SharedPrefUtil {
         String name = sp.getString(BLUETOOTH_NAME, null);
         return name;
     }
+
+    /**
+     * 获取历史选中城市
+     *
+     * @param context
+     * @return
+     */
+    public static List<CityBean> getCityHis(Context context) {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+        String str = sp.getString(CITYHIS, null);
+        if (null == str) {
+            return new ArrayList<CityBean>();
+        }
+        return (List<CityBean>) AbJsonUtil.fromJson(str, new TypeToken<ArrayList<CityBean>>() {
+        });
+
+    }
+    /**
+     * 获取历史选中城市
+     *
+     * @param context
+     * @return
+     */
+    public static List<CityBean> getCitys(Context context) {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+        String str = sp.getString(CITYALL, null);
+        if (null == str) {
+            return new ArrayList<CityBean>();
+        }
+        return (List<CityBean>) AbJsonUtil.fromJson(str, new TypeToken<ArrayList<CityBean>>() {
+        });
+
+    }
+    /**
+     * 获取历史选中城市
+     *
+     * @param context
+     * @return
+     */
+    public static void setCityHis(Context context, List<CityBean> list) {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor e = sp.edit();
+        String str = AbJsonUtil.toJson(list);
+        if (str != null) {
+            e.putString(CITYHIS, str);
+        }
+        e.commit();
+
+    }
+    /**
+     * 获取历史选中城市
+     *
+     * @param context
+     * @return
+     */
+    public static void setCitys(Context context, List<CityBean> list) {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor e = sp.edit();
+        String str = AbJsonUtil.toJson(list);
+        if (str != null) {
+            e.putString(CITYALL, str);
+        }
+        e.commit();
+
+    }
+    /**
+     * 设置定位城市
+     *
+     * @param context
+     * @param gpscity
+     */
+    public static void setGpscity(Context context, String gpscity) {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor e = sp.edit();
+        if (gpscity != null) {
+            e.putString(GPSCITY, gpscity);
+        }
+        e.commit();
+    }
+
+    /**
+     * 获得定位城市
+     *
+     * @param context
+     * @return
+     */
+    public static String getgpscity(Context context) {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context); // 获取Preferences的操作对象
+        return sp.getString(GPSCITY, "");
+
+    }
+
 }

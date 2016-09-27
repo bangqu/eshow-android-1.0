@@ -43,4 +43,9 @@
     <color name="open_pin">#3d4245</color>
 
     <color name="colorMusicText">#C6C6C6</color>
+
+    <color name="color_grey">#CDCBCA</color>
+    <color name="color_grey2">#87888C</color>
+    <color name="color_grey3">#999999</color>
+    <color name="color_text_black">#3f3f3f</color>
 </resources>

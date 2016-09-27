@@ -1,0 +1,62 @@
+[
+  {
+    "CityID": 1,
+    "name": "北京",
+    "ProID": 1,
+    "CitySort": 1
+  },
+  {
+    "CityID": 3,
+    "name": "上海",
+    "ProID": 9,
+    "CitySort": 3
+  },
+  {
+    "CityID": 200,
+    "name": "深圳",
+    "ProID": 19,
+    "CitySort": 200
+  },
+  {
+    "CityID": 78,
+    "name": "杭州",
+    "ProID": 11,
+    "CitySort": 78
+  },
+  {
+    "CityID": 190,
+    "name": "广州",
+    "ProID": 19,
+    "CitySort": 190
+  },
+  {
+    "CityID": 159,
+    "name": "武汉",
+    "ProID": 17,
+    "CitySort": 159
+  },
+  {
+    "CityID": 2,
+    "name": "天津",
+    "ProID": 2,
+    "CitySort": 2
+  },
+  {
+    "CityID": 4,
+    "name": "重庆",
+    "ProID": 27,
+    "CitySort": 4
+  },
+  {
+    "CityID": 225,
+    "name": "成都",
+    "ProID": 28,
+    "CitySort": 225
+  },
+  {
+    "CityID": 66,
+    "name": "苏州",
+    "ProID": 10,
+    "CitySort": 66
+  }
+]

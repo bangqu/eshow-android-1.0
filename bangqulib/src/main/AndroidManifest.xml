@@ -15,7 +15,7 @@
         <activity android:name="com.bangqu.activity.AlbumActivity" />
         <activity android:name="com.bangqu.activity.ChooseAlbumActivity" />
         <activity android:name="com.bangqu.activity.SelectPhotoActivity" />
-        <activity android:name="com.bangqu.activity.AlbumDetailsActivity"></activity>
+        <activity android:name="com.bangqu.activity.AlbumDetailsActivity" />
     </application>
 
 </manifest>

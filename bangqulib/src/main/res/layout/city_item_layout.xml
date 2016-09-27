@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:background="@drawable/item_bg"
+    android:gravity="center|left" >
+
+    <TextView
+        android:id="@+id/tvCityName"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="10dp"
+        android:layout_weight="1"
+        android:gravity="center|left"
+        android:text="北京"
+        android:textColor="#3f3f3f"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/new_post"
+        android:layout_width="21dp"
+        android:layout_height="21dp"
+        android:layout_gravity="right"
+        android:background="@mipmap/icon_find_point"
+        android:gravity="center"
+        android:textColor="#ffffff"
+        android:textSize="12sp" />
+
+</LinearLayout>

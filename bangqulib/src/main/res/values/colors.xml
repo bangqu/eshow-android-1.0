@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="textColorPrimary">#F76755</color>
-
+    <color name="color_app_bg">#f5f0eb</color>
     <color name="white">#fff</color>
     <color name="background">#eee</color>
     <color name="line_color">#ddd</color>

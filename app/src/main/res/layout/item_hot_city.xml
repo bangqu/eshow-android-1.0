@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="left|center_vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/item_hot_city_bg"
+        android:gravity="center"
+        android:text="天津"
+        android:id="@+id/hotCity"
+        android:textColor="@color/color_text_black"
+        android:textSize="18sp" />
+</LinearLayout>

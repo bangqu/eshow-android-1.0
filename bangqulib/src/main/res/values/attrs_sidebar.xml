@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SideBar">
+        <attr name="backGroundResId" format="integer" />
+        <attr name="backGroundSelectResId" format="integer" />
+        <attr name="backGroundColor" format="color" />
+        <attr name="backGroundSelectColor" format="color" />
+        <attr name="tvColor" format="color" />
+        <attr name="tvSize" format="integer" />
+        <attr name="isBold" format="boolean" />
+    </declare-styleable>
+</resources>

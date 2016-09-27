@@ -7,6 +7,7 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,18 +28,25 @@ public class AroundPlaceSlidingFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mContext = this.getActivity();
         View view = inflater.inflate(R.layout.fragment_aroundplacesliding, null);
-        mSlidingTabView = (AbSlidingTabView) view.findViewById(R.id.mAbSlidingTabView);
+        RelativeLayout layout = (RelativeLayout) view.findViewById(R.id.mRoot);
+//        mSlidingTabView = (AbSlidingTabView) view.findViewById(R.id.mAbSlidingTabView);
+        mSlidingTabView = new AbSlidingTabView(mContext);
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        mSlidingTabView.setLayoutParams(params);
+        layout.addView(mSlidingTabView);
         initPlaceSliding();
         return view;
     }
 
     /**
      * 设置请求地址
+     *
      * @param location
      */
-    public void setLocation(String location){
+    public void setLocation(String location) {
         this.location = location;
     }
+
     /**
      * 初始化地图周边的分页
      */
@@ -50,7 +58,7 @@ public class AroundPlaceSlidingFragment extends Fragment {
         String type1 = "写字楼";
         String type2 = "小区";
         String type3 = "学校";
-        String allType = "产业园区|"+type1 + "|" + type2 + "|" + type3;
+        String allType = "产业园区|" + type1 + "|" + type2 + "|" + type3;
         AroundPlaceFragment allPlaceFragment = new AroundPlaceFragment();
         allPlaceFragment.setAroundInfo(allType, location);
         AroundPlaceFragment type1PlaceFragment = new AroundPlaceFragment();

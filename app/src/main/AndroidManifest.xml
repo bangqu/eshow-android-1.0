@@ -3,6 +3,7 @@
     package="cn.org.eshow.demo"
     android:versionCode="1"
     android:versionName="1.0.0">
+
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -12,12 +13,13 @@
     <uses-permission android:name="android.permission.USE_CREDENTIALS" />
     <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.FLASHLIGHT"/>
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
     <uses-feature android:name="android.hardware.camera.flash" />
     <!--这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位-->
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
 
     <!-- 【必须】 信鸽SDK所需权限 -->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -58,7 +60,7 @@
             android:name=".activity.MainActivity_"
             android:label="@string/app_name"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <!--引导页面-->
         <activity
             android:name=".activity.GuideActivity"
@@ -79,68 +81,70 @@
         <activity
             android:name=".activity.InputTelActivity_"
             android:label="@string/title_activity_regist"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
         <!--登录页面-->
         <activity
             android:name=".activity.LoginActivity_"
             android:label="@string/title_activity_login"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan|stateHidden"/>
+            android:windowSoftInputMode="adjustPan|stateHidden" />
 
         <!--找回密码-->
         <activity
             android:name=".activity.InputPasswordActivity_"
             android:label="@string/title_activity_findPassword"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
         <!--设置-->
         <activity
             android:name=".activity.SettingActivity_"
             android:label="@string/title_activity_setting"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
         <!--条码、二维码扫描结果文本显示页面-->
         <activity
             android:name=".activity.ScanTextResultActivity_"
             android:label="@string/title_activity_scan"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
         <!--扫描条码、二维码页面-->
         <activity
             android:name=".activity.ScanActivity"
             android:label="@string/title_activity_scan"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
         <!--网址显示页面-->
         <activity
             android:name=".activity.WebActivity"
             android:label="@string/title_activity_web"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
         <!--地图上选择地址的页面-->
         <activity
             android:name=".activity.ChooseLocationActivity_"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
         <!--根据用户输入地方名搜索-->
         <activity
             android:name=".activity.SearchLocationActivity_"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
         <!--表单输入页面-->
         <activity
             android:name=".activity.InfoFormActivity_"
             android:label="@string/title_activity_infoform"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
         <!--表单信息修改页面-->
-        <activity android:name=".activity.ModifyStringValueActivity_"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activity.ModifyStringValueActivity_"
+            android:screenOrientation="portrait" />
 
         <!--表单信息修改性别页面-->
-        <activity android:name=".activity.ModifySexActivity_"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activity.ModifySexActivity_"
+            android:screenOrientation="portrait" />
 
         <!-- 网页支付页面 -->
         <activity
@@ -148,14 +152,16 @@
             android:screenOrientation="portrait" />
 
         <!--地图功能页面-->
-        <activity android:name=".activity.MapActivity_"
+        <activity
+            android:name=".activity.MapActivity_"
             android:label="@string/title_activity_map"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
         <!--分享功能页面-->
-        <activity android:name=".activity.ShareActivity_"
+        <activity
+            android:name=".activity.ShareActivity_"
             android:label="@string/title_activity_share"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
         <!--音乐列表-->
         <activity
@@ -181,54 +187,57 @@
         <service android:name=".music.MusicService_" />
 
         <!--蓝牙连接功能页面-->
-        <activity android:name=".bluetooth.BluetoothActivity_"
+        <activity
+            android:name=".bluetooth.BluetoothActivity_"
             android:label="@string/title_activity_bluetooth"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <service android:name=".bluetooth.BluetoothConnService"></service>
 
         <!--裁剪图片页面-->
-        <activity android:name=".activity.CropImageActivity"
+        <activity
+            android:name=".activity.CropImageActivity"
             android:label="@string/title_activity_share"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
 
         <!--使用友盟5.0SDK-->
         <activity
             android:name="com.umeng.socialize.editorpage.ShareActivity"
-            android:theme="@style/Theme.UMDefault"
-            android:excludeFromRecents="true"/>
+            android:excludeFromRecents="true"
+            android:theme="@style/Theme.UMDefault" />
         <meta-data
             android:name="UMENG_APPKEY"
-            android:value="56cff43467e58e98be001837" >
-        </meta-data>
+            android:value="56cff43467e58e98be001837"></meta-data>
         <!-- ############ QQ空间和QQ SSO授权的Activity注册 ############ -->
         <activity
             android:name="com.tencent.tauth.AuthActivity"
             android:launchMode="singleTask"
-            android:noHistory="true" >
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data android:scheme="tencent1105134763" />
             </intent-filter>
         </activity>
         <activity
             android:name="com.tencent.connect.common.AssistActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
         <activity
             android:name=".wxapi.WXEntryActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <!--新浪微博-->
         <activity
             android:name=".sinaapi.WBShareActivity"
             android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -237,20 +246,19 @@
         <activity
             android:name="com.sina.weibo.sdk.component.WeiboSdkBrowser"
             android:configChanges="keyboardHidden|orientation"
-            android:windowSoftInputMode="adjustResize"
-            android:exported="false" >
-        </activity>
-        <service
-            android:name="com.sina.weibo.sdk.net.DownloadService"
-            android:exported="false">
-        </service>
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize"></activity>
+
+        <!--<service-->
+        <!--android:name="com.sina.weibo.sdk.net.DownloadService"-->
+        <!--android:exported="false"></service>-->
         <!--高德地图-->
         <service android:name="com.amap.api.location.APSService">
 
         </service>
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="b6637b594ae3e6f4d5a6c2f5d568d602"/>
+            android:value="b6637b594ae3e6f4d5a6c2f5d568d602" />
 
         <!--支付-->
         <!-- Ping++ sdk -->
@@ -269,106 +277,105 @@
             android:name="com.alipay.sdk.app.H5PayActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:exported="false"
-            android:screenOrientation="behind" >
-        </activity>
+            android:screenOrientation="behind"></activity>
 
         <activity
             android:name="com.alipay.sdk.auth.AuthActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:exported="false"
-            android:screenOrientation="behind" >
-        </activity>
+            android:screenOrientation="behind"></activity>
 
-        <!-- 【必须】 (2.30及以上版新增)展示通知的activity -->
-        <activity
-            android:name="com.tencent.android.tpush.XGPushActivity"
-            android:theme="@android:style/Theme.Translucent"
-            android:exported="false" >
-            <intent-filter>
-                <!-- 若使用AndroidStudio，请设置android:name="android.intent.action"-->
-                <action android:name="android.intent.action" />
-            </intent-filter>
-        </activity>
+        <!--&lt;!&ndash; 【必须】 (2.30及以上版新增)展示通知的activity &ndash;&gt;-->
+        <!--<activity-->
+            <!--android:name="com.tencent.android.tpush.XGPushActivity"-->
+            <!--android:exported="false"-->
+            <!--android:theme="@android:style/Theme.Translucent">-->
+            <!--<intent-filter>-->
+                <!--&lt;!&ndash; 若使用AndroidStudio，请设置android:name="android.intent.action"&ndash;&gt;-->
+                <!--<action android:name="android.intent.action" />-->
+            <!--</intent-filter>-->
+        <!--</activity>-->
 
-        <!-- 【必须】 信鸽receiver广播接收 -->
-        <receiver
-            android:name="com.tencent.android.tpush.XGPushReceiver"
-            android:process=":xg_service_v2" >
-            <intent-filter android:priority="0x7fffffff" >
+        <!--&lt;!&ndash; 【必须】 信鸽receiver广播接收 &ndash;&gt;-->
+        <!--<receiver-->
+            <!--android:name="com.tencent.android.tpush.XGPushReceiver"-->
+            <!--android:process=":xg_service_v2">-->
+            <!--<intent-filter android:priority="0x7fffffff">-->
 
-                <!-- 【必须】 信鸽SDK的内部广播 -->
-                <action android:name="com.tencent.android.tpush.action.SDK" />
-                <action android:name="com.tencent.android.tpush.action.INTERNAL_PUSH_MESSAGE" />
-                <!-- 【必须】 系统广播：网络切换 -->
-                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <!--&lt;!&ndash; 【必须】 信鸽SDK的内部广播 &ndash;&gt;-->
+                <!--<action android:name="com.tencent.android.tpush.action.SDK" />-->
+                <!--<action android:name="com.tencent.android.tpush.action.INTERNAL_PUSH_MESSAGE" />-->
+                <!--&lt;!&ndash; 【必须】 系统广播：网络切换 &ndash;&gt;-->
+                <!--<action android:name="android.net.conn.CONNECTIVITY_CHANGE" />-->
 
-                <!-- 【可选】 系统广播：开屏 -->
-                <action android:name="android.intent.action.USER_PRESENT" />
+                <!--&lt;!&ndash; 【可选】 系统广播：开屏 &ndash;&gt;-->
+                <!--<action android:name="android.intent.action.USER_PRESENT" />-->
 
-                <!-- 【可选】 一些常用的系统广播，增强信鸽service的复活机会，请根据需要选择。当然，你也可以添加APP自定义的一些广播让启动service -->
-                <action android:name="android.bluetooth.adapter.action.STATE_CHANGED" />
-                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
-                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
-            </intent-filter>
-            <!-- 【可选】 usb相关的系统广播，增强信鸽service的复活机会，请根据需要添加 -->
-            <intent-filter android:priority="0x7fffffff" >
-                <action android:name="android.intent.action.MEDIA_UNMOUNTED" />
-                <action android:name="android.intent.action.MEDIA_REMOVED" />
-                <action android:name="android.intent.action.MEDIA_CHECKING" />
-                <action android:name="android.intent.action.MEDIA_EJECT" />
+                <!--&lt;!&ndash; 【可选】 一些常用的系统广播，增强信鸽service的复活机会，请根据需要选择。当然，你也可以添加APP自定义的一些广播让启动service &ndash;&gt;-->
+                <!--<action android:name="android.bluetooth.adapter.action.STATE_CHANGED" />-->
+                <!--<action android:name="android.intent.action.ACTION_POWER_CONNECTED" />-->
+                <!--<action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />-->
+            <!--</intent-filter>-->
+            <!--&lt;!&ndash; 【可选】 usb相关的系统广播，增强信鸽service的复活机会，请根据需要添加 &ndash;&gt;-->
+            <!--<intent-filter android:priority="0x7fffffff">-->
+                <!--<action android:name="android.intent.action.MEDIA_UNMOUNTED" />-->
+                <!--<action android:name="android.intent.action.MEDIA_REMOVED" />-->
+                <!--<action android:name="android.intent.action.MEDIA_CHECKING" />-->
+                <!--<action android:name="android.intent.action.MEDIA_EJECT" />-->
 
-                <data android:scheme="file" />
-            </intent-filter>
-        </receiver>
-        <!-- 【必须】 信鸽service -->
-        <service
-            android:name="com.tencent.android.tpush.service.XGPushService"
-            android:exported="true"
-            android:persistent="true"
-            android:process=":xg_service_v2" />
+                <!--<data android:scheme="file" />-->
+            <!--</intent-filter>-->
+        <!--</receiver>-->
+        <!--&lt;!&ndash; 【必须】 信鸽service &ndash;&gt;-->
+        <!--<service-->
+            <!--android:name="com.tencent.android.tpush.service.XGPushService"-->
+            <!--android:exported="true"-->
+            <!--android:persistent="true"-->
+            <!--android:process=":xg_service_v2" />-->
 
-        <!-- 【必须】 通知service，其中android:name部分要改为当前包名 -->
-        <service
-            android:name="com.tencent.android.tpush.rpc.XGRemoteService"
-            android:exported="true" >
-            <intent-filter>
-                <!-- 【必须】 请修改为当前APP名包.PUSH_ACTION，如demo的包名为：com.yanwanfu.bluetoothchat -->
-                <action android:name="cn.org.eshow.demo.PUSH_ACTION" />
-            </intent-filter>
-        </service>
+        <!--&lt;!&ndash; 【必须】 通知service，其中android:name部分要改为当前包名 &ndash;&gt;-->
+        <!--<service-->
+            <!--android:name="com.tencent.android.tpush.rpc.XGRemoteService"-->
+            <!--android:exported="true">-->
+            <!--<intent-filter>-->
+                <!--&lt;!&ndash; 【必须】 请修改为当前APP名包.PUSH_ACTION，如demo的包名为：com.yanwanfu.bluetoothchat &ndash;&gt;-->
+                <!--<action android:name="cn.org.eshow.demo.PUSH_ACTION" />-->
+            <!--</intent-filter>-->
+        <!--</service>-->
 
-        <!-- 已废弃，可删除之；若不删除也不会有任何副作用 -->
-        <!--<service
-            android:name="com.tencent.android.tpush.service.XGDaemonService"
-            android:process=":qq_push_daemon" />
-        -->
-        <!-- 【可选】信鸽拉起其他APP应用，若应用在本地找不到可以自动下载 -->
-        <!--
-              <service
-            android:name="com.tencent.android.tpush.XGDownloadService"
-            android:enabled="true"
-            android:exported="false" />
-        -->
-        <!-- 【可选】APP实现的Receiver，用于接收消息透传和操作结果的回调，请根据需要添加 -->
-        <!-- YOUR_PACKAGE_PATH.CustomPushReceiver需要改为自己的Receiver： -->
-        <receiver android:name=".service.MessageReceiver"
-                  android:exported="false" >
-            <intent-filter>
-                <!-- 接收消息透传 -->
-                <action android:name="com.tencent.android.tpush.action.PUSH_MESSAGE" />
-                <!-- 监听注册、反注册、设置/删除标签、通知被点击等处理结果 -->
-                <action android:name="com.tencent.android.tpush.action.FEEDBACK" />
-            </intent-filter>
-        </receiver>
+        <!--&lt;!&ndash; 已废弃，可删除之；若不删除也不会有任何副作用 &ndash;&gt;-->
+        <!--&lt;!&ndash;<service-->
+            <!--android:name="com.tencent.android.tpush.service.XGDaemonService"-->
+            <!--android:process=":qq_push_daemon" />-->
+        <!--&ndash;&gt;-->
+        <!--&lt;!&ndash; 【可选】信鸽拉起其他APP应用，若应用在本地找不到可以自动下载 &ndash;&gt;-->
+        <!--&lt;!&ndash;-->
+              <!--<service-->
+            <!--android:name="com.tencent.android.tpush.XGDownloadService"-->
+            <!--android:enabled="true"-->
+            <!--android:exported="false" />-->
+        <!--&ndash;&gt;-->
+        <!--&lt;!&ndash; 【可选】APP实现的Receiver，用于接收消息透传和操作结果的回调，请根据需要添加 &ndash;&gt;-->
+        <!--&lt;!&ndash; YOUR_PACKAGE_PATH.CustomPushReceiver需要改为自己的Receiver： &ndash;&gt;-->
+        <!--<receiver-->
+            <!--android:name=".service.MessageReceiver"-->
+            <!--android:exported="false">-->
+            <!--<intent-filter>-->
+                <!--&lt;!&ndash; 接收消息透传 &ndash;&gt;-->
+                <!--<action android:name="com.tencent.android.tpush.action.PUSH_MESSAGE" />-->
+                <!--&lt;!&ndash; 监听注册、反注册、设置/删除标签、通知被点击等处理结果 &ndash;&gt;-->
+                <!--<action android:name="com.tencent.android.tpush.action.FEEDBACK" />-->
+            <!--</intent-filter>-->
+        <!--</receiver>-->
 
-        <!-- 【必须】 请修改为APP的AccessId，“21”开头的10位数字，中间没空格 package is cn.org.eshow-->
-        <meta-data
-            android:name="XG_V2_ACCESS_ID"
-            android:value="2100196658" />
-        <!-- 【必须】 请修改为APP的AccessKey，“A”开头的12位字符串，中间没空格 -->
-        <meta-data
-            android:name="XG_V2_ACCESS_KEY"
-            android:value="APUH676FG76K" />
+        <!--&lt;!&ndash; 【必须】 请修改为APP的AccessId，“21”开头的10位数字，中间没空格 package is cn.org.eshow&ndash;&gt;-->
+        <!--<meta-data-->
+            <!--android:name="XG_V2_ACCESS_ID"-->
+            <!--android:value="2100196658" />-->
+        <!--&lt;!&ndash; 【必须】 请修改为APP的AccessKey，“A”开头的12位字符串，中间没空格 &ndash;&gt;-->
+        <!--<meta-data-->
+            <!--android:name="XG_V2_ACCESS_KEY"-->
+            <!--android:value="APUH676FG76K" />-->
 
         <!--&lt;!&ndash; 【必须】 请修改为APP的AccessId，“21”开头的10位数字，中间没空格  package is cn.org.eshow.demo &ndash;&gt;-->
         <!--<meta-data-->
@@ -379,7 +386,23 @@
         <!--android:name="XG_V2_ACCESS_KEY"-->
         <!--android:value="A3EG4Y12TG3W" />-->
 
-        <activity android:name="com.bangqu.activity.AlbumActivity"/>
-        <activity android:name="com.bangqu.activity.PhotosFullActivity"/>
+        <activity android:name="com.bangqu.activity.AlbumActivity" />
+        <activity android:name="com.bangqu.activity.PhotosFullActivity" />
+        <activity
+            android:name=".activity.CityChangeActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+
+
+        <!-- 配置第三方Receiver -->
+        <!-- 此处com.getui.demo.PushDemoReceiver，需要替换成开发者自己的BroadcastReceiver文件全名-->
+        <receiver
+            android:name="cn.org.eshow.demo.common.PushDemoReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.igexin.sdk.action.${GETUI_APP_ID}" />
+            </intent-filter>
+        </receiver>
     </application>
 </manifest>

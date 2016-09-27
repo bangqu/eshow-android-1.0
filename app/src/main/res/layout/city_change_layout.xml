@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/llParent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fafafa"
+    android:orientation="vertical">
+
+    <!--<include layout="@layout/include_title_more_layout" />-->
+    <include layout="@layout/common_actionbar_withback" />
+
+    <include layout="@layout/include_progressbar_appbg" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#c3c3c8">
+
+        <com.bangqu.view.ClearEditText
+            android:id="@+id/filter_edit"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_edit_city"
+            android:layout_margin="8dp"
+            android:drawableLeft="@mipmap/search_bar_icon_normal"
+            android:hint="输入城市名或拼音"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:singleLine="true"
+            android:textSize="@dimen/normal_textSize" />
+    </LinearLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#CDCBCA" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ListView
+            android:id="@+id/lvSvCityList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@null"></ListView>
+
+        <com.bangqu.view.SideBar
+            android:id="@+id/sidrbar"
+            android:layout_width="50px"
+            android:layout_height="360dp"
+            android:layout_gravity="right|center"
+            android:layout_marginBottom="50dp"
+            android:layout_marginRight="6dp"
+            android:layout_marginTop="50dp"
+            app:isBold="true"
+            app:tvColor="#D0D0D0" />
+
+        <TextView
+            android:id="@+id/dialog"
+            android:layout_width="80.0dip"
+            android:layout_height="80.0dip"
+            android:layout_gravity="center"
+            android:background="@drawable/show_head_toast_bg"
+            android:gravity="center"
+            android:textColor="#ffffffff"
+            android:textSize="30.0dip"
+            android:visibility="invisible" />
+    </FrameLayout>
+
+</LinearLayout>

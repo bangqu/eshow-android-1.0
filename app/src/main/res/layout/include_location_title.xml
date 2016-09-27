@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/llTempCityHeader"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#fafafa"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/llNoEdit"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="#ebebeb"
+            android:gravity="center|left">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:gravity="center_vertical"
+                android:text="当前城市"
+                android:textColor="@color/color_grey3"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/color_grey" />
+
+        <LinearLayout
+            android:id="@+id/llGPSCity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="28dp"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/btnGPSCity"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/item_hot_city_bg"
+                android:gravity="center"
+                android:text="正在定位..."
+                android:textColor="@color/color_text_black"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="14dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="14dp"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/color_grey" />
+
+        <LinearLayout
+            android:id="@+id/hotView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="#ebebeb"
+                android:gravity="center|left">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center_vertical"
+                    android:text="热门城市"
+                    android:textColor="@color/color_grey3"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/color_grey" />
+
+            <GridView
+                android:id="@+id/mGrid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="28dp"
+                android:layout_marginTop="10dp"
+                android:horizontalSpacing="14dp"
+                android:numColumns="3"
+                android:verticalSpacing="14dp">
+
+            </GridView>
+            <!--<LinearLayout-->
+            <!--android:id="@+id/llTempHotCity"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="240dp"-->
+            <!--android:background="@color/color_app_bg"-->
+            <!--android:gravity="center|left"-->
+            <!--android:orientation="vertical">-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/tvHotCity1"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="48dp"-->
+            <!--android:background="@drawable/item_bg"-->
+            <!--android:gravity="center|left"-->
+            <!--android:paddingLeft="10dp"-->
+            <!--android:textColor="@color/color_text_black"-->
+            <!--android:text="天津"-->
+            <!--android:textSize="18sp" />-->
+
+            <!--<View-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="0.5dp"-->
+            <!--android:background="#F3F3F3" />-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/tvHotCity2"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="48dp"-->
+            <!--android:background="@drawable/item_bg"-->
+            <!--android:gravity="center|left"-->
+            <!--android:paddingLeft="10dp"-->
+            <!--android:textColor="@color/color_text_black"-->
+            <!--android:textSize="18sp" />-->
+
+            <!--<View-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="0.5dp"-->
+            <!--android:background="#F3F3F3" />-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/tvHotCity3"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="48dp"-->
+            <!--android:background="@drawable/item_bg"-->
+            <!--android:gravity="center|left"-->
+            <!--android:paddingLeft="10dp"-->
+            <!--android:textColor="@color/color_text_black"-->
+            <!--android:textSize="18sp" />-->
+
+            <!--<View-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="0.5dp"-->
+            <!--android:background="#F3F3F3" />-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/tvHotCity4"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="48dp"-->
+            <!--android:background="@drawable/item_bg"-->
+            <!--android:gravity="center|left"-->
+            <!--android:paddingLeft="10dp"-->
+            <!--android:textColor="@color/color_text_black"-->
+            <!--android:textSize="18sp" />-->
+
+            <!--<View-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="0.5dp"-->
+            <!--android:background="#F3F3F3" />-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/tvHotCity5"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="48dp"-->
+            <!--android:background="@drawable/item_bg"-->
+            <!--android:gravity="center|left"-->
+            <!--android:paddingLeft="10dp"-->
+            <!--android:textColor="@color/color_text_black"-->
+            <!--android:textSize="18sp" />-->
+            <!--</LinearLayout>-->
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
