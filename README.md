@@ -8,23 +8,37 @@ www.eshow.org.cn 旗下 Android开源框架
 ##编译环境
 Android Studio 1.5.1，用gradle引用的许多第三方库，第一次加载会有点慢，加载完毕后要build一下，这些待下划线的类（比如 MainActivity_）会在build之后自动生成（因为用了gradle，所以**不支持eclipse**）。
 
-##包说明
->common 基类和工具类  
->>comment 评论区  
->>enter 输入框  
->>network 对网络做了一点封装  
->>photopick 图片多选控件  
->>umeng 封装了umeng  
+####下面介绍一下文件的大概目录先：
+    .
+    ├── EShow-Android
+    │   ├── Application
+    │   ├── Activity：活动类
+    |   |   |——进入staging界面 
+    |   |   |——maopao 冒泡界面
+    |   |   |——message 消息界面  
+    |   |   |——model 一些数据结构  
+    |   |   |——project 我的项目界面  
+    |   |   |——setting 设置界面  
+    |   |   |——task 我的任务界面  
+    |   |   |——third 一些第三方代码 
+    |   |   └──user 好友界面  
+    │   ├── View：视图类
+    │   │   ├── CircleImageView：复写ImageView头像圆形控件
+    │   │   ├── ShareDialog：集成分享Dialog
+    |   |   |—— PullToRefreshListView下拉刷新控件
+    │   │   └── XXX：其它功能块所需要使用到的视图层单独建立
+    │   ├── drawable：app中用到的所有的图片都在这里
+    │   ├── layout：布局文件
+    │   ├── Util：一些常用控件和Category、Manager之类
+    │   │   ├── common 基类和工具类 
+    │   │   ├── comment 评论区  
+    │   │   ├── enter 输入框 
+    │   |   |—— photopick 图片多选控件  
+    |   |   |—— umeng 封装了umeng  
+    |   │   └── network 对网络做了一点封装  
+    │   └── bangqulib：帮趣集成新模块
+    └── 注解开发：项目使用(https://github.com/excilys/androidannotations)这个类库管理工具
 
->hide 进入staging界面  
->maopao 冒泡界面  
->message 消息界面  
->model 一些数据结构  
->project 我的项目界面  
->setting 设置界面  
->task 我的任务界面  
->third 一些第三方代码  
->user 好友界面  
 
 ##一些觉得有必要提一下的
 因为不想写一堆绑定函数，所以项目用了 [androidannotations](https://github.com/excilys/androidannotations)，如果以前没用过最好先看看。
