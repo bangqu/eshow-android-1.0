@@ -186,26 +186,30 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
                 finish();
                 break;
             case R.id.llMusicDown://下载本歌曲
-
+                boolean isAdd = true;//是否添加到列表
                 if (MusicListActivity.instans.songList.get(playingPosition).isDownFinish()) {//是否下载过
                     Toast.makeText(this, "歌曲已经下载过", Toast.LENGTH_SHORT).show();
-                    Intent intent = MusicDownActivity_.intent(this).get();
-                    startActivity(intent);
+                    isAdd = false;
+//                    Intent intent = MusicDownActivity_.intent(this).get();
+//                    startActivity(intent);
                 } else {
-                    if (MusicDownActivity.downList!=null){
-                        for (Song song:MusicDownActivity.downList){
-                            if (song.getName().equals(MusicListActivity.instans.songList.get(playingPosition).getName())){
+                    if (MusicDownActivity.downList != null) {
+                        for (Song song : MusicDownActivity.downList) {
+                            if (song.getName().equals(MusicListActivity.instans.songList.get(playingPosition).getName())) {
                                 Toast.makeText(this, "歌曲已经在下载列表中", Toast.LENGTH_SHORT).show();
+                                isAdd = false;
                             }
                         }
                     }
-                    if (MusicListActivity.instans.isNetworkAvailable(PlayActivity.this)) {//是否有网络
-                        Intent intent = MusicDownActivity_.intent(this).get();
+                }
+                if (MusicListActivity.instans.isNetworkAvailable(PlayActivity.this)) {//是否有网络
+                    Intent intent = MusicDownActivity_.intent(this).get();
+                    if (isAdd) {
                         intent.putExtra("downPosition", playingPosition + "");
-                        startActivity(intent);
-                    } else {
-                        Toast.makeText(getApplicationContext(), "当前没有可用网络！", Toast.LENGTH_LONG).show();
                     }
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(getApplicationContext(), "当前没有可用网络！", Toast.LENGTH_LONG).show();
                 }
                 break;
         }
@@ -338,15 +342,15 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
                         Log.i(tag, "广播点击上一曲");
                         break;
                     case BUTTON_PALY_ID://暂停播放
-                            if (!MusicService.musicIsPlaying()) {//恢复播放
-                                bottom_btn_play.setBackgroundResource(R.drawable.ic_music_pause);
-                                Log.i(tag, "广播点击暂停");
-                                MusicService.musicHandler.sendEmptyMessage(3);
-                            } else if (MusicService.musicIsPlaying()) {//暂停播放
-                                bottom_btn_play.setBackgroundResource(R.drawable.ic_music_play);
-                                Log.i(tag, "广播点击恢复");
-                                MusicService.musicHandler.sendEmptyMessage(2);
-                            }
+                        if (!MusicService.musicIsPlaying()) {//恢复播放
+                            bottom_btn_play.setBackgroundResource(R.drawable.ic_music_pause);
+                            Log.i(tag, "广播点击暂停");
+                            MusicService.musicHandler.sendEmptyMessage(3);
+                        } else if (MusicService.musicIsPlaying()) {//暂停播放
+                            bottom_btn_play.setBackgroundResource(R.drawable.ic_music_play);
+                            Log.i(tag, "广播点击恢复");
+                            MusicService.musicHandler.sendEmptyMessage(2);
+                        }
                         break;
                     case BUTTON_NEXT_ID://下一曲
                         Log.i(tag, "广播点击下一曲");
@@ -395,10 +399,10 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
         mRemoteViews.setTextViewText(R.id.tv_custom_song_singer, singer);
         mRemoteViews.setTextViewText(R.id.tv_custom_song_name, songName);
         mRemoteViews.setViewVisibility(R.id.ll_custom_button, View.VISIBLE);
-        if (isNotify){
+        if (isNotify) {
             isNotify = false;
             mRemoteViews.setImageViewResource(R.id.btn_custom_play, R.drawable.ic_music_pause);
-        }else{
+        } else {
             isNotify = true;
             mRemoteViews.setImageViewResource(R.id.btn_custom_play, R.drawable.ic_music_play);
         }
@@ -414,7 +418,7 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
         buttonIntent.putExtra(INTENT_BUTTONID_TAG, BUTTON_PALY_ID);
         PendingIntent intent_paly = PendingIntent.getBroadcast(this, 2, buttonIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         mRemoteViews.setOnClickPendingIntent(R.id.btn_custom_play, intent_paly);
-		/* 下一首 按钮  */
+        /* 下一首 按钮  */
         buttonIntent.putExtra(INTENT_BUTTONID_TAG, BUTTON_NEXT_ID);
         PendingIntent intent_next = PendingIntent.getBroadcast(this, 3, buttonIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         mRemoteViews.setOnClickPendingIntent(R.id.btn_custom_next, intent_next);

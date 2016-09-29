@@ -45,7 +45,7 @@ public class MusicDowningAdapter extends BaseAdapter implements View.OnClickList
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @Override
-    public View getView(final int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, final ViewGroup parent) {
 
         if (convertView == null) {
             convertView = LayoutInflater.from(mContext).inflate(R.layout.item_musicdowning, null);
@@ -56,7 +56,13 @@ public class MusicDowningAdapter extends BaseAdapter implements View.OnClickList
             viewHolder.tvDowmSize = (TextView) convertView.findViewById(R.id.tvDowmSize);
             viewHolder.llDowning = (LinearLayout) convertView.findViewById(R.id.llDowning);
             viewHolder.tvDelete = (TextView) convertView.findViewById(R.id.tvDelete);
-            viewHolder.tvDelete.setOnClickListener(this);
+            viewHolder.tvDelete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    data.remove(position);
+                    notifyDataSetChanged();
+                }
+            });
             viewHolder.llLeft = (LinearLayout) convertView.findViewById(R.id.llLeft);
             viewHolder.llLeft.setOnTouchListener(new View.OnTouchListener() {
                 @Override

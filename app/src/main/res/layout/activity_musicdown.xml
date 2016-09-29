@@ -22,8 +22,8 @@
             android:layout_weight="1"
             android:background="#FFFFFF"
             android:text="已下载"
-            android:textSize="12sp"
-            android:textColor="@color/textColorPrimary" />
+            android:textSize="14sp"
+            android:textColor="@color/normal_text" />
 
         <Button
             android:id="@+id/btDowning"
@@ -32,7 +32,7 @@
             android:layout_weight="1"
             android:background="#FFFFFF"
             android:text="下载中"
-            android:textSize="12sp"
+            android:textSize="14sp"
             android:textColor="@color/textColorPrimary" />
     </LinearLayout>
 
@@ -40,10 +40,10 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="#F7F6F1" />
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="30px"
-        android:background="#F7F6F1" />
+    <!--<View-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="30px"-->
+        <!--android:background="#F7F6F1" />-->
     <ListView
         android:id="@+id/lvMusicDownList"
         android:layout_width="match_parent"
