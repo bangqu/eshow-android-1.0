@@ -11,10 +11,12 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
@@ -189,6 +191,7 @@ public class CityChangeActivity extends CommonActivity implements
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 addCityToHis(hotcityList.get(position));
+                toMap(hotcityList.get(position));
                 Intent intent = new Intent();
                 intent.putExtra("cityName", hotCityNames.get(position));
                 setResult(RESULT_OK, intent);
@@ -222,7 +225,15 @@ public class CityChangeActivity extends CommonActivity implements
             public void afterTextChanged(Editable s) {
             }
         });
-
+        mClearEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    searchData(mClearEditText.getText().toString().trim());
+                    return true;
+                }
+                return false;
+            }
+        });
         // 定位城市
         btnGPSCity = (TextView) findViewById(R.id.btnGPSCity);
         llGPSCity = (LinearLayout) findViewById(R.id.llGPSCity);
@@ -314,7 +325,7 @@ public class CityChangeActivity extends CommonActivity implements
     /**
      * 根据输入框中的值来过滤数据并更新ListView
      */
-    private void searchData(String filterStr) throws Exception {
+    private void searchData(String filterStr) {
         List<CityBean> searchDateList = new ArrayList<CityBean>();
 
         if (TextUtils.isEmpty(filterStr)) {
@@ -359,7 +370,10 @@ public class CityChangeActivity extends CommonActivity implements
 //                        intent0.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 //                        startActivity(intent0);
                     }
-                    CityChangeActivity.this.finish();
+                    CityBean cityBean = new CityBean();
+                    cityBean.setName(cityName);
+                    toMap(cityBean);
+//                    CityChangeActivity.this.finish();
                 } else {
                     ToastUtil.showShort(CityChangeActivity.this, "正在定位中...");
                 }
@@ -455,6 +469,7 @@ public class CityChangeActivity extends CommonActivity implements
 
     void addCityToHis(CityBean cityBean) {
         List<CityBean> list = new ArrayList<>();
+        toMap(cityBean);
         list.addAll(cityListHis);
         for (int i = 0; i < cityListHis.size(); i++) {
             if (i < list.size() && list.get(i).getCityID() == cityBean.getCityID()) {
@@ -501,6 +516,17 @@ public class CityChangeActivity extends CommonActivity implements
         @Override
         public void onClick(CityBean cityBean) {
             addCityToHis(cityBean);
+
         }
     };
+
+    /**
+     * 点击城市名跳转到地图
+     *
+     * @param cityBean
+     */
+    void toMap(CityBean cityBean) {
+//        ChooseLocationActivity_.intent(this).extra(ChooseLocationActivity_.INTENT_CITYNAME, cityBean.getName()).start();
+//        overridePendingTransition(R.anim.alpha_in, R.anim.alpha_out);
+    }
 }

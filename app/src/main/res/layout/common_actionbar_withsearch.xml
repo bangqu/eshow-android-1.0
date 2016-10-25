@@ -50,6 +50,7 @@
         android:inputType="text"
         android:maxLines="1"
         android:singleLine="true"
+        android:imeOptions="actionSearch"
         android:layout_marginLeft="@dimen/small_margin"
         android:layout_marginRight="@dimen/small_margin"
         android:textSize="@dimen/small_textSize"/>

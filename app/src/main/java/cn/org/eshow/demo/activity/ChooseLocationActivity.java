@@ -59,7 +59,8 @@ public class ChooseLocationActivity extends CommonActivity implements LocationSo
     @ViewById(R.id.content_frame)
     FrameLayout content_frame;
     Bundle savedInstanceState;
-
+    public static final String INTENT_CITYNAME = "intent.cityName";
+    String cityName = "wuxi";
     private OnLocationChangedListener mListener;
     private AMapLocationClient mlocationClient;
     private AMapLocationClientOption mLocationOption;
@@ -73,7 +74,10 @@ public class ChooseLocationActivity extends CommonActivity implements LocationSo
     void init() {
         AbViewUtil.scaleContentView((LinearLayout) findViewById(R.id.llParent));
         material_back_button.setState(MaterialMenuDrawable.IconState.ARROW);
-
+//        String name = getIntent().getStringExtra(INTENT_CITYNAME);
+//        if (null != name) {
+//            cityName = name;
+//        }
         initMap();
 
     }
@@ -140,7 +144,7 @@ public class ChooseLocationActivity extends CommonActivity implements LocationSo
 
     @Click(R.id.etSearch)
     void onSearch(){
-        SearchLocationActivity_.intent(mContext).extra(SearchLocationActivity_.INTENT_CITYNAME,"").start();
+        SearchLocationActivity_.intent(mContext).extra(SearchLocationActivity_.INTENT_CITYNAME,cityName).start();
         overridePendingTransition(R.anim.alpha_in, R.anim.alpha_out);
         finish();
     }

@@ -2,7 +2,9 @@ package cn.org.eshow.demo.activity;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -59,6 +61,7 @@ public class SearchLocationActivity extends CommonActivity {
     TextView tvNoData;
     @ViewById(R.id.rlProgress)
     RelativeLayout rlProgress;
+    String cityName = "wuxi";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,15 +78,30 @@ public class SearchLocationActivity extends CommonActivity {
         rlProgress.setVisibility(View.GONE);
         listView.setVisibility(View.VISIBLE);
         aroundList = new ArrayList<AMapLocationBean>();
-        placeAdapter = new PlaceAdapter(mContext,aroundList);
+        placeAdapter = new PlaceAdapter(mContext, aroundList);
         listView.setAdapter(placeAdapter);
+
+        String name = getIntent().getStringExtra(INTENT_CITYNAME);
+        if (null != name) {
+            cityName = name;
+        }
+
+        etSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    onSearchTextChange();
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 
     @AfterTextChange(R.id.etSearch)
     void onSearchTextChange() {
         // Something Here
         String text = etSearch.getText().toString();
-        NetworkInterface.searchPlace(mContext, text, "wuxi", searchPlaceListener);
+        NetworkInterface.searchPlace(mContext, text, cityName, searchPlaceListener);
     }
 
     @Click(R.id.rlBack)
@@ -92,7 +110,7 @@ public class SearchLocationActivity extends CommonActivity {
     }
 
     @Click(R.id.tvSubTitle)
-    void onSubTitile(){
+    void onSubTitile() {
         ChooseLocationActivity_.intent(mContext).start();
         overridePendingTransition(R.anim.alpha_in, R.anim.alpha_out);
         finish();
@@ -107,11 +125,11 @@ public class SearchLocationActivity extends CommonActivity {
         public void onAMapSucess(JSONObject resultJson) {
             AbLogUtil.d(mContext, "resultJson:" + resultJson);
             AMapLocationListResultBean aMapLocationListResult = (AMapLocationListResultBean) AbJsonUtil.fromJson(resultJson.toString(), AMapLocationListResultBean.class);
-            if(aMapLocationListResult != null){
+            if (aMapLocationListResult != null) {
                 aroundList.clear();
                 aroundList.addAll(aMapLocationListResult.getPois());
                 placeAdapter.notifyDataSetChanged();
-            }else{
+            } else {
                 rlProgress.setVisibility(View.GONE);
                 listView.setVisibility(View.GONE);
                 tvNoData.setVisibility(View.VISIBLE);
