@@ -295,10 +295,10 @@ public class SelectPhotoActivity extends Activity implements OnItemClickListener
             listselects.get(position).select = !listselects.get(position).select;
             if(listselects.get(position).select){
                 if (!listps.contains(listfiles.get(pos).getAbsolutePath() + "/" +listselects.get(position).path)){
-                    if (listps.size()<9) {
+                    if (listps.size()<5) {
                         listps.add(listfiles.get(pos).getAbsolutePath() + "/" + listselects.get(position).path);
                     }else {
-                        ToastUtils.show(this,"最多选择9张照片");
+                        ToastUtils.show(this,"最多选择5张照片");
                         listselects.get(position).select = !listselects.get(position).select;
                     }
                 }

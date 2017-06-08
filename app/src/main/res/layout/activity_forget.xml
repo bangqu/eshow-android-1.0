@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background" >
+
+    <include layout="@layout/include_mune_header"/>
+
+
+    <com.bangqu.view.ClearEditText
+        android:id="@+id/etPhone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/panding_15"
+        android:background="@color/white"
+        android:textSize="@dimen/textsize_14"
+        android:singleLine="true"
+        android:textColor="@color/txt_333"
+        android:layout_marginTop="@dimen/panding_20"
+        android:hint="请输入手机号"
+        android:inputType="number"
+        android:maxLength="11"
+        android:textColorHint="@color/hint_color"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line"
+        android:background="@color/line_color"
+        android:layout_marginLeft="@dimen/panding_15"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+        <TextView
+            android:id="@+id/tvSend"
+            android:layout_width="100dp"
+            android:layout_height="32dp"
+            android:textSize="@dimen/textsize_12"
+            android:layout_marginRight="@dimen/panding_15"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/panding_8"
+            android:layout_marginBottom="@dimen/panding_8"
+            android:layout_marginLeft="@dimen/panding_8"
+            android:background="@drawable/red_border"
+            android:textColor="@color/textColorPrimary"
+            android:text="获取验证码"
+            android:gravity="center"
+            android:layout_centerVertical="true"/>
+
+        <com.bangqu.view.ClearEditText
+            android:id="@+id/etCode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/tvSend"
+            android:padding="@dimen/panding_15"
+            android:background="@null"
+            android:singleLine="true"
+            android:layout_centerVertical="true"
+            android:textColorHint="@color/hint_color"
+            android:hint="请输入验证码"
+            android:inputType="number"
+            android:textColor="@color/txt_333"
+            android:textSize="@dimen/textsize_14"/>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line"
+        android:background="@color/line_color"
+        android:layout_marginLeft="@dimen/panding_15"/>
+
+    <com.bangqu.view.ClearEditText
+        android:id="@+id/etPwd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/panding_15"
+        android:background="@color/white"
+        android:inputType="textPassword"
+        android:textColorHint="@color/hint_color"
+        android:hint="请输入新密码（6-20位）"
+        android:textColor="@color/txt_333"
+        android:maxLength="20"
+        android:singleLine="true"
+        android:textSize="@dimen/textsize_14" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line"
+        android:background="@color/line_color"
+        android:layout_marginLeft="@dimen/panding_15"/>
+
+    <com.bangqu.view.ClearEditText
+        android:id="@+id/etQPwd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/panding_15"
+        android:background="@color/white"
+        android:inputType="textPassword"
+        android:textColorHint="@color/hint_color"
+        android:hint="请输入确认密码"
+        android:textColor="@color/txt_333"
+        android:maxLength="20"
+        android:singleLine="true"
+        android:textSize="@dimen/textsize_14" />
+
+    <Button
+        android:id="@+id/btnOk"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@drawable/btn_login_selector"
+        android:layout_margin="@dimen/panding_15"
+        android:textColor="@color/white"
+        android:textSize="@dimen/textsize_14"
+        android:text="提交"/>
+
+</LinearLayout>

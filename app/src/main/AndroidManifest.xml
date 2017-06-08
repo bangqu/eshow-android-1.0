@@ -381,5 +381,7 @@
 
         <activity android:name="com.bangqu.activity.AlbumActivity"/>
         <activity android:name="com.bangqu.activity.PhotosFullActivity"/>
+        <activity android:name=".activity.CodeLoginActivity"/>
+        <activity android:name=".activity.ForgetActivity"/>
     </application>
 </manifest>

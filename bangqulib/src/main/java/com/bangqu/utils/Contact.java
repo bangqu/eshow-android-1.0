@@ -1,6 +1,11 @@
 package com.bangqu.utils;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.util.Log;
+
+import com.bangqu.bean.UserLoginBean;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -16,6 +21,7 @@ import java.util.regex.Pattern;
 public class Contact {
 
     public final static String USERINFO="userinfo";
+    public static UserLoginBean userLoginBean;
 
     /**
      * 将图片联合路径处理成单个
@@ -39,5 +45,37 @@ public class Contact {
         return listphotos;
     }
 
+    /**
+     * 判断是否是手机号
+     *
+     * @param mobiles
+     * @return
+     */
+    public static boolean isMobileNO(String mobiles) {
+        Pattern p = Pattern
+                .compile("^((11[0-9])|(12[0-9])|(13[0-9])|(14[0-9])|(15[0-9])|(16[0-9])|(17[0-9])|(18[0-9])|(19[0-9]))\\d{8}$");
+        Matcher m = p.matcher(mobiles);
+        return m.matches();
+    }
 
+    public static  String getNetworkStateName(Context context) {
+        ConnectivityManager mConnectivityManager = (ConnectivityManager) context
+                .getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo mNetworkInfo = mConnectivityManager
+                .getActiveNetworkInfo();
+        if(mNetworkInfo.isAvailable()){
+            //获取网络类型
+            int netWorkType =mNetworkInfo.getType();
+            if(netWorkType==ConnectivityManager.TYPE_WIFI){
+                return "WIFI";
+            }else if(netWorkType==ConnectivityManager.TYPE_MOBILE){
+                return "2G/3G/4G";
+            }else{
+                return "其它方式";
+            }
+        }else{
+            return "当前无网络";
+        }
+
+    }
 }

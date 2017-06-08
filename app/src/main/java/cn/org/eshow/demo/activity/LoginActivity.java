@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.balysv.materialmenu.MaterialMenuDrawable;
 import com.balysv.materialmenu.MaterialMenuView;
+import com.bangqu.activity.RegisterActivity;
 import com.umeng.socialize.Config;
 import com.umeng.socialize.UMAuthListener;
 import com.umeng.socialize.UMShareAPI;
@@ -54,6 +55,7 @@ import cn.org.eshow.framwork.util.AbViewUtil;
 @EActivity(R.layout.activity_login)
 public class LoginActivity extends CommonActivity {
     private Context mContext = LoginActivity.this;
+    private TextView tvCodeLogin;
     @ViewById(R.id.rlBack)
     RelativeLayout mRlMenu;
     @ViewById(R.id.material_back_button)
@@ -94,6 +96,14 @@ public class LoginActivity extends CommonActivity {
         mTvSubTitle.setVisibility(View.VISIBLE);
         mMaterialBackButton.setState(MaterialMenuDrawable.IconState.ARROW);
         mMaterialBackButton.setVisibility(View.VISIBLE);
+        tvCodeLogin=(TextView)findViewById(R.id.tvCodeLogin);
+        tvCodeLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(LoginActivity.this,CodeLoginActivity.class);
+                startActivity(intent);
+            }
+        });
 
         userName = getIntent().getStringExtra(InputPasswordActivity.INTENT_TEL);
         if(cn.org.eshow.framwork.util.AbStrUtil.isEmpty(userName)){
@@ -155,6 +165,7 @@ public class LoginActivity extends CommonActivity {
             @Override
             public void onStart() {
                 progressDialog = AbDialogUtil.showProgressDialog(mContext, Global.LOADING_PROGRESSBAR_ID, "请求数据中...");
+
             }
 
             @Override
@@ -188,7 +199,9 @@ public class LoginActivity extends CommonActivity {
     @Click(R.id.tvForgetPW)
     void onForgetPW() {
         String userName = mEtTel.getText().toString();
-        InputTelActivity_.intent(mContext).extra(InputTelActivity_.INTENT_ISREGISTER, Enum_CodeType.FINDPASSWORD).extra(InputTelActivity_.INTENT_TEL,userName).start();
+        Intent intent=new Intent(LoginActivity.this,ForgetActivity.class);
+        startActivity(intent);
+//        InputTelActivity_.intent(mContext).extra(InputTelActivity_.INTENT_ISREGISTER, Enum_CodeType.FINDPASSWORD).extra(InputTelActivity_.INTENT_TEL,userName).start();
     }
 
     /**
@@ -197,7 +210,9 @@ public class LoginActivity extends CommonActivity {
     @Click(R.id.tvSubTitle)
     void onRegister() {
         String userName = mEtTel.getText().toString();
-        InputTelActivity_.intent(mContext).extra(InputTelActivity_.INTENT_ISREGISTER, Enum_CodeType.REGISTER).extra(InputTelActivity_.INTENT_TEL,userName).start();
+        Intent intent=new Intent(LoginActivity.this,RegisterActivity.class);
+        startActivity(intent);
+//        InputTelActivity_.intent(mContext).extra(InputTelActivity_.INTENT_ISREGISTER, Enum_CodeType.REGISTER).extra(InputTelActivity_.INTENT_TEL,userName).start();
     }
 
     /**
@@ -314,7 +329,9 @@ public class LoginActivity extends CommonActivity {
                     MainActivity_.intent(mContext).start();
                 }else{//进行手机号码绑定
                     String userName = mEtTel.getText().toString();
-                    InputTelActivity_.intent(mContext).extra(InputTelActivity_.INTENT_ISREGISTER, Enum_CodeType.BOUND).extra(InputTelActivity_.INTENT_THIRDTOEKN, thirdToken).extra(InputTelActivity_.INTENT_TEL,userName).start();
+//                    InputTelActivity_.intent(mContext).extra(InputTelActivity_.INTENT_ISREGISTER, Enum_CodeType.BOUND).extra(InputTelActivity_.INTENT_THIRDTOEKN, thirdToken).extra(InputTelActivity_.INTENT_TEL,userName).start();
+                    Intent intent=new Intent(LoginActivity.this,RegisterActivity.class);
+                    startActivity(intent);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();

@@ -19,4 +19,46 @@
     <dimen name="small_margin_10">10px</dimen>
     <dimen name="small_margin_5">5px</dimen>
     <dimen name="normal_margin_top">46px</dimen>
+
+    <!--字体大小-->
+    <dimen name="textsize_9">9sp</dimen>
+    <dimen name="textsize_10">10sp</dimen>
+    <dimen name="textsize_11">11sp</dimen>
+    <dimen name="textsize_12">12sp</dimen>
+    <dimen name="textsize_13">13sp</dimen>
+    <dimen name="textsize_14">14sp</dimen>
+    <dimen name="textsize_15">15sp</dimen>
+    <dimen name="textsize_16">16sp</dimen>
+    <dimen name="textsize_17">17sp</dimen>
+    <dimen name="textsize_18">18sp</dimen>
+    <dimen name="textsize_20">20sp</dimen>
+    <dimen name="textsize_24">24sp</dimen>
+    <dimen name="textsize_28">28sp</dimen>
+    <dimen name="textsize_32">32sp</dimen>
+    <!--间距大小-->
+    <dimen name="panding_3">3dp</dimen>
+    <dimen name="panding_4">4dp</dimen>
+    <dimen name="panding_5">5dp</dimen>
+    <dimen name="panding_6">6dp</dimen>
+    <dimen name="panding_8">8dp</dimen>
+    <dimen name="panding_10">10dp</dimen>
+    <dimen name="panding_12">12dp</dimen>
+    <dimen name="panding_13">13dp</dimen>
+    <dimen name="panding_14">14dp</dimen>
+    <dimen name="panding_15">15dp</dimen>
+    <dimen name="panding_16">16dp</dimen>
+    <dimen name="panding_20">20dp</dimen>
+    <dimen name="panding_24">24dp</dimen>
+    <dimen name="panding_25">25dp</dimen>
+    <dimen name="panding_28">28dp</dimen>
+    <dimen name="panding_30">30dp</dimen>
+    <dimen name="panding_35">35dp</dimen>
+    <dimen name="panding_40">40dp</dimen>
+    <dimen name="panding_50">50dp</dimen>
+    <dimen name="panding_55">55dp</dimen>
+    <dimen name="panding_60">60dp</dimen>
+    <!--横线大小-->
+    <dimen name="line_0.5">0.5dp</dimen>
+    <dimen name="line_1">1dp</dimen>
+    <dimen name="line_2">2dp</dimen>
 </resources>

@@ -1,5 +1,6 @@
 package cn.org.eshow.demo.guide;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -11,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bangqu.activity.RegisterActivity;
 import com.prolificinteractive.parallaxpager.ParallaxContainer;
 
 import cn.org.eshow.demo.R;
@@ -68,7 +70,8 @@ public class ParallaxFragment extends Fragment implements ViewPager.OnPageChange
         registButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                InputTelActivity_.intent(ParallaxFragment.this).extra(InputTelActivity_.INTENT_ISREGISTER, Enum_CodeType.REGISTER).start();
+                Intent intent=new Intent(getActivity(),RegisterActivity.class);
+                startActivity(intent);
             }
         });
 
