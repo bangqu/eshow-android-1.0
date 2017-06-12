@@ -1,1 +1,1 @@
-include ':app',':eshow_framwork',':social_sdk_library_project',':PullToZoomList'
+include ':app',':eshow_framwork',':social_sdk_library_project',':PullToZoomList',"bangqulib"

@@ -68,7 +68,7 @@
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:gravity="center"
-        android:background="@drawable/lay_icn_member"
+        android:src="@drawable/icon_music_playing"
         />
 </LinearLayout>
     <!--<LinearLayout-->

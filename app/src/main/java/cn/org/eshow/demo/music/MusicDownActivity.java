@@ -168,8 +168,8 @@ public class MusicDownActivity extends Activity implements View.OnClickListener 
         mMaterialBackButton.setState(MaterialMenuDrawable.IconState.ARROW);
         mMaterialBackButton.setVisibility(View.VISIBLE);
         musicDowningAdapter = new MusicDowningAdapter(context, downList);
-        btDowning.setEnabled(false);
-        btDowned.setEnabled(true);
+//        btDowning.setEnabled(false);
+//        btDowned.setEnabled(true);
         lvMusicDownList.setAdapter(musicDowningAdapter);
         lvMusicDownList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -207,8 +207,10 @@ public class MusicDownActivity extends Activity implements View.OnClickListener 
         switch (v.getId()) {
             case R.id.btDowned:
                 isOnDown = false;
-                btDowning.setEnabled(true);
-                btDowned.setEnabled(false);
+//                btDowning.setEnabled(true);
+//                btDowned.setEnabled(false);
+                btDowned.setTextColor(getResources().getColor(R.color.textColorPrimary));
+                btDowning.setTextColor(getResources().getColor(R.color.normal_text));
                 if (downSuecessList != null) {
                     downSuecessList.clear();
                 }
@@ -224,8 +226,10 @@ public class MusicDownActivity extends Activity implements View.OnClickListener 
                 break;
             case R.id.btDowning:
                 isOnDown = true;
-                btDowning.setEnabled(false);
-                btDowned.setEnabled(true);
+//                btDowning.setEnabled(false);
+//                btDowned.setEnabled(true);
+                btDowning.setTextColor(getResources().getColor(R.color.textColorPrimary));
+                btDowned.setTextColor(getResources().getColor(R.color.normal_text));
                 musicDowningAdapter = new MusicDowningAdapter(context, downList);
                 lvMusicDownList.setAdapter(musicDowningAdapter);
                 break;
