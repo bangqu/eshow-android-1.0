@@ -1,4 +1,4 @@
-package com.bangqu.activity;
+package cn.org.eshow.demo.activity;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -33,6 +33,10 @@ public class RegisterActivity extends BaseActivity {
     private ClearEditText etCode ,etPwd;
     private TextView tvSend;
     private int  second=60;
+    private String username;
+    private String platform;
+    private String nickname;
+    private String photo;
 
     private Handler handler=new Handler(){
         @Override
@@ -69,12 +73,19 @@ public class RegisterActivity extends BaseActivity {
                         ToastUtils.show(RegisterActivity.this, Contact.userLoginBean.getMsg());
                         if (Contact.userLoginBean.getStatus().equals("1")){
                             SharedUtils.setUserNamePwd(RegisterActivity.this,etPhone.getText().toString(),etPwd.getText().toString(),null);
-                            /*intent=new Intent(RegisterActivity.this,HomeActivity.class);
-                            *//**
-                             * 顶部跳转结束之前所有Activity
-                             *//*
+                            if (!StringUtils.isEmpty(username)) {
+                                params = new RequestParams();
+                                params.put("accessToken", Contact.userLoginBean.getAccessToken().getAccessToken());
+                                params.put("thirdParty.username", username);
+                                params.put("thirdParty.nickname", nickname);
+                                params.put("thirdParty.photo", photo);
+                                params.put("thirdParty.platform", platform);
+                                pullpost("third-party/save", params);
+                            }
+                            intent=new Intent(RegisterActivity.this,MainActivity_.class);
+
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                            Jump(intent);*/
+                            Jump(intent);
                             finish();
                         }
                     }
@@ -102,6 +113,10 @@ public class RegisterActivity extends BaseActivity {
     @Override
     public void initDatas() {
         setTitle("注册");
+        username=getIntent().getStringExtra("username");
+        platform=getIntent().getStringExtra("platform");
+        nickname=getIntent().getStringExtra("nickname");
+        photo=getIntent().getStringExtra("photo");
     }
 
     @Override

@@ -29,6 +29,10 @@ public class CodeLoginActivity extends BaseActivity {
     private Message msg;
     private CommonBean commonBean;
     private int  second=60;
+    private String username;
+    private String platform;
+    private String nickname;
+    private String photo;
 
     private Handler handler=new Handler(){
         @Override
@@ -63,7 +67,18 @@ public class CodeLoginActivity extends BaseActivity {
                     Contact.userLoginBean= JSONObject.parseObject(msg.obj.toString(), UserLoginBean.class);
                     if (Contact.userLoginBean!=null){
                         ToastUtils.show(CodeLoginActivity.this, Contact.userLoginBean.getMsg());
+
                         if (Contact.userLoginBean.getStatus().equals("1")){
+
+                            if (!StringUtils.isEmpty(username)) {
+                                params = new RequestParams();
+                                params.put("accessToken", Contact.userLoginBean.getAccessToken().getAccessToken());
+                                params.put("thirdParty.username", username);
+                                params.put("thirdParty.nickname", nickname);
+                                params.put("thirdParty.photo", photo);
+                                params.put("thirdParty.platform", platform);
+                                pullpost("third-party/save", params);
+                            }
 
                             intent=new Intent(CodeLoginActivity.this, MainActivity_.class);
                             /**
@@ -95,6 +110,10 @@ public class CodeLoginActivity extends BaseActivity {
     @Override
     public void initDatas() {
         setTitle("验证码登录");
+        username=getIntent().getStringExtra("username");
+        platform=getIntent().getStringExtra("platform");
+        nickname=getIntent().getStringExtra("nickname");
+        photo=getIntent().getStringExtra("photo");
     }
 
     @Override

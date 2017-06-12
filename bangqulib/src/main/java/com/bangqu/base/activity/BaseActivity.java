@@ -520,6 +520,9 @@ public abstract class BaseActivity extends FragmentActivity implements InitListe
 
 
     public void getWx(final String requestname,RequestParams params) {
+        if(params!=null){
+            Log.e(requestname, BASE_URL + requestname + "?" + params.toString());
+        }
 
         httpClient.post(this, "https://api.weixin.qq.com/sns/" + requestname, params, new AsyncHttpResponseHandler() {
             @Override

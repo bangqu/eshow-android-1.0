@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical"
+    tools:context="cn.org.eshow.demo.activity.AccountBindingActivity">
+
+    <include layout="@layout/include_mune_header"/>
+
+    <TextView
+        android:id="@+id/tvSource"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="@dimen/textsize_14"
+        android:textColor="@color/txt_666"
+        android:layout_margin="@dimen/panding_20"
+        android:text="绑定后可同时使用EShow账号和微信登录"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/panding_15">
+        <ImageView
+            android:id="@+id/iv0"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/ic_blueteeth_unlink"
+            android:layout_margin="@dimen/panding_15"
+            android:scaleType="centerCrop"
+            />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_toRightOf="@id/iv0"
+            android:layout_centerVertical="true"
+            android:gravity="center_horizontal">
+        <ImageView
+            android:id="@+id/ivEshow"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:src="@drawable/icon"
+            android:scaleType="centerCrop"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/iv0"
+            android:layout_marginBottom="@dimen/panding_10"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/textsize_16"
+                android:textColor="@color/txt_333"
+                android:text="EShow"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_toLeftOf="@id/iv0"
+            android:layout_centerVertical="true"
+            android:gravity="center_horizontal">
+            <ImageView
+                android:id="@+id/ivAvatar"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:src="@drawable/ic_default_image"
+                android:scaleType="centerCrop"
+                android:layout_marginBottom="@dimen/panding_10"
+                />
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/textsize_16"
+                android:textColor="@color/txt_333"
+                android:text="刘德华"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_0.5"
+        android:background="@color/line_color"
+        android:layout_margin="@dimen/panding_15"/>
+
+    <Button
+        android:id="@+id/btnNew"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_margin="@dimen/panding_15"
+        android:background="@drawable/btn_login_selector"
+        android:textColor="@color/white"
+        android:text="我是新用户"
+        android:textSize="@dimen/textsize_14"/>
+
+    <Button
+        android:id="@+id/btnOld"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginLeft="@dimen/panding_15"
+        android:layout_marginRight="@dimen/panding_15"
+        android:background="@drawable/btn_login_selector"
+        android:textColor="@color/white"
+        android:text="已有EShow账号"
+        android:textSize="@dimen/textsize_14"/>
+
+</LinearLayout>

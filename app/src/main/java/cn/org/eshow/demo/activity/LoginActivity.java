@@ -1,9 +1,11 @@
 package cn.org.eshow.demo.activity;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -13,11 +15,22 @@ import android.widget.TextView;
 
 import com.balysv.materialmenu.MaterialMenuDrawable;
 import com.balysv.materialmenu.MaterialMenuView;
-import com.bangqu.activity.RegisterActivity;
-import com.umeng.socialize.Config;
-import com.umeng.socialize.UMAuthListener;
+import com.bangqu.base.activity.BaseActivity;
+import com.bangqu.bean.AccessTokenBean;
+import com.bangqu.bean.QQAccessTokenBean;
+import com.bangqu.utils.Contact;
+import com.longtu.base.util.StringUtils;
+import com.longtu.base.util.ToastUtils;
+import com.loopj.android.http.RequestParams;
+import com.tencent.connect.UserInfo;
+import com.tencent.connect.common.Constants;
+import com.tencent.mm.sdk.modelmsg.SendAuth;
+import com.tencent.mm.sdk.openapi.IWXAPI;
+import com.tencent.mm.sdk.openapi.WXAPIFactory;
+import com.tencent.tauth.IUiListener;
+import com.tencent.tauth.Tencent;
+import com.tencent.tauth.UiError;
 import com.umeng.socialize.UMShareAPI;
-import com.umeng.socialize.bean.SHARE_MEDIA;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
@@ -31,10 +44,7 @@ import java.util.Iterator;
 import java.util.Map;
 
 import cn.org.eshow.demo.R;
-import cn.org.eshow.demo.bean.Enum_CodeType;
-import cn.org.eshow.demo.bean.Enum_ThirdType;
-import cn.org.eshow.demo.bluetooth.StringUtil;
-import cn.org.eshow.demo.common.CommonActivity;
+import cn.org.eshow.demo.bean.ThirdPartyLoginBean;
 import cn.org.eshow.demo.common.Global;
 import cn.org.eshow.demo.common.SharedPrefUtil;
 import cn.org.eshow.demo.network.ESResponseListener;
@@ -53,7 +63,7 @@ import cn.org.eshow.framwork.util.AbViewUtil;
  * Created by daikting on 16/2/24.
  */
 @EActivity(R.layout.activity_login)
-public class LoginActivity extends CommonActivity {
+public class LoginActivity extends BaseActivity implements IUiListener {
     private Context mContext = LoginActivity.this;
     private TextView tvCodeLogin;
     @ViewById(R.id.rlBack)
@@ -84,6 +94,74 @@ public class LoginActivity extends CommonActivity {
     String userName = "";
     //第三方授权成功得到的token
     String thirdToken = "";
+
+    private Message msg;
+    private AccessTokenBean accessTokenBean;
+    private QQAccessTokenBean qqAccessTokenBean;
+    private ThirdPartyLoginBean thirdPartyLoginBean;
+    private UserInfo mInfo;
+    private String nickname;
+    private String photo;
+
+    private Handler handler=new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what){
+                case 1:
+                    accessTokenBean= com.alibaba.fastjson.JSONObject.parseObject(msg.obj.toString(),AccessTokenBean.class);
+                    if (accessTokenBean!=null){
+                        try {
+                            initOpenidAndToken(new JSONObject(msg.obj.toString()));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        setQQBind();
+                        updateUserInfo();
+
+                    }
+                    break;
+                case 2:
+                    thirdPartyLoginBean= com.alibaba.fastjson.JSONObject.parseObject(msg.obj.toString(),ThirdPartyLoginBean.class);
+                    if (thirdPartyLoginBean!=null){
+                        if (thirdPartyLoginBean.isBind()){
+
+                        }else {
+                            intent = new Intent(LoginActivity.this, AccountBindingActivity.class);
+                            if (platform.equals("weixin")) {
+                                intent.putExtra("username", username);
+                                intent.putExtra("access_token", access_token);
+                                intent.putExtra("platform", platform);
+                            }else {
+                                intent.putExtra("username", username);
+                                intent.putExtra("platform", platform);
+                                intent.putExtra("nickname", nickname);
+                                intent.putExtra("photo", photo);
+                            }
+                            Jump(intent);
+                        }
+                    }
+                    break;
+                case 3:
+                    qqAccessTokenBean= com.alibaba.fastjson.JSONObject.parseObject(msg.obj.toString(),QQAccessTokenBean.class);
+                    if (qqAccessTokenBean!=null){
+                        nickname=qqAccessTokenBean.getNickname();
+                        photo=qqAccessTokenBean.getFigureurl_qq_2();
+                        params=new RequestParams();
+                        params.put("thirdParty.username",username);
+                        LoginActivity.this.post("third-party/login",params);
+                    }
+                    break;
+            }
+        }
+    };
+
+    private String platform;
+    private String username;
+    private void setQQBind() {
+        platform="qq";
+        username=accessTokenBean.getOpenid();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -220,12 +298,25 @@ public class LoginActivity extends CommonActivity {
      */
     @Click(R.id.llWechatLogin)
     void onWechatLogin() {
-        Log.i("LoginActivity", "微信授权登录");
+      /*  Log.i("LoginActivity", "微信授权登录");
         //AbToastUtil.showToast(mContext,"功能正在完善开发中...");
         Config.dialog = ProgressDialog.show(mContext, "提示", "正在请求跳转....");
         SHARE_MEDIA platform = SHARE_MEDIA.WEIXIN;
         umShareAPI = UMShareAPI.get(mContext);
-        umShareAPI.doOauthVerify(this, platform, umAuthListener);
+        umShareAPI.doOauthVerify(this, platform, umAuthListener);*/
+        if (Contact.isWeixinAvilible(this)) {
+            progressDialog = AbDialogUtil.showProgressDialog(mContext, Global.LOADING_PROGRESSBAR_ID, "登录中");
+            mLlWechatLogin.setEnabled(false);
+            IWXAPI api = WXAPIFactory.createWXAPI(this, "wx747d053fa471eb15", true);
+
+            api.registerApp("wx747d053fa471eb15");
+            SendAuth.Req req = new SendAuth.Req();
+            req.scope = "snsapi_userinfo";
+            req.state = "wechat_sdk_demo_test";
+            api.sendReq(req);
+        } else {
+            ToastUtils.show(this, "请安装微信");
+        }
     }
 
     /**
@@ -233,53 +324,27 @@ public class LoginActivity extends CommonActivity {
      */
     @Click(R.id.llQQLogin)
     void onQQLogin() {
-        Log.i("LoginActivity","QQ授权登录");
+       /* Log.i("LoginActivity","QQ授权登录");
         //AbToastUtil.showToast(mContext,"功能正在完善开发中...");
         Config.dialog = ProgressDialog.show(mContext, "提示", "正在请求跳转....");
         SHARE_MEDIA platform = SHARE_MEDIA.QQ;
         umShareAPI = UMShareAPI.get(mContext);
-        umShareAPI.doOauthVerify(this, platform, umAuthListener);
+        umShareAPI.doOauthVerify(this, platform, umAuthListener);*/
+        progressDialog = AbDialogUtil.showProgressDialog(mContext, Global.LOADING_PROGRESSBAR_ID, "登录中");
+        LoginQQ();
 
     }
 
-    /**
-     * 授权回调监听
-     */
-    private UMAuthListener umAuthListener = new UMAuthListener() {
-        @Override
-        public void onComplete(SHARE_MEDIA platform, int action, Map<String, String> data) {
-            Log.i("LoginActivity", "platform is " + platform.name() + ",,action = " + action + "");
-            work(data);//
-
-            thirdToken = data.get("access_token");
-            Log.i("LoginActivity","======before thirdToken is == "+thirdToken);
-            //截取前16位
-            thirdToken = thirdToken.substring(0,16);
-            Enum_ThirdType thirdType = Enum_ThirdType.QQ;//
-            Log.i("LoginActivity", "======after thirdToken is == " + thirdToken);
-
-            if(platform.name().equals(SHARE_MEDIA.WEIXIN.toString())){
-                thirdType = Enum_ThirdType.WeChat;//
-            }else if(platform.name().equals(SHARE_MEDIA.QQ.toString())){
-                thirdType = Enum_ThirdType.QQ;//
-            }
-            NetworkInterface.thirdLogin(mContext,thirdToken,thirdType,thirdLoginResListener);
-
+    private Tencent mTencent;
+    public void LoginQQ()
+    {
+        mTencent = Tencent.createInstance("1105134763", this.getApplicationContext());
+        if (!mTencent.isSessionValid())
+        {
+            mTencent.login(this, "all", this);
         }
+    }
 
-        @Override
-        public void onError(SHARE_MEDIA platform, int action, Throwable t) {
-            Log.i("LoginActivity", "SHARE_MEDIA is " + platform.name() + ",,action = " + action + ",,Throwable is " + t.toString());
-            AbToastUtil.showToast(mContext, platform.name() + " Authorize fail");
-
-        }
-
-        @Override
-        public void onCancel(SHARE_MEDIA platform, int action) {
-            Log.i("LoginActivity", "SHARE_MEDIA is " + platform.name() + ",,action = " + action);
-            AbToastUtil.showToast(mContext, platform.name() + " Authorize cancel");
-        }
-    };
 
     public void work(Map<String, String> map) {
         if(map==null){
@@ -295,78 +360,145 @@ public class LoginActivity extends CommonActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (umShareAPI != null) {
-            umShareAPI.onActivityResult(requestCode, resultCode, data);
-        } else {
-            //应用未审核
-            Log.i("LoginActivity","应用未审核，平台拒绝了应用的授权请求！");
-            AbToastUtil.showToast(mContext, "应用未审核，平台拒绝了应用的授权请求！");
+        if (requestCode == Constants.REQUEST_LOGIN ||
+                requestCode == Constants.REQUEST_APPBAR) {
+            Tencent.onActivityResultData(requestCode,resultCode,data,this);
+        }
+
+    }
+
+    @Override
+    public void onComplete(Object o) {
+        Log.e("QQ=>",o.toString());
+
+//        /isab
+        msg=new Message();
+        msg.what=1;
+        msg.obj=o;
+        handler.sendMessage(msg);
+
+    }
+
+    @Override
+    public void onError(UiError uiError) {
+
+    }
+
+    @Override
+    public void onCancel() {
+
+    }
+
+    private String access_token;
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (!StringUtils.isEmpty(Contact.Openid)){
+            if (progressDialog!=null){
+                progressDialog.dismiss();
+            }
+            username=Contact.Openid;
+            access_token=Contact.access_token;
+            platform="weixin";
+            Contact.Openid="";
+            Contact.access_token="";
+            params=new RequestParams();
+            params.put("thirdParty.username",username);
+            post("third-party/login",params);
+//            startActivity(intent);
+
+        }
+        mLlWechatLogin.setEnabled(true);
+
+
+    }
+
+    @Override
+    public void setContentView() {
+
+    }
+
+    @Override
+    public void initViews() {
+
+    }
+
+    @Override
+    public void initDatas() {
+
+    }
+
+    @Override
+    public void setDatas() {
+
+    }
+
+    @Override
+    public void setListener() {
+
+    }
+
+    @Override
+    public void ResumeDatas() {
+
+    }
+
+    @Override
+    public void onClick(View v) {
+
+    }
+
+    @Override
+    public void OnReceive(String requestname, String response) {
+        msg=new Message();
+        if (requestname.equals("third-party/login")){
+            msg.what=2;
+        }
+        msg.obj=response;
+        handler.sendMessage(msg);
+    }
+    private void updateUserInfo() {
+        if (mTencent != null && mTencent.isSessionValid()) {
+            IUiListener listener = new IUiListener() {
+
+                @Override
+                public void onError(UiError e) {
+
+                }
+
+                @Override
+                public void onComplete(final Object response) {
+                    msg=new Message();
+                    msg.what=3;
+                    msg.obj=response;
+                    handler.sendMessage(msg);
+                    if (progressDialog!=null){
+                        progressDialog.dismiss();
+                    }
+                }
+
+                @Override
+                public void onCancel() {
+
+                }
+            };
+            mInfo = new UserInfo(this, mTencent.getQQToken());
+            mInfo.getUserInfo(listener);
         }
     }
 
-    /**
-     * 第三方登录接口回调
-     */
-    ESResponseListener thirdLoginResListener = new ESResponseListener(mContext) {
-        @Override
-        public void onBQSucess(String esMsg, JSONObject resultJson) {
-            if(!StringUtil.isBlank(esMsg)){
-                Log.i("LoginActivity","esMsg is "+esMsg);
+    private void initOpenidAndToken(JSONObject jsonObject) {
+        try {
+            String token = jsonObject.getString(Constants.PARAM_ACCESS_TOKEN);
+            String expires = jsonObject.getString(Constants.PARAM_EXPIRES_IN);
+            String openId = jsonObject.getString(Constants.PARAM_OPEN_ID);
+            if (!TextUtils.isEmpty(token) && !TextUtils.isEmpty(expires)
+                    && !TextUtils.isEmpty(openId)) {
+                mTencent.setAccessToken(token, expires);
+                mTencent.setOpenId(openId);
             }
-            if(resultJson!=null){
-                Log.i("LoginActivity","resultJson is "+resultJson.toString());
-            }
-            try {
-                boolean isBound = resultJson.getBoolean("type");
-                if(isBound){
-                    String userStr = resultJson.getJSONObject("user").toString();
-                    AbLogUtil.d(mContext, "Login  userStr:" + userStr);
-                    SharedPrefUtil.setUser(mContext, userStr);
-                    JSONObject tokenJson = resultJson.getJSONObject("accessToken");
-                    String token = tokenJson.getString("accessToken");
-                    SharedPrefUtil.setAccesstoken(mContext,token);
-
-                    MainActivity_.intent(mContext).start();
-                }else{//进行手机号码绑定
-                    String userName = mEtTel.getText().toString();
-//                    InputTelActivity_.intent(mContext).extra(InputTelActivity_.INTENT_ISREGISTER, Enum_CodeType.BOUND).extra(InputTelActivity_.INTENT_THIRDTOEKN, thirdToken).extra(InputTelActivity_.INTENT_TEL,userName).start();
-                    Intent intent=new Intent(LoginActivity.this,RegisterActivity.class);
-                    startActivity(intent);
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+        } catch(Exception e) {
         }
+    }
 
-        @Override
-        public void onBQNoData() {
-
-        }
-
-        @Override
-        public void onBQNotify(String bqMsg) {
-            AbToastUtil.showToast(mContext, bqMsg);
-        }
-
-        @Override
-        public void onStart() {
-            progressDialog = AbDialogUtil.showProgressDialog(mContext, Global.LOADING_PROGRESSBAR_ID, "请求登录中...");
-        }
-
-        @Override
-        public void onFinish() {
-            progressDialog.dismiss();
-        }
-
-        @Override
-        public void onFailure(int statusCode, String content, Throwable error) {
-            Log.i("LoginActivity", "2onFailure:statusCode = " + statusCode + ", content is " + content);
-            if(error!=null){
-                error.printStackTrace();
-            }
-            progressDialog.dismiss();
-
-            AbToastUtil.showToast(mContext, content);
-        }
-    };
 }

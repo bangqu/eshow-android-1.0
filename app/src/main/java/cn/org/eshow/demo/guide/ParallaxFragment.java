@@ -12,14 +12,12 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.bangqu.activity.RegisterActivity;
 import com.prolificinteractive.parallaxpager.ParallaxContainer;
 
 import cn.org.eshow.demo.R;
-import cn.org.eshow.demo.activity.InputTelActivity_;
 import cn.org.eshow.demo.activity.LoginActivity_;
 import cn.org.eshow.demo.activity.MainActivity_;
-import cn.org.eshow.demo.bean.Enum_CodeType;
+import cn.org.eshow.demo.activity.RegisterActivity;
 import cn.org.eshow.framwork.util.AbViewUtil;
 
 /**
